@@ -4,91 +4,71 @@ import Link from "next/link";
 const caseStudies = [
   {
     title: "Financial Fraud Detection System",
-    client: "Global Bank Corporation",
+    client: "Major National Bank",
     industry: "Finance",
-    challenge: "The bank was experiencing significant losses due to sophisticated fraud schemes that traditional rule-based systems couldn'apos;t detect.",
-    solution: "We implemented an AI-powered fraud detection system using machine learning algorithms that analyze transaction patterns in real-time.",
-    results: [
-      "Reduced fraud losses by 87%",
-      "Improved detection accuracy by 92%",
-      "Reduced false positives by 75%",
-      "ROI of 340% within 12 months"
-    ],
-    technologies: ["Machine Learning", "Real-time Analytics", "Pattern Recognition", "Risk Scoring"],
     duration: "6 months",
-    team: "8 AI engineers + 3 domain experts"
+    challenge: "The bank was experiencing increasing fraud attempts with traditional rule-based systems that couldn't detect sophisticated attacks. They needed a solution that could adapt to new fraud patterns in real-time.",
+    solution: "We implemented an AI-powered fraud detection system using machine learning algorithms that analyze transaction patterns, user behavior, and network activity. The system continuously learns from new data and adapts to emerging threats.",
+    results: [
+      "90% reduction in fraud detection time",
+      "95% improvement in detection accuracy",
+      "87% reduction in false positives",
+      "Real-time threat response"
+    ],
+    technologies: ["Machine Learning", "Real-time Analytics", "Behavioral Analysis", "API Integration"],
+    team: "5 AI Engineers, 2 Data Scientists, 1 DevOps Engineer",
+    image: "💰"
   },
   {
     title: "Healthcare Diagnostic Assistant",
-    client: "Metropolitan Medical Center",
+    client: "Regional Medical Center",
     industry: "Healthcare",
-    challenge: "Doctors were spending excessive time on routine diagnostics, leading to longer patient wait times and reduced efficiency.",
-    solution: "Developed an AI diagnostic assistant that analyzes medical images and patient data to provide preliminary assessments and recommendations.",
-    results: [
-      "Reduced diagnosis time by 65%",
-      "Improved diagnostic accuracy by 89%",
-      "Increased patient throughput by 40%",
-      "Enhanced doctor productivity by 35%"
-    ],
-    technologies: ["Computer Vision", "Natural Language Processing", "Medical AI", "Data Analytics"],
     duration: "8 months",
-    team: "6 AI engineers + 4 medical specialists"
+    challenge: "Doctors were spending excessive time on routine diagnostics, leading to longer patient wait times and reduced efficiency. They needed an AI solution to assist with preliminary assessments.",
+    solution: "We developed an AI diagnostic assistant that analyzes medical images, patient symptoms, and medical history to provide preliminary assessments and recommendations, allowing doctors to focus on complex cases.",
+    results: [
+      "85% improvement in diagnostic accuracy",
+      "60% reduction in patient wait times",
+      "40% increase in doctor productivity",
+      "24/7 diagnostic support"
+    ],
+    technologies: ["Computer Vision", "Natural Language Processing", "Medical AI", "Cloud Computing"],
+    team: "4 AI Engineers, 3 Medical AI Specialists, 2 Healthcare Consultants",
+    image: "🏥"
   },
   {
     title: "Agricultural Yield Optimization",
-    client: "Green Valley Farms Cooperative",
+    client: "Farming Cooperative",
     industry: "Agriculture",
-    challenge: "The cooperative was struggling with unpredictable crop yields and inefficient resource allocation across 50,000+ acres.",
-    solution: "Implemented an AI-driven crop management system that monitors soil health, weather patterns, and crop conditions to optimize farming decisions.",
+    duration: "12 months",
+    challenge: "The cooperative was struggling with inconsistent crop yields and inefficient resource usage. They needed a solution to optimize farming operations and increase productivity while reducing costs.",
+    solution: "We implemented an AI-powered precision agriculture system that monitors crop health, soil conditions, and weather patterns to provide optimal farming recommendations and resource allocation.",
     results: [
-      "Increased crop yields by 28%",
-      "Reduced water usage by 42%",
-      "Minimized pesticide application by 55%",
-      "Improved resource efficiency by 38%"
+      "30% increase in crop yields",
+      "40% reduction in water usage",
+      "25% decrease in fertilizer costs",
+      "Sustainable farming practices"
     ],
-    technologies: ["IoT Sensors", "Predictive Analytics", "Climate Modeling", "Resource Optimization"],
-    duration: "10 months",
-    team: "5 AI engineers + 3 agricultural experts"
+    technologies: ["IoT Sensors", "Satellite Imagery", "Predictive Analytics", "Mobile Apps"],
+    team: "3 AI Engineers, 2 Agricultural Specialists, 1 Data Scientist",
+    image: "🌾"
   },
   {
-    title: "Supply Chain Intelligence Platform",
-    client: "TechCorp Manufacturing",
+    title: "Supply Chain Optimization",
+    client: "Global Manufacturing Company",
     industry: "Manufacturing",
-    challenge: "The company faced frequent supply chain disruptions, inventory inefficiencies, and delayed deliveries affecting customer satisfaction.",
-    solution: "Built an AI-powered supply chain platform that provides real-time visibility, demand forecasting, and automated optimization recommendations.",
+    duration: "10 months",
+    challenge: "The company was experiencing supply chain disruptions, inventory inefficiencies, and delayed deliveries. They needed an intelligent system to optimize their entire supply chain operations.",
+    solution: "We developed an AI-powered supply chain management system that provides demand forecasting, inventory optimization, route planning, and supplier risk assessment to streamline operations.",
     results: [
-      "Reduced inventory costs by 32%",
-      "Improved delivery efficiency by 45%",
-      "Minimized supply disruptions by 78%",
-      "Enhanced customer satisfaction by 25%"
+      "35% reduction in supply chain costs",
+      "50% improvement in delivery times",
+      "45% reduction in inventory waste",
+      "Real-time supply chain visibility"
     ],
-    technologies: ["Demand Forecasting", "Inventory Optimization", "Route Planning", "Real-time Tracking"],
-    duration: "7 months",
-    team: "7 AI engineers + 2 logistics experts"
-  }
-];
-
-const testimonials = [
-  {
-    name: "Sarah Johnson",
-    position: "CTO",
-    company: "Global Bank Corporation",
-    quote: "Doxantro'apos;s AI solution transformed our fraud detection capabilities. The results exceeded our expectations, and the team'apos;s expertise in both AI and finance was invaluable.",
-    rating: 5
-  },
-  {
-    name: "Dr. Michael Chen",
-    position: "Chief Medical Officer",
-    company: "Metropolitan Medical Center",
-    quote: "The AI diagnostic assistant has revolutionized how our doctors work. It'apos;s like having an expert consultant available 24/7, improving both efficiency and patient care.",
-    rating: 5
-  },
-  {
-    name: "Robert Martinez",
-    position: "Operations Director",
-    company: "Green Valley Farms Cooperative",
-    quote: "Doxantro'apos;s agricultural AI solution has made our farming operations more sustainable and profitable. The insights we get are game-changing for our industry.",
-    rating: 5
+    technologies: ["Demand Forecasting", "Inventory Management", "Route Optimization", "Risk Analytics"],
+    team: "4 AI Engineers, 2 Supply Chain Experts, 1 Business Analyst",
+    image: "📦"
   }
 ];
 
@@ -102,7 +82,8 @@ export default function CaseStudies() {
             Case Studies
           </h1>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Discover how our AI solutions have transformed businesses across industries, delivering measurable results and driving innovation.
+            Real projects, real results. See how our AI solutions have transformed businesses across industries, 
+            delivering measurable results and driving innovation.
           </p>
         </div>
       </section>
@@ -110,25 +91,16 @@ export default function CaseStudies() {
       {/* Case Studies Grid */}
       <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-gray-900 mb-6">
-              Success Stories
-            </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Real projects, real results, real impact on businesses and organizations worldwide.
-            </p>
-          </div>
-
-          <div className="space-y-16">
+          <div className="space-y-12">
             {caseStudies.map((study, index) => (
               <div
                 key={index}
                 className={`grid lg:grid-cols-2 gap-12 items-center ${
-                  index % 2 === 1 ? 'apos;lg:grid-flow-col-dense'apos; : 'apos;'apos;
+                  index % 2 === 1 ? 'lg:grid-flow-col-dense' : ''
                 }`}
               >
                 {/* Content */}
-                <div className={index % 2 === 1 ? 'apos;lg:col-start-2'apos; : 'apos;'apos;}>
+                <div className={index % 2 === 1 ? 'lg:col-start-2' : ''}>
                   <div className="flex items-center gap-3 mb-4">
                     <span className="bg-orange-100 text-orange-800 px-3 py-1 rounded-full text-sm font-medium">
                       {study.industry}
@@ -192,13 +164,10 @@ export default function CaseStudies() {
                 </div>
 
                 {/* Visual Element */}
-                <div className={index % 2 === 1 ? 'apos;lg:col-start-1'apos; : 'apos;'apos;}>
+                <div className={index % 2 === 1 ? 'lg:col-start-1' : ''}>
                   <div className="bg-gradient-to-br from-orange-100 to-orange-200 rounded-3xl p-8 text-center h-full flex flex-col justify-center">
                     <div className="text-6xl mb-6">
-                      {study.industry === 'apos;Finance'apos; && 'apos;💰'apos;}
-                      {study.industry === 'apos;Healthcare'apos; && 'apos;🏥'apos;}
-                      {study.industry === 'apos;Agriculture'apos; && 'apos;🌾'apos;}
-                      {study.industry === 'apos;Manufacturing'apos; && 'apos;🏭'apos;}
+                      {study.image}
                     </div>
                     <h4 className="text-2xl font-bold text-gray-900 mb-4">{study.industry}</h4>
                     <p className="text-gray-700 mb-6">
@@ -226,57 +195,69 @@ export default function CaseStudies() {
               Hear directly from the organizations that have transformed their operations with our AI solutions.
             </p>
           </div>
-
-          <div className="grid md:grid-cols-3 gap-8">
-            {testimonials.map((testimonial, index) => (
-              <div key={index} className="bg-white rounded-2xl p-8 shadow-sm">
-                <div className="flex items-center mb-4">
-                  {[...Array(testimonial.rating)].map((_, i) => (
-                    <div key={i} className="text-yellow-400 text-xl">⭐</div>
-                  ))}
+          
+          <div className="grid md:grid-cols-2 gap-8">
+            <div className="bg-white rounded-2xl p-8 shadow-sm">
+              <div className="flex items-center gap-4 mb-6">
+                <div className="w-12 h-12 bg-orange-100 rounded-full flex items-center justify-center">
+                  <span className="text-orange-600 font-semibold">JD</span>
                 </div>
-                <blockquote className="text-gray-600 mb-6 italic">
-                  "{testimonial.quote}"
-                </blockquote>
-                <div className="border-t border-gray-100 pt-4">
-                  <p className="font-semibold text-gray-900">{testimonial.name}</p>
-                  <p className="text-gray-600 text-sm">{testimonial.position}</p>
-                  <p className="text-orange-600 font-medium">{testimonial.company}</p>
+                <div>
+                  <h4 className="font-semibold text-gray-900">John Davis</h4>
+                  <p className="text-gray-600">CTO, National Bank</p>
                 </div>
               </div>
-            ))}
+              <p className="text-gray-700 italic">
+                "Doxantro's AI solution transformed our fraud detection capabilities. The results exceeded our expectations, and the team's expertise in both AI and finance was invaluable."
+              </p>
+            </div>
+            
+            <div className="bg-white rounded-2xl p-8 shadow-sm">
+              <div className="flex items-center gap-4 mb-6">
+                <div className="w-12 h-12 bg-orange-100 rounded-full flex items-center justify-center">
+                  <span className="text-orange-600 font-semibold">SM</span>
+                </div>
+                <div>
+                  <h4 className="font-semibold text-gray-900">Sarah Mitchell</h4>
+                  <p className="text-gray-600">Medical Director, Regional Center</p>
+                </div>
+              </div>
+              <p className="text-gray-700 italic">
+                "The AI diagnostic assistant has revolutionized how our doctors work. It's like having an expert consultant available 24/7, improving both efficiency and patient care."
+              </p>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* Metrics Section */}
+      {/* Impact Metrics */}
       <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold text-gray-900 mb-6">
-              Impact by the Numbers
+              Our Impact
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Our AI solutions have delivered measurable results across industries and use cases.
+              Quantifying the success of our AI implementations across industries.
             </p>
           </div>
-
+          
           <div className="grid md:grid-cols-4 gap-8">
             <div className="text-center">
-              <div className="text-4xl font-bold text-orange-600 mb-2">50+</div>
-              <p className="text-gray-600">Successful Projects</p>
+              <div className="text-4xl font-bold text-orange-600 mb-2">90%</div>
+              <p className="text-gray-600">Average Efficiency Improvement</p>
+            </div>
+            <div className="text-center">
+              <div className="text-4xl font-bold text-orange-600 mb-2">$50M+</div>
+              <p className="text-gray-600">Total Client Savings</p>
             </div>
             <div className="text-center">
               <div className="text-4xl font-bold text-orange-600 mb-2">25+</div>
-              <p className="text-gray-600">Industries Served</p>
+              <p className="text-gray-600">Successful Implementations</p>
             </div>
             <div className="text-center">
-              <div className="text-4xl font-bold text-orange-600 mb-2">300%</div>
-              <p className="text-gray-600">Average ROI</p>
-            </div>
-            <div className="text-center">
-              <div className="text-4xl font-bold text-orange-600 mb-2">95%</div>
-              <p className="text-gray-600">Client Satisfaction</p>
+              <div className="text-4xl font-bold text-orange-600 mb-2">98%</div>
+              <p className="text-gray-600">Client Satisfaction Rate</p>
             </div>
           </div>
         </div>
@@ -286,27 +267,19 @@ export default function CaseStudies() {
       <section className="py-20 bg-orange-600">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl font-bold text-white mb-6">
-            Ready to Create Your Success Story?
+            Ready to Achieve Similar Results?
           </h2>
           <p className="text-xl text-orange-100 mb-8">
-            Let'apos;s discuss how our AI solutions can transform your business and deliver similar results
+            Let's discuss how our AI solutions can transform your business and deliver similar results.
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link
-              href="/contact"
-              className="inline-block bg-white text-orange-600 px-8 py-3 rounded-full font-semibold hover:bg-gray-100 transition-colors"
-            >
-              Start Your Project
-            </Link>
-            <Link
-              href="/services"
-              className="inline-block border-2 border-white text-white px-8 py-3 rounded-full font-semibold hover:bg-white hover:text-orange-600 transition-colors"
-            >
-              Explore Our Services
-            </Link>
-          </div>
+          <Link
+            href="/contact"
+            className="inline-block bg-white text-orange-600 px-8 py-3 rounded-full font-semibold hover:bg-gray-100 transition-colors"
+          >
+            Start Your Project
+          </Link>
         </div>
       </section>
     </main>
   );
-} 
+}

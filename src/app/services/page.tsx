@@ -4,161 +4,90 @@ import Link from "next/link";
 const services = [
   {
     title: "AI for Finance",
+    description: "Transform financial operations with intelligent fraud detection, credit risk assessment, and algorithmic trading solutions.",
     icon: "💰",
-    description: "Transform your financial operations with intelligent AI solutions that provide real-time insights, risk assessment, and automated decision-making.",
-    features: [
-      "Predictive Analytics & Forecasting",
-      "Fraud Detection & Prevention",
-      "Risk Management & Assessment",
-      "Automated Trading Systems",
-      "Customer Credit Scoring",
-      "Regulatory Compliance"
-    ],
-    benefits: [
-      "Reduce fraud losses by up to 90%",
-      "Improve risk assessment accuracy by 85%",
-      "Automate 70% of routine financial tasks",
-      "Real-time market insights and predictions"
-    ],
-    useCases: [
-      "Banks & Financial Institutions",
-      "Insurance Companies",
-      "Investment Firms",
-      "Fintech Startups"
-    ],
-    demo: true
+    features: ["Fraud Detection", "Credit Risk", "Algorithmic Trading", "Regulatory Compliance"],
+    benefits: ["Reduced fraud losses", "Improved risk management", "Enhanced trading performance", "Regulatory compliance"],
+    useCases: ["Banks", "Insurance", "Investment Firms", "Fintech"],
+    demo: true,
+    link: "/ai-finance",
+    color: "blue"
   },
   {
     title: "AI for Healthcare",
+    description: "Revolutionize patient care with medical image analysis, predictive analytics, and drug discovery AI.",
     icon: "🏥",
-    description: "Revolutionize patient care with AI-powered diagnostic tools, treatment optimization, and healthcare management systems.",
-    features: [
-      "Medical Image Analysis",
-      "Diagnostic Support Systems",
-      "Patient Risk Prediction",
-      "Drug Discovery & Development",
-      "Healthcare Resource Optimization",
-      "Personalized Medicine"
-    ],
-    benefits: [
-      "Improve diagnostic accuracy by 95%",
-      "Reduce diagnosis time by 60%",
-      "Optimize treatment plans for better outcomes",
-      "Streamline healthcare operations"
-    ],
-    useCases: [
-      "Hospitals & Clinics",
-      "Medical Research Centers",
-      "Pharmaceutical Companies",
-      "Health Insurance Providers"
-    ],
-    demo: false
+    features: ["Medical Image Analysis", "Predictive Analytics", "NLP", "Drug Discovery"],
+    benefits: ["Improved diagnostics", "Better patient outcomes", "Reduced costs", "Faster drug development"],
+    useCases: ["Hospitals", "Clinics", "Research Labs", "Pharmaceuticals"],
+    demo: false,
+    link: "/ai-healthcare",
+    color: "green"
   },
   {
     title: "AI for Agriculture",
+    description: "Optimize farming operations with crop health monitoring, precision agriculture, and climate adaptation.",
     icon: "🌾",
-    description: "Optimize farming operations with smart AI solutions for crop management, yield prediction, and sustainable agriculture practices.",
-    features: [
-      "Crop Monitoring & Analysis",
-      "Yield Prediction Models",
-      "Soil Health Assessment",
-      "Pest & Disease Detection",
-      "Resource Optimization",
-      "Climate Adaptation"
-    ],
-    benefits: [
-      "Increase crop yields by 25-30%",
-      "Reduce water usage by 40%",
-      "Minimize pesticide application by 50%",
-      "Improve resource efficiency"
-    ],
-    useCases: [
-      "Large-Scale Farms",
-      "Agricultural Cooperatives",
-      "Food Processing Companies",
-      "Government Agricultural Agencies"
-    ],
-    demo: false
+    features: ["Crop Health Monitoring", "Precision Agriculture", "Supply Chain", "Climate Adaptation"],
+    benefits: ["Increased yields", "Reduced costs", "Sustainable practices", "Better resource management"],
+    useCases: ["Farms", "Cooperatives", "Agribusiness", "Research Institutions"],
+    demo: false,
+    link: "/ai-agriculture",
+    color: "orange"
   },
   {
     title: "AI for Supply Chain",
+    description: "Streamline operations with intelligent demand forecasting, inventory optimization, and route planning.",
     icon: "📦",
-    description: "Streamline your logistics and supply chain operations with intelligent AI solutions for better efficiency and cost optimization.",
-    features: [
-      "Demand Forecasting",
-      "Inventory Optimization",
-      "Route Planning & Optimization",
-      "Supplier Risk Assessment",
-      "Real-time Tracking",
-      "Predictive Maintenance"
-    ],
-    benefits: [
-      "Reduce inventory costs by 20-30%",
-      "Improve delivery efficiency by 35%",
-      "Minimize supply chain disruptions",
-      "Optimize warehouse operations"
-    ],
-    useCases: [
-      "Manufacturing Companies",
-      "Retail Chains",
-      "Logistics Providers",
-      "E-commerce Platforms"
-    ],
-    demo: false
+    features: ["Demand Forecasting", "Inventory Optimization", "Route Planning", "Supplier Risk"],
+    benefits: ["Reduced costs", "Improved efficiency", "Better customer service", "Risk mitigation"],
+    useCases: ["Manufacturing", "Retail", "Logistics", "E-commerce"],
+    demo: false,
+    link: "/ai-supply-chain",
+    color: "purple"
   },
   {
     title: "AI for Security",
+    description: "Enhance cybersecurity with advanced threat detection, behavioral analysis, and incident response.",
     icon: "🔒",
-    description: "Enhance your security infrastructure with advanced AI-powered threat detection, cybersecurity, and surveillance systems.",
-    features: [
-      "Threat Detection & Prevention",
-      "Cybersecurity Monitoring",
-      "Surveillance & Recognition",
-      "Access Control Systems",
-      "Incident Response Automation",
-      "Security Analytics"
-    ],
-    benefits: [
-      "Detect threats 10x faster than traditional methods",
-      "Reduce false positives by 80%",
-      "24/7 automated security monitoring",
-      "Proactive threat prevention"
-    ],
-    useCases: [
-      "Corporate Offices",
-      "Government Facilities",
-      "Financial Institutions",
-      "Critical Infrastructure"
-    ],
-    demo: false
+    features: ["Threat Detection", "Cybersecurity", "Surveillance", "Access Control"],
+    benefits: ["Better security", "Faster response", "Reduced breaches", "Compliance"],
+    useCases: ["Enterprises", "Government", "Financial", "Healthcare"],
+    demo: false,
+    link: "/ai-security",
+    color: "red"
   },
   {
     title: "AI for Energy",
+    description: "Optimize energy systems with smart grid management, consumption analytics, and renewable optimization.",
     icon: "⚡",
-    description: "Optimize energy consumption and management with intelligent AI solutions for smart grids and renewable energy systems.",
-    features: [
-      "Smart Grid Management",
-      "Energy Consumption Analytics",
-      "Renewable Energy Optimization",
-      "Predictive Maintenance",
-      "Load Balancing",
-      "Energy Trading"
-    ],
-    benefits: [
-      "Reduce energy costs by 15-25%",
-      "Improve grid efficiency by 30%",
-      "Optimize renewable energy utilization",
-      "Prevent equipment failures"
-    ],
-    useCases: [
-      "Utility Companies",
-      "Industrial Facilities",
-      "Commercial Buildings",
-      "Renewable Energy Providers"
-    ],
-    demo: false
+    features: ["Smart Grid Management", "Consumption Analytics", "Renewable Energy", "Predictive Maintenance"],
+    benefits: ["Reduced costs", "Improved efficiency", "Sustainability", "Better reliability"],
+    useCases: ["Utilities", "Manufacturing", "Commercial", "Residential"],
+    demo: false,
+    link: "/ai-energy",
+    color: "yellow"
   }
 ];
+
+const getColorClasses = (color: string) => {
+  switch (color) {
+    case "blue":
+      return "from-blue-500 to-blue-600";
+    case "green":
+      return "from-green-500 to-green-600";
+    case "orange":
+      return "from-orange-500 to-orange-600";
+    case "purple":
+      return "from-purple-500 to-purple-600";
+    case "red":
+      return "from-red-500 to-red-600";
+    case "yellow":
+      return "from-yellow-500 to-yellow-600";
+    default:
+      return "from-gray-500 to-gray-600";
+  }
+};
 
 export default function Services() {
   return (
@@ -167,97 +96,82 @@ export default function Services() {
       <section className="bg-gradient-to-br from-orange-50 to-white py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h1 className="text-5xl md:text-6xl font-bold text-gray-900 mb-6">
-            Our AI Services
+            Our AI Solutions
           </h1>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Comprehensive AI solutions designed to transform your business operations and drive innovation across industries.
+            Comprehensive AI solutions designed specifically for modern business challenges, 
+            from precision agriculture to cybersecurity.
           </p>
         </div>
       </section>
 
-      {/* Services Overview */}
+      {/* Quick Navigation Grid */}
       <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold text-gray-900 mb-6">
-              Industry-Specific AI Solutions
+              Choose Your Industry
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              We specialize in developing tailored AI solutions that address the unique challenges and opportunities in your industry.
+              Select your industry to explore tailored AI solutions designed for your specific challenges.
             </p>
           </div>
-
-          {/* Quick Navigation to Industry Pages */}
-          <div className="mb-16">
-            <h3 className="text-2xl font-bold text-gray-900 mb-8 text-center">Explore Our Industry Solutions</h3>
-            <div className="grid md:grid-cols-3 lg:grid-cols-6 gap-4">
+          
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {services.map((service, index) => (
               <Link
-                href="/ai-finance"
-                className="bg-gradient-to-br from-blue-50 to-blue-100 border border-blue-200 rounded-xl p-4 text-center hover:shadow-md transition-all duration-300 group"
+                key={index}
+                href={service.link}
+                className="group bg-white rounded-2xl p-8 shadow-sm hover:shadow-lg transition-all duration-300 border border-gray-100 hover:border-orange-200"
               >
-                <div className="text-3xl mb-2">💰</div>
-                <h4 className="font-semibold text-blue-900 group-hover:text-blue-700">Finance</h4>
-                <p className="text-xs text-blue-700 mt-1">Fraud Detection, Trading, Risk</p>
+                <div className="text-6xl mb-6 group-hover:scale-110 transition-transform duration-300">
+                  {service.icon}
+                </div>
+                <h3 className="text-2xl font-bold text-gray-900 mb-4 group-hover:text-orange-600 transition-colors">
+                  {service.title}
+                </h3>
+                <p className="text-gray-600 mb-6 leading-relaxed">
+                  {service.description}
+                </p>
+                
+                <div className="flex items-center justify-between">
+                  <span className="text-orange-600 font-semibold group-hover:text-orange-700">
+                    Learn More →
+                  </span>
+                  {service.demo && (
+                    <span className="bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm font-medium">
+                      Demo Available
+                    </span>
+                  )}
+                </div>
               </Link>
-              
-              <Link
-                href="/ai-healthcare"
-                className="bg-gradient-to-br from-green-50 to-green-100 border border-green-200 rounded-xl p-4 text-center hover:shadow-md transition-all duration-300 group"
-              >
-                <div className="text-3xl mb-2">🏥</div>
-                <h4 className="font-semibold text-green-900 group-hover:text-green-700">Healthcare</h4>
-                <p className="text-xs text-green-700 mt-1">Diagnostics, Analytics, Drug Discovery</p>
-              </Link>
-              
-              <Link
-                href="/ai-agriculture"
-                className="bg-gradient-to-br from-orange-50 to-orange-100 border border-orange-200 rounded-xl p-4 text-center hover:shadow-md transition-all duration-300 group"
-              >
-                <div className="text-3xl mb-2">🌾</div>
-                <h4 className="font-semibold text-orange-900 group-hover:text-orange-700">Agriculture</h4>
-                <p className="text-xs text-orange-700 mt-1">Crop Monitoring, Yield Prediction</p>
-              </Link>
-              
-              <Link
-                href="/ai-supply-chain"
-                className="bg-gradient-to-br from-purple-50 to-purple-100 border border-purple-200 rounded-xl p-4 text-center hover:shadow-md transition-all duration-300 group"
-              >
-                <div className="text-3xl mb-2">📦</div>
-                <h4 className="font-semibold text-purple-900 group-hover:text-purple-700">Supply Chain</h4>
-                <p className="text-xs text-purple-700 mt-1">Optimization, Forecasting, Logistics</p>
-              </Link>
-              
-              <Link
-                href="/ai-security"
-                className="bg-gradient-to-br from-red-50 to-red-100 border border-red-200 rounded-xl p-4 text-center hover:shadow-md transition-all duration-300 group"
-              >
-                <div className="text-3xl mb-2">🔒</div>
-                <h4 className="font-semibold text-red-900 group-hover:text-red-700">Security</h4>
-                <p className="text-xs text-red-700 mt-1">Threat Detection, Surveillance</p>
-              </Link>
-              
-              <Link
-                href="/ai-energy"
-                className="bg-gradient-to-br from-yellow-50 to-yellow-100 border border-yellow-200 rounded-xl p-4 text-center hover:shadow-md transition-all duration-300 group"
-              >
-                <div className="text-3xl mb-2">⚡</div>
-                <h4 className="font-semibold text-yellow-900 group-hover:text-yellow-700">Energy</h4>
-                <p className="text-xs text-yellow-700 mt-1">Grid Management, Optimization</p>
-              </Link>
-            </div>
+            ))}
           </div>
+        </div>
+      </section>
 
-          {/* Services Grid */}
+      {/* Detailed Services */}
+      <section className="py-20 bg-gray-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-bold text-gray-900 mb-6">
+              Detailed Solutions
+            </h2>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              Explore comprehensive details about each AI solution, including features, benefits, and implementation details.
+            </p>
+          </div>
+          
           <div className="space-y-12">
             {services.map((service, index) => (
               <div
                 key={index}
                 className={`grid lg:grid-cols-2 gap-12 items-center ${
-                  index % 2 === 1 ? 'apos;lg:grid-flow-col-dense'apos; : 'apos;'apos;
+                  index % 2 === 1 ? 'lg:grid-flow-col-dense' : ''
                 }`}
               >
                 {/* Content */}
-                <div className={index % 2 === 1 ? 'apos;lg:col-start-2'apos; : 'apos;'apos;}>
+                <div className={index % 2 === 1 ? 'lg:col-start-2' : ''}>
                   <div className="text-6xl mb-4">{service.icon}</div>
                   <h3 className="text-3xl font-bold text-gray-900 mb-4">{service.title}</h3>
                   <p className="text-lg text-gray-600 mb-6 leading-relaxed">
@@ -320,12 +234,7 @@ export default function Services() {
                       </span>
                     )}
                     <Link
-                      href={service.title === "AI for Finance" ? "/ai-finance" : 
-                            service.title === "AI for Healthcare" ? "/ai-healthcare" : 
-                            service.title === "AI for Agriculture" ? "/ai-agriculture" :
-                            service.title === "AI for Supply Chain" ? "/ai-supply-chain" :
-                            service.title === "AI for Security" ? "/ai-security" :
-                            service.title === "AI for Energy" ? "/ai-energy" : "/contact"}
+                      href={service.link}
                       className="inline-block border-2 border-orange-600 text-orange-600 px-6 py-3 rounded-full font-semibold hover:bg-orange-600 hover:text-white transition-colors"
                     >
                       Learn More
@@ -334,7 +243,7 @@ export default function Services() {
                 </div>
 
                 {/* Visual Element */}
-                <div className={index % 2 === 1 ? 'apos;lg:col-start-1'apos; : 'apos;'apos;}>
+                <div className={index % 2 === 1 ? 'lg:col-start-1' : ''}>
                   <div className="bg-gradient-to-br from-orange-100 to-orange-200 rounded-3xl p-8 text-center h-full flex flex-col justify-center">
                     <div className="text-8xl mb-6">{service.icon}</div>
                     <h4 className="text-2xl font-bold text-gray-900 mb-4">{service.title}</h4>
@@ -349,62 +258,6 @@ export default function Services() {
         </div>
       </section>
 
-      {/* Process Section */}
-      <section className="py-20 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-gray-900 mb-6">
-              Our Implementation Process
-            </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              We follow a proven methodology to ensure successful AI implementation and maximum ROI for your business.
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-4 gap-8">
-            <div className="text-center">
-              <div className="w-16 h-16 bg-orange-600 text-white rounded-full flex items-center justify-center mx-auto mb-4 text-2xl font-bold">
-                1
-              </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-3">Discovery</h3>
-              <p className="text-gray-600">
-                We analyze your business needs and identify the best AI opportunities for your organization.
-              </p>
-            </div>
-
-            <div className="text-center">
-              <div className="w-16 h-16 bg-orange-600 text-white rounded-full flex items-center justify-center mx-auto mb-4 text-2xl font-bold">
-                2
-              </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-3">Strategy</h3>
-              <p className="text-gray-600">
-                We develop a comprehensive AI strategy tailored to your business goals and technical requirements.
-              </p>
-            </div>
-
-            <div className="text-center">
-              <div className="w-16 h-16 bg-orange-600 text-white rounded-full flex items-center justify-center mx-auto mb-4 text-2xl font-bold">
-                3
-              </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-3">Implementation</h3>
-              <p className="text-gray-600">
-                Our expert team builds and deploys your AI solution with rigorous testing and quality assurance.
-              </p>
-            </div>
-
-            <div className="text-center">
-              <div className="w-16 h-16 bg-orange-600 text-white rounded-full flex items-center justify-center mx-auto mb-4 text-2xl font-bold">
-                4
-              </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-3">Optimization</h3>
-              <p className="text-gray-600">
-                We continuously monitor, optimize, and scale your AI solution for maximum performance and ROI.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
       {/* CTA Section */}
       <section className="py-20 bg-orange-600">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
@@ -412,24 +265,16 @@ export default function Services() {
             Ready to Transform Your Business with AI?
           </h2>
           <p className="text-xl text-orange-100 mb-8">
-            Let'apos;s discuss how our AI solutions can drive innovation and growth in your organization
+            Let's discuss how our AI solutions can drive innovation and growth in your organization.
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link
-              href="/contact"
-              className="inline-block bg-white text-orange-600 px-8 py-3 rounded-full font-semibold hover:bg-gray-100 transition-colors"
-            >
-              Schedule a Consultation
-            </Link>
-            <Link
-              href="/case-studies"
-              className="inline-block border-2 border-white text-white px-8 py-3 rounded-full font-semibold hover:bg-white hover:text-orange-600 transition-colors"
-            >
-              View Case Studies
-            </Link>
-          </div>
+          <Link
+            href="/contact"
+            className="inline-block bg-white text-orange-600 px-8 py-3 rounded-full font-semibold hover:bg-gray-100 transition-colors"
+          >
+            Get Started Today
+          </Link>
         </div>
       </section>
     </main>
   );
-} 
+}

@@ -1,78 +1,74 @@
 import React from "react";
 import Link from "next/link";
 
+const featuredArticle = {
+  title: "The Future of AI in Business: 2024 Trends and Predictions",
+  excerpt: "Discover how artificial intelligence is reshaping industries and what businesses need to know to stay competitive in the AI revolution.",
+  author: "Doxantro Team",
+  date: "August 15, 2024",
+  readTime: "8 min read",
+  category: "AI Trends",
+  image: "🚀"
+};
+
 const blogPosts = [
   {
-    title: "The Future of AI in Financial Services: Trends to Watch in 2024",
-    excerpt: "Discover how artificial intelligence is revolutionizing the financial industry, from fraud detection to personalized banking experiences.",
-    category: "AI Trends",
-    author: "Dr. Sarah Chen",
-    date: "March 15, 2024",
-    readTime: "8 min read",
-    image: "💰",
-    featured: true
-  },
-  {
-    title: "How AI is Transforming Healthcare: From Diagnosis to Treatment",
-    excerpt: "Explore the latest developments in AI-powered healthcare solutions and their impact on patient care and medical outcomes.",
-    category: "Healthcare AI",
-    author: "Dr. Michael Rodriguez",
-    date: "March 10, 2024",
-    readTime: "6 min read",
-    image: "🏥",
-    featured: false
-  },
-  {
-    title: "Sustainable Agriculture Through AI: Feeding the World Smarter",
-    excerpt: "Learn how artificial intelligence is helping farmers optimize crop yields while reducing environmental impact and resource consumption.",
-    category: "Agriculture Tech",
-    author: "Emma Thompson",
-    date: "March 5, 2024",
-    readTime: "7 min read",
-    image: "🌾",
-    featured: false
-  },
-  {
-    title: "Building Ethical AI: Principles and Best Practices",
-    excerpt: "Understanding the importance of ethical AI development and how organizations can implement responsible AI practices.",
-    category: "AI Ethics",
-    author: "Prof. James Wilson",
-    date: "February 28, 2024",
-    readTime: "10 min read",
-    image: "🤖",
-    featured: false
-  },
-  {
-    title: "AI-Powered Supply Chain Optimization: A Game Changer for Manufacturing",
-    excerpt: "Discover how AI is revolutionizing supply chain management, reducing costs, and improving efficiency across manufacturing industries.",
-    category: "Supply Chain",
-    author: "Lisa Chang",
-    date: "February 20, 2024",
-    readTime: "9 min read",
-    image: "📦",
-    featured: false
-  },
-  {
-    title: "Machine Learning vs. Traditional Programming: When to Use What",
-    excerpt: "A comprehensive guide to understanding the differences between machine learning and traditional programming approaches.",
-    category: "Technology",
-    author: "Alex Kumar",
-    date: "February 15, 2024",
+    title: "Implementing AI Fraud Detection: A Complete Guide",
+    excerpt: "Step-by-step guide to implementing AI-powered fraud detection systems in financial institutions.",
+    author: "Sarah Johnson",
+    date: "August 12, 2024",
     readTime: "12 min read",
-    image: "💻",
-    featured: false
+    category: "Implementation",
+    image: "💰"
+  },
+  {
+    title: "AI in Healthcare: Transforming Patient Care",
+    excerpt: "How AI is revolutionizing healthcare delivery and improving patient outcomes across the industry.",
+    author: "Dr. Michael Chen",
+    date: "August 10, 2024",
+    readTime: "10 min read",
+    category: "Healthcare",
+    image: "🏥"
+  },
+  {
+    title: "Precision Agriculture: AI Solutions for Modern Farming",
+    excerpt: "Exploring the latest AI technologies that are optimizing agricultural operations and increasing yields.",
+    author: "Emma Rodriguez",
+    date: "August 8, 2024",
+    readTime: "15 min read",
+    category: "Agriculture",
+    image: "🌾"
+  },
+  {
+    title: "Supply Chain Optimization with Machine Learning",
+    excerpt: "How machine learning algorithms are streamlining supply chain operations and reducing costs.",
+    author: "David Kim",
+    date: "August 5, 2024",
+    readTime: "11 min read",
+    category: "Supply Chain",
+    image: "📦"
+  },
+  {
+    title: "Cybersecurity in the AI Era: Threats and Solutions",
+    excerpt: "Understanding the evolving cybersecurity landscape and how AI is both a threat and a solution.",
+    author: "Lisa Thompson",
+    date: "August 3, 2024",
+    readTime: "9 min read",
+    category: "Security",
+    image: "🔒"
+  },
+  {
+    title: "Energy Management: AI for Sustainable Operations",
+    excerpt: "Leveraging AI to optimize energy consumption and create more sustainable business operations.",
+    author: "Robert Wilson",
+    date: "August 1, 2024",
+    readTime: "13 min read",
+    category: "Energy",
+    image: "⚡"
   }
 ];
 
-const categories = [
-  "All Posts",
-  "AI Trends",
-  "Healthcare AI",
-  "Agriculture Tech",
-  "AI Ethics",
-  "Supply Chain",
-  "Technology"
-];
+const categories = ["All", "AI Trends", "Implementation", "Healthcare", "Agriculture", "Supply Chain", "Security", "Energy"];
 
 export default function Blog() {
   return (
@@ -84,12 +80,13 @@ export default function Blog() {
             AI Insights & Updates
           </h1>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Stay ahead of the curve with our latest insights on AI technology, industry trends, and innovative solutions that are shaping the future.
+            Stay informed about the latest developments in AI technology, industry trends, 
+            and best practices for implementing intelligent solutions.
           </p>
         </div>
       </section>
 
-      {/* Featured Post */}
+      {/* Featured Article */}
       <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
@@ -97,69 +94,67 @@ export default function Blog() {
               Featured Article
             </h2>
           </div>
-
-          {blogPosts.filter(post => post.featured).map((post, index) => (
-            <div key={index} className="bg-gradient-to-br from-orange-50 to-white rounded-3xl p-8 md:p-12">
-              <div className="grid lg:grid-cols-2 gap-12 items-center">
-                <div>
-                  <div className="flex items-center gap-3 mb-4">
-                    <span className="bg-orange-100 text-orange-800 px-3 py-1 rounded-full text-sm font-medium">
-                      {post.category}
-                    </span>
-                    <span className="text-gray-500 text-sm">{post.readTime}</span>
-                  </div>
-                  
-                  <h3 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-                    {post.title}
-                  </h3>
-                  
-                  <p className="text-lg text-gray-600 mb-6 leading-relaxed">
-                    {post.excerpt}
-                  </p>
-                  
-                  <div className="flex items-center gap-4 mb-6">
-                    <div className="w-10 h-10 bg-orange-100 rounded-full flex items-center justify-center">
-                      <span className="text-orange-600 font-semibold">
-                        {post.author.split('apos; 'apos;).map(n => n[0]).join('apos;'apos;)}
-                      </span>
-                    </div>
-                    <div>
-                      <p className="font-semibold text-gray-900">{post.author}</p>
-                      <p className="text-gray-500 text-sm">{post.date}</p>
-                    </div>
-                  </div>
-                  
-                  <Link
-                    href="#"
-                    className="inline-block bg-orange-600 text-white px-6 py-3 rounded-full font-semibold hover:bg-orange-700 transition-colors"
-                  >
-                    Read Full Article
-                  </Link>
+          
+          <div className="bg-gradient-to-br from-orange-50 to-white rounded-3xl p-8 md:p-12">
+            <div className="grid lg:grid-cols-2 gap-12 items-center">
+              <div>
+                <div className="flex items-center gap-3 mb-4">
+                  <span className="bg-orange-100 text-orange-800 px-3 py-1 rounded-full text-sm font-medium">
+                    {featuredArticle.category}
+                  </span>
+                  <span className="text-gray-500 text-sm">{featuredArticle.readTime}</span>
                 </div>
                 
-                <div className="text-center">
-                  <div className="text-8xl mb-6">{post.image}</div>
-                  <div className="bg-white rounded-2xl p-6 shadow-sm">
-                    <h4 className="text-lg font-semibold text-gray-900 mb-2">Key Takeaways</h4>
-                    <ul className="text-left text-gray-600 space-y-2">
-                      <li className="flex items-center">
-                        <div className="w-2 h-2 bg-orange-600 rounded-full mr-3"></div>
-                        Industry insights and trends
-                      </li>
-                      <li className="flex items-center">
-                        <div className="w-2 h-2 bg-orange-600 rounded-full mr-3"></div>
-                        Practical implementation strategies
-                      </li>
-                      <li className="flex items-center">
-                        <div className="w-2 h-2 bg-orange-600 rounded-full mr-3"></div>
-                        Future outlook and predictions
-                      </li>
-                    </ul>
+                <h3 className="text-3xl font-bold text-gray-900 mb-4">
+                  {featuredArticle.title}
+                </h3>
+                
+                <p className="text-lg text-gray-600 mb-6 leading-relaxed">
+                  {featuredArticle.excerpt}
+                </p>
+                
+                <div className="flex items-center gap-4 mb-6">
+                  <div className="w-10 h-10 bg-orange-100 rounded-full flex items-center justify-center">
+                    <span className="text-orange-600 font-semibold">
+                      {featuredArticle.author.split(' ').map(n => n[0]).join('')}
+                    </span>
                   </div>
+                  <div>
+                    <p className="font-semibold text-gray-900">{featuredArticle.author}</p>
+                    <p className="text-gray-500 text-sm">{featuredArticle.date}</p>
+                  </div>
+                </div>
+                
+                <Link
+                  href="#"
+                  className="inline-block bg-orange-600 text-white px-6 py-3 rounded-full font-semibold hover:bg-orange-700 transition-colors"
+                >
+                  Read Full Article
+                </Link>
+              </div>
+              
+              <div className="text-center">
+                <div className="text-8xl mb-6">{featuredArticle.image}</div>
+                <div className="bg-white rounded-2xl p-6 shadow-sm">
+                  <h4 className="text-lg font-semibold text-gray-900 mb-2">Key Takeaways</h4>
+                  <ul className="text-left text-gray-600 space-y-2">
+                    <li className="flex items-center">
+                      <div className="w-2 h-2 bg-orange-600 rounded-full mr-3"></div>
+                      Industry insights and trends
+                    </li>
+                    <li className="flex items-center">
+                      <div className="w-2 h-2 bg-orange-600 rounded-full mr-3"></div>
+                      Practical implementation strategies
+                    </li>
+                    <li className="flex items-center">
+                      <div className="w-2 h-2 bg-orange-600 rounded-full mr-3"></div>
+                      Future outlook and predictions
+                    </li>
+                  </ul>
                 </div>
               </div>
             </div>
-          ))}
+          </div>
         </div>
       </section>
 
@@ -172,8 +167,8 @@ export default function Blog() {
                 key={index}
                 className={`px-4 py-2 rounded-full font-medium transition-colors ${
                   index === 0 
-                    ? 'apos;bg-orange-600 text-white'apos; 
-                    : 'apos;bg-white text-gray-700 hover:bg-orange-100 hover:text-orange-700'apos;
+                    ? 'bg-orange-600 text-white' 
+                    : 'bg-white text-gray-700 hover:bg-orange-100 hover:text-orange-700'
                 }`}
               >
                 {category}
@@ -196,7 +191,7 @@ export default function Blog() {
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {blogPosts.filter(post => !post.featured).map((post, index) => (
+            {blogPosts.map((post, index) => (
               <article key={index} className="bg-white rounded-2xl border border-gray-100 hover:border-orange-200 hover:shadow-lg transition-all duration-300">
                 <div className="p-6">
                   <div className="flex items-center gap-3 mb-4">
@@ -220,7 +215,7 @@ export default function Blog() {
                     <div className="flex items-center gap-3">
                       <div className="w-8 h-8 bg-orange-100 rounded-full flex items-center justify-center">
                         <span className="text-orange-600 font-semibold text-sm">
-                          {post.author.split('apos; 'apos;).map(n => n[0]).join('apos;'apos;)}
+                          {post.author.split(' ').map(n => n[0]).join('')}
                         </span>
                       </div>
                       <div>
@@ -240,17 +235,26 @@ export default function Blog() {
               </article>
             ))}
           </div>
+          
+          <div className="text-center mt-12">
+            <Link
+              href="#"
+              className="inline-block bg-orange-600 text-white px-8 py-3 rounded-full font-semibold hover:bg-orange-700 transition-colors"
+            >
+              View All Articles
+            </Link>
+          </div>
         </div>
       </section>
 
       {/* Newsletter Signup */}
-      <section className="py-20 bg-gray-50">
+      <section className="py-20 bg-orange-600">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl font-bold text-gray-900 mb-6">
+          <h2 className="text-3xl font-bold text-white mb-6">
             Stay Updated with AI Insights
           </h2>
-          <p className="text-xl text-gray-600 mb-8">
-            Get the latest articles, industry updates, and AI trends delivered directly to your inbox.
+          <p className="text-xl text-orange-100 mb-8">
+            Get the latest AI trends, implementation guides, and industry insights delivered to your inbox.
           </p>
           
           <div className="max-w-md mx-auto">
@@ -258,36 +262,36 @@ export default function Blog() {
               <input
                 type="email"
                 placeholder="Enter your email address"
-                className="flex-1 px-4 py-3 border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-orange-500"
+                className="flex-1 px-4 py-3 rounded-full text-gray-900 focus:outline-none focus:ring-2 focus:ring-white"
               />
-              <button className="bg-orange-600 text-white px-6 py-3 rounded-full font-semibold hover:bg-orange-700 transition-colors">
+              <button className="bg-white text-orange-600 px-6 py-3 rounded-full font-semibold hover:bg-gray-100 transition-colors">
                 Subscribe
               </button>
             </div>
-            <p className="text-sm text-gray-500 mt-3">
-              No spam, unsubscribe at any time. We respect your privacy.
+            <p className="text-orange-200 text-sm mt-3">
+              Join 5,000+ professionals already receiving our insights
             </p>
           </div>
         </div>
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-orange-600">
+      <section className="py-20 bg-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl font-bold text-white mb-6">
-            Have an AI Topic to Discuss?
+          <h2 className="text-3xl font-bold text-gray-900 mb-6">
+            Have a Story to Share?
           </h2>
-          <p className="text-xl text-orange-100 mb-8">
-            We'apos;re always looking for new perspectives and insights. Let'apos;s collaborate on content that matters to the AI community.
+          <p className="text-xl text-gray-600 mb-8">
+            We're always looking for industry experts and thought leaders to contribute to our blog.
           </p>
           <Link
             href="/contact"
-            className="inline-block bg-white text-orange-600 px-8 py-3 rounded-full font-semibold hover:bg-gray-100 transition-colors"
+            className="inline-block bg-orange-600 text-white px-8 py-3 rounded-full font-semibold hover:bg-orange-700 transition-colors"
           >
-            Get in Touch
+            Submit Your Article
           </Link>
         </div>
       </section>
     </main>
   );
-} 
+}
