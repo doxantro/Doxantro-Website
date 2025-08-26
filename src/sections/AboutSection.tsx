@@ -11,7 +11,7 @@ export default function AboutSection() {
               About Doxantro Systems
             </h2>
             <p className="text-xl text-gray-600 mb-6 leading-relaxed">
-              We are a technology startup that believes in the power of human creativity combined with artificial intelligence to solve the world'apos;s most pressing challenges.
+              We are a technology startup that believes in the power of human creativity combined with artificial intelligence to solve the world's most pressing challenges.
             </p>
             <p className="text-lg text-gray-600 mb-8 leading-relaxed">
               Our mission is to empower businesses, government agencies, and organizations with intelligent AI solutions that drive innovation, efficiency, and sustainable growth across diverse industries.

@@ -10,7 +10,7 @@ export default function Contact() {
             Get in Touch
           </h1>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Ready to transform your business with AI? Let'apos;s discuss your project requirements and explore how our solutions can drive innovation and growth.
+            Ready to transform your business with AI? Let's discuss your project requirements and explore how our solutions can drive innovation and growth.
           </p>
         </div>
       </section>
@@ -132,7 +132,7 @@ export default function Contact() {
                     <option value="100k-250k">$100,000 - $250,000</option>
                     <option value="250k-500k">$250,000 - $500,000</option>
                     <option value="over-500k">Over $500,000</option>
-                    <option value="discuss">Let'apos;s discuss</option>
+                    <option value="discuss">Let's discuss</option>
                   </select>
                 </div>
 
@@ -179,7 +179,7 @@ export default function Contact() {
                 </div>
 
                 <p className="text-sm text-gray-500 text-center">
-                  We'apos;ll get back to you within 24 hours to discuss your project requirements.
+                  We'll get back to you within 24 hours to discuss your project requirements.
                 </p>
               </form>
             </div>
@@ -272,7 +272,7 @@ export default function Contact() {
               Other Ways to Connect
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Whether you prefer social media, professional networks, or direct communication, we'apos;re here to help.
+              Whether you prefer social media, professional networks, or direct communication, we're here to help.
             </p>
           </div>
 
@@ -350,7 +350,7 @@ export default function Contact() {
             <div className="bg-gray-50 rounded-lg p-6">
               <h3 className="font-semibold text-gray-900 mb-2">What industries do you specialize in?</h3>
               <p className="text-gray-600">
-                We have deep expertise in finance, healthcare, agriculture, supply chain, security, and energy, but we'apos;re always expanding into new domains.
+                We have deep expertise in finance, healthcare, agriculture, supply chain, security, and energy, but we're always expanding into new domains.
               </p>
             </div>
           </div>

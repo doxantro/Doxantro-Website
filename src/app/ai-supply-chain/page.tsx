@@ -353,7 +353,7 @@ export default function AISupplyChain() {
             Ready to Optimize Your Supply Chain?
           </h2>
           <p className="text-xl text-purple-100 mb-8">
-            Let'apos;s discuss how our AI solutions can improve efficiency, reduce costs, and create a more resilient supply chain for your organization.
+            Let's discuss how our AI solutions can improve efficiency, reduce costs, and create a more resilient supply chain for your organization.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a
@@ -374,4 +374,5 @@ export default function AISupplyChain() {
     </main>
   );
 }
+
 

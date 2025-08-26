@@ -103,7 +103,7 @@ export default function About() {
               </div>
               <h3 className="text-xl font-bold text-gray-900 mb-3">Sustainable Growth</h3>
               <p className="text-gray-600">
-                We&apos;re committed to creating solutions that not only drive immediate results but also ensure long-term success and scalability.
+                We're committed to creating solutions that not only drive immediate results but also ensure long-term success and scalability.
               </p>
             </div>
             

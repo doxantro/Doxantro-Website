@@ -353,7 +353,7 @@ export default function AISecurity() {
             Ready to Enhance Your Security with AI?
           </h2>
           <p className="text-xl text-red-100 mb-8">
-            Let'apos;s discuss how our AI solutions can improve threat detection, reduce response times, and create a more secure environment for your organization.
+            Let's discuss how our AI solutions can improve threat detection, reduce response times, and create a more secure environment for your organization.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a
@@ -374,4 +374,5 @@ export default function AISecurity() {
     </main>
   );
 }
+
 

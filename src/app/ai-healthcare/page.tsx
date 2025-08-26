@@ -353,7 +353,7 @@ export default function AIHealthcare() {
             Ready to Transform Healthcare with AI?
           </h2>
           <p className="text-xl text-green-100 mb-8">
-            Let'apos;s discuss how our AI solutions can improve patient care, reduce costs, and enhance clinical outcomes in your organization.
+            Let's discuss how our AI solutions can improve patient care, reduce costs, and enhance clinical outcomes in your organization.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a
@@ -374,4 +374,5 @@ export default function AIHealthcare() {
     </main>
   );
 }
+
 

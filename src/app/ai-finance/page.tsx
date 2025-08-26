@@ -178,7 +178,7 @@ export default function AIFinance() {
               Why AI in Finance?
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              The financial industry is undergoing a digital transformation. AI is not just an option—it'apos;s a necessity 
+              The financial industry is undergoing a digital transformation. AI is not just an option—it's a necessity 
               for staying competitive and meeting evolving customer expectations.
             </p>
           </div>
@@ -351,7 +351,7 @@ export default function AIFinance() {
             Ready to Transform Your Financial Operations?
           </h2>
           <p className="text-xl text-blue-100 mb-8">
-            Let'apos;s discuss how our AI solutions can drive innovation, reduce costs, and improve risk management in your organization.
+            Let's discuss how our AI solutions can drive innovation, reduce costs, and improve risk management in your organization.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a
@@ -372,4 +372,5 @@ export default function AIFinance() {
     </main>
   );
 }
+
 

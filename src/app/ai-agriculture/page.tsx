@@ -178,7 +178,7 @@ export default function AIAgriculture() {
               Why AI in Agriculture?
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              The world'apos;s population is growing, and we need to produce more food with fewer resources. 
+              The world's population is growing, and we need to produce more food with fewer resources. 
               AI offers sustainable solutions that increase yields while protecting our environment.
             </p>
           </div>
@@ -353,7 +353,7 @@ export default function AIAgriculture() {
             Ready to Transform Your Farming Operations?
           </h2>
           <p className="text-xl text-orange-100 mb-8">
-            Let'apos;s discuss how our AI solutions can increase yields, reduce costs, and create sustainable farming practices for your organization.
+            Let's discuss how our AI solutions can increase yields, reduce costs, and create sustainable farming practices for your organization.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a
@@ -374,4 +374,5 @@ export default function AIAgriculture() {
     </main>
   );
 }
+
 

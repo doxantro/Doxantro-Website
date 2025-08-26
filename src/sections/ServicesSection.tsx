@@ -118,7 +118,7 @@ export default function ServicesSection() {
             href="/contact"
             className="inline-block bg-gray-900 text-white px-8 py-3 rounded-full font-semibold hover:bg-gray-800 transition-colors"
           >
-            Let'apos;s Discuss Your Project
+            Let's Discuss Your Project
           </Link>
         </div>
       </div>

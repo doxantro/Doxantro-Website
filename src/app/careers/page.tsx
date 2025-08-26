@@ -131,7 +131,7 @@ const values = [
   {
     icon: "🌱",
     title: "Growth",
-    description: "We invest in our people'apos;s development and career advancement"
+    description: "We invest in our people's development and career advancement"
   },
   {
     icon: "🎯",
@@ -150,7 +150,7 @@ export default function Careers() {
             Join Our Team
           </h1>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Help us build the future of AI technology. Join a team of passionate innovators working to solve the world'apos;s most complex challenges.
+            Help us build the future of AI technology. Join a team of passionate innovators working to solve the world's most complex challenges.
           </p>
         </div>
       </section>
@@ -163,7 +163,7 @@ export default function Careers() {
               Why Work at Doxantro?
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              We'apos;re building more than just AI solutions - we'apos;re creating a culture of innovation, collaboration, and impact.
+              We're building more than just AI solutions - we're creating a culture of innovation, collaboration, and impact.
             </p>
           </div>
 
@@ -184,8 +184,8 @@ export default function Careers() {
               Our Mission
             </h3>
             <p className="text-xl text-gray-700 max-w-4xl mx-auto leading-relaxed">
-              At Doxantro Systems, we believe that human creativity combined with artificial intelligence can solve the world'apos;s most pressing challenges. 
-              We'apos;re not just building technology - we'apos;re building solutions that inspire hope and create positive change across industries and communities.
+              At Doxantro Systems, we believe that human creativity combined with artificial intelligence can solve the world's most pressing challenges. 
+              We're not just building technology - we're building solutions that inspire hope and create positive change across industries and communities.
             </p>
           </div>
         </div>
@@ -296,7 +296,7 @@ export default function Careers() {
               Our Application Process
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              We'apos;ve streamlined our hiring process to make it simple and efficient for both candidates and our team.
+              We've streamlined our hiring process to make it simple and efficient for both candidates and our team.
             </p>
           </div>
 
@@ -337,7 +337,7 @@ export default function Careers() {
               </div>
               <h3 className="text-xl font-bold text-gray-900 mb-3">Offer</h3>
               <p className="text-gray-600">
-                Welcome to the team! We'apos;ll help you get started on your journey
+                Welcome to the team! We'll help you get started on your journey
               </p>
             </div>
           </div>
@@ -348,10 +348,10 @@ export default function Careers() {
       <section className="py-20 bg-orange-600">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl font-bold text-white mb-6">
-            Don'apos;t See the Right Role?
+            Don't See the Right Role?
           </h2>
           <p className="text-xl text-orange-100 mb-8">
-            We'apos;re always looking for talented individuals. Send us your resume and let'apos;s discuss how you can contribute to our mission.
+            We're always looking for talented individuals. Send us your resume and let's discuss how you can contribute to our mission.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link

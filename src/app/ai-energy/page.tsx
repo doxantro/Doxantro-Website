@@ -353,7 +353,7 @@ export default function AIEnergy() {
             Ready to Optimize Your Energy Systems?
           </h2>
           <p className="text-xl text-yellow-100 mb-8">
-            Let'apos;s discuss how our AI solutions can improve efficiency, reduce costs, and create sustainable energy practices for your organization.
+            Let's discuss how our AI solutions can improve efficiency, reduce costs, and create sustainable energy practices for your organization.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a
@@ -374,4 +374,7 @@ export default function AIEnergy() {
     </main>
   );
 }
+
+
+
 
