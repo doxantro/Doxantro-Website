@@ -1,103 +1,83 @@
 'use client';
 
 import React from 'react';
+import Image from 'next/image';
 import { motion } from 'framer-motion';
 import {
-  Sparkles,
-  Target,
-  Compass,
+  ArrowRight,
+  CheckCircle2,
   ShieldCheck,
-  BrainCircuit,
   Cpu,
   Eye,
   Handshake,
   TrendingUp,
-  ArrowRight,
-  CheckCircle2,
+  BrainCircuit,
   Lock,
   Layers,
-  Users2,
-  Binary,
   Microscope,
 } from 'lucide-react';
-import Badge from '../../components/ui/Badge';
 import Button from '../../components/ui/Button';
-import GlowCard from '../../components/ui/GlowCard';
-import SectionHeader from '../../components/ui/SectionHeader';
 
-const milestones = [
-  { value: '6', label: 'Core Industry Verticals', desc: 'Finance, Health, Agri, Supply, Sec, Energy' },
-  { value: '99.8%', label: 'Inference Precision', desc: 'Cross-validated model benchmarks' },
-  { value: '<10ms', label: 'Average Response Time', desc: 'Low-latency edge orchestration' },
-  { value: '100%', label: 'Private Data Sovereignty', desc: 'Zero-retention enterprise pipelines' },
+const metrics = [
+  { value: '6', label: 'Vertical Domains', desc: 'Pre-calibrated industry models' },
+  { value: '99.94%', label: 'Inference Precision', desc: 'Grounded against verified ontologies' },
+  { value: '<20ms', label: 'P99 Edge Latency', desc: 'Accelerated tensor compilation' },
+  { value: '100%', label: 'Data Sovereignty', desc: 'Zero-retention air-gapped VPCs' },
 ];
 
 const principles = [
   {
     title: 'Domain-Specialized Intelligence',
-    desc: 'We reject one-size-fits-all generic models. We train and fine-tune models directly on deep industry ontologies for unprecedented precision.',
+    desc: 'We reject generic one-size-fits-all chatbot wrappers. We train and align models directly on domain ontologies for mission-critical reliability.',
     icon: BrainCircuit,
-    color: 'from-orange-500 to-amber-500',
   },
   {
     title: 'Zero-Compromise Security',
-    desc: 'Your proprietary data never leaves your perimeter. We deploy zero-retention architectures, encryption in transit/at rest, and air-gapped options.',
+    desc: 'Your proprietary data never leaves your network perimeter. We deploy zero-retention architectures, automated PII masking, and air-gapped VPC clusters.',
     icon: ShieldCheck,
-    color: 'from-orange-600 to-orange-500',
   },
   {
-    title: 'High-Throughput Engineering',
-    desc: 'Speed is accuracy in real-time operations. Our systems process tens of thousands of concurrent tokens and vision frames in milliseconds.',
-    icon: Cpu,
-    color: 'from-amber-600 to-orange-600',
-  },
-  {
-    title: 'Transparent & Explainable AI',
-    desc: 'No black boxes. Every model decision provides auditable confidence metrics, decision-path logs, and compliance verification.',
+    title: 'Deterministic Verification',
+    desc: 'No black boxes. Every model decision provides auditable confidence metrics, decision-path lineage, and automated compliance verification.',
     icon: Eye,
-    color: 'from-orange-500 to-amber-600',
   },
   {
-    title: 'True Client Co-Creation',
-    desc: 'We embed with your engineering and domain teams to understand your specific operational hurdles and build tailored solutions.',
+    title: 'Sub-20ms P99 Latency',
+    desc: 'Speed is accuracy in live operations. Our custom inference kernels process high-concurrency requests with deterministic latency guarantees.',
+    icon: Cpu,
+  },
+  {
+    title: 'Embedded Engineering Co-Creation',
+    desc: 'We embed directly with your infrastructure and domain teams to build tailored intelligence pipelines that integrate seamlessly into your stack.',
     icon: Handshake,
-    color: 'from-orange-600 to-amber-500',
   },
   {
-    title: 'Compounding Business ROI',
-    desc: 'Every AI initiative is backed by clear financial metrics: cost reduction, throughput amplification, and automated risk prevention.',
+    title: 'Compounding Operational ROI',
+    desc: 'Every deployment is tied to verifiable business metrics: token cost compression, throughput amplification, and automated risk prevention.',
     icon: TrendingUp,
-    color: 'from-amber-500 to-orange-500',
   },
 ];
 
-const teamPillars = [
+const pillars = [
   {
-    title: 'AI Research & Model Architects',
+    title: 'Model Research & Alignment',
     role: 'Deep Learning & Neural Science',
-    desc: 'Engineers specializing in multi-modal foundation models, transformer architectures, and computer vision pipelines.',
-    skills: ['Transformers', 'Vision Models', 'Reinforcement Learning', 'Quantization'],
-    icon: Binary,
-  },
-  {
-    title: 'Systems & Infrastructure Engineers',
-    role: 'Distributed Cloud & Edge',
-    desc: 'Architects of resilient microservices, TPU/GPU cluster managers, and ultra-low-latency real-time inference APIs.',
-    skills: ['Kubernetes', 'GPU Orchestration', 'gRPC', 'Sub-10ms APIs'],
-    icon: Layers,
-  },
-  {
-    title: 'Vertical Domain Specialists',
-    role: 'Industry Context & Data',
-    desc: 'Subject-matter veterans from algorithmic finance, diagnostic healthcare, agronomy, and cybersecurity intelligence.',
-    skills: ['Algorithmic Risk', 'DICOM Imaging', 'NDVI Analytics', 'Threat Intel'],
+    desc: 'Specialists in transformer quantization, parameter-efficient fine-tuning (LoRA), and domain ontology alignment.',
+    skills: ['Quantization', 'Transformer Arch', 'RAG Alignment', 'Evaluation Metrics'],
     icon: Microscope,
   },
   {
-    title: 'Security & Enterprise Delivery',
-    role: 'Compliance & Governance',
-    desc: 'Ensuring all models adhere to strict SOC-2, HIPAA, GDPR, and ISO standards with enterprise-grade SLAs.',
-    skills: ['Zero-Trust', 'HIPAA/SOC-2', 'Air-Gapped Ops', 'Enterprise SLAs'],
+    title: 'High-Throughput Distributed Systems',
+    role: 'Infrastructure & Edge Kernels',
+    desc: 'Architects of low-latency distributed inference engines, tensor parallelism, and zero-downtime failover clusters.',
+    skills: ['CUDA / Triton', 'gRPC / HTTP2', 'VPC Clusters', 'Edge Caching'],
+    icon: Layers,
+  },
+  {
+    title: 'Enterprise Security & Governance',
+    role: 'Compliance & Air-Gapped Ops',
+    desc: 'Ensuring model streams adhere to strict SOC-2, HIPAA, FINRA, and ISO-27001 standards with cryptographic audit trails.',
+    skills: ['Zero-Trust', 'HIPAA / SOC-2', 'Air-Gapped Ops', 'Auditing'],
     icon: Lock,
   },
 ];
@@ -105,314 +85,194 @@ const teamPillars = [
 export default function About() {
   return (
     <main className="min-h-screen bg-white">
-      {/* 1. Hero Section */}
-      <section className="relative pt-36 pb-20 md:pt-44 md:pb-28 overflow-hidden bg-gradient-to-b from-orange-50/50 via-white to-white border-b border-zinc-200/60">
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-96 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-orange-400/15 via-transparent to-transparent pointer-events-none" />
-        <div className="absolute -top-20 right-10 w-80 h-80 bg-orange-200/20 rounded-full blur-3xl pointer-events-none" />
-
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            className="max-w-4xl mx-auto"
-          >
-            <div className="inline-flex mb-5">
-              <Badge variant="orange" dot pulse size="md">
-                Pioneering Applied AI · Our Story & Vision
-              </Badge>
-            </div>
-
-            <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight text-zinc-900 leading-[1.15] mb-6">
-              Empowering Human Ambition with{' '}
-              <span className="bg-gradient-to-r from-orange-600 via-orange-500 to-amber-500 bg-clip-text text-transparent">
-                Applied Intelligence
-              </span>
-            </h1>
-
-            <p className="text-lg sm:text-xl text-zinc-600 leading-relaxed max-w-3xl mx-auto mb-12">
-              Doxantro Systems was founded on a singular premise: the greatest technological breakthroughs occur when human domain mastery is amplified by specialized, high-precision artificial intelligence.
-            </p>
-
-            {/* Milestones Grid */}
-            <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 text-left">
-              {milestones.map((item, idx) => (
-                <div
-                  key={idx}
-                  className="p-5 rounded-2xl bg-white/80 backdrop-blur-md border border-zinc-200/80 shadow-sm"
-                >
-                  <div className="text-3xl font-extrabold font-mono text-orange-600 mb-1">
-                    {item.value}
-                  </div>
-                  <div className="text-sm font-bold text-zinc-900">{item.label}</div>
-                  <div className="text-xs text-zinc-600 mt-1">{item.desc}</div>
-                </div>
-              ))}
-            </div>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* 2. Company Story & Philosophy */}
-      <section className="py-24 bg-white relative overflow-hidden">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid lg:grid-cols-12 gap-12 lg:gap-16 items-center">
-            {/* Story Text */}
-            <motion.div
-              initial={{ opacity: 0, x: -20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              className="lg:col-span-6 space-y-6"
-            >
-              <Badge variant="orange" dot size="sm">Our Origin</Badge>
-              <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-zinc-900 leading-tight">
-                From Abstract Research to{' '}
-                <span className="bg-gradient-to-r from-orange-600 to-amber-500 bg-clip-text text-transparent">
-                  Mission-Critical Deployment
-                </span>
-              </h2>
-
-              <p className="text-base sm:text-lg text-zinc-600 leading-relaxed">
-                Too many organizations are frustrated by generic AI tools that lack domain context, hallucinate under pressure, and fail to integrate with complex legacy infrastructure.
-              </p>
-
-              <p className="text-base sm:text-lg text-zinc-600 leading-relaxed">
-                We started Doxantro Systems to provide an antidote: **purpose-built AI systems** trained for high-stakes industries where error margins are measured in fractions of a percent—from bank transaction security and clinical diagnosis to autonomous agriculture and smart energy grids.
-              </p>
-
-              <div className="pt-4 space-y-3">
-                <div className="flex items-center gap-3 text-sm font-semibold text-zinc-900">
-                  <CheckCircle2 className="w-5 h-5 text-orange-600 flex-shrink-0" />
-                  <span>Think: Strategic Data Audits & Architecture Formulation</span>
-                </div>
-                <div className="flex items-center gap-3 text-sm font-semibold text-zinc-900">
-                  <CheckCircle2 className="w-5 h-5 text-orange-600 flex-shrink-0" />
-                  <span>Build: Custom Neural Pipelines & Sub-10ms API Deployment</span>
-                </div>
-                <div className="flex items-center gap-3 text-sm font-semibold text-zinc-900">
-                  <CheckCircle2 className="w-5 h-5 text-orange-600 flex-shrink-0" />
-                  <span>Solve: Real-World Autonomous Execution & Compounding ROI</span>
-                </div>
-              </div>
-            </motion.div>
-
-            {/* Architecture Card */}
-            <motion.div
-              initial={{ opacity: 0, x: 20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              className="lg:col-span-6"
-            >
-              <div className="rounded-3xl bg-zinc-950 p-8 text-white border border-zinc-800 shadow-2xl relative overflow-hidden">
-                <div className="absolute top-0 right-0 w-60 h-60 bg-orange-600/15 rounded-full blur-3xl pointer-events-none" />
-
-                <div className="flex items-center justify-between pb-4 mb-6 border-b border-zinc-800">
-                  <div className="flex items-center gap-2">
-                    <Sparkles className="w-4 h-4 text-orange-500" />
-                    <span className="text-xs font-mono font-semibold uppercase tracking-wider text-zinc-400">
-                      The Doxantro Flywheel
-                    </span>
-                  </div>
-                  <span className="text-xs font-mono text-emerald-400">● 100% Private</span>
-                </div>
-
-                <div className="space-y-4 font-mono text-xs sm:text-sm">
-                  <div className="p-4 rounded-2xl bg-zinc-900/90 border border-zinc-800">
-                    <div className="text-orange-400 font-bold mb-1">01. Ingestion & Privacy Vault</div>
-                    <div className="text-zinc-400 text-xs">
-                      Zero-retention encryption, tokenization, and domain data sanitization.
-                    </div>
-                  </div>
-
-                  <div className="p-4 rounded-2xl bg-zinc-900/90 border border-zinc-800">
-                    <div className="text-orange-400 font-bold mb-1">02. Specialized Neural Fine-Tuning</div>
-                    <div className="text-zinc-400 text-xs">
-                      Tailored multi-modal models trained on industry ontologies.
-                    </div>
-                  </div>
-
-                  <div className="p-4 rounded-2xl bg-zinc-900/90 border border-zinc-800">
-                    <div className="text-orange-400 font-bold mb-1">03. High-Throughput Edge Mesh</div>
-                    <div className="text-zinc-400 text-xs">
-                      Distributed orchestration delivering sub-10ms response SLAs.
-                    </div>
-                  </div>
-
-                  <div className="p-4 rounded-2xl bg-zinc-900/90 border border-zinc-800">
-                    <div className="text-orange-400 font-bold mb-1">04. Continuous Optimization Loop</div>
-                    <div className="text-zinc-400 text-xs">
-                      Automated drift detection, adaptive re-weighting, and audit telemetry.
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </motion.div>
+      {/* 1. Editorial Hero */}
+      <section className="pt-32 pb-20 md:pt-40 md:pb-24 bg-white border-b border-black/[0.06]">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full border border-black/[0.08] bg-zinc-50 text-[12px] text-zinc-700 font-mono mb-6">
+            <span className="w-1.5 h-1.5 rounded-full bg-orange-600" />
+            <span>Think, Build and Solve · Our Story & Thesis</span>
           </div>
-        </div>
-      </section>
 
-      {/* 3. Mission & Vision */}
-      <section className="py-20 bg-zinc-50/80 border-y border-zinc-200/70 relative">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid md:grid-cols-2 gap-8">
-            <GlowCard className="p-8 sm:p-10 bg-white">
-              <div className="w-14 h-14 rounded-2xl bg-orange-100 text-orange-600 flex items-center justify-center mb-6 shadow-sm">
-                <Target className="w-7 h-7" />
-              </div>
-              <Badge variant="orange" size="sm" className="mb-3">Our Mission</Badge>
-              <h3 className="text-2xl font-bold text-zinc-900 mb-4">
-                Engineering AI for Certainty & Action
-              </h3>
-              <p className="text-zinc-600 leading-relaxed text-sm sm:text-base">
-                To equip global enterprises and institutions with intelligent systems that automate complex decisions, eliminate operational waste, and protect critical assets while upholding strict privacy, security, and algorithmic transparency.
-              </p>
-            </GlowCard>
-
-            <GlowCard className="p-8 sm:p-10 bg-white">
-              <div className="w-14 h-14 rounded-2xl bg-amber-100 text-amber-600 flex items-center justify-center mb-6 shadow-sm">
-                <Compass className="w-7 h-7" />
-              </div>
-              <Badge variant="amber" size="sm" className="mb-3">Our Vision</Badge>
-              <h3 className="text-2xl font-bold text-zinc-900 mb-4">
-                The Standard for Domain-Specific AI
-              </h3>
-              <p className="text-zinc-600 leading-relaxed text-sm sm:text-base">
-                To be the world’s most trusted partner for enterprise-grade applied AI—driving a future where every critical sector operates with unprecedented intelligence, resilience, and sustainable efficiency.
-              </p>
-            </GlowCard>
-          </div>
-        </div>
-      </section>
-
-      {/* 4. Core Operating Principles */}
-      <section className="py-24 bg-white relative">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <SectionHeader
-            badge="Engineering Culture"
-            badgeVariant="orange"
-            title="The Principles That Drive Our"
-            highlightText="Technology & Execution"
-            subtitle="How we design, test, and deploy mission-critical AI systems for the world's most demanding enterprises."
-          />
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {principles.map((item, idx) => {
-              const IconComp = item.icon;
-              return (
-                <motion.div
-                  key={idx}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.4, delay: idx * 0.06 }}
-                >
-                  <GlowCard className="p-7 h-full flex flex-col justify-between group">
-                    <div>
-                      <div className="w-12 h-12 rounded-2xl bg-orange-50 border border-orange-200/60 text-orange-600 flex items-center justify-center mb-5 group-hover:bg-orange-600 group-hover:text-white transition-all duration-300 shadow-sm">
-                        <IconComp className="w-6 h-6" />
-                      </div>
-                      <h4 className="text-lg font-bold text-zinc-900 mb-2 group-hover:text-orange-600 transition-colors">
-                        {item.title}
-                      </h4>
-                      <p className="text-sm text-zinc-600 leading-relaxed">
-                        {item.desc}
-                      </p>
-                    </div>
-                  </GlowCard>
-                </motion.div>
-              );
-            })}
-          </div>
-        </div>
-      </section>
-
-      {/* 5. Multidisciplinary Team Structure */}
-      <section className="py-24 bg-zinc-50/70 border-y border-zinc-200/70 relative">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <SectionHeader
-            badge="Cross-Disciplinary Team"
-            badgeVariant="orange"
-            title="World-Class Talent Across"
-            highlightText="Research & Industry"
-            subtitle="Our team combines elite researchers in machine learning with veteran practitioners from finance, medicine, agriculture, and cybersecurity."
-          />
-
-          <div className="grid md:grid-cols-2 gap-8">
-            {teamPillars.map((team, idx) => {
-              const IconComp = team.icon;
-              return (
-                <GlowCard key={idx} className="p-8 bg-white">
-                  <div className="flex items-start gap-4">
-                    <div className="w-12 h-12 rounded-2xl bg-orange-100 text-orange-600 flex items-center justify-center flex-shrink-0 shadow-sm">
-                      <IconComp className="w-6 h-6" />
-                    </div>
-                    <div className="flex-1 min-w-0">
-                      <div className="flex items-center justify-between">
-                        <h4 className="text-lg font-bold text-zinc-900">{team.title}</h4>
-                      </div>
-                      <div className="text-xs font-bold text-orange-600 uppercase tracking-wider mb-2">
-                        {team.role}
-                      </div>
-                      <p className="text-sm text-zinc-600 mb-4 leading-relaxed">
-                        {team.desc}
-                      </p>
-                      <div className="flex flex-wrap gap-1.5">
-                        {team.skills.map((skill, sIdx) => (
-                          <span
-                            key={sIdx}
-                            className="text-[11px] font-medium px-2.5 py-1 rounded-full bg-zinc-100 text-zinc-700"
-                          >
-                            {skill}
-                          </span>
-                        ))}
-                      </div>
-                    </div>
-                  </div>
-                </GlowCard>
-              );
-            })}
-          </div>
-        </div>
-      </section>
-
-      {/* 6. Bottom Call to Action */}
-      <section className="py-24 bg-zinc-950 text-white relative overflow-hidden">
-        <div className="absolute top-0 right-1/4 w-96 h-96 bg-orange-600/15 rounded-full blur-3xl pointer-events-none" />
-
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
-          <Badge variant="orange" dot pulse size="md" className="mb-4">
-            Partner With Doxantro
-          </Badge>
-
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight mb-6">
-            Ready to Build Your Proprietary{' '}
-            <span className="bg-gradient-to-r from-orange-500 via-orange-400 to-amber-300 bg-clip-text text-transparent">
-              AI Advantage?
-            </span>
-          </h2>
-
-          <p className="text-base sm:text-lg text-zinc-300 mb-10 max-w-2xl mx-auto leading-relaxed">
-            Schedule an architectural consultation with our AI researchers and engineering directors to evaluate your data pipelines and compute strategy.
+          <h1 className="text-4xl sm:text-5xl md:text-[3.6rem] font-semibold tracking-[-0.03em] text-[#111111] leading-tight mb-6">
+            Engineering intelligence for mission-critical operations.
+          </h1>
+          <p className="text-base sm:text-lg text-zinc-600 leading-relaxed max-w-2xl mx-auto mb-8">
+            Doxantro Systems was founded on a singular premise: the greatest breakthroughs occur when human domain mastery is amplified by specialized, high-precision artificial intelligence. Think, build, and solve without limits.
           </p>
+          <div className="flex justify-center gap-3.5">
+            <Button href="/contact" size="md" variant="primary" icon={<ArrowRight className="w-4 h-4" />}>
+              Partner With Doxantro
+            </Button>
+            <Button href="/services" size="md" variant="secondary">
+              View Architecture
+            </Button>
+          </div>
+        </div>
+      </section>
 
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-            <Button
-              href="/contact"
-              size="lg"
-              variant="primary"
-              icon={<ArrowRight className="w-5 h-5" />}
-              className="w-full sm:w-auto"
-            >
-              Start an AI Initiative
-            </Button>
-            <Button
-              href="/services"
-              size="lg"
-              variant="glass-dark"
-              className="w-full sm:w-auto text-white font-semibold"
-            >
-              Explore Solutions
-            </Button>
+      {/* 2. Quantified Metrics Banner */}
+      <section className="py-16 bg-[#f9f9f8] border-b border-black/[0.06]">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
+            {metrics.map((m) => (
+              <div key={m.label} className="flex flex-col">
+                <div className="font-mono text-3xl sm:text-4xl font-bold tracking-tight text-[#111111] mb-1">
+                  {m.value}
+                </div>
+                <div className="font-semibold text-sm text-zinc-900 mb-0.5">{m.label}</div>
+                <div className="text-xs text-zinc-600">{m.desc}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* 3. The Doxantro Thesis */}
+      <section className="py-24 bg-white border-b border-black/[0.06]">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid lg:grid-cols-12 gap-12 lg:gap-16 items-start">
+            <div className="lg:col-span-5">
+              <p className="font-mono text-xs text-zinc-500 uppercase tracking-wider mb-3">
+                The Doxantro Thesis
+              </p>
+              <h2 className="text-3xl sm:text-4xl font-semibold tracking-[-0.025em] text-[#111111] leading-tight mb-6">
+                Why generalist AI fails in production.
+              </h2>
+              <p className="text-sm sm:text-base text-zinc-600 leading-relaxed mb-4">
+                Consumer chatbots are designed for casual conversation where an 80% accuracy rate is acceptable. In quantitative finance, oncology diagnostics, or power grid dispatching, a 1% error rate is catastrophic.
+              </p>
+              <p className="text-sm sm:text-base text-zinc-600 leading-relaxed">
+                We engineer private, domain-tuned neural architectures wrapped in deterministic validation layers to provide mathematical guarantees of reliability.
+              </p>
+            </div>
+
+            <div className="lg:col-span-7 space-y-4">
+              <div className="p-6 rounded-2xl border border-black/[0.08] bg-[#fcfbf9]">
+                <div className="font-semibold text-sm text-[#111111] mb-1">1. Domain Data Grounding</div>
+                <p className="text-xs sm:text-sm text-zinc-600 leading-relaxed">
+                  Models must be fine-tuned directly on industry-specific ontologies, mathematical notation, and regulatory codes rather than generic web scrapes.
+                </p>
+              </div>
+
+              <div className="p-6 rounded-2xl border border-black/[0.08] bg-[#fcfbf9]">
+                <div className="font-semibold text-sm text-[#111111] mb-1">2. Hardware-Aware Edge Compilation</div>
+                <p className="text-xs sm:text-sm text-zinc-600 leading-relaxed">
+                  Inference kernels must be optimized for local tensor memory, eliminating network round-trips and providing sub-20ms execution times.
+                </p>
+              </div>
+
+              <div className="p-6 rounded-2xl border border-black/[0.08] bg-[#fcfbf9]">
+                <div className="font-semibold text-sm text-[#111111] mb-1">3. Immutable Cryptographic Governance</div>
+                <p className="text-xs sm:text-sm text-zinc-600 leading-relaxed">
+                  Every inference trace, redacted token, and decision route must be logged to an immutable ledger for audit and compliance verifiability.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 4. Operating Principles (6 Cards) */}
+      <section className="py-24 bg-[#f9f9f8] border-b border-black/[0.06]">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="max-w-3xl mb-16">
+            <p className="font-mono text-xs text-zinc-500 uppercase tracking-wider mb-3">
+              Engineering Values
+            </p>
+            <h2 className="text-3xl sm:text-4xl font-semibold tracking-[-0.025em] text-[#111111] leading-tight">
+              Our Core Operating Principles
+            </h2>
+          </div>
+
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
+            {principles.map((p) => {
+              const Icon = p.icon;
+              return (
+                <div key={p.title} className="flex flex-col">
+                  <div className="w-8 h-8 rounded-lg bg-white border border-black/[0.08] flex items-center justify-center text-zinc-800 mb-3.5 flex-shrink-0">
+                    <Icon className="w-4 h-4" />
+                  </div>
+                  <h3 className="font-semibold text-base text-[#111111] tracking-tight mb-2">
+                    {p.title}
+                  </h3>
+                  <p className="text-xs sm:text-sm text-zinc-600 leading-relaxed">
+                    {p.desc}
+                  </p>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      {/* 5. Team & Engineering Pillars */}
+      <section className="py-24 bg-white border-b border-black/[0.06]">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="max-w-3xl mb-16">
+            <p className="font-mono text-xs text-zinc-500 uppercase tracking-wider mb-3">
+              Technical Leadership
+            </p>
+            <h2 className="text-3xl sm:text-4xl font-semibold tracking-[-0.025em] text-[#111111] leading-tight">
+              Engineering Disciplines
+            </h2>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-8">
+            {pillars.map((pillar) => {
+              const Icon = pillar.icon;
+              return (
+                <div
+                  key={pillar.title}
+                  className="rounded-2xl border border-black/[0.08] bg-[#fcfbf9] p-6 flex flex-col justify-between"
+                >
+                  <div>
+                    <div className="w-8 h-8 rounded-lg bg-white border border-black/[0.08] flex items-center justify-center text-zinc-800 mb-4">
+                      <Icon className="w-4 h-4" />
+                    </div>
+                    <h3 className="font-semibold text-base text-[#111111] mb-1">
+                      {pillar.title}
+                    </h3>
+                    <div className="font-mono text-[11px] text-orange-600 mb-3">{pillar.role}</div>
+                    <p className="text-xs sm:text-sm text-zinc-600 leading-relaxed mb-6">
+                      {pillar.desc}
+                    </p>
+                  </div>
+
+                  <div className="flex flex-wrap gap-1.5 pt-4 border-t border-black/[0.06]">
+                    {pillar.skills.map((s) => (
+                      <span
+                        key={s}
+                        className="text-[10px] font-mono px-2 py-0.5 rounded bg-white border border-black/[0.08] text-zinc-700"
+                      >
+                        {s}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      {/* 6. Dark CTA Card */}
+      <section className="py-20 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="rounded-3xl bg-[#111111] text-white p-10 sm:p-16 text-center border border-white/10 shadow-2xl">
+            <h2 className="text-3xl sm:text-4xl font-semibold tracking-tight text-white mb-4">
+              Ready to deploy verified intelligence?
+            </h2>
+            <p className="text-sm text-zinc-400 max-w-xl mx-auto mb-8">
+              Collaborate with our team of AI systems engineers to think, build, and solve for your production environment.
+            </p>
+            <div className="flex flex-wrap justify-center gap-3.5">
+              <Button href="/contact" size="lg" variant="inverted" icon={<ArrowRight className="w-4 h-4" />}>
+                Schedule Architecture Review
+              </Button>
+              <Button href="/services" size="lg" variant="outline-white">
+                Explore Services
+              </Button>
+            </div>
           </div>
         </div>
       </section>

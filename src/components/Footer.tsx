@@ -12,19 +12,19 @@ export default function Footer() {
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-12 gap-10 lg:gap-8">
           {/* Brand Column (4 cols) */}
           <div className="col-span-2 md:col-span-3 lg:col-span-4">
-            <Link href="/" className="inline-flex items-center space-x-2.5 mb-4 group">
-              <div className="w-7 h-7 rounded-lg overflow-hidden border border-white/10 bg-zinc-900 flex items-center justify-center">
+            <Link href="/" className="inline-flex flex-col gap-2 mb-4 group">
+              <div className="bg-white rounded-lg px-2.5 py-1 inline-block w-fit">
                 <Image
                   src="/dox1.jpg"
-                  alt="Doxantro"
-                  width={28}
-                  height={28}
-                  className="w-full h-full object-cover"
+                  alt="Doxantro Systems"
+                  width={120}
+                  height={32}
+                  className="h-6 w-auto object-contain"
                 />
               </div>
-              <span className="text-base font-semibold tracking-tight text-white">
-                Doxantro Systems
-              </span>
+              <div className="font-mono text-[11px] uppercase tracking-wider text-orange-400 font-semibold">
+                Think, Build and Solve
+              </div>
             </Link>
 
             <p className="text-xs text-zinc-400 leading-relaxed mb-6 max-w-xs font-normal">

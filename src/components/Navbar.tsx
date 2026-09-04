@@ -53,29 +53,22 @@ export default function Navbar() {
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between relative h-10">
-            {/* Left: Brand Wordmark */}
+            {/* Left: Brand Logo & Motto */}
             <Link
               href="/"
               className="flex items-center space-x-2.5 flex-shrink-0 group focus:outline-none"
             >
-              <div className="w-8 h-8 rounded-lg overflow-hidden border border-black/10 shadow-xs flex items-center justify-center bg-zinc-900">
-                <Image
-                  src="/dox1.jpg"
-                  alt="Doxantro"
-                  width={32}
-                  height={32}
-                  className="w-full h-full object-cover"
-                  priority
-                />
-              </div>
-              <div className="flex items-baseline space-x-1.5">
-                <span className="font-semibold text-lg tracking-tight text-[#111111]">
-                  Doxantro
-                </span>
-                <span className="font-mono text-[10px] uppercase tracking-wider text-zinc-500 font-medium hidden sm:inline-block">
-                  Systems
-                </span>
-              </div>
+              <Image
+                src="/dox1.jpg"
+                alt="Doxantro Systems"
+                width={130}
+                height={34}
+                className="h-7 sm:h-8 w-auto object-contain"
+                priority
+              />
+              <span className="hidden lg:inline-block font-mono text-[11px] uppercase tracking-wider text-zinc-500 font-medium pl-2.5 border-l border-black/10">
+                Think, Build and Solve
+              </span>
             </Link>
 
             {/* Center: bachs.io-style Floating Dock Pill */}

@@ -19,23 +19,23 @@ export default function HeroSection() {
             transition={{ duration: 0.45, ease: 'easeOut' }}
             className="lg:col-span-7 text-left"
           >
-            {/* Minimalist Announcement Eyebrow */}
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-black/[0.08] bg-zinc-50 text-[12px] text-zinc-700 font-mono mb-6">
+            {/* Minimalist Announcement Eyebrow with Motto */}
+            <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full border border-black/[0.08] bg-zinc-50 text-[12px] text-zinc-700 font-mono mb-6">
               <span className="w-1.5 h-1.5 rounded-full bg-orange-600" />
-              <span>Doxantro Core v3.4 · Production Infrastructure</span>
+              <span>Think, Build and Solve · Doxantro Core v3.4</span>
             </div>
 
             {/* Main Display Headline */}
             <h1 className="text-4xl sm:text-5xl md:text-[3.6rem] font-semibold tracking-[-0.03em] text-[#111111] leading-[1.12] mb-6">
-              Enterprise AI built for{' '}
+              Think, build, and solve with{' '}
               <span className="font-mono font-normal tracking-tight text-zinc-900 border-b border-black/20 pb-0.5">
-                modern industry.
+                enterprise AI.
               </span>
             </h1>
 
             {/* Editorial Body Text */}
             <p className="text-base sm:text-lg text-zinc-600 mb-8 leading-relaxed max-w-xl">
-              Deploy domain-tuned models, autonomous workflow pipelines, and zero-trust guardrails. We engineer the mission-critical AI stack so your teams can scale without technical debt.
+              Deploy domain-tuned models, autonomous workflow pipelines, and zero-trust guardrails. We engineer the intelligence infrastructure so your teams can think, build, and solve complex challenges without technical debt.
             </p>
 
             {/* CTA Button Row */}

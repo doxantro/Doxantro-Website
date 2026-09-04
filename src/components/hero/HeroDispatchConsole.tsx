@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
+import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
 import { CheckCircle2, Shield, Cpu, RefreshCw, Zap } from 'lucide-react';
 
@@ -117,14 +118,20 @@ export default function HeroDispatchConsole() {
         </div>
 
         <div className="p-5 sm:p-6 relative">
-          {/* Header Row */}
+          {/* Header Row with Real Logo & Motto */}
           <div className="flex items-center justify-between pb-3 border-b border-dashed border-zinc-300">
             <div className="flex items-center gap-2">
-              <div className="w-5 h-5 rounded bg-zinc-950 flex items-center justify-center text-white">
-                <Cpu className="w-3 h-3 text-orange-500" />
+              <div className="bg-white rounded px-1.5 py-0.5 border border-black/10">
+                <Image
+                  src="/dox1.jpg"
+                  alt="Doxantro"
+                  width={85}
+                  height={22}
+                  className="h-4 sm:h-5 w-auto object-contain"
+                />
               </div>
-              <span className="font-sans font-bold text-xs tracking-wider uppercase text-[#111111]">
-                DOXANTRO · CORE
+              <span className="font-mono text-[9px] uppercase tracking-wider text-zinc-500 border-l border-zinc-300 pl-1.5 hidden sm:inline-block">
+                Think, Build and Solve
               </span>
             </div>
             <div className="flex items-center gap-1.5 text-[10px] text-zinc-600 font-mono">
