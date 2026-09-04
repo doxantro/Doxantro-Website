@@ -1,283 +1,306 @@
-import React from "react";
-import Link from "next/link";
+'use client';
 
-const services = [
+import React from 'react';
+import Link from 'next/link';
+import { motion } from 'framer-motion';
+import {
+  ArrowRight,
+  CheckCircle2,
+  Sparkles,
+  Layers,
+  Cpu,
+  ShieldCheck,
+  Zap,
+  Activity,
+  Boxes,
+  Sprout,
+  BadgeDollarSign,
+  ShieldAlert,
+  Server,
+  GitFork,
+  RefreshCw,
+} from 'lucide-react';
+import Badge from '../../components/ui/Badge';
+import Button from '../../components/ui/Button';
+import GlowCard from '../../components/ui/GlowCard';
+import SectionHeader from '../../components/ui/SectionHeader';
+import SolutionIcon from '../../components/ui/SolutionIcon';
+import { solutionsData } from '../../data/solutionsData';
+
+const methodologySteps = [
   {
-    title: "AI for Finance",
-    description: "Transform financial operations with intelligent fraud detection, credit risk assessment, and algorithmic trading solutions.",
-    icon: "💰",
-    features: ["Fraud Detection", "Credit Risk", "Algorithmic Trading", "Regulatory Compliance"],
-    benefits: ["Reduced fraud losses", "Improved risk management", "Enhanced trading performance", "Regulatory compliance"],
-    useCases: ["Banks", "Insurance", "Investment Firms", "Fintech"],
-    demo: true,
-    link: "/ai-finance",
-    color: "blue"
+    step: '01',
+    title: 'Discovery & Feasibility Audit',
+    desc: 'We evaluate your proprietary datasets, quantify business ROI bottlenecks, and architect a tailored neural strategy.',
+    icon: Sparkles,
   },
   {
-    title: "AI for Healthcare",
-    description: "Revolutionize patient care with medical image analysis, predictive analytics, and drug discovery AI.",
-    icon: "🏥",
-    features: ["Medical Image Analysis", "Predictive Analytics", "NLP", "Drug Discovery"],
-    benefits: ["Improved diagnostics", "Better patient outcomes", "Reduced costs", "Faster drug development"],
-    useCases: ["Hospitals", "Clinics", "Research Labs", "Pharmaceuticals"],
-    demo: false,
-    link: "/ai-healthcare",
-    color: "green"
+    step: '02',
+    title: 'Model Fine-Tuning & Curation',
+    desc: 'Customizing foundation models on domain-specific ontologies with strict data sanitization and privacy controls.',
+    icon: Cpu,
   },
   {
-    title: "AI for Agriculture",
-    description: "Optimize farming operations with crop health monitoring, precision agriculture, and climate adaptation.",
-    icon: "🌾",
-    features: ["Crop Health Monitoring", "Precision Agriculture", "Supply Chain", "Climate Adaptation"],
-    benefits: ["Increased yields", "Reduced costs", "Sustainable practices", "Better resource management"],
-    useCases: ["Farms", "Cooperatives", "Agribusiness", "Research Institutions"],
-    demo: false,
-    link: "/ai-agriculture",
-    color: "orange"
+    step: '03',
+    title: 'Sub-10ms Integration & Deploy',
+    desc: 'Orchestrating high-concurrency microservices across your private cloud, on-prem clusters, or hybrid edge mesh.',
+    icon: GitFork,
   },
   {
-    title: "AI for Supply Chain",
-    description: "Streamline operations with intelligent demand forecasting, inventory optimization, and route planning.",
-    icon: "📦",
-    features: ["Demand Forecasting", "Inventory Optimization", "Route Planning", "Supplier Risk"],
-    benefits: ["Reduced costs", "Improved efficiency", "Better customer service", "Risk mitigation"],
-    useCases: ["Manufacturing", "Retail", "Logistics", "E-commerce"],
-    demo: false,
-    link: "/ai-supply-chain",
-    color: "purple"
+    step: '04',
+    title: 'SRE Monitoring & Drift Guard',
+    desc: '24/7 automated telemetry, confidence scoring, model retraining loops, and SOC-2 / HIPAA compliance audits.',
+    icon: RefreshCw,
   },
-  {
-    title: "AI for Security",
-    description: "Enhance cybersecurity with advanced threat detection, behavioral analysis, and incident response.",
-    icon: "🔒",
-    features: ["Threat Detection", "Cybersecurity", "Surveillance", "Access Control"],
-    benefits: ["Better security", "Faster response", "Reduced breaches", "Compliance"],
-    useCases: ["Enterprises", "Government", "Financial", "Healthcare"],
-    demo: false,
-    link: "/ai-security",
-    color: "red"
-  },
-  {
-    title: "AI for Energy",
-    description: "Optimize energy systems with smart grid management, consumption analytics, and renewable optimization.",
-    icon: "⚡",
-    features: ["Smart Grid Management", "Consumption Analytics", "Renewable Energy", "Predictive Maintenance"],
-    benefits: ["Reduced costs", "Improved efficiency", "Sustainability", "Better reliability"],
-    useCases: ["Utilities", "Manufacturing", "Commercial", "Residential"],
-    demo: false,
-    link: "/ai-energy",
-    color: "yellow"
-  }
 ];
 
-const getColorClasses = (color: string) => {
-  switch (color) {
-    case "blue":
-      return "from-blue-500 to-blue-600";
-    case "green":
-      return "from-green-500 to-green-600";
-    case "orange":
-      return "from-orange-500 to-orange-600";
-    case "purple":
-      return "from-purple-500 to-purple-600";
-    case "red":
-      return "from-red-500 to-red-600";
-    case "yellow":
-      return "from-yellow-500 to-yellow-600";
-    default:
-      return "from-gray-500 to-gray-600";
-  }
-};
+const technicalCapabilities = [
+  {
+    category: 'Model Architecture',
+    items: ['Multi-Modal Transformers', 'Computer Vision (YOLO/Segment)', 'Time-Series & Forecasting', 'Domain-Specific LLMs & RAG'],
+  },
+  {
+    category: 'Deployment & Infra',
+    items: ['Private Cloud (AWS/GCP/Azure)', 'Air-Gapped On-Premises', 'Edge Inference (TPU/Jetson)', 'Sub-10ms gRPC Microservices'],
+  },
+  {
+    category: 'Security & Compliance',
+    items: ['SOC-2 Type II Certified Pipeline', 'HIPAA & GDPR Compliant', 'Zero-Retention Data Vaults', 'End-to-End Enclave Encryption'],
+  },
+  {
+    category: 'Enterprise SLAs',
+    items: ['99.95% API Availability SLA', 'Automated Fallback Circuits', 'Model Drift Auto-Alerting', 'Dedicated AI Support Engineers'],
+  },
+];
 
 export default function Services() {
   return (
-    <main className="pt-32 pb-20">
-      {/* Hero Section */}
-      <section className="bg-gradient-to-br from-orange-50 to-white py-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h1 className="text-5xl md:text-6xl font-bold text-gray-900 mb-6">
-            Our AI Solutions
-          </h1>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Comprehensive AI solutions designed specifically for modern business challenges, 
-            from precision agriculture to cybersecurity.
-          </p>
+    <main className="min-h-screen bg-white">
+      {/* 1. Hero Section */}
+      <section className="relative pt-36 pb-20 md:pt-44 md:pb-28 overflow-hidden bg-gradient-to-b from-orange-50/50 via-white to-white border-b border-zinc-200/60">
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-96 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-orange-400/15 via-transparent to-transparent pointer-events-none" />
+        <div className="absolute -top-20 right-10 w-80 h-80 bg-orange-200/20 rounded-full blur-3xl pointer-events-none" />
+
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            className="max-w-4xl mx-auto"
+          >
+            <div className="inline-flex mb-5">
+              <Badge variant="orange" dot pulse size="md">
+                End-to-End Enterprise AI Solutions
+              </Badge>
+            </div>
+
+            <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight text-zinc-900 leading-[1.15] mb-6">
+              Applied Artificial Intelligence Built for{' '}
+              <span className="bg-gradient-to-r from-orange-600 via-orange-500 to-amber-500 bg-clip-text text-transparent">
+                High-Stakes Sectors
+              </span>
+            </h1>
+
+            <p className="text-lg sm:text-xl text-zinc-600 leading-relaxed max-w-3xl mx-auto mb-10">
+              We engineer, deploy, and manage production-grade AI systems that integrate directly into your operations—delivering deterministic accuracy, robust security, and compounding financial ROI.
+            </p>
+
+            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+              <Button
+                href="/contact"
+                size="lg"
+                variant="primary"
+                icon={<ArrowRight className="w-5 h-5" />}
+                className="w-full sm:w-auto"
+              >
+                Schedule Architecture Review
+              </Button>
+              <Button
+                href="#solutions-grid"
+                size="lg"
+                variant="glass"
+                className="w-full sm:w-auto"
+              >
+                Browse 6 Vertical Solutions
+              </Button>
+            </div>
+          </motion.div>
         </div>
       </section>
 
-      {/* Quick Navigation Grid */}
-      <section className="py-20 bg-white">
+      {/* 2. Methodology & Delivery Lifecycle */}
+      <section className="py-24 bg-zinc-50/70 border-b border-zinc-200/60 relative">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-gray-900 mb-6">
-              Choose Your Industry
-            </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Select your industry to explore tailored AI solutions designed for your specific challenges.
-            </p>
+          <SectionHeader
+            badge="Engineering Process"
+            badgeVariant="orange"
+            title="Our Full-Lifecycle"
+            highlightText="Deployment Flywheel"
+            subtitle="From initial data governance to sub-10ms production inference, our systematic delivery model guarantees velocity and compliance."
+          />
+
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {methodologySteps.map((item, idx) => {
+              const IconComp = item.icon;
+              return (
+                <GlowCard key={idx} className="p-7 bg-white flex flex-col justify-between">
+                  <div>
+                    <div className="flex items-center justify-between mb-4">
+                      <div className="w-12 h-12 rounded-2xl bg-orange-50 border border-orange-200/60 text-orange-600 flex items-center justify-center">
+                        <IconComp className="w-6 h-6" />
+                      </div>
+                      <span className="text-xs font-mono font-bold text-zinc-600">{item.step}</span>
+                    </div>
+                    <h3 className="text-base font-bold text-zinc-900 mb-2">{item.title}</h3>
+                    <p className="text-xs sm:text-sm text-zinc-600 leading-relaxed">{item.desc}</p>
+                  </div>
+                </GlowCard>
+              );
+            })}
           </div>
-          
+        </div>
+      </section>
+
+      {/* 3. The 6 Vertical Solutions Grid */}
+      <section id="solutions-grid" className="py-24 bg-white relative">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <SectionHeader
+            badge="Vertical Specialization"
+            badgeVariant="orange"
+            title="Tailored Intelligence for"
+            highlightText="Industry Leaders"
+            subtitle="Explore our specialized neural architectures pre-trained on domain ontologies and ready for enterprise integration."
+          />
+
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {services.map((service, index) => (
-              <Link
-                key={index}
-                href={service.link}
-                className="group bg-white rounded-2xl p-8 shadow-sm hover:shadow-lg transition-all duration-300 border border-gray-100 hover:border-orange-200"
+            {solutionsData.map((item, idx) => (
+              <motion.div
+                key={item.id}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.4, delay: idx * 0.08 }}
               >
-                <div className="text-6xl mb-6 group-hover:scale-110 transition-transform duration-300">
-                  {service.icon}
-                </div>
-                <h3 className="text-2xl font-bold text-gray-900 mb-4 group-hover:text-orange-600 transition-colors">
-                  {service.title}
-                </h3>
-                <p className="text-gray-600 mb-6 leading-relaxed">
-                  {service.description}
-                </p>
-                
-                <div className="flex items-center justify-between">
-                  <span className="text-orange-600 font-semibold group-hover:text-orange-700">
-                    Learn More →
-                  </span>
-                  {service.demo && (
-                    <span className="bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm font-medium">
-                      Demo Available
-                    </span>
-                  )}
-                </div>
-              </Link>
-            ))}
-          </div>
-        </div>
-      </section>
+                <GlowCard className="p-8 h-full flex flex-col justify-between group">
+                  <div>
+                    <div className="flex items-center justify-between mb-5">
+                      <div className="p-3.5 rounded-2xl bg-orange-50 border border-orange-200/60 text-orange-600 group-hover:bg-orange-600 group-hover:text-white transition-all duration-300 shadow-sm">
+                        <SolutionIcon name={item.iconName} className="w-6 h-6" />
+                      </div>
+                      <Badge variant="orange" size="sm">{item.badge}</Badge>
+                    </div>
 
-      {/* Detailed Services */}
-      <section className="py-20 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-gray-900 mb-6">
-              Detailed Solutions
-            </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Explore comprehensive details about each AI solution, including features, benefits, and implementation details.
-            </p>
-          </div>
-          
-          <div className="space-y-12">
-            {services.map((service, index) => (
-              <div
-                key={index}
-                className={`grid lg:grid-cols-2 gap-12 items-center ${
-                  index % 2 === 1 ? 'lg:grid-flow-col-dense' : ''
-                }`}
-              >
-                {/* Content */}
-                <div className={index % 2 === 1 ? 'lg:col-start-2' : ''}>
-                  <div className="text-6xl mb-4">{service.icon}</div>
-                  <h3 className="text-3xl font-bold text-gray-900 mb-4">{service.title}</h3>
-                  <p className="text-lg text-gray-600 mb-6 leading-relaxed">
-                    {service.description}
-                  </p>
-                  
-                  {/* Features */}
-                  <div className="mb-6">
-                    <h4 className="text-lg font-semibold text-gray-900 mb-3">Key Features</h4>
-                    <ul className="grid md:grid-cols-2 gap-2">
-                      {service.features.map((feature, idx) => (
-                        <li key={idx} className="flex items-center text-gray-600">
-                          <div className="w-2 h-2 bg-orange-600 rounded-full mr-3"></div>
-                          {feature}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
+                    <h3 className="text-xl font-bold text-zinc-900 group-hover:text-orange-600 transition-colors mb-2.5">
+                      {item.title}
+                    </h3>
+                    <p className="text-sm text-zinc-600 leading-relaxed mb-6">
+                      {item.description}
+                    </p>
 
-                  {/* Benefits */}
-                  <div className="mb-6">
-                    <h4 className="text-lg font-semibold text-gray-900 mb-3">Business Benefits</h4>
-                    <ul className="space-y-2">
-                      {service.benefits.map((benefit, idx) => (
-                        <li key={idx} className="flex items-center text-gray-600">
-                          <div className="w-2 h-2 bg-green-600 rounded-full mr-3"></div>
-                          {benefit}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
+                    <div className="mb-6 p-3.5 rounded-xl bg-zinc-50 border border-zinc-100 flex items-center justify-between">
+                      <span className="text-xs font-medium text-zinc-600">{item.statLabel}</span>
+                      <span className="text-sm font-extrabold font-mono text-orange-600">{item.stat}</span>
+                    </div>
 
-                  {/* Use Cases */}
-                  <div className="mb-6">
-                    <h4 className="text-lg font-semibold text-gray-900 mb-3">Ideal For</h4>
-                    <div className="flex flex-wrap gap-2">
-                      {service.useCases.map((useCase, idx) => (
-                        <span
-                          key={idx}
-                          className="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm"
-                        >
-                          {useCase}
-                        </span>
+                    <div className="space-y-2 mb-8">
+                      <div className="text-xs font-bold uppercase tracking-wider text-zinc-600 mb-2">
+                        Core Capabilities
+                      </div>
+                      {item.features.map((feature, fIdx) => (
+                        <div key={fIdx} className="flex items-center text-xs sm:text-sm text-zinc-700">
+                          <CheckCircle2 className="w-4 h-4 text-emerald-500 mr-2.5 flex-shrink-0" />
+                          <span>{feature}</span>
+                        </div>
                       ))}
                     </div>
                   </div>
 
-                  {/* CTA */}
-                  <div className="mt-8">
-                    {service.demo ? (
-                      <Link
-                        href="/contact"
-                        className="inline-block bg-orange-600 text-white px-6 py-3 rounded-full font-semibold hover:bg-orange-700 transition-colors mr-4"
-                      >
-                        Request Demo
-                      </Link>
-                    ) : (
-                      <span className="inline-block bg-gray-200 text-gray-500 px-6 py-3 rounded-full font-semibold mr-4">
-                        Coming Soon
-                      </span>
-                    )}
+                  <div className="pt-4 border-t border-zinc-100 mt-auto">
                     <Link
-                      href={service.link}
-                      className="inline-block border-2 border-orange-600 text-orange-600 px-6 py-3 rounded-full font-semibold hover:bg-orange-600 hover:text-white transition-colors"
+                      href={item.href}
+                      className="inline-flex items-center justify-between w-full text-sm font-semibold text-zinc-900 group-hover:text-orange-600 transition-colors"
                     >
-                      Learn More
+                      <span>Deep Dive & Specifications</span>
+                      <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1 text-orange-600" />
                     </Link>
                   </div>
-                </div>
-
-                {/* Visual Element */}
-                <div className={index % 2 === 1 ? 'lg:col-start-1' : ''}>
-                  <div className="bg-gradient-to-br from-orange-100 to-orange-200 rounded-3xl p-8 text-center h-full flex flex-col justify-center">
-                    <div className="text-8xl mb-6">{service.icon}</div>
-                    <h4 className="text-2xl font-bold text-gray-900 mb-4">{service.title}</h4>
-                    <p className="text-gray-700">
-                      Transform your {service.title.toLowerCase()} operations with cutting-edge AI technology
-                    </p>
-                  </div>
-                </div>
-              </div>
+                </GlowCard>
+              </motion.div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="py-20 bg-orange-600">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl font-bold text-white mb-6">
-            Ready to Transform Your Business with AI?
+      {/* 4. Enterprise Architecture & Capabilities Matrix */}
+      <section className="py-24 bg-zinc-50/70 border-t border-zinc-200/60 relative">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <SectionHeader
+            badge="Technical Rigor"
+            badgeVariant="orange"
+            title="Enterprise-Grade AI"
+            highlightText="Architecture Matrix"
+            subtitle="Built to satisfy the stringent security, latency, and compliance mandates of Fortune 500 infrastructure."
+          />
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {technicalCapabilities.map((cap, idx) => (
+              <GlowCard key={idx} className="p-7 bg-white">
+                <h4 className="text-base font-bold text-zinc-900 mb-4 pb-3 border-b border-zinc-100 flex items-center gap-2">
+                  <span className="w-2 h-2 rounded-full bg-orange-600" />
+                  <span>{cap.category}</span>
+                </h4>
+                <ul className="space-y-2.5">
+                  {cap.items.map((item, iIdx) => (
+                    <li key={iIdx} className="text-xs sm:text-sm text-zinc-600 flex items-start gap-2">
+                      <span className="text-orange-500 font-bold">•</span>
+                      <span>{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </GlowCard>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* 5. Bottom Call to Action */}
+      <section className="py-24 bg-zinc-950 text-white relative overflow-hidden">
+        <div className="absolute top-0 right-1/4 w-96 h-96 bg-orange-600/15 rounded-full blur-3xl pointer-events-none" />
+
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+          <Badge variant="orange" dot pulse size="md" className="mb-4">
+            Custom Enterprise Deployment
+          </Badge>
+
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight mb-6">
+            Ready to Accelerate Your AI Roadmap?
           </h2>
-          <p className="text-xl text-orange-100 mb-8">
-            Let's discuss how our AI solutions can drive innovation and growth in your organization.
+
+          <p className="text-base sm:text-lg text-zinc-300 mb-10 max-w-2xl mx-auto leading-relaxed">
+            Our principal AI engineers are ready to review your data infrastructure, assess model viability, and provide a comprehensive architecture blueprint.
           </p>
-          <Link
-            href="/contact"
-            className="inline-block bg-white text-orange-600 px-8 py-3 rounded-full font-semibold hover:bg-gray-100 transition-colors"
-          >
-            Get Started Today
-          </Link>
+
+          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+            <Button
+              href="/contact"
+              size="lg"
+              variant="primary"
+              icon={<ArrowRight className="w-5 h-5" />}
+              className="w-full sm:w-auto"
+            >
+              Request Scoping Call
+            </Button>
+            <Button
+              href="/case-studies"
+              size="lg"
+              variant="glass-dark"
+              className="w-full sm:w-auto text-white font-semibold"
+            >
+              View Case Studies
+            </Button>
+          </div>
         </div>
       </section>
     </main>
   );
 }
-
-
-

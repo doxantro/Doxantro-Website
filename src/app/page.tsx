@@ -1,138 +1,123 @@
-import React from "react";
-import HeroSection from "../sections/HeroSection";
-import AboutSection from "../sections/AboutSection";
-import ServicesSection from "../sections/ServicesSection";
-import AIDemoSection from "../sections/AIDemoSection";
+'use client';
+
+import React from 'react';
+import Link from 'next/link';
+import { motion } from 'framer-motion';
+import { ArrowRight, Sparkles, Building2 } from 'lucide-react';
+import HeroSection from '../sections/HeroSection';
+import AboutSection from '../sections/AboutSection';
+import ServicesSection from '../sections/ServicesSection';
+import AIDemoSection from '../sections/AIDemoSection';
+import NewsletterSubscribe from '../components/home/NewsletterSubscribe';
+import StatCounter from '../components/ui/StatCounter';
+import GlowCard from '../components/ui/GlowCard';
+import SectionHeader from '../components/ui/SectionHeader';
+import SolutionIcon from '../components/ui/SolutionIcon';
+import { solutionsData } from '../data/solutionsData';
 
 export default function Home() {
   return (
-    <main>
-      {/* Hero Section */}
+    <main className="min-h-screen bg-white">
+      {/* 1. Hero Section */}
       <HeroSection />
 
-      {/* About Section */}
+      {/* 2. Industry Benchmark Statistics */}
+      <section className="py-20 bg-zinc-50/60 border-y border-zinc-200/60 relative overflow-hidden">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <SectionHeader
+            badge="Measurable Impact"
+            badgeVariant="orange"
+            title="Quantifiable Results Across"
+            highlightText="Global Deployments"
+            subtitle="Our AI implementations deliver compounding ROI, operational velocity, and defensible competitive advantages."
+          />
+
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            <GlowCard className="p-8 text-center bg-white">
+              <StatCounter
+                value="500"
+                prefix="$"
+                suffix="B+"
+                label="Global AI Market Value by 2027"
+              />
+              <p className="text-xs text-zinc-600 mt-2">Explosive industry adoption curve</p>
+            </GlowCard>
+
+            <GlowCard className="p-8 text-center bg-white">
+              <StatCounter
+                value="40"
+                suffix="%"
+                label="Average Operational Cost Reduction"
+              />
+              <p className="text-xs text-zinc-600 mt-2">Across automated workflows</p>
+            </GlowCard>
+
+            <GlowCard className="p-8 text-center bg-white">
+              <StatCounter
+                value="85"
+                suffix="%"
+                label="Enterprises Deploying Private AI"
+              />
+              <p className="text-xs text-zinc-600 mt-2">Active production infrastructure</p>
+            </GlowCard>
+
+            <GlowCard className="p-8 text-center bg-white">
+              <StatCounter
+                value="3.5"
+                suffix="x"
+                label="Institutional Productivity Multiplier"
+              />
+              <p className="text-xs text-zinc-600 mt-2">Measured in task completion speed</p>
+            </GlowCard>
+          </div>
+        </div>
+      </section>
+
+      {/* 3. About Section */}
       <AboutSection />
 
-      {/* Services Section */}
+      {/* 4. Services Section */}
       <ServicesSection />
 
-      {/* Industry Statistics Section */}
-      <section className="py-20 bg-gray-50">
+      {/* 5. Enterprise Industry Verticals Grid ("Trusted By") */}
+      <section className="py-20 bg-zinc-50/40 relative">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-gray-900 mb-6">
-              AI Market Statistics
-            </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              The AI revolution is transforming industries worldwide. Here are some key numbers that demonstrate the impact.
+          <div className="text-center mb-12">
+            <h3 className="text-xs font-bold uppercase tracking-widest text-zinc-600 mb-2">
+              Cross-Industry Deployment Framework
+            </h3>
+            <p className="text-2xl font-bold text-zinc-900">
+              Trusted by Innovators Across Key Sectors
             </p>
           </div>
-          
-          <div className="grid md:grid-cols-4 gap-8">
-            <div className="text-center">
-              <div className="text-4xl font-bold text-orange-600 mb-2">$500B+</div>
-              <p className="text-gray-600">Global AI Market Value by 2027</p>
-            </div>
-            <div className="text-center">
-              <div className="text-4xl font-bold text-orange-600 mb-2">40%</div>
-              <p className="text-gray-600">Average Cost Reduction with AI</p>
-            </div>
-            <div className="text-center">
-              <div className="text-4xl font-bold text-orange-600 mb-2">85%</div>
-              <p className="text-gray-600">Companies Planning AI Investment</p>
-            </div>
-            <div className="text-center">
-              <div className="text-4xl font-bold text-orange-600 mb-2">3.5x</div>
-              <p className="text-gray-600">Productivity Increase with AI</p>
-            </div>
+
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+            {solutionsData.map((item) => (
+              <Link
+                key={item.id}
+                href={item.href}
+                className="group flex flex-col items-center p-5 rounded-2xl bg-white border border-zinc-200/80 shadow-sm hover:border-orange-400/80 hover:shadow-lg hover:shadow-orange-500/5 transition-all duration-300 text-center"
+              >
+                <div className="w-12 h-12 rounded-2xl bg-orange-50 text-orange-600 flex items-center justify-center mb-3 group-hover:bg-orange-600 group-hover:text-white transition-colors">
+                  <SolutionIcon name={item.iconName} className="w-6 h-6" />
+                </div>
+                <span className="text-sm font-bold text-zinc-900 group-hover:text-orange-600 transition-colors">
+                  {item.shortTitle}
+                </span>
+                <span className="text-[11px] text-zinc-600 mt-1">
+                  {item.badge}
+                </span>
+              </Link>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* Trusted By Section */}
-      <section className="py-20 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-gray-900 mb-6">
-              Trusted by Industry Leaders
-            </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Leading organizations across sectors trust our AI solutions to drive innovation and growth.
-            </p>
-          </div>
-          
-          <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-8 items-center opacity-60">
-            <div className="text-center">
-              <div className="w-20 h-20 bg-gray-200 rounded-lg mx-auto mb-2 flex items-center justify-center">
-                <span className="text-2xl">🏦</span>
-              </div>
-              <p className="text-sm text-gray-600">Finance</p>
-            </div>
-            <div className="text-center">
-              <div className="w-20 h-20 bg-gray-200 rounded-lg mx-auto mb-2 flex items-center justify-center">
-                <span className="text-2xl">🏥</span>
-              </div>
-              <p className="text-sm text-gray-600">Healthcare</p>
-            </div>
-            <div className="text-center">
-              <div className="w-20 h-20 bg-gray-200 rounded-lg mx-auto mb-2 flex items-center justify-center">
-                <span className="text-2xl">🌾</span>
-              </div>
-              <p className="text-sm text-gray-600">Agriculture</p>
-            </div>
-            <div className="text-center">
-              <div className="w-20 h-20 bg-gray-200 rounded-lg mx-auto mb-2 flex items-center justify-center">
-                <span className="text-2xl">📦</span>
-              </div>
-              <p className="text-sm text-gray-600">Supply Chain</p>
-            </div>
-            <div className="text-center">
-              <div className="w-20 h-20 bg-gray-200 rounded-lg mx-auto mb-2 flex items-center justify-center">
-                <span className="text-2xl">🔒</span>
-              </div>
-              <p className="text-sm text-gray-600">Security</p>
-            </div>
-            <div className="text-center">
-              <div className="w-20 h-20 bg-gray-200 rounded-lg mx-auto mb-2 flex items-center justify-center">
-                <span className="text-2xl">⚡</span>
-              </div>
-              <p className="text-sm text-gray-600">Energy</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* AI Demo Section */}
+      {/* 6. AI Demo Section */}
       <AIDemoSection />
 
-      {/* Newsletter Signup */}
-      <section className="py-20 bg-orange-600">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl font-bold text-white mb-6">
-            Stay Updated with AI Innovation
-          </h2>
-          <p className="text-xl text-orange-100 mb-8">
-            Get the latest insights on AI technology, industry trends, and how organizations are 
-            transforming their operations with intelligent solutions.
-          </p>
-          
-          <div className="max-w-md mx-auto">
-            <div className="flex gap-3">
-              <input
-                type="email"
-                placeholder="Enter your email address"
-                className="flex-1 px-4 py-3 rounded-full text-gray-900 focus:outline-none focus:ring-2 focus:ring-white"
-              />
-              <button className="bg-white text-orange-600 px-6 py-3 rounded-full font-semibold hover:bg-gray-100 transition-colors">
-                Subscribe
-              </button>
-            </div>
-            <p className="text-orange-200 text-sm mt-3">
-              Join 10,000+ professionals already subscribed
-            </p>
-          </div>
-        </div>
-      </section>
+      {/* 7. Newsletter Subscription */}
+      <NewsletterSubscribe />
     </main>
   );
 }

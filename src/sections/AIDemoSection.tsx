@@ -1,302 +1,540 @@
 'use client';
 
-import React, { useState } from "react";
+import React, { useState } from 'react';
+import Link from 'next/link';
+import { motion, AnimatePresence } from 'framer-motion';
+import {
+  Play,
+  RefreshCw,
+  Sparkles,
+  CheckCircle2,
+  AlertTriangle,
+  ShieldCheck,
+  Zap,
+  Activity,
+  Boxes,
+  Sprout,
+  BadgeDollarSign,
+  ShieldAlert,
+  ArrowRight,
+  Sliders,
+  Terminal,
+} from 'lucide-react';
+import Badge from '../components/ui/Badge';
+import Button from '../components/ui/Button';
+import GlowCard from '../components/ui/GlowCard';
+import SectionHeader from '../components/ui/SectionHeader';
+import SolutionIcon from '../components/ui/SolutionIcon';
 
-const demos = [
+const demoVerts = [
   {
-    id: "finance",
-    title: "AI Fraud Detection",
-    industry: "Finance",
-    description: "Real-time transaction monitoring and fraud detection using advanced machine learning algorithms.",
-    features: [
-      "Real-time transaction analysis",
-      "Pattern recognition",
-      "Risk scoring",
-      "Instant alerts"
-    ],
-    status: "available",
-    icon: "💰",
-    color: "blue"
+    id: 'finance',
+    name: 'Finance & Fraud',
+    title: 'Real-Time Fraud & Anomaly Detector',
+    iconName: 'BadgeDollarSign',
+    badge: 'Live Simulator',
+    desc: 'Simulate high-velocity financial transactions and test Doxantro’s real-time risk scoring engine.',
   },
   {
-    id: "healthcare",
-    title: "Medical Image Analysis",
-    industry: "Healthcare",
-    description: "AI-powered diagnostic support for medical imaging with high accuracy and speed.",
-    features: [
-      "Image preprocessing",
-      "Disease detection",
-      "Confidence scoring",
-      "Report generation"
-    ],
-    status: "coming-soon",
-    icon: "🏥",
-    color: "green"
+    id: 'healthcare',
+    name: 'Healthcare Vision',
+    title: 'Clinical DICOM Scan Segmenter',
+    iconName: 'Activity',
+    badge: 'Live Simulator',
+    desc: 'Analyze high-resolution radiology scans with automated bounding box triage and confidence heatmaps.',
   },
   {
-    id: "agriculture",
-    title: "Crop Health Monitoring",
-    industry: "Agriculture",
-    description: "Satellite and drone imagery analysis for crop health assessment and yield prediction.",
-    features: [
-      "Satellite imagery analysis",
-      "Disease detection",
-      "Yield prediction",
-      "Resource optimization"
-    ],
-    status: "coming-soon",
-    icon: "🌾",
-    color: "orange"
+    id: 'agriculture',
+    name: 'Precision Agri',
+    title: 'Satellite NDVI Yield Forecaster',
+    iconName: 'Sprout',
+    badge: 'Live Simulator',
+    desc: 'Simulate multispectral crop indices and soil parameters to forecast yield and optimize fertilization.',
   },
   {
-    id: "supply-chain",
-    title: "Supply Chain Optimization",
-    industry: "Supply Chain",
-    description: "Intelligent demand forecasting and inventory optimization for supply chain management.",
-    features: [
-      "Demand forecasting",
-      "Inventory optimization",
-      "Route planning",
-      "Risk assessment"
-    ],
-    status: "coming-soon",
-    icon: "📦",
-    color: "purple"
+    id: 'supply-chain',
+    name: 'Supply Chain',
+    title: 'Dynamic Multi-Vector Route Optimizer',
+    iconName: 'Boxes',
+    badge: 'Live Simulator',
+    desc: 'Simulate port bottlenecks and fuel spikes to watch Doxantro re-compute global freight routes in under 10ms.',
   },
   {
-    id: "security",
-    title: "Threat Detection",
-    industry: "Security",
-    description: "Advanced cybersecurity threat detection and response using AI and machine learning.",
-    features: [
-      "Threat monitoring",
-      "Behavioral analysis",
-      "Incident response",
-      "Security analytics"
-    ],
-    status: "coming-soon",
-    icon: "🔒",
-    color: "red"
+    id: 'security',
+    name: 'Cyber Defense',
+    title: 'Zero-Day Packet Interceptor',
+    iconName: 'ShieldAlert',
+    badge: 'Live Simulator',
+    desc: 'Inject simulated malicious payloads to test automated kernel anomaly quarantine mechanisms.',
   },
   {
-    id: "energy",
-    title: "Smart Grid Management",
-    industry: "Energy",
-    description: "AI-powered energy consumption optimization and grid management solutions.",
-    features: [
-      "Load balancing",
-      "Consumption optimization",
-      "Predictive maintenance",
-      "Grid analytics"
-    ],
-    status: "coming-soon",
-    icon: "⚡",
-    color: "yellow"
-  }
+    id: 'energy',
+    name: 'Smart Energy',
+    title: 'Renewable Grid Load Balancer',
+    iconName: 'Zap',
+    badge: 'Live Simulator',
+    desc: 'Adjust solar and wind output fluctuations to test automated battery dispatch and peaker suppression.',
+  },
 ];
 
-const getStatusBadge = (status: string) => {
-  switch (status) {
-    case "available":
-      return <span className="bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm font-medium">Available</span>;
-    case "coming-soon":
-      return <span className="bg-yellow-100 text-yellow-800 px-3 py-1 rounded-full text-sm font-medium">Coming Soon</span>;
-    default:
-      return <span className="bg-gray-100 text-gray-800 px-3 py-1 rounded-full text-sm font-medium">In Development</span>;
-  }
-};
-
-const getColorClasses = (color: string) => {
-  switch (color) {
-    case "blue":
-      return "from-blue-500 to-blue-600";
-    case "green":
-      return "from-green-500 to-green-600";
-    case "orange":
-      return "from-orange-500 to-orange-600";
-    case "purple":
-      return "from-purple-500 to-purple-600";
-    case "red":
-      return "from-red-500 to-red-600";
-    case "yellow":
-      return "from-yellow-500 to-yellow-600";
-    default:
-      return "from-gray-500 to-gray-600";
-  }
-};
-
 export default function AIDemoSection() {
-  const [selectedDemo, setSelectedDemo] = useState(demos[0]);
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [activeVert, setActiveVert] = useState(demoVerts[0].id);
+  const [isRunningInference, setIsRunningInference] = useState(false);
 
-  const handleDemoLaunch = () => {
-    if (selectedDemo.status === "available") {
-      setIsModalOpen(true);
-    }
+  // Finance Sandbox State
+  const [txAmount, setTxAmount] = useState(14500);
+  const [isForeignIp, setIsForeignIp] = useState(true);
+  const [velocitySpike, setVelocitySpike] = useState(true);
+  const [financeResult, setFinanceResult] = useState({
+    riskScore: 94,
+    status: 'High Risk (Flagged & Intercepted)',
+    latency: '4.2ms',
+    savedAmount: '$14,500',
+    signals: ['Foreign IP range (AS-9402)', 'Velocity 14x above 30-day baseline', 'Device fingerprint mismatch'],
+  });
+
+  // Healthcare Sandbox State
+  const [scanType, setScanType] = useState('Chest CT (Multi-Slice)');
+  const [contrastEnhanced, setContrastEnhanced] = useState(true);
+  const [healthResult, setHealthResult] = useState({
+    finding: 'Sub-pleural ground glass opacity detected (Upper Right Lobe)',
+    confidence: '99.4%',
+    urgency: 'Tier 1 - Immediate Physician Review',
+    inferenceTime: '0.38s',
+  });
+
+  // Agriculture Sandbox State
+  const [soilMoisture, setSoilMoisture] = useState(62);
+  const [ndviIndex, setNdviIndex] = useState(0.78);
+  const [agriResult, setAgriResult] = useState({
+    projectedYield: '+32.4% vs Regional Average',
+    healthStatus: 'Optimal Canopy Chlorophyll Index',
+    waterSaving: '38,000 Liters / Acre',
+    recommendation: 'Reduce nitrogen dosing by 18%; maintain current irrigation vector.',
+  });
+
+  // Supply Chain Sandbox State
+  const [portDelay, setPortDelay] = useState(48);
+  const [supplyResult, setSupplyResult] = useState({
+    reRouteVector: 'Direct Rail Corridor via Hub Gamma',
+    costReduction: '-22.6%',
+    etaSaved: '42 Hours',
+    riskIndex: 'Low (0.12)',
+  });
+
+  // Security Sandbox State
+  const [attackVector, setAttackVector] = useState('Privilege Escalation');
+  const [secResult, setSecResult] = useState({
+    action: 'Payload Quarantined & Enclave Re-keyed',
+    containmentTime: '2.8ms',
+    dataExfiltration: '0 Bytes',
+    severity: 'Critical (Mitigated)',
+  });
+
+  // Energy Sandbox State
+  const [solarOutput, setSolarOutput] = useState(45);
+  const [energyResult, setEnergyResult] = useState({
+    gridFrequency: '50.02 Hz (Stable)',
+    batteryDispatch: '+34 MW Discharged',
+    peakerSavings: '$18,400 / hr',
+    efficiencyGain: '+24.8%',
+  });
+
+  const runSimulation = () => {
+    setIsRunningInference(true);
+    setTimeout(() => {
+      if (activeVert === 'finance') {
+        const baseRisk = (txAmount > 10000 ? 50 : 20) + (isForeignIp ? 25 : 0) + (velocitySpike ? 20 : 0);
+        setFinanceResult({
+          riskScore: Math.min(baseRisk, 99),
+          status: baseRisk > 70 ? 'High Risk (Flagged & Intercepted)' : 'Low Risk (Approved)',
+          latency: '3.8ms',
+          savedAmount: `$${txAmount.toLocaleString()}`,
+          signals: [
+            isForeignIp ? 'Foreign IP range detected' : 'Domestic verified IP range',
+            velocitySpike ? 'Velocity spike anomaly' : 'Velocity within normal bounds',
+            txAmount > 10000 ? 'High-value threshold trigger' : 'Standard transaction band',
+          ],
+        });
+      } else if (activeVert === 'agriculture') {
+        setAgriResult({
+          projectedYield: `+${(ndviIndex * 40).toFixed(1)}% vs Regional Average`,
+          healthStatus: ndviIndex > 0.6 ? 'Healthy Vegetation Index' : 'Water Stress Alert',
+          waterSaving: `${Math.round(soilMoisture * 500)} Liters / Acre`,
+          recommendation: ndviIndex > 0.6 ? 'Optimize micro-fertilization vector' : 'Increase drip irrigation in Sector 4',
+        });
+      }
+      setIsRunningInference(false);
+    }, 650);
   };
 
-  return (
-    <section className="py-20 bg-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold text-gray-900 mb-6">
-            Experience AI in Action
-          </h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Explore our interactive AI demos and see how our solutions work in real-world scenarios. 
-            Get hands-on experience with cutting-edge artificial intelligence technology.
-          </p>
-        </div>
+  const currentVertObj = demoVerts.find((v) => v.id === activeVert) || demoVerts[0];
 
-        {/* Demo Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
-          {demos.map((demo) => (
-            <div
-              key={demo.id}
-              onClick={() => setSelectedDemo(demo)}
-              className={`bg-white rounded-2xl border-2 cursor-pointer transition-all duration-300 hover:shadow-lg ${
-                selectedDemo.id === demo.id ? 'ring-2 ring-orange-500' : ''
+  return (
+    <section className="py-24 bg-zinc-950 text-white relative overflow-hidden">
+      {/* Ambient background glows */}
+      <div className="absolute top-0 right-1/4 w-[500px] h-[500px] bg-orange-600/15 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute bottom-0 left-1/4 w-[400px] h-[400px] bg-amber-600/10 rounded-full blur-3xl pointer-events-none" />
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <SectionHeader
+          badge="Interactive Sandbox"
+          badgeVariant="orange"
+          title="Experience Doxantro AI"
+          highlightText="in Action"
+          subtitle="Interact directly with our specialized inference simulators across 6 high-stakes industries and observe real-time decision outputs."
+          className="text-white"
+        />
+
+        {/* Vertical Tabs */}
+        <div className="flex items-center justify-start md:justify-center gap-2 overflow-x-auto pb-4 mb-10 scrollbar-none">
+          {demoVerts.map((vert) => (
+            <button
+              key={vert.id}
+              onClick={() => setActiveVert(vert.id)}
+              className={`flex items-center gap-2 px-5 py-3 rounded-full text-xs sm:text-sm font-semibold transition-all duration-200 whitespace-nowrap cursor-pointer ${
+                activeVert === vert.id
+                  ? 'bg-orange-600 text-white shadow-lg shadow-orange-600/30'
+                  : 'bg-zinc-900/90 text-zinc-400 border border-zinc-800 hover:text-white hover:border-zinc-700'
               }`}
             >
-              <div className="p-6">
-                <div className="text-4xl mb-4">{demo.icon}</div>
-                <h3 className="text-xl font-bold text-gray-900 mb-2">{demo.title}</h3>
-                <p className="text-gray-600 mb-4">{demo.description}</p>
-                
-                <div className="mb-4">
-                  {getStatusBadge(demo.status)}
-                </div>
-                
-                <div className="space-y-2">
-                  {demo.features.slice(0, 3).map((feature, idx) => (
-                    <div key={idx} className="flex items-center text-sm text-gray-600">
-                      <div className="w-2 h-2 bg-orange-600 rounded-full mr-2"></div>
-                      {feature}
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </div>
+              <SolutionIcon name={vert.iconName} className="w-4 h-4" />
+              <span>{vert.name}</span>
+            </button>
           ))}
         </div>
 
-        {/* Selected Demo Details */}
-        <div className="bg-gray-50 rounded-3xl p-8">
-          <div className="grid lg:grid-cols-2 gap-8 items-center">
+        {/* Sandbox Canvas */}
+        <div className="rounded-3xl bg-zinc-900/90 border border-zinc-800 p-6 sm:p-10 shadow-2xl relative overflow-hidden backdrop-blur-xl">
+          <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4 pb-6 mb-8 border-b border-zinc-800">
             <div>
-              <div className="flex items-center gap-3 mb-4">
-                <div className="text-6xl">{selectedDemo.icon}</div>
-                <div>
-                  <h3 className="text-2xl font-bold text-gray-900">{selectedDemo.title}</h3>
-                  <p className="text-gray-600">{selectedDemo.industry}</p>
-                </div>
+              <div className="flex items-center gap-2 mb-1.5">
+                <Badge variant="orange" dot pulse size="sm">
+                  {currentVertObj.badge}
+                </Badge>
+                <span className="text-xs font-mono text-zinc-400">Model: doxantro-{currentVertObj.id}-v3.4</span>
               </div>
-              
-              <p className="text-lg text-gray-600 mb-6">{selectedDemo.description}</p>
-              
-              <div className="mb-6">
-                <h4 className="font-semibold text-gray-900 mb-3">Key Features</h4>
-                <ul className="space-y-2">
-                  {selectedDemo.features.map((feature, idx) => (
-                    <li key={idx} className="flex items-center text-gray-600">
-                      <div className="w-2 h-2 bg-orange-600 rounded-full mr-3"></div>
-                      {feature}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-              
-              <div className="mb-6">
-                {getStatusBadge(selectedDemo.status)}
-              </div>
-              
-              <div className="text-sm text-gray-600 mb-6">
-                {selectedDemo.status === "available" 
-                  ? "Click 'Launch Demo' to experience this AI solution in action"
-                  : "This demo is currently in development. Contact us to be notified when it's ready."}
-              </div>
-              
-              {selectedDemo.status === "available" ? (
-                <button
-                  onClick={handleDemoLaunch}
-                  className={`bg-gradient-to-r ${getColorClasses(selectedDemo.color)} text-white px-8 py-3 rounded-full font-semibold hover:opacity-90 transition-opacity`}
-                >
-                  Launch Demo
-                </button>
-              ) : (
-                <button className="bg-gray-200 text-gray-500 px-8 py-3 rounded-full font-semibold cursor-not-allowed">
-                  Request Early Access
-                </button>
-              )}
+              <h3 className="text-2xl sm:text-3xl font-bold text-white">
+                {currentVertObj.title}
+              </h3>
             </div>
-            
-            <div className="bg-white rounded-2xl p-8 text-center">
-              <div className="text-8xl mb-6">{selectedDemo.icon}</div>
-              <h4 className="text-2xl font-bold text-gray-900 mb-4">{selectedDemo.title}</h4>
-              <p className="text-gray-600 mb-6">
-                Experience the future of {selectedDemo.industry.toLowerCase()} with AI
-              </p>
-              
-              <div className="space-y-3">
-                <h5 className="font-semibold text-gray-900 mb-2">What You'll See</h5>
-                <div className="text-sm text-gray-600 space-y-2">
-                  <div className="flex items-center justify-center gap-2">
-                    <div className="w-2 h-2 bg-green-500 rounded-full"></div>
-                    <span>Real-time processing</span>
+
+            <Button
+              onClick={runSimulation}
+              disabled={isRunningInference}
+              size="md"
+              variant="primary"
+              icon={isRunningInference ? <RefreshCw className="w-4 h-4 animate-spin" /> : <Play className="w-4 h-4 fill-white" />}
+            >
+              {isRunningInference ? 'Running Inference...' : 'Execute Neural Scan'}
+            </Button>
+          </div>
+
+          <div className="grid lg:grid-cols-12 gap-8 items-start">
+            {/* Left: Interactive Controls (5 cols) */}
+            <div className="lg:col-span-5 bg-zinc-950/80 rounded-2xl p-6 border border-zinc-800 space-y-6">
+              <div className="flex items-center justify-between text-xs font-bold uppercase tracking-wider text-zinc-400 pb-2 border-b border-zinc-800">
+                <span className="flex items-center gap-1.5">
+                  <Sliders className="w-3.5 h-3.5 text-orange-500" />
+                  <span>Input Parameters</span>
+                </span>
+                <span className="text-orange-400 font-mono">Live Inputs</span>
+              </div>
+
+              {/* Finance Controls */}
+              {activeVert === 'finance' && (
+                <div className="space-y-4">
+                  <div>
+                    <div className="flex justify-between text-xs mb-1.5">
+                      <span className="text-zinc-400">Transaction Amount</span>
+                      <span className="font-mono text-orange-400 font-bold">${txAmount.toLocaleString()}</span>
+                    </div>
+                    <input
+                      type="range"
+                      min="500"
+                      max="100000"
+                      step="500"
+                      value={txAmount}
+                      onChange={(e) => setTxAmount(Number(e.target.value))}
+                      className="w-full accent-orange-600 cursor-pointer"
+                    />
                   </div>
-                  <div className="flex items-center justify-center gap-2">
-                    <div className="w-2 h-2 bg-green-500 rounded-full"></div>
-                    <span>Interactive interface</span>
+
+                  <div className="flex items-center justify-between p-3 rounded-xl bg-zinc-900 border border-zinc-800">
+                    <span className="text-xs text-zinc-300">Foreign IP Routing</span>
+                    <button
+                      onClick={() => setIsForeignIp(!isForeignIp)}
+                      className={`px-3 py-1 rounded-lg text-xs font-bold transition-colors ${
+                        isForeignIp ? 'bg-orange-600 text-white' : 'bg-zinc-800 text-zinc-400'
+                      }`}
+                    >
+                      {isForeignIp ? 'YES (Mismatch)' : 'NO (Domestic)'}
+                    </button>
                   </div>
-                  <div className="flex items-center justify-center gap-2">
-                    <div className="w-2 h-2 bg-green-500 rounded-full"></div>
-                    <span>Performance metrics</span>
+
+                  <div className="flex items-center justify-between p-3 rounded-xl bg-zinc-900 border border-zinc-800">
+                    <span className="text-xs text-zinc-300">Velocity Spike Anomaly</span>
+                    <button
+                      onClick={() => setVelocitySpike(!velocitySpike)}
+                      className={`px-3 py-1 rounded-lg text-xs font-bold transition-colors ${
+                        velocitySpike ? 'bg-orange-600 text-white' : 'bg-zinc-800 text-zinc-400'
+                      }`}
+                    >
+                      {velocitySpike ? 'DETECTED' : 'NORMAL'}
+                    </button>
                   </div>
                 </div>
+              )}
+
+              {/* Healthcare Controls */}
+              {activeVert === 'healthcare' && (
+                <div className="space-y-4">
+                  <div>
+                    <label className="block text-xs text-zinc-400 mb-2">Scan Modality</label>
+                    <select
+                      value={scanType}
+                      onChange={(e) => setScanType(e.target.value)}
+                      className="w-full p-2.5 rounded-xl bg-zinc-900 border border-zinc-800 text-xs text-white"
+                    >
+                      <option>Chest CT (Multi-Slice)</option>
+                      <option>Brain MRI (T1/T2 Axial)</option>
+                      <option>Orthopedic Digital X-Ray</option>
+                    </select>
+                  </div>
+
+                  <div className="flex items-center justify-between p-3 rounded-xl bg-zinc-900 border border-zinc-800">
+                    <span className="text-xs text-zinc-300">Contrast Agent Enhanced</span>
+                    <button
+                      onClick={() => setContrastEnhanced(!contrastEnhanced)}
+                      className={`px-3 py-1 rounded-lg text-xs font-bold transition-colors ${
+                        contrastEnhanced ? 'bg-orange-600 text-white' : 'bg-zinc-800 text-zinc-400'
+                      }`}
+                    >
+                      {contrastEnhanced ? 'ENABLED' : 'DISABLED'}
+                    </button>
+                  </div>
+                </div>
+              )}
+
+              {/* Agriculture Controls */}
+              {activeVert === 'agriculture' && (
+                <div className="space-y-4">
+                  <div>
+                    <div className="flex justify-between text-xs mb-1.5">
+                      <span className="text-zinc-400">Multispectral NDVI Index</span>
+                      <span className="font-mono text-orange-400 font-bold">{ndviIndex}</span>
+                    </div>
+                    <input
+                      type="range"
+                      min="0.2"
+                      max="0.95"
+                      step="0.01"
+                      value={ndviIndex}
+                      onChange={(e) => setNdviIndex(Number(e.target.value))}
+                      className="w-full accent-orange-600 cursor-pointer"
+                    />
+                  </div>
+
+                  <div>
+                    <div className="flex justify-between text-xs mb-1.5">
+                      <span className="text-zinc-400">Soil Moisture Content</span>
+                      <span className="font-mono text-orange-400 font-bold">{soilMoisture}%</span>
+                    </div>
+                    <input
+                      type="range"
+                      min="10"
+                      max="90"
+                      value={soilMoisture}
+                      onChange={(e) => setSoilMoisture(Number(e.target.value))}
+                      className="w-full accent-orange-600 cursor-pointer"
+                    />
+                  </div>
+                </div>
+              )}
+
+              {/* Supply Chain Controls */}
+              {activeVert === 'supply-chain' && (
+                <div className="space-y-4">
+                  <div>
+                    <div className="flex justify-between text-xs mb-1.5">
+                      <span className="text-zinc-400">Port Delay Bottleneck</span>
+                      <span className="font-mono text-orange-400 font-bold">{portDelay} Hours</span>
+                    </div>
+                    <input
+                      type="range"
+                      min="0"
+                      max="120"
+                      value={portDelay}
+                      onChange={(e) => setPortDelay(Number(e.target.value))}
+                      className="w-full accent-orange-600 cursor-pointer"
+                    />
+                  </div>
+                </div>
+              )}
+
+              {/* Security Controls */}
+              {activeVert === 'security' && (
+                <div className="space-y-4">
+                  <div>
+                    <label className="block text-xs text-zinc-400 mb-2">Simulated Exploit Payload</label>
+                    <select
+                      value={attackVector}
+                      onChange={(e) => setAttackVector(e.target.value)}
+                      className="w-full p-2.5 rounded-xl bg-zinc-900 border border-zinc-800 text-xs text-white"
+                    >
+                      <option>Privilege Escalation</option>
+                      <option>Lateral Kerberos Pass-The-Hash</option>
+                      <option>DNS Tunneling Exfiltration</option>
+                    </select>
+                  </div>
+                </div>
+              )}
+
+              {/* Energy Controls */}
+              {activeVert === 'energy' && (
+                <div className="space-y-4">
+                  <div>
+                    <div className="flex justify-between text-xs mb-1.5">
+                      <span className="text-zinc-400">Intermittent Solar & Wind Output</span>
+                      <span className="font-mono text-orange-400 font-bold">{solarOutput}% Capacity</span>
+                    </div>
+                    <input
+                      type="range"
+                      min="10"
+                      max="100"
+                      value={solarOutput}
+                      onChange={(e) => setSolarOutput(Number(e.target.value))}
+                      className="w-full accent-orange-600 cursor-pointer"
+                    />
+                  </div>
+                </div>
+              )}
+
+              <div className="pt-2 text-[11px] text-zinc-500">
+                Adjust sliders or toggles, then click "Execute Neural Scan" to trigger client-side evaluation.
+              </div>
+            </div>
+
+            {/* Right: Live Telemetry Output Canvas (7 cols) */}
+            <div className="lg:col-span-7 bg-zinc-950 rounded-2xl p-6 sm:p-8 border border-zinc-800 space-y-6">
+              <div className="flex items-center justify-between text-xs font-mono pb-3 border-b border-zinc-800">
+                <span className="text-emerald-400 flex items-center gap-1.5">
+                  <span className="w-2 h-2 rounded-full bg-emerald-400 animate-ping" />
+                  <span>INFERENCE RESULT CANVAS</span>
+                </span>
+                <span className="text-zinc-400">Response SLA: &lt;10ms</span>
+              </div>
+
+              {/* Dynamic Results Display */}
+              {activeVert === 'finance' && (
+                <div className="space-y-4">
+                  <div className="flex items-center justify-between p-4 rounded-2xl bg-zinc-900/90 border border-zinc-800">
+                    <div>
+                      <div className="text-xs text-zinc-400">Neural Risk Score</div>
+                      <div className="text-3xl font-extrabold font-mono text-orange-400">
+                        {financeResult.riskScore} / 100
+                      </div>
+                    </div>
+                    <div className="text-right">
+                      <Badge variant={financeResult.riskScore > 70 ? 'orange' : 'green'} size="sm">
+                        {financeResult.status}
+                      </Badge>
+                      <div className="text-xs font-mono text-zinc-400 mt-1">
+                        Inference: {financeResult.latency}
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="space-y-2">
+                    <div className="text-xs font-bold uppercase tracking-wider text-zinc-400">
+                      Neural Decision Signals:
+                    </div>
+                    {financeResult.signals.map((sig, sIdx) => (
+                      <div key={sIdx} className="p-3 rounded-xl bg-zinc-900/60 border border-zinc-800/80 text-xs text-zinc-300 flex items-center gap-2">
+                        <AlertTriangle className="w-3.5 h-3.5 text-orange-500 flex-shrink-0" />
+                        <span>{sig}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              {activeVert === 'healthcare' && (
+                <div className="space-y-4">
+                  <div className="p-4 rounded-2xl bg-zinc-900/90 border border-zinc-800">
+                    <div className="flex justify-between text-xs text-zinc-400 mb-1">
+                      <span>Diagnostic Confidence Score</span>
+                      <span className="font-mono text-emerald-400 font-bold">{healthResult.confidence}</span>
+                    </div>
+                    <div className="text-sm font-bold text-white mb-2">{healthResult.finding}</div>
+                    <Badge variant="orange" size="sm">{healthResult.urgency}</Badge>
+                  </div>
+                </div>
+              )}
+
+              {activeVert === 'agriculture' && (
+                <div className="space-y-4">
+                  <div className="grid grid-cols-2 gap-3">
+                    <div className="p-3.5 rounded-xl bg-zinc-900 border border-zinc-800">
+                      <div className="text-xs text-zinc-400">Projected Yield</div>
+                      <div className="text-lg font-bold font-mono text-emerald-400">{agriResult.projectedYield}</div>
+                    </div>
+                    <div className="p-3.5 rounded-xl bg-zinc-900 border border-zinc-800">
+                      <div className="text-xs text-zinc-400">Water Conservation</div>
+                      <div className="text-lg font-bold font-mono text-orange-400">{agriResult.waterSaving}</div>
+                    </div>
+                  </div>
+                  <div className="p-3.5 rounded-xl bg-zinc-900 border border-zinc-800 text-xs text-zinc-300">
+                    <span className="font-bold text-white block mb-1">Prescription Action:</span>
+                    {agriResult.recommendation}
+                  </div>
+                </div>
+              )}
+
+              {activeVert === 'supply-chain' && (
+                <div className="space-y-3">
+                  <div className="p-4 rounded-xl bg-zinc-900 border border-zinc-800">
+                    <div className="text-xs text-zinc-400">Dynamic Re-routing Vector</div>
+                    <div className="text-sm font-bold text-white mb-1">{supplyResult.reRouteVector}</div>
+                    <div className="text-xs font-mono text-emerald-400">Saved: {supplyResult.etaSaved} | {supplyResult.costReduction} Costs</div>
+                  </div>
+                </div>
+              )}
+
+              {activeVert === 'security' && (
+                <div className="space-y-3">
+                  <div className="p-4 rounded-xl bg-zinc-900 border border-zinc-800">
+                    <div className="text-xs text-zinc-400">Autonomous Defense Trigger</div>
+                    <div className="text-sm font-bold text-white mb-1">{secResult.action}</div>
+                    <div className="text-xs font-mono text-emerald-400">Containment Latency: {secResult.containmentTime}</div>
+                  </div>
+                </div>
+              )}
+
+              {activeVert === 'energy' && (
+                <div className="space-y-3">
+                  <div className="p-4 rounded-xl bg-zinc-900 border border-zinc-800">
+                    <div className="text-xs text-zinc-400">Grid Stabilization Status</div>
+                    <div className="text-sm font-bold text-white mb-1">{energyResult.gridFrequency}</div>
+                    <div className="text-xs font-mono text-orange-400">{energyResult.batteryDispatch} ({energyResult.peakerSavings})</div>
+                  </div>
+                </div>
+              )}
+
+              <div className="pt-4 border-t border-zinc-800 flex items-center justify-between">
+                <span className="text-xs text-zinc-400">Need this model fine-tuned on your private dataset?</span>
+                <Link
+                  href={`/ai-${activeVert === 'finance' ? 'finance' : activeVert === 'healthcare' ? 'healthcare' : activeVert === 'agriculture' ? 'agriculture' : activeVert === 'supply-chain' ? 'supply-chain' : activeVert === 'security' ? 'security' : 'energy'}`}
+                  className="text-xs font-semibold text-orange-400 hover:text-orange-300 inline-flex items-center gap-1"
+                >
+                  <span>Explore Full Architecture</span>
+                  <ArrowRight className="w-3.5 h-3.5" />
+                </Link>
               </div>
             </div>
           </div>
         </div>
       </div>
-
-      {/* Demo Modal */}
-      {isModalOpen && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-          <div className="bg-white rounded-3xl p-8 max-w-2xl mx-4">
-            <div className="text-center">
-              <div className="text-6xl mb-6">{selectedDemo.icon}</div>
-              <h3 className="text-2xl font-bold text-gray-900 mb-4">Launching {selectedDemo.title}</h3>
-              <p className="text-gray-600 mb-6">
-                You're about to experience our AI solution in a simulated environment.
-              </p>
-              
-              <div className="bg-gray-100 rounded-2xl p-6 mb-6">
-                <div className="text-4xl mb-4">🚀</div>
-                <h4 className="text-lg font-semibold text-gray-900 mb-2">Demo Environment</h4>
-                <p className="text-gray-600 text-sm">
-                  This is a demonstration environment with sample data. 
-                  Contact us to see this solution with your actual data.
-                </p>
-              </div>
-              
-              <div className="flex gap-4 justify-center">
-                <button
-                  onClick={() => setIsModalOpen(false)}
-                  className="px-6 py-3 border-2 border-gray-300 text-gray-700 rounded-full font-semibold hover:bg-gray-50 transition-colors"
-                >
-                  Close
-                </button>
-                <a
-                  href="/contact"
-                  className="px-6 py-3 bg-orange-600 text-white rounded-full font-semibold hover:bg-orange-700 transition-colors"
-                >
-                  Request Live Demo
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-      )}
     </section>
   );
 }
