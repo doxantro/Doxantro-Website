@@ -108,20 +108,20 @@ export default function Blog() {
   return (
     <main className="min-h-screen bg-white">
       {/* 1. Hero */}
-      <section className="pt-32 pb-20 md:pt-40 md:pb-24 bg-white border-b border-black/[0.06]">
+      <section className="pt-28 pb-16 sm:pt-36 sm:pb-24 bg-white border-b border-black/[0.06]">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <p className="font-mono text-xs text-zinc-500 uppercase tracking-widest mb-4">
             Research & Engineering Papers
           </p>
-          <h1 className="text-4xl sm:text-5xl md:text-[3.6rem] font-semibold tracking-[-0.03em] text-[#111111] leading-tight mb-6">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-[3.6rem] font-semibold tracking-[-0.03em] text-[#111111] leading-tight mb-6">
             Technical papers and systems benchmarks.
           </h1>
-          <p className="text-base sm:text-lg text-zinc-600 leading-relaxed max-w-2xl mx-auto mb-10">
+          <p className="text-sm sm:text-base md:text-lg text-zinc-600 leading-relaxed max-w-2xl mx-auto mb-8 sm:mb-10">
             Deep dives on low-latency neural architectures, kernel quantization, stream-level guardrails, and real-world enterprise deployments.
           </p>
 
           {/* Search & Category Filter */}
-          <div className="max-w-xl mx-auto space-y-4">
+          <div className="max-w-xl mx-auto space-y-3.5">
             <div className="relative">
               <Search className="w-4 h-4 text-zinc-400 absolute left-4 top-1/2 -translate-y-1/2" />
               <input
@@ -133,7 +133,7 @@ export default function Blog() {
               />
             </div>
 
-            <div className="flex flex-wrap items-center justify-center gap-1.5 pt-2">
+            <div className="flex flex-wrap items-center justify-center gap-1.5 pt-1">
               {categories.map((cat) => (
                 <button
                   key={cat}
@@ -154,9 +154,9 @@ export default function Blog() {
       </section>
 
       {/* 2. Featured Engineering Paper */}
-      <section className="py-16 bg-[#f9f9f8] border-b border-black/[0.06]">
+      <section className="py-14 sm:py-16 bg-[#f9f9f8] border-b border-black/[0.06]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="rounded-3xl border border-black/[0.09] bg-white p-6 sm:p-10 shadow-[0_4px_24px_rgba(0,0,0,0.04)]">
+          <div className="rounded-3xl border border-black/[0.09] bg-white p-5 sm:p-8 lg:p-10 shadow-[0_4px_24px_rgba(0,0,0,0.04)]">
             <div className="flex items-center gap-2 mb-3">
               <span className="text-[10px] font-mono uppercase px-2.5 py-0.5 rounded-full bg-orange-50 text-orange-800 font-semibold border border-orange-200">
                 Featured Paper
@@ -166,15 +166,15 @@ export default function Blog() {
               </span>
             </div>
 
-            <div className="grid lg:grid-cols-12 gap-8 items-center">
+            <div className="grid lg:grid-cols-12 gap-6 lg:gap-8 items-center">
               <div className="lg:col-span-7">
-                <h2 className="text-2xl sm:text-3xl font-semibold tracking-tight text-[#111111] mb-3">
+                <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold tracking-tight text-[#111111] mb-3">
                   {featuredArticle.title}
                 </h2>
                 <p className="text-xs sm:text-sm text-zinc-600 leading-relaxed mb-6">
                   {featuredArticle.excerpt}
                 </p>
-                <div className="flex items-center gap-4 text-xs font-mono text-zinc-500 mb-6">
+                <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-xs font-mono text-zinc-500 mb-6">
                   <span>{featuredArticle.author}</span>
                   <span>•</span>
                   <span>{featuredArticle.date}</span>
@@ -193,18 +193,18 @@ export default function Blog() {
 
               {/* Benchmarks Card */}
               <div className="lg:col-span-5">
-                <div className="rounded-2xl border border-black/[0.08] bg-[#fcfbf9] p-6 font-mono text-xs">
+                <div className="rounded-2xl border border-black/[0.08] bg-[#fcfbf9] p-5 sm:p-6 font-mono text-xs">
                   <div className="text-[10px] uppercase text-zinc-400 font-semibold mb-4 pb-2 border-b border-black/[0.06]">
                     Measured Benchmarks
                   </div>
                   <div className="space-y-3">
                     {featuredArticle.benchmarks.map((b) => (
-                      <div key={b.label} className="flex justify-between items-baseline">
+                      <div key={b.label} className="flex justify-between items-baseline gap-2">
                         <div>
                           <div className="text-zinc-600">{b.label}</div>
                           <div className="text-[10px] text-zinc-400">{b.note}</div>
                         </div>
-                        <span className="font-bold text-base text-[#111111]">{b.value}</span>
+                        <span className="font-bold text-base text-[#111111] flex-shrink-0">{b.value}</span>
                       </div>
                     ))}
                   </div>
@@ -216,9 +216,9 @@ export default function Blog() {
       </section>
 
       {/* 3. Paper Grid */}
-      <section className="py-24 bg-white border-b border-black/[0.06]">
+      <section className="py-20 sm:py-24 bg-white border-b border-black/[0.06]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
             <AnimatePresence>
               {filteredPosts.map((post) => (
                 <motion.article
@@ -227,7 +227,7 @@ export default function Blog() {
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: 10 }}
                   transition={{ duration: 0.3 }}
-                  className="rounded-2xl border border-black/[0.08] bg-[#fcfbf9] p-6 flex flex-col justify-between hover:bg-white hover:border-black/20 hover:shadow-md transition-all duration-200"
+                  className="rounded-2xl border border-black/[0.08] bg-[#fcfbf9] p-5 sm:p-6 flex flex-col justify-between hover:bg-white hover:border-black/20 hover:shadow-md transition-all duration-200"
                 >
                   <div>
                     <div className="flex items-center justify-between text-[10px] font-mono text-zinc-400 mb-3">
@@ -237,7 +237,7 @@ export default function Blog() {
                       <span>{post.readTime}</span>
                     </div>
 
-                    <h3 className="font-semibold text-base text-[#111111] tracking-tight mb-2 line-clamp-2">
+                    <h3 className="font-semibold text-sm sm:text-base text-[#111111] tracking-tight mb-2 line-clamp-2">
                       {post.title}
                     </h3>
                     <p className="text-xs text-zinc-600 leading-relaxed mb-6 line-clamp-3">
@@ -247,7 +247,7 @@ export default function Blog() {
 
                   <div>
                     <div className="flex items-center justify-between text-[11px] font-mono text-zinc-400 pt-4 border-t border-black/[0.06]">
-                      <span className="truncate max-w-[160px]">{post.author}</span>
+                      <span className="truncate max-w-[140px] sm:max-w-[160px]">{post.author}</span>
                       <span>{post.date}</span>
                     </div>
                   </div>
@@ -259,16 +259,16 @@ export default function Blog() {
       </section>
 
       {/* 4. Dark CTA Card */}
-      <section className="py-20 bg-white">
+      <section className="py-16 sm:py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="rounded-3xl bg-[#111111] text-white p-10 sm:p-16 text-center border border-white/10 shadow-2xl">
-            <h2 className="text-3xl sm:text-4xl font-semibold tracking-tight text-white mb-4">
+          <div className="rounded-3xl bg-[#111111] text-white p-6 sm:p-14 lg:p-16 text-center border border-white/10 shadow-2xl">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold tracking-tight text-white mb-4">
               Collaborate on AI research with Doxantro.
             </h2>
-            <p className="text-sm text-zinc-400 max-w-xl mx-auto mb-8">
+            <p className="text-xs sm:text-sm text-zinc-400 max-w-xl mx-auto mb-8">
               We partner with enterprise engineering groups and academic labs on domain benchmarking, inference compilation, and safety evaluation.
             </p>
-            <Button href="/contact" size="lg" variant="inverted" icon={<ArrowRight className="w-4 h-4" />}>
+            <Button href="/contact" size="lg" variant="inverted" icon={<ArrowRight className="w-4 h-4" />} className="w-full sm:w-auto">
               Connect with Research Team
             </Button>
           </div>

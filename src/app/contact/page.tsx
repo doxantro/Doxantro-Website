@@ -65,49 +65,49 @@ export default function Contact() {
   return (
     <main className="min-h-screen bg-white">
       {/* 1. Hero */}
-      <section className="pt-32 pb-16 md:pt-40 md:pb-20 bg-white border-b border-black/[0.06]">
+      <section className="pt-28 pb-14 sm:pt-36 sm:pb-20 bg-white border-b border-black/[0.06]">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <p className="font-mono text-xs text-zinc-500 uppercase tracking-widest mb-4">
             Contact & Scoping
           </p>
-          <h1 className="text-4xl sm:text-5xl md:text-[3.6rem] font-semibold tracking-[-0.03em] text-[#111111] leading-tight mb-6">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-[3.6rem] font-semibold tracking-[-0.03em] text-[#111111] leading-tight mb-6">
             Partner with Doxantro Systems.
           </h1>
-          <p className="text-base sm:text-lg text-zinc-600 leading-relaxed max-w-2xl mx-auto">
+          <p className="text-sm sm:text-base md:text-lg text-zinc-600 leading-relaxed max-w-2xl mx-auto">
             Discuss your technical requirements directly with our AI infrastructure architects. We respond to enterprise scoping requests within 2 business hours.
           </p>
         </div>
       </section>
 
       {/* 2. Contact Grid */}
-      <section className="py-20 bg-[#f9f9f8] border-b border-black/[0.06]">
+      <section className="py-16 sm:py-20 bg-[#f9f9f8] border-b border-black/[0.06]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid lg:grid-cols-12 gap-12 lg:gap-16">
+          <div className="grid lg:grid-cols-12 gap-10 lg:gap-16">
             {/* Left Column: Direct Info & Guarantees (5 cols) */}
             <div className="lg:col-span-5 space-y-8">
               <div>
-                <h2 className="text-2xl font-semibold tracking-tight text-[#111111] mb-3">
+                <h2 className="text-xl sm:text-2xl font-semibold tracking-tight text-[#111111] mb-3">
                   Enterprise Technical Engagement
                 </h2>
-                <p className="text-sm text-zinc-600 leading-relaxed">
+                <p className="text-xs sm:text-sm text-zinc-600 leading-relaxed">
                   Whether you are planning an air-gapped VPC cluster or benchmarking domain models against existing pipelines, our systems engineers will guide your architecture.
                 </p>
               </div>
 
               {/* Direct Info Box */}
-              <div className="rounded-2xl border border-black/[0.08] bg-white p-6 space-y-4 font-mono text-xs">
+              <div className="rounded-2xl border border-black/[0.08] bg-white p-5 sm:p-6 space-y-4 font-mono text-xs">
                 <div className="flex items-center gap-3">
-                  <Mail className="w-4 h-4 text-zinc-600" />
-                  <div>
+                  <Mail className="w-4 h-4 text-zinc-600 flex-shrink-0" />
+                  <div className="truncate">
                     <div className="text-zinc-400 text-[10px] uppercase">Direct Email</div>
-                    <a href="mailto:solutions@doxantro.com" className="font-semibold text-zinc-900 hover:underline">
+                    <a href="mailto:solutions@doxantro.com" className="font-semibold text-zinc-900 hover:underline truncate block">
                       solutions@doxantro.com
                     </a>
                   </div>
                 </div>
 
                 <div className="flex items-center gap-3 pt-3 border-t border-black/[0.06]">
-                  <Clock className="w-4 h-4 text-zinc-600" />
+                  <Clock className="w-4 h-4 text-zinc-600 flex-shrink-0" />
                   <div>
                     <div className="text-zinc-400 text-[10px] uppercase">Enterprise Response SLA</div>
                     <div className="font-semibold text-zinc-900">&lt; 2 Business Hours</div>
@@ -115,10 +115,10 @@ export default function Contact() {
                 </div>
 
                 <div className="flex items-center gap-3 pt-3 border-t border-black/[0.06]">
-                  <ShieldCheck className="w-4 h-4 text-zinc-600" />
+                  <ShieldCheck className="w-4 h-4 text-zinc-600 flex-shrink-0" />
                   <div>
                     <div className="text-zinc-400 text-[10px] uppercase">Security Standard</div>
-                    <div className="font-semibold text-zinc-900">SOC-2 Type II · HIPAA · NDA Ready</div>
+                    <div className="font-semibold text-zinc-900 text-[11px] sm:text-xs">SOC-2 Type II · HIPAA · NDA Ready</div>
                   </div>
                 </div>
               </div>
@@ -148,7 +148,7 @@ export default function Contact() {
 
             {/* Right Column: Scoping Form (7 cols) */}
             <div className="lg:col-span-7">
-              <div className="rounded-3xl border border-black/[0.09] bg-white p-6 sm:p-10 shadow-[0_4px_24px_rgba(0,0,0,0.04)]">
+              <div className="rounded-3xl border border-black/[0.09] bg-white p-5 sm:p-8 lg:p-10 shadow-[0_4px_24px_rgba(0,0,0,0.04)]">
                 {status === 'success' ? (
                   <motion.div
                     initial={{ opacity: 0, scale: 0.95 }}

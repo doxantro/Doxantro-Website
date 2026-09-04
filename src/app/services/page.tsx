@@ -67,22 +67,22 @@ export default function Services() {
   return (
     <main className="min-h-screen bg-white">
       {/* 1. Hero */}
-      <section className="pt-32 pb-20 md:pt-40 md:pb-24 bg-white border-b border-black/[0.06]">
+      <section className="pt-28 pb-16 sm:pt-36 sm:pb-24 bg-white border-b border-black/[0.06]">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <p className="font-mono text-xs text-zinc-500 uppercase tracking-widest mb-4">
             Platform Capabilities & Services
           </p>
-          <h1 className="text-4xl sm:text-5xl md:text-[3.6rem] font-semibold tracking-[-0.03em] text-[#111111] leading-tight mb-6">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-[3.6rem] font-semibold tracking-[-0.03em] text-[#111111] leading-tight mb-6">
             End-to-end intelligence infrastructure.
           </h1>
-          <p className="text-base sm:text-lg text-zinc-600 leading-relaxed max-w-2xl mx-auto mb-8">
+          <p className="text-sm sm:text-base md:text-lg text-zinc-600 leading-relaxed max-w-2xl mx-auto mb-8">
             From proprietary model fine-tuning to sub-20ms VPC edge deployment and continuous drift governance — we engineer full-stack AI for high-reliability enterprise operations.
           </p>
-          <div className="flex justify-center gap-3.5">
-            <Button href="/contact" size="md" variant="primary" icon={<ArrowRight className="w-4 h-4" />}>
+          <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-3 sm:gap-3.5">
+            <Button href="/contact" size="md" variant="primary" icon={<ArrowRight className="w-4 h-4" />} className="w-full sm:w-auto">
               Schedule Technical Consultation
             </Button>
-            <Button href="#lifecycle" size="md" variant="secondary">
+            <Button href="#lifecycle" size="md" variant="secondary" className="w-full sm:w-auto">
               View Delivery Lifecycle
             </Button>
           </div>
@@ -203,16 +203,16 @@ export default function Services() {
       </section>
 
       {/* 5. Dark CTA */}
-      <section className="py-20 bg-white">
+      <section className="py-16 sm:py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="rounded-3xl bg-[#111111] text-white p-10 sm:p-16 text-center border border-white/10 shadow-2xl">
-            <h2 className="text-3xl sm:text-4xl font-semibold tracking-tight text-white mb-4">
+          <div className="rounded-3xl bg-[#111111] text-white p-6 sm:p-14 lg:p-16 text-center border border-white/10 shadow-2xl">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold tracking-tight text-white mb-4">
               Need custom model weights for your domain?
             </h2>
-            <p className="text-sm text-zinc-400 max-w-xl mx-auto mb-8">
+            <p className="text-xs sm:text-sm text-zinc-400 max-w-xl mx-auto mb-8">
               Our AI research team engineers private transformer architectures, fine-tunes custom foundation weights, and deploys air-gapped clusters with guaranteed SLAs.
             </p>
-            <Button href="/contact" size="lg" variant="inverted" icon={<ArrowRight className="w-4 h-4" />}>
+            <Button href="/contact" size="lg" variant="inverted" icon={<ArrowRight className="w-4 h-4" />} className="w-full sm:w-auto">
               Start Architectural Scoping
             </Button>
           </div>

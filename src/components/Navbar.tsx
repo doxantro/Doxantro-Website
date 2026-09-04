@@ -47,8 +47,8 @@ export default function Navbar() {
       <header
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-200 ${
           isScrolled
-            ? 'bg-white/95 backdrop-blur-md border-b border-black/[0.08] py-3 shadow-[0_1px_8px_rgba(0,0,0,0.03)]'
-            : 'bg-white/80 backdrop-blur-sm border-b border-black/[0.06] py-3.5'
+            ? 'bg-white/95 backdrop-blur-md border-b border-black/[0.08] py-2.5 sm:py-3 shadow-[0_1px_8px_rgba(0,0,0,0.03)]'
+            : 'bg-white/85 backdrop-blur-sm border-b border-black/[0.06] py-3 sm:py-3.5'
         }`}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -56,23 +56,23 @@ export default function Navbar() {
             {/* Left: Brand Logo & Motto */}
             <Link
               href="/"
-              className="flex items-center space-x-2.5 flex-shrink-0 group focus:outline-none"
+              className="flex items-center space-x-2 sm:space-x-2.5 flex-shrink-0 group focus:outline-none"
             >
               <Image
                 src="/dox1.jpg"
                 alt="Doxantro Systems"
-                width={130}
-                height={34}
-                className="h-7 sm:h-8 w-auto object-contain"
+                width={120}
+                height={32}
+                className="h-6 sm:h-7 md:h-8 w-auto object-contain"
                 priority
               />
-              <span className="hidden lg:inline-block font-mono text-[11px] uppercase tracking-wider text-zinc-500 font-medium pl-2.5 border-l border-black/10">
+              <span className="hidden xl:inline-block font-mono text-[11px] uppercase tracking-wider text-zinc-500 font-medium pl-2.5 border-l border-black/10">
                 Think, Build and Solve
               </span>
             </Link>
 
-            {/* Center: bachs.io-style Floating Dock Pill */}
-            <nav className="hidden md:flex items-center absolute left-1/2 -translate-x-1/2 border border-black/[0.12] rounded-xl bg-white px-2 py-1 shadow-[0_2px_12px_rgba(0,0,0,0.06)]">
+            {/* Center: bachs.io-style Floating Dock Pill (Visible on lg+ displays) */}
+            <nav className="hidden lg:flex items-center absolute left-1/2 -translate-x-1/2 border border-black/[0.12] rounded-xl bg-white px-2 py-1 shadow-[0_2px_12px_rgba(0,0,0,0.06)]">
               <Link
                 href="/#features"
                 className={`px-3 py-1.5 text-[13px] font-normal transition-colors rounded-lg ${
@@ -167,8 +167,8 @@ export default function Navbar() {
               </Link>
             </nav>
 
-            {/* Right: Actions */}
-            <div className="hidden md:flex items-center space-x-3.5 flex-shrink-0">
+            {/* Right: Actions (Visible on lg+ displays) */}
+            <div className="hidden lg:flex items-center space-x-3.5 flex-shrink-0">
               <Link
                 href="/contact"
                 className="text-xs font-normal text-zinc-600 hover:text-[#111111] transition-colors"
@@ -180,10 +180,10 @@ export default function Navbar() {
               </Button>
             </div>
 
-            {/* Mobile Hamburger Button */}
+            {/* Mobile/Tablet Hamburger Button (Visible on < lg) */}
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="md:hidden p-1.5 rounded-lg text-zinc-800 hover:bg-zinc-100 transition-colors cursor-pointer"
+              className="lg:hidden p-2 -mr-1 rounded-lg text-zinc-800 hover:bg-zinc-100 transition-colors cursor-pointer"
               aria-label="Toggle Navigation Menu"
             >
               {isMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
@@ -191,7 +191,7 @@ export default function Navbar() {
           </div>
         </div>
 
-        {/* Mobile Navigation Drawer */}
+        {/* Mobile & Tablet Navigation Drawer */}
         <AnimatePresence>
           {isMenuOpen && (
             <motion.div
@@ -199,60 +199,71 @@ export default function Navbar() {
               animate={{ opacity: 1, height: 'auto' }}
               exit={{ opacity: 0, height: 0 }}
               transition={{ duration: 0.2 }}
-              className="md:hidden bg-white border-b border-zinc-200 overflow-hidden"
+              className="lg:hidden bg-white/98 backdrop-blur-xl border-b border-zinc-200 overflow-hidden shadow-2xl"
             >
-              <div className="px-4 py-4 space-y-1.5">
+              <div className="px-4 py-5 space-y-1.5 max-h-[calc(100vh-64px)] overflow-y-auto">
                 <Link
                   href="/"
-                  className="block px-3 py-2 rounded-lg text-sm text-zinc-900 font-medium hover:bg-zinc-50"
+                  className="block px-3.5 py-2.5 rounded-xl text-sm text-zinc-900 font-medium hover:bg-zinc-100/80 transition-colors"
                 >
                   Home
                 </Link>
-                <div className="px-3 py-2">
-                  <div className="text-[11px] font-mono uppercase text-zinc-400 tracking-wider mb-2">Solutions</div>
+
+                <div className="px-3.5 py-2 rounded-xl bg-zinc-50 border border-black/[0.06] my-2">
+                  <div className="text-[10px] font-mono uppercase text-zinc-500 tracking-wider mb-2 font-semibold">
+                    Vertical Solutions
+                  </div>
                   <div className="grid grid-cols-2 gap-1.5">
                     {solutionsData.map((item) => (
                       <Link
                         key={item.id}
                         href={item.href}
-                        className="text-xs text-zinc-700 py-1 hover:text-orange-600"
+                        className="text-xs text-zinc-800 py-1.5 px-2 rounded-lg hover:bg-white hover:text-orange-600 transition-colors"
                       >
                         {item.shortTitle}
                       </Link>
                     ))}
                   </div>
                 </div>
+
                 <Link
                   href="/services"
-                  className="block px-3 py-2 rounded-lg text-sm text-zinc-900 font-medium hover:bg-zinc-50"
+                  className="block px-3.5 py-2.5 rounded-xl text-sm text-zinc-900 font-medium hover:bg-zinc-100/80 transition-colors"
                 >
                   Services & Capabilities
                 </Link>
                 <Link
                   href="/case-studies"
-                  className="block px-3 py-2 rounded-lg text-sm text-zinc-900 font-medium hover:bg-zinc-50"
+                  className="block px-3.5 py-2.5 rounded-xl text-sm text-zinc-900 font-medium hover:bg-zinc-100/80 transition-colors"
                 >
                   Case Studies
                 </Link>
                 <Link
                   href="/blog"
-                  className="block px-3 py-2 rounded-lg text-sm text-zinc-900 font-medium hover:bg-zinc-50"
+                  className="block px-3.5 py-2.5 rounded-xl text-sm text-zinc-900 font-medium hover:bg-zinc-100/80 transition-colors"
                 >
                   Research Papers
                 </Link>
                 <Link
                   href="/about"
-                  className="block px-3 py-2 rounded-lg text-sm text-zinc-900 font-medium hover:bg-zinc-50"
+                  className="block px-3.5 py-2.5 rounded-xl text-sm text-zinc-900 font-medium hover:bg-zinc-100/80 transition-colors"
                 >
                   About Doxantro
                 </Link>
                 <Link
                   href="/careers"
-                  className="block px-3 py-2 rounded-lg text-sm text-zinc-900 font-medium hover:bg-zinc-50"
+                  className="block px-3.5 py-2.5 rounded-xl text-sm text-zinc-900 font-medium hover:bg-zinc-100/80 transition-colors"
                 >
                   Careers
                 </Link>
-                <div className="pt-3">
+                <Link
+                  href="/contact"
+                  className="block px-3.5 py-2.5 rounded-xl text-sm text-zinc-900 font-medium hover:bg-zinc-100/80 transition-colors"
+                >
+                  Contact Sales
+                </Link>
+
+                <div className="pt-3 pb-2">
                   <Button href="/contact" size="md" variant="primary" className="w-full">
                     Get Started →
                   </Button>

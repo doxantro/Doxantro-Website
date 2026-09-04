@@ -152,22 +152,22 @@ export default function Careers() {
   return (
     <main className="min-h-screen bg-white">
       {/* 1. Hero */}
-      <section className="pt-32 pb-20 md:pt-40 md:pb-24 bg-white border-b border-black/[0.06]">
+      <section className="pt-28 pb-16 sm:pt-36 sm:pb-24 bg-white border-b border-black/[0.06]">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <p className="font-mono text-xs text-zinc-500 uppercase tracking-widest mb-4">
             Join Doxantro Systems
           </p>
-          <h1 className="text-4xl sm:text-5xl md:text-[3.6rem] font-semibold tracking-[-0.03em] text-[#111111] leading-tight mb-6">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-[3.6rem] font-semibold tracking-[-0.03em] text-[#111111] leading-tight mb-6">
             Build the infrastructure powering enterprise AI.
           </h1>
-          <p className="text-base sm:text-lg text-zinc-600 leading-relaxed max-w-2xl mx-auto mb-8">
+          <p className="text-sm sm:text-base md:text-lg text-zinc-600 leading-relaxed max-w-2xl mx-auto mb-8">
             We are systems engineers, ML researchers, and distributed infrastructure architects building private, verified AI for mission-critical industries.
           </p>
-          <div className="flex justify-center gap-3.5">
-            <Button href="#openings" size="md" variant="primary" icon={<ArrowRight className="w-4 h-4" />}>
+          <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-3 sm:gap-3.5">
+            <Button href="#openings" size="md" variant="primary" icon={<ArrowRight className="w-4 h-4" />} className="w-full sm:w-auto">
               View Open Roles
             </Button>
-            <Button href="/about" size="md" variant="secondary">
+            <Button href="/about" size="md" variant="secondary" className="w-full sm:w-auto">
               Read Our Thesis
             </Button>
           </div>
@@ -251,7 +251,7 @@ export default function Careers() {
                   <button
                     type="button"
                     onClick={() => toggleJob(job.id)}
-                    className="w-full p-6 text-left flex flex-col sm:flex-row sm:items-center justify-between gap-4 cursor-pointer focus:outline-none bg-white hover:bg-zinc-50/80 transition-colors"
+                    className="w-full p-5 sm:p-6 text-left flex flex-col sm:flex-row sm:items-center justify-between gap-4 cursor-pointer focus:outline-none bg-white hover:bg-zinc-50/80 transition-colors"
                   >
                     <div>
                       <div className="flex items-center gap-2 mb-1.5">
@@ -262,17 +262,17 @@ export default function Careers() {
                           {job.type}
                         </span>
                       </div>
-                      <h3 className="font-semibold text-lg text-[#111111] tracking-tight">
+                      <h3 className="font-semibold text-base sm:text-lg text-[#111111] tracking-tight">
                         {job.title}
                       </h3>
-                      <div className="flex items-center gap-4 text-xs font-mono text-zinc-500 mt-1">
+                      <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-xs font-mono text-zinc-500 mt-1.5">
                         <span>{job.location}</span>
                         <span>•</span>
                         <span>{job.salary}</span>
                       </div>
                     </div>
 
-                    <div className="flex items-center gap-3">
+                    <div className="flex items-center gap-3 flex-shrink-0">
                       <span className="text-xs font-mono text-orange-600 hidden sm:inline-block">
                         {isOpen ? 'Collapse' : 'Details'}
                       </span>
@@ -291,7 +291,7 @@ export default function Careers() {
                         animate={{ opacity: 1, height: 'auto' }}
                         exit={{ opacity: 0, height: 0 }}
                         transition={{ duration: 0.2 }}
-                        className="p-6 pt-4 border-t border-black/[0.06] text-xs sm:text-sm text-zinc-600 space-y-5 bg-[#fcfbf9]"
+                        className="p-5 sm:p-6 pt-4 border-t border-black/[0.06] text-xs sm:text-sm text-zinc-600 space-y-5 bg-[#fcfbf9]"
                       >
                         <p className="leading-relaxed text-zinc-800">{job.desc}</p>
 
@@ -323,6 +323,7 @@ export default function Careers() {
                             size="sm"
                             variant="primary"
                             icon={<ArrowRight className="w-3.5 h-3.5" />}
+                            className="w-full sm:w-auto"
                           >
                             Apply for Role
                           </Button>
@@ -338,16 +339,16 @@ export default function Careers() {
       </section>
 
       {/* 4. Dark CTA */}
-      <section className="py-20 bg-white">
+      <section className="py-16 sm:py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="rounded-3xl bg-[#111111] text-white p-10 sm:p-16 text-center border border-white/10 shadow-2xl">
-            <h2 className="text-3xl sm:text-4xl font-semibold tracking-tight text-white mb-4">
+          <div className="rounded-3xl bg-[#111111] text-white p-6 sm:p-14 lg:p-16 text-center border border-white/10 shadow-2xl">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold tracking-tight text-white mb-4">
               Don&apos;t see an exact opening?
             </h2>
-            <p className="text-sm text-zinc-400 max-w-xl mx-auto mb-8">
+            <p className="text-xs sm:text-sm text-zinc-400 max-w-xl mx-auto mb-8">
               We are always looking for exceptional ML systems engineers, kernel hackers, and distributed systems architects. Send us your background.
             </p>
-            <Button href="/contact" size="lg" variant="inverted" icon={<ArrowRight className="w-4 h-4" />}>
+            <Button href="/contact" size="lg" variant="inverted" icon={<ArrowRight className="w-4 h-4" />} className="w-full sm:w-auto">
               Send General Application
             </Button>
           </div>

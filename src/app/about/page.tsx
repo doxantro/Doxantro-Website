@@ -86,24 +86,24 @@ export default function About() {
   return (
     <main className="min-h-screen bg-white">
       {/* 1. Editorial Hero */}
-      <section className="pt-32 pb-20 md:pt-40 md:pb-24 bg-white border-b border-black/[0.06]">
+      <section className="pt-28 pb-16 sm:pt-36 sm:pb-24 bg-white border-b border-black/[0.06]">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full border border-black/[0.08] bg-zinc-50 text-[12px] text-zinc-700 font-mono mb-6">
-            <span className="w-1.5 h-1.5 rounded-full bg-orange-600" />
-            <span>Think, Build and Solve · Our Story & Thesis</span>
+          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full border border-black/[0.08] bg-zinc-50 text-[11px] sm:text-[12px] text-zinc-700 font-mono mb-6 max-w-full truncate">
+            <span className="w-1.5 h-1.5 rounded-full bg-orange-600 flex-shrink-0" />
+            <span className="truncate">Think, Build and Solve · Our Story & Thesis</span>
           </div>
 
-          <h1 className="text-4xl sm:text-5xl md:text-[3.6rem] font-semibold tracking-[-0.03em] text-[#111111] leading-tight mb-6">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-[3.6rem] font-semibold tracking-[-0.03em] text-[#111111] leading-tight mb-6">
             Engineering intelligence for mission-critical operations.
           </h1>
-          <p className="text-base sm:text-lg text-zinc-600 leading-relaxed max-w-2xl mx-auto mb-8">
+          <p className="text-sm sm:text-base md:text-lg text-zinc-600 leading-relaxed max-w-2xl mx-auto mb-8">
             Doxantro Systems was founded on a singular premise: the greatest breakthroughs occur when human domain mastery is amplified by specialized, high-precision artificial intelligence. Think, build, and solve without limits.
           </p>
-          <div className="flex justify-center gap-3.5">
-            <Button href="/contact" size="md" variant="primary" icon={<ArrowRight className="w-4 h-4" />}>
+          <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-3 sm:gap-3.5">
+            <Button href="/contact" size="md" variant="primary" icon={<ArrowRight className="w-4 h-4" />} className="w-full sm:w-auto">
               Partner With Doxantro
             </Button>
-            <Button href="/services" size="md" variant="secondary">
+            <Button href="/services" size="md" variant="secondary" className="w-full sm:w-auto">
               View Architecture
             </Button>
           </div>
@@ -256,20 +256,20 @@ export default function About() {
       </section>
 
       {/* 6. Dark CTA Card */}
-      <section className="py-20 bg-white">
+      <section className="py-16 sm:py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="rounded-3xl bg-[#111111] text-white p-10 sm:p-16 text-center border border-white/10 shadow-2xl">
-            <h2 className="text-3xl sm:text-4xl font-semibold tracking-tight text-white mb-4">
+          <div className="rounded-3xl bg-[#111111] text-white p-6 sm:p-14 lg:p-16 text-center border border-white/10 shadow-2xl">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold tracking-tight text-white mb-4">
               Ready to deploy verified intelligence?
             </h2>
-            <p className="text-sm text-zinc-400 max-w-xl mx-auto mb-8">
+            <p className="text-xs sm:text-sm text-zinc-400 max-w-xl mx-auto mb-8">
               Collaborate with our team of AI systems engineers to think, build, and solve for your production environment.
             </p>
-            <div className="flex flex-wrap justify-center gap-3.5">
-              <Button href="/contact" size="lg" variant="inverted" icon={<ArrowRight className="w-4 h-4" />}>
+            <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-3 sm:gap-3.5">
+              <Button href="/contact" size="lg" variant="inverted" icon={<ArrowRight className="w-4 h-4" />} className="w-full sm:w-auto">
                 Schedule Architecture Review
               </Button>
-              <Button href="/services" size="lg" variant="outline-white">
+              <Button href="/services" size="lg" variant="outline-white" className="w-full sm:w-auto">
                 Explore Services
               </Button>
             </div>

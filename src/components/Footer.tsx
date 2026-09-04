@@ -142,9 +142,9 @@ export default function Footer() {
         </div>
 
         {/* Footer Bottom Bar */}
-        <div className="mt-14 pt-8 border-t border-white/[0.08] flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono text-zinc-500">
+        <div className="mt-14 pt-8 border-t border-white/[0.08] flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono text-zinc-500 text-center sm:text-left">
           <div>© {new Date().getFullYear()} Doxantro Systems Limited. All rights reserved.</div>
-          <div className="flex items-center gap-6">
+          <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2">
             <span>Air-Gapped Enterprise SLA</span>
             <span>SOC-2 Type II Certified</span>
           </div>
