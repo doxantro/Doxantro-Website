@@ -4,8 +4,8 @@ import React from 'react';
 import Link from 'next/link';
 import { motion, HTMLMotionProps } from 'framer-motion';
 
-interface ButtonBaseProps {
-  variant?: 'primary' | 'secondary' | 'outline' | 'ghost' | 'glass' | 'glass-dark' | 'outline-white';
+export interface ButtonBaseProps {
+  variant?: 'primary' | 'secondary' | 'orange' | 'inverted' | 'outline' | 'ghost' | 'glass' | 'glass-dark' | 'outline-white';
   size?: 'sm' | 'md' | 'lg';
   children: React.ReactNode;
   icon?: React.ReactNode;
@@ -36,29 +36,33 @@ export default function Button({
   ...props
 }: ButtonProps) {
   const baseStyles =
-    'inline-flex items-center justify-center font-medium transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none active:scale-[0.98] select-none cursor-pointer';
+    'inline-flex items-center justify-center font-normal tracking-tight transition-all duration-150 focus:outline-none focus:ring-2 focus:ring-zinc-900 focus:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none active:scale-[0.98] select-none cursor-pointer rounded-full';
 
   const sizeStyles = {
-    sm: 'text-xs sm:text-sm px-4 py-2 rounded-full gap-1.5',
-    md: 'text-sm sm:text-base px-6 py-2.5 rounded-full gap-2',
-    lg: 'text-base sm:text-lg px-8 py-3.5 rounded-full gap-2.5',
+    sm: 'text-xs px-3.5 py-1.5 gap-1.5',
+    md: 'text-sm px-5 py-2.5 gap-2',
+    lg: 'text-sm sm:text-base px-6 py-3 gap-2.5',
   };
 
   const variantStyles = {
     primary:
-      'bg-gradient-to-r from-orange-600 to-orange-500 text-white shadow-lg shadow-orange-500/20 hover:shadow-orange-500/35 hover:brightness-105 border border-orange-400/30',
+      'bg-[#111111] text-white hover:bg-black border border-[#111111] shadow-[0_1px_2px_rgba(0,0,0,0.08)]',
+    orange:
+      'bg-orange-600 text-white hover:bg-orange-700 border border-orange-600 shadow-[0_1px_2px_rgba(234,88,12,0.12)]',
     secondary:
-      'bg-zinc-900 text-white hover:bg-zinc-800 shadow-md border border-zinc-800',
+      'bg-white text-zinc-900 border border-zinc-200/90 hover:bg-zinc-50 hover:border-zinc-300 shadow-[0_1px_2px_rgba(0,0,0,0.04)]',
+    inverted:
+      'bg-white text-[#111111] hover:bg-zinc-100 border border-white font-medium shadow-sm',
     outline:
-      'border-2 border-zinc-200 hover:border-orange-500 hover:text-orange-600 text-zinc-700 bg-transparent',
+      'border border-zinc-200/90 hover:border-zinc-300 hover:text-zinc-900 text-zinc-700 bg-white/50 backdrop-blur-sm',
     'outline-white':
-      'border-2 border-zinc-700 hover:border-orange-500 text-white hover:text-orange-400 bg-transparent',
+      'border border-white/20 hover:border-white/40 text-white hover:bg-white/5 bg-transparent',
     ghost:
-      'text-zinc-700 hover:text-orange-600 hover:bg-orange-50/50',
+      'text-zinc-700 hover:text-zinc-950 hover:bg-zinc-100/80',
     glass:
-      'backdrop-blur-md bg-white/80 hover:bg-white text-zinc-900 border border-zinc-200/80 shadow-sm hover:shadow-md hover:border-orange-200',
+      'backdrop-blur-md bg-white/90 hover:bg-white text-zinc-900 border border-zinc-200/80 shadow-[0_1px_3px_rgba(0,0,0,0.04)]',
     'glass-dark':
-      'backdrop-blur-md bg-zinc-900/90 hover:bg-zinc-800 text-white border border-zinc-700 hover:border-orange-500/60 shadow-sm hover:shadow-md',
+      'backdrop-blur-md bg-zinc-900/90 hover:bg-zinc-800 text-white border border-zinc-800 shadow-sm',
   };
 
   const combinedClasses = `${baseStyles} ${sizeStyles[size]} ${variantStyles[variant]} ${className}`;
@@ -67,7 +71,9 @@ export default function Button({
     <>
       {icon && iconPosition === 'left' && <span className="flex-shrink-0">{icon}</span>}
       <span>{children}</span>
-      {icon && iconPosition === 'right' && <span className="flex-shrink-0 transition-transform group-hover:translate-x-0.5">{icon}</span>}
+      {icon && iconPosition === 'right' && (
+        <span className="flex-shrink-0 transition-transform duration-150 group-hover:translate-x-0.5">{icon}</span>
+      )}
     </>
   );
 
@@ -84,7 +90,6 @@ export default function Button({
   return (
     <motion.button
       whileTap={{ scale: 0.98 }}
-      whileHover={{ y: -1 }}
       className={`group ${combinedClasses}`}
       {...buttonProps}
     >

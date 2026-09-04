@@ -9,456 +9,346 @@ import {
   MapPin,
   Clock,
   CheckCircle2,
-  Sparkles,
-  Search,
-  Laptop,
-  HeartHandshake,
-  Rocket,
+  ChevronDown,
+  Cpu,
   Globe,
   Coins,
-  Cpu,
-  ShieldCheck,
-  ChevronDown,
+  HeartHandshake,
+  Sparkles,
+  Rocket,
 } from 'lucide-react';
-import Badge from '../../components/ui/Badge';
 import Button from '../../components/ui/Button';
-import GlowCard from '../../components/ui/GlowCard';
-import SectionHeader from '../../components/ui/SectionHeader';
 
 const departments = ['All', 'Engineering', 'Research & Science', 'Solutions', 'Product'];
 
 const perks = [
   {
-    title: 'World-Class Compute Access',
-    desc: 'Dedicated high-performance GPU/TPU clusters for research, testing, and rapid model fine-tuning.',
+    title: 'High-Density Compute Clusters',
+    desc: 'Direct access to dedicated H100 GPU clusters for parameter-efficient research and kernel compilation experiments.',
     icon: Cpu,
   },
   {
-    title: 'Remote-First Flexibility',
-    desc: 'Work from anywhere in the world with async-friendly workflows and flexible hours.',
+    title: 'Global Remote-First',
+    desc: 'Work asynchronously from anywhere across the globe with flexible hours and high autonomy.',
     icon: Globe,
   },
   {
-    title: 'Competitive Equity & Pay',
-    desc: 'Top-tier compensation packages, generous stock option grants, and performance bonuses.',
+    title: 'Top-Tier Compensation & Equity',
+    desc: 'Competitive base compensation packages with significant early equity grants and annual performance bonuses.',
     icon: Coins,
   },
   {
-    title: 'Health, Wellness & Family',
-    desc: 'Comprehensive premium health, dental, and mental wellness coverage with full family support.',
+    title: 'Comprehensive Health & Family',
+    desc: '100% premium coverage for health, dental, and mental wellness with full dependent support.',
     icon: HeartHandshake,
   },
   {
-    title: 'Continuous Learning Stipend',
-    desc: '$3,500 annual budget for conferences (NeurIPS, ICML, CVPR), research papers, and technical books.',
+    title: 'Research & Conference Stipend',
+    desc: '$4,000 annual budget for attending NeurIPS, ICML, CVPR, and subscribing to academic research databases.',
     icon: Sparkles,
   },
   {
-    title: 'Fast-Paced Impact',
-    desc: 'Your code runs in live production environments across banks, hospitals, and critical energy grids.',
+    title: 'Mission-Critical Impact',
+    desc: 'Your systems run live in production across multinational banks, hospital networks, and national energy grids.',
     icon: Rocket,
   },
 ];
 
-const jobOpeningsData = [
+const jobsData = [
   {
-    id: 'staff-ml-engineer',
-    title: 'Staff AI / Machine Learning Engineer',
+    id: 'lead-ml-compiler',
+    title: 'Lead ML Compiler & Inference Kernel Engineer',
     department: 'Engineering',
+    location: 'Remote (Global) / San Francisco / London',
     type: 'Full-time',
-    location: 'Remote (Global) / Hybrid',
     experience: '5+ years',
-    desc: 'Lead the architecture and optimization of specialized neural networks across multi-modal transformers and time-series models with sub-10ms inference targets.',
-    requirements: [
-      'Deep mastery of PyTorch, Triton, CUDA, or TensorRT',
-      'Experience deploying models to production serving clusters (vLLM, Triton, TGI)',
-      'Track record of optimizing inference latency and GPU memory quantization',
-      'Strong background in distributed training and data pipelines',
-    ],
+    salary: '$190,000 - $260,000 + 0.3% - 0.7% Equity',
+    desc: 'Architect custom CUDA/Triton kernels, tensor compilation pipelines, and low-latency C++ inference runtime engines.',
     responsibilities: [
-      'Design, train, and benchmark domain-specific models for our 6 core verticals',
-      'Optimize kernel execution and compiler graph transformations',
-      'Collaborate with systems engineers on gRPC microservice integration',
-      'Mentor senior engineers and shape our core ML architecture standards',
+      'Optimize sub-20ms inference latency across distributed GPU/TPU cluster nodes.',
+      'Develop custom TensorRT and vLLM execution kernels for quantized 4-bit/8-bit models.',
+      'Profile memory bandwidth, cache hit rates, and kernel latency bottlenecks.',
+    ],
+    requirements: [
+      'Deep proficiency with C++, CUDA, Triton, and PyTorch internals.',
+      'Experience optimizing transformer attention kernels and KV-cache compression.',
+      'Track record of building production distributed systems at scale.',
     ],
   },
   {
-    id: 'principal-solutions-architect',
-    title: 'Principal AI Solutions Architect',
-    department: 'Solutions',
+    id: 'senior-ai-security',
+    title: 'Senior Zero-Trust AI Security Architect',
+    department: 'Engineering',
+    location: 'Remote (US/EU Timezones)',
     type: 'Full-time',
-    location: 'Remote (US/EU/APAC)',
-    experience: '7+ years',
-    desc: 'Bridge enterprise client challenges and Doxantro’s AI platform—architecting zero-retention private cloud deployments and technical integrations.',
-    requirements: [
-      'Demonstrated expertise in enterprise cloud architectures (AWS, GCP, Azure, On-Prem)',
-      'Deep fluency with AI/ML systems, data sovereignty, and security posture (SOC-2, HIPAA)',
-      'Executive-level communication and technical leadership skills',
-      'Experience leading multi-million-dollar technical transformation scopes',
-    ],
+    experience: '4+ years',
+    salary: '$175,000 - $240,000 + Equity',
+    desc: 'Lead real-time PII redaction engines, stream-level guardrails, and air-gapped cryptographic logging.',
     responsibilities: [
-      'Lead technical discovery and architectural design with enterprise CTOs and VPs',
-      'Draft reference architectures, latency SLA blueprints, and security guarantees',
-      'Oversee implementation pilots and transition to production SRE teams',
-      'Provide customer feedback into our core research and product roadmaps',
+      'Design stream-level token sanitization filters for HIPAA and FINRA compliance.',
+      'Build zero-retention memory isolation layers for air-gapped VPC deployments.',
+      'Lead red-teaming and prompt-injection defense evaluation matrices.',
+    ],
+    requirements: [
+      'Experience in zero-trust cloud security and SOC-2 / HIPAA frameworks.',
+      'Strong coding skills in Go, Rust, or Python with low-latency streaming pipelines.',
+      'Expertise in cryptographic verification and adversarial ML evaluation.',
     ],
   },
   {
-    id: 'senior-cv-researcher',
-    title: 'Senior Computer Vision Scientist',
+    id: 'research-scientist-quant',
+    title: 'Research Scientist — Domain Alignment & RL',
     department: 'Research & Science',
-    type: 'Full-time',
-    location: 'Remote / Hybrid',
-    experience: '4+ years',
-    desc: 'Pioneer advanced vision models for high-resolution medical DICOM imaging, satellite multispectral NDVI mapping, and autonomous crop disease detection.',
-    requirements: [
-      'MS or PhD in Computer Science, Machine Learning, or related quantitative field',
-      'Strong publication or production record in Vision Transformers, Segmentation, or Object Detection',
-      'Experience with multispectral imagery, point clouds, or medical radiological formats',
-      'Proficiency in Python, PyTorch, and OpenCV',
-    ],
-    responsibilities: [
-      'Research and develop next-gen vision backbones for healthcare and agriculture',
-      'Create automated synthetic data augmentation and active learning pipelines',
-      'Publish research findings and file defensible patents on proprietary architectures',
-      'Collaborate with ML engineers to quantize models for edge devices',
-    ],
-  },
-  {
-    id: 'senior-platform-engineer',
-    title: 'Senior Distributed Systems & Platform Engineer',
-    department: 'Engineering',
-    type: 'Full-time',
     location: 'Remote (Global)',
-    experience: '4+ years',
-    desc: 'Build the ultra-reliable, high-throughput distributed control plane that orchestrates thousands of TPU/GPU workers across global edge regions.',
-    requirements: [
-      'High proficiency in Go, Rust, or modern C++ and Python',
-      'Deep experience with Kubernetes operators, eBPF, service meshes (Istio/Envoy), and gRPC',
-      'Strong understanding of Linux networking, low-latency I/O, and high-concurrency architectures',
-      'Experience managing multi-region cloud infrastructure with Terraform/Pulumi',
-    ],
+    type: 'Full-time',
+    experience: 'Ph.D. or 3+ years',
+    salary: '$180,000 - $250,000 + Equity',
+    desc: 'Pioneer parameter-efficient fine-tuning (LoRA), reinforcement learning from domain feedback, and hallucination reduction.',
     responsibilities: [
-      'Architect and maintain our global edge inference mesh and streaming telemetry',
-      'Implement zero-downtime rolling model updates and automated failover circuits',
-      'Ensure 99.95%+ uptime SLAs across our multi-tenant enterprise clusters',
-      'Build automated security instrumentation and zero-retention privacy vaults',
+      'Conduct novel research on domain ontology grounding and confidence scoring.',
+      'Publish technical findings and benchmark papers at leading ML venues.',
+      'Collaborate with engineering to ship state-of-the-art weights to production.',
+    ],
+    requirements: [
+      'Ph.D. in Computer Science, Machine Learning, Physics, or equivalent experience.',
+      'Published papers in major conferences (NeurIPS, ICML, ICLR, ACL).',
+      'Strong mathematical grounding in statistical learning and optimization.',
     ],
   },
   {
-    id: 'ai-product-lead',
-    title: 'Staff Technical Product Manager (Enterprise AI)',
-    department: 'Product',
+    id: 'enterprise-solutions-architect',
+    title: 'Principal Enterprise AI Solutions Architect',
+    department: 'Solutions',
+    location: 'New York / London / Remote',
     type: 'Full-time',
-    location: 'Remote / Hybrid',
-    experience: '5+ years',
-    desc: 'Define and drive the product roadmap for Doxantro’s developer platform, model control plane, and vertical industry sandbox suites.',
-    requirements: [
-      'Proven experience managing developer-facing or enterprise AI infrastructure products',
-      'Technical background capable of discussing model weights, latency budgets, and API schemas',
-      'Strong customer discovery rigor and data-driven prioritization methodology',
-      'Experience with B2B enterprise buying cycles and developer ergonomics',
-    ],
+    experience: '6+ years',
+    salary: '$185,000 - $255,000 + Equity',
+    desc: 'Work directly with Fortune 500 CTOs and engineering directors to architect private AI pipelines and VPC deployments.',
     responsibilities: [
-      'Own product vision, roadmap, and delivery milestones for the Doxantro Inference Engine',
-      'Work closely with research, engineering, and sales to launch high-impact capabilities',
-      'Gather qualitative and telemetry feedback from pilot enterprise customers',
-      'Craft developer documentation, API references, and interactive sandbox tools',
+      'Design end-to-end integration blueprints for financial and healthcare enterprise stacks.',
+      'Lead proof-of-concept benchmarks and quantify operational ROI metrics.',
+      'Bridge enterprise client requirements with core engineering roadmaps.',
+    ],
+    requirements: [
+      'Demonstrated experience architecting enterprise infrastructure in AWS, GCP, or Azure.',
+      'Strong technical communication and ability to explain ML systems to executives.',
+      'Hands-on proficiency with Python, TypeScript, and modern API architectures.',
     ],
   },
 ];
 
 export default function Careers() {
   const [selectedDept, setSelectedDept] = useState('All');
-  const [searchQuery, setSearchQuery] = useState('');
-  const [expandedJobId, setExpandedJobId] = useState<string | null>(null);
+  const [openJobId, setOpenJobId] = useState<string | null>('lead-ml-compiler');
 
-  const filteredJobs = jobOpeningsData.filter((job) => {
-    const matchesDept = selectedDept === 'All' || job.department.toLowerCase() === selectedDept.toLowerCase();
-    const matchesSearch =
-      job.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      job.desc.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      job.location.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      job.requirements.some((r) => r.toLowerCase().includes(searchQuery.toLowerCase()));
-    return matchesDept && matchesSearch;
-  });
+  const filteredJobs = jobsData.filter(
+    (j) => selectedDept === 'All' || j.department === selectedDept
+  );
+
+  const toggleJob = (id: string) => {
+    setOpenJobId(openJobId === id ? null : id);
+  };
 
   return (
     <main className="min-h-screen bg-white">
-      {/* 1. Hero Section */}
-      <section className="relative pt-36 pb-20 md:pt-44 md:pb-28 overflow-hidden bg-gradient-to-b from-orange-50/50 via-white to-white border-b border-zinc-200/60">
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-96 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-orange-400/15 via-transparent to-transparent pointer-events-none" />
-        <div className="absolute -top-20 right-10 w-80 h-80 bg-orange-200/20 rounded-full blur-3xl pointer-events-none" />
-
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            className="max-w-4xl mx-auto"
-          >
-            <div className="inline-flex mb-5">
-              <Badge variant="orange" dot pulse size="md">
-                We Are Hiring · Global Engineering & Research
-              </Badge>
-            </div>
-
-            <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight text-zinc-900 leading-[1.15] mb-6">
-              Build the Future of{' '}
-              <span className="bg-gradient-to-r from-orange-600 via-orange-500 to-amber-500 bg-clip-text text-transparent">
-                Applied Artificial Intelligence
-              </span>
-            </h1>
-
-            <p className="text-lg sm:text-xl text-zinc-600 leading-relaxed max-w-3xl mx-auto mb-10">
-              Join a high-caliber team of machine learning scientists, distributed systems engineers, and domain veterans solving real-world challenges with high-precision AI.
-            </p>
-
-            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-              <Button
-                href="#open-roles"
-                size="lg"
-                variant="primary"
-                icon={<ArrowRight className="w-5 h-5" />}
-                className="w-full sm:w-auto"
-              >
-                View {jobOpeningsData.length} Open Roles
-              </Button>
-              <Button
-                href="#culture-perks"
-                size="lg"
-                variant="glass"
-                className="w-full sm:w-auto"
-              >
-                Culture & Benefits
-              </Button>
-            </div>
-          </motion.div>
+      {/* 1. Hero */}
+      <section className="pt-32 pb-20 md:pt-40 md:pb-24 bg-white border-b border-black/[0.06]">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <p className="font-mono text-xs text-zinc-500 uppercase tracking-widest mb-4">
+            Join Doxantro Systems
+          </p>
+          <h1 className="text-4xl sm:text-5xl md:text-[3.6rem] font-semibold tracking-[-0.03em] text-[#111111] leading-tight mb-6">
+            Build the infrastructure powering enterprise AI.
+          </h1>
+          <p className="text-base sm:text-lg text-zinc-600 leading-relaxed max-w-2xl mx-auto mb-8">
+            We are systems engineers, ML researchers, and distributed infrastructure architects building private, verified AI for mission-critical industries.
+          </p>
+          <div className="flex justify-center gap-3.5">
+            <Button href="#openings" size="md" variant="primary" icon={<ArrowRight className="w-4 h-4" />}>
+              View Open Roles
+            </Button>
+            <Button href="/about" size="md" variant="secondary">
+              Read Our Thesis
+            </Button>
+          </div>
         </div>
       </section>
 
       {/* 2. Perks & Culture Grid */}
-      <section id="culture-perks" className="py-24 bg-zinc-50/70 border-b border-zinc-200/60 relative">
+      <section className="py-24 bg-[#f9f9f8] border-b border-black/[0.06]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <SectionHeader
-            badge="Engineering Culture"
-            badgeVariant="orange"
-            title="Why Engineers & Researchers"
-            highlightText="Join Doxantro"
-            subtitle="We prioritize high agency, deep technical autonomy, transparent ownership, and meaningful impact over corporate bureaucracy."
-          />
+          <div className="max-w-3xl mb-16">
+            <p className="font-mono text-xs text-zinc-500 uppercase tracking-wider mb-3">
+              Benefits & Culture
+            </p>
+            <h2 className="text-3xl sm:text-4xl font-semibold tracking-[-0.025em] text-[#111111] leading-tight">
+              Engineered for high autonomy and mastery.
+            </h2>
+          </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {perks.map((perk, idx) => {
-              const IconComp = perk.icon;
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
+            {perks.map((p) => {
+              const Icon = p.icon;
               return (
-                <GlowCard key={idx} className="p-8 bg-white flex flex-col justify-between">
-                  <div>
-                    <div className="w-12 h-12 rounded-2xl bg-orange-50 border border-orange-200/60 text-orange-600 flex items-center justify-center mb-5 shadow-sm">
-                      <IconComp className="w-6 h-6" />
-                    </div>
-                    <h3 className="text-lg font-bold text-zinc-900 mb-2">
-                      {perk.title}
-                    </h3>
-                    <p className="text-sm text-zinc-600 leading-relaxed">
-                      {perk.desc}
-                    </p>
+                <div key={p.title} className="flex flex-col">
+                  <div className="w-8 h-8 rounded-lg bg-white border border-black/[0.08] flex items-center justify-center text-zinc-800 mb-3.5 flex-shrink-0">
+                    <Icon className="w-4 h-4" />
                   </div>
-                </GlowCard>
+                  <h3 className="font-semibold text-base text-[#111111] tracking-tight mb-1.5">
+                    {p.title}
+                  </h3>
+                  <p className="text-xs sm:text-sm text-zinc-600 leading-relaxed">
+                    {p.desc}
+                  </p>
+                </div>
               );
             })}
           </div>
         </div>
       </section>
 
-      {/* 3. Open Roles Filter & Search */}
-      <section id="open-roles" className="py-12 bg-white sticky top-16 z-20 border-b border-zinc-200/60 backdrop-blur-md">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-col md:flex-row items-center justify-between gap-4">
-            <div className="flex items-center gap-1.5 overflow-x-auto w-full md:w-auto pb-2 md:pb-0 scrollbar-none">
+      {/* 3. Open Positions Board */}
+      <section id="openings" className="py-24 bg-white border-b border-black/[0.06]">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-6 mb-12">
+            <div>
+              <p className="font-mono text-xs text-zinc-500 uppercase tracking-wider mb-2">
+                Open Positions
+              </p>
+              <h2 className="text-3xl sm:text-4xl font-semibold tracking-tight text-[#111111]">
+                Available Roles ({filteredJobs.length})
+              </h2>
+            </div>
+
+            {/* Dept Filter */}
+            <div className="flex flex-wrap gap-1.5">
               {departments.map((dept) => (
                 <button
                   key={dept}
+                  type="button"
                   onClick={() => setSelectedDept(dept)}
-                  className={`px-4 py-2 rounded-full text-xs sm:text-sm font-semibold whitespace-nowrap transition-all duration-200 cursor-pointer ${
+                  className={`px-3 py-1 rounded-full text-xs font-mono transition-all duration-150 cursor-pointer ${
                     selectedDept === dept
-                      ? 'bg-orange-600 text-white shadow-md shadow-orange-600/20'
-                      : 'bg-white border border-zinc-200/80 text-zinc-700 hover:border-orange-300 hover:text-orange-600'
+                      ? 'bg-[#111111] text-white shadow-xs'
+                      : 'bg-zinc-100 text-zinc-600 hover:text-black hover:bg-zinc-200/70'
                   }`}
                 >
                   {dept}
                 </button>
               ))}
             </div>
+          </div>
 
-            <div className="relative w-full md:w-72">
-              <Search className="w-4 h-4 text-zinc-400 absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none" />
-              <input
-                type="text"
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                placeholder="Search roles, skills, titles..."
-                className="w-full pl-10 pr-4 py-2 text-xs sm:text-sm bg-white border border-zinc-200/80 rounded-full focus:outline-none focus:ring-2 focus:ring-orange-500 text-zinc-900 placeholder-zinc-400 shadow-sm"
-              />
-            </div>
+          {/* Jobs Accordion */}
+          <div className="space-y-4">
+            {filteredJobs.map((job) => {
+              const isOpen = openJobId === job.id;
+              return (
+                <div
+                  key={job.id}
+                  className="rounded-2xl border border-black/[0.09] bg-[#fcfbf9] overflow-hidden transition-all duration-200"
+                >
+                  <button
+                    type="button"
+                    onClick={() => toggleJob(job.id)}
+                    className="w-full p-6 text-left flex flex-col sm:flex-row sm:items-center justify-between gap-4 cursor-pointer focus:outline-none bg-white hover:bg-zinc-50/80 transition-colors"
+                  >
+                    <div>
+                      <div className="flex items-center gap-2 mb-1.5">
+                        <span className="text-[10px] font-mono uppercase px-2 py-0.5 rounded bg-zinc-100 text-zinc-700 font-medium">
+                          {job.department}
+                        </span>
+                        <span className="text-[10px] font-mono text-zinc-400">
+                          {job.type}
+                        </span>
+                      </div>
+                      <h3 className="font-semibold text-lg text-[#111111] tracking-tight">
+                        {job.title}
+                      </h3>
+                      <div className="flex items-center gap-4 text-xs font-mono text-zinc-500 mt-1">
+                        <span>{job.location}</span>
+                        <span>•</span>
+                        <span>{job.salary}</span>
+                      </div>
+                    </div>
+
+                    <div className="flex items-center gap-3">
+                      <span className="text-xs font-mono text-orange-600 hidden sm:inline-block">
+                        {isOpen ? 'Collapse' : 'Details'}
+                      </span>
+                      <ChevronDown
+                        className={`w-4 h-4 text-zinc-500 transition-transform duration-200 ${
+                          isOpen ? 'rotate-180 text-black' : ''
+                        }`}
+                      />
+                    </div>
+                  </button>
+
+                  <AnimatePresence initial={false}>
+                    {isOpen && (
+                      <motion.div
+                        initial={{ opacity: 0, height: 0 }}
+                        animate={{ opacity: 1, height: 'auto' }}
+                        exit={{ opacity: 0, height: 0 }}
+                        transition={{ duration: 0.2 }}
+                        className="p-6 pt-4 border-t border-black/[0.06] text-xs sm:text-sm text-zinc-600 space-y-5 bg-[#fcfbf9]"
+                      >
+                        <p className="leading-relaxed text-zinc-800">{job.desc}</p>
+
+                        <div>
+                          <h4 className="font-semibold text-xs font-mono uppercase text-zinc-900 mb-2">
+                            Key Responsibilities
+                          </h4>
+                          <ul className="space-y-1.5 list-disc pl-4 text-zinc-600">
+                            {job.responsibilities.map((r) => (
+                              <li key={r}>{r}</li>
+                            ))}
+                          </ul>
+                        </div>
+
+                        <div>
+                          <h4 className="font-semibold text-xs font-mono uppercase text-zinc-900 mb-2">
+                            Requirements
+                          </h4>
+                          <ul className="space-y-1.5 list-disc pl-4 text-zinc-600">
+                            {job.requirements.map((req) => (
+                              <li key={req}>{req}</li>
+                            ))}
+                          </ul>
+                        </div>
+
+                        <div className="pt-3 flex items-center justify-between">
+                          <Button
+                            href="/contact"
+                            size="sm"
+                            variant="primary"
+                            icon={<ArrowRight className="w-3.5 h-3.5" />}
+                          >
+                            Apply for Role
+                          </Button>
+                        </div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
+              );
+            })}
           </div>
         </div>
       </section>
 
-      {/* 4. Jobs List */}
-      <section className="py-20 bg-zinc-50/40">
+      {/* 4. Dark CTA */}
+      <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <AnimatePresence mode="popLayout">
-            {filteredJobs.length === 0 ? (
-              <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                className="text-center py-20 bg-white rounded-3xl border border-zinc-200"
-              >
-                <div className="text-4xl mb-3">💼</div>
-                <h3 className="text-lg font-bold text-zinc-900 mb-1">No roles matching your criteria</h3>
-                <p className="text-sm text-zinc-600">Send an open application to our talent team below.</p>
-              </motion.div>
-            ) : (
-              <div className="space-y-6">
-                {filteredJobs.map((job) => {
-                  const isExpanded = expandedJobId === job.id;
-                  return (
-                    <motion.div
-                      key={job.id}
-                      layout
-                      initial={{ opacity: 0, y: 16 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      exit={{ opacity: 0, scale: 0.98 }}
-                      transition={{ duration: 0.3 }}
-                    >
-                      <GlowCard className="p-7 sm:p-8 bg-white border border-zinc-200/90 shadow-sm hover:border-orange-400/60 transition-all">
-                        <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4 mb-4">
-                          <div>
-                            <div className="flex flex-wrap items-center gap-2 mb-2">
-                              <Badge variant="orange" size="sm">{job.department}</Badge>
-                              <Badge variant="slate" size="sm">{job.type}</Badge>
-                              <span className="text-xs text-zinc-600 flex items-center gap-1">
-                                <MapPin className="w-3.5 h-3.5 text-orange-600" />
-                                {job.location}
-                              </span>
-                              <span className="text-xs text-zinc-600 flex items-center gap-1">
-                                <Clock className="w-3.5 h-3.5 text-zinc-600" />
-                                {job.experience}
-                              </span>
-                            </div>
-                            <h3 className="text-xl sm:text-2xl font-bold text-zinc-900">
-                              {job.title}
-                            </h3>
-                          </div>
-
-                          <div className="flex items-center gap-3">
-                            <button
-                              onClick={() => setExpandedJobId(isExpanded ? null : job.id)}
-                              className="px-4 py-2 rounded-full border border-zinc-300 text-zinc-700 hover:border-orange-500 hover:text-orange-600 text-xs font-semibold inline-flex items-center gap-1.5 transition-colors cursor-pointer"
-                            >
-                              <span>{isExpanded ? 'Hide Details' : 'View Role Details'}</span>
-                              <ChevronDown className={`w-3.5 h-3.5 transition-transform ${isExpanded ? 'rotate-180' : ''}`} />
-                            </button>
-
-                            <Link
-                              href={`/contact?subject=Application%20for%20${encodeURIComponent(job.title)}`}
-                              className="px-6 py-2 rounded-full bg-orange-600 text-white font-semibold text-xs hover:bg-orange-500 shadow-md shadow-orange-600/20 transition-all"
-                            >
-                              Apply Now
-                            </Link>
-                          </div>
-                        </div>
-
-                        <p className="text-sm text-zinc-600 leading-relaxed mb-4">
-                          {job.desc}
-                        </p>
-
-                        {/* Collapsible Requirements and Responsibilities */}
-                        <AnimatePresence>
-                          {isExpanded && (
-                            <motion.div
-                              initial={{ opacity: 0, height: 0 }}
-                              animate={{ opacity: 1, height: 'auto' }}
-                              exit={{ opacity: 0, height: 0 }}
-                              className="pt-6 mt-4 border-t border-zinc-100 grid md:grid-cols-2 gap-8"
-                            >
-                              <div>
-                                <h4 className="text-xs font-bold uppercase tracking-wider text-zinc-900 mb-3 flex items-center gap-1.5">
-                                  <CheckCircle2 className="w-4 h-4 text-emerald-500" />
-                                  <span>Key Requirements</span>
-                                </h4>
-                                <ul className="space-y-2 text-xs sm:text-sm text-zinc-600">
-                                  {job.requirements.map((req, rIdx) => (
-                                    <li key={rIdx} className="flex items-start gap-2">
-                                      <span className="text-orange-500 font-bold">•</span>
-                                      <span>{req}</span>
-                                    </li>
-                                  ))}
-                                </ul>
-                              </div>
-
-                              <div>
-                                <h4 className="text-xs font-bold uppercase tracking-wider text-zinc-900 mb-3 flex items-center gap-1.5">
-                                  <Sparkles className="w-4 h-4 text-orange-600" />
-                                  <span>Core Responsibilities</span>
-                                </h4>
-                                <ul className="space-y-2 text-xs sm:text-sm text-zinc-600">
-                                  {job.responsibilities.map((resp, rpIdx) => (
-                                    <li key={rpIdx} className="flex items-start gap-2">
-                                      <span className="text-orange-500 font-bold">•</span>
-                                      <span>{resp}</span>
-                                    </li>
-                                  ))}
-                                </ul>
-                              </div>
-                            </motion.div>
-                          )}
-                        </AnimatePresence>
-                      </GlowCard>
-                    </motion.div>
-                  );
-                })}
-              </div>
-            )}
-          </AnimatePresence>
-        </div>
-      </section>
-
-      {/* 5. Open Application CTA */}
-      <section className="py-24 bg-zinc-950 text-white relative overflow-hidden">
-        <div className="absolute top-0 right-1/4 w-96 h-96 bg-orange-600/15 rounded-full blur-3xl pointer-events-none" />
-
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
-          <Badge variant="orange" dot pulse size="md" className="mb-4">
-            General Inquiries & Open Pitch
-          </Badge>
-
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight mb-6">
-            Don't See Your Exact Role?
-          </h2>
-
-          <p className="text-base sm:text-lg text-zinc-300 mb-10 max-w-2xl mx-auto leading-relaxed">
-            We are always looking for exceptional researchers, systems architects, and applied AI specialists. Send us your GitHub, papers, or portfolio.
-          </p>
-
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-            <Button
-              href="/contact?subject=General%20Engineering%20Application"
-              size="lg"
-              variant="primary"
-              icon={<ArrowRight className="w-5 h-5" />}
-              className="w-full sm:w-auto"
-            >
-              Send Open Application
-            </Button>
-            <Button
-              href="/about"
-              size="lg"
-              variant="glass-dark"
-              className="w-full sm:w-auto text-white font-semibold"
-            >
-              Read About Our Team
+          <div className="rounded-3xl bg-[#111111] text-white p-10 sm:p-16 text-center border border-white/10 shadow-2xl">
+            <h2 className="text-3xl sm:text-4xl font-semibold tracking-tight text-white mb-4">
+              Don&apos;t see an exact opening?
+            </h2>
+            <p className="text-sm text-zinc-400 max-w-xl mx-auto mb-8">
+              We are always looking for exceptional ML systems engineers, kernel hackers, and distributed systems architects. Send us your background.
+            </p>
+            <Button href="/contact" size="lg" variant="inverted" icon={<ArrowRight className="w-4 h-4" />}>
+              Send General Application
             </Button>
           </div>
         </div>

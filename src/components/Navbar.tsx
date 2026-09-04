@@ -5,22 +5,10 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ChevronDown, ArrowRight, Sparkles, Menu, X } from 'lucide-react';
+import { ChevronDown, ArrowRight, Menu, X } from 'lucide-react';
 import ScrollProgress from './ui/ScrollProgress';
 import Button from './ui/Button';
-import Badge from './ui/Badge';
-import SolutionIcon from './ui/SolutionIcon';
 import { solutionsData } from '../data/solutionsData';
-
-const navLinks = [
-  { name: 'Home', href: '/' },
-  { name: 'About Us', href: '/about' },
-  { name: 'Services', href: '/services' },
-  { name: 'Case Studies', href: '/case-studies' },
-  { name: 'Blog', href: '/blog' },
-  { name: 'Careers', href: '/careers' },
-  { name: 'Contact', href: '/contact' },
-];
 
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -31,13 +19,12 @@ export default function Navbar() {
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
+      setIsScrolled(window.scrollY > 15);
     };
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Close mobile menu on page navigation
   useEffect(() => {
     setIsMenuOpen(false);
     setIsSolutionsOpen(false);
@@ -51,60 +38,58 @@ export default function Navbar() {
   const handleMouseLeaveSolutions = () => {
     dropdownTimeoutRef.current = setTimeout(() => {
       setIsSolutionsOpen(false);
-    }, 180);
+    }, 150);
   };
 
   return (
     <>
       <ScrollProgress />
       <header
-        className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-200 ${
           isScrolled
-            ? 'bg-white/85 backdrop-blur-xl shadow-md shadow-zinc-900/5 border-b border-zinc-200/80 py-2.5'
-            : 'bg-white/70 backdrop-blur-md border-b border-zinc-200/50 py-3.5'
+            ? 'bg-white/95 backdrop-blur-md border-b border-black/[0.08] py-3 shadow-[0_1px_8px_rgba(0,0,0,0.03)]'
+            : 'bg-white/80 backdrop-blur-sm border-b border-black/[0.06] py-3.5'
         }`}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-12">
-            {/* Brand Logo */}
+          <div className="flex items-center justify-between relative h-10">
+            {/* Left: Brand Wordmark */}
             <Link
               href="/"
-              className="flex items-center space-x-3 group focus:outline-none"
+              className="flex items-center space-x-2.5 flex-shrink-0 group focus:outline-none"
             >
-              <div className="relative overflow-hidden rounded-xl border border-zinc-200 shadow-sm group-hover:border-orange-500/50 transition-colors">
+              <div className="w-8 h-8 rounded-lg overflow-hidden border border-black/10 shadow-xs flex items-center justify-center bg-zinc-900">
                 <Image
                   src="/dox1.jpg"
-                  alt="Doxantro Systems"
-                  width={42}
-                  height={42}
-                  className="rounded-lg object-cover transition-transform duration-300 group-hover:scale-105"
+                  alt="Doxantro"
+                  width={32}
+                  height={32}
+                  className="w-full h-full object-cover"
                   priority
                 />
               </div>
-              <div className="flex flex-col">
-                <span className="text-lg sm:text-xl font-bold tracking-tight text-zinc-900 group-hover:text-orange-600 transition-colors">
-                  Doxantro <span className="text-orange-600">Systems</span>
+              <div className="flex items-baseline space-x-1.5">
+                <span className="font-semibold text-lg tracking-tight text-[#111111]">
+                  Doxantro
                 </span>
-                <span className="text-[10px] tracking-wider uppercase font-semibold text-zinc-600 -mt-1 hidden sm:block">
-                  Think · Build · Solve
+                <span className="font-mono text-[10px] uppercase tracking-wider text-zinc-500 font-medium hidden sm:inline-block">
+                  Systems
                 </span>
               </div>
             </Link>
 
-            {/* Desktop Navigation */}
-            <nav className="hidden lg:flex items-center space-x-1 xl:space-x-2">
+            {/* Center: bachs.io-style Floating Dock Pill */}
+            <nav className="hidden md:flex items-center absolute left-1/2 -translate-x-1/2 border border-black/[0.12] rounded-xl bg-white px-2 py-1 shadow-[0_2px_12px_rgba(0,0,0,0.06)]">
               <Link
-                href="/"
-                className={`px-3 py-2 rounded-full text-sm font-medium transition-colors ${
-                  pathname === '/'
-                    ? 'text-orange-600 bg-orange-50/80 font-semibold'
-                    : 'text-zinc-700 hover:text-orange-600 hover:bg-zinc-50'
+                href="/#features"
+                className={`px-3 py-1.5 text-[13px] font-normal transition-colors rounded-lg ${
+                  pathname === '/' ? 'text-[#111111] hover:text-black' : 'text-zinc-600 hover:text-black'
                 }`}
               >
-                Home
+                Features
               </Link>
 
-              {/* Solutions Mega Menu Trigger */}
+              {/* Solutions Dropdown */}
               <div
                 className="relative"
                 onMouseEnter={handleMouseEnterSolutions}
@@ -112,93 +97,48 @@ export default function Navbar() {
               >
                 <button
                   type="button"
-                  className={`inline-flex items-center gap-1.5 px-3 py-2 rounded-full text-sm font-medium transition-colors cursor-pointer ${
-                    pathname.startsWith('/ai-')
-                      ? 'text-orange-600 bg-orange-50/80 font-semibold'
-                      : 'text-zinc-700 hover:text-orange-600 hover:bg-zinc-50'
-                  }`}
+                  className="inline-flex items-center gap-1 px-3 py-1.5 text-[13px] font-normal text-zinc-600 hover:text-black transition-colors rounded-lg cursor-pointer"
                   aria-expanded={isSolutionsOpen}
                 >
                   <span>Solutions</span>
                   <ChevronDown
-                    className={`w-4 h-4 transition-transform duration-200 ${
-                      isSolutionsOpen ? 'rotate-180 text-orange-600' : 'text-zinc-400'
+                    className={`w-3.5 h-3.5 text-zinc-400 transition-transform duration-150 ${
+                      isSolutionsOpen ? 'rotate-180 text-black' : ''
                     }`}
                   />
                 </button>
 
-                {/* Mega Menu Dropdown */}
                 <AnimatePresence>
                   {isSolutionsOpen && (
                     <motion.div
-                      initial={{ opacity: 0, y: 10, scale: 0.98 }}
-                      animate={{ opacity: 1, y: 0, scale: 1 }}
-                      exit={{ opacity: 0, y: 8, scale: 0.98 }}
-                      transition={{ duration: 0.18, ease: 'easeOut' }}
-                      className="absolute top-full left-1/2 -translate-x-1/2 mt-2 w-[720px] rounded-3xl border border-zinc-200/90 bg-white/95 backdrop-blur-2xl p-6 shadow-2xl shadow-zinc-900/10 z-50 overflow-hidden"
+                      initial={{ opacity: 0, y: 6 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: 4 }}
+                      transition={{ duration: 0.15 }}
+                      className="absolute top-full left-1/2 -translate-x-1/2 mt-2 w-72 rounded-xl border border-black/[0.1] bg-white p-2 shadow-xl shadow-black/5 z-50"
                     >
-                      {/* Ambient header inside mega menu */}
-                      <div className="flex items-center justify-between pb-4 mb-4 border-b border-zinc-100">
-                        <div className="flex items-center gap-2">
-                          <Sparkles className="w-4 h-4 text-orange-600" />
-                          <span className="text-xs font-semibold uppercase tracking-wider text-zinc-600">
-                            Enterprise AI Solutions by Industry
-                          </span>
-                        </div>
-                        <Link
-                          href="/services"
-                          className="text-xs font-semibold text-orange-600 hover:text-orange-700 flex items-center gap-1 group"
-                        >
-                          View All Capabilities
-                          <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5" />
-                        </Link>
+                      <div className="px-2.5 py-1.5 text-[10px] font-mono uppercase tracking-wider text-zinc-400 font-medium">
+                        Industry Verticals
                       </div>
-
-                      {/* 2-column Grid of Solutions */}
-                      <div className="grid grid-cols-2 gap-3">
+                      <div className="space-y-0.5">
                         {solutionsData.map((item) => (
                           <Link
                             key={item.id}
                             href={item.href}
-                            className="group flex items-start gap-3.5 p-3 rounded-2xl transition-all duration-200 hover:bg-orange-50/60 border border-transparent hover:border-orange-200/60"
+                            className="flex items-center justify-between px-2.5 py-2 rounded-lg text-xs font-normal text-zinc-800 hover:bg-zinc-100/80 transition-colors"
                           >
-                            <div className="p-2.5 rounded-xl bg-orange-100/70 text-orange-600 group-hover:bg-orange-600 group-hover:text-white transition-colors shadow-sm">
-                              <SolutionIcon name={item.iconName} className="w-5 h-5" />
-                            </div>
-                            <div className="flex-1 min-w-0">
-                              <div className="flex items-center gap-2">
-                                <h4 className="text-sm font-semibold text-zinc-900 group-hover:text-orange-600 transition-colors">
-                                  {item.shortTitle}
-                                </h4>
-                                {item.badge && (
-                                  <span className="text-[10px] font-medium px-1.5 py-0.5 rounded bg-zinc-100 text-zinc-600 group-hover:bg-orange-100 group-hover:text-orange-700">
-                                    {item.badge}
-                                  </span>
-                                )}
-                              </div>
-                              <p className="text-xs text-zinc-600 line-clamp-2 mt-0.5">
-                                {item.description}
-                              </p>
-                            </div>
+                            <span>{item.title}</span>
+                            <span className="text-[10px] font-mono text-zinc-400">{item.badge}</span>
                           </Link>
                         ))}
                       </div>
-
-                      {/* Mega Menu Footer Banner */}
-                      <div className="mt-4 pt-4 border-t border-zinc-100 bg-gradient-to-r from-orange-50/80 to-amber-50/50 -mx-6 -mb-6 p-4 px-6 flex items-center justify-between">
-                        <div className="flex items-center gap-2">
-                          <Badge variant="orange" dot pulse size="sm">
-                            Custom Solutions
-                          </Badge>
-                          <span className="text-xs text-zinc-600">
-                            Need a proprietary AI model trained on your private enterprise data?
-                          </span>
-                        </div>
+                      <div className="mt-1.5 pt-1.5 border-t border-zinc-100">
                         <Link
-                          href="/contact"
-                          className="text-xs font-semibold text-orange-600 hover:text-orange-700 whitespace-nowrap"
+                          href="/services"
+                          className="flex items-center justify-between px-2.5 py-1.5 text-xs font-medium text-orange-600 hover:text-orange-700 transition-colors"
                         >
-                          Talk to an AI Architect →
+                          <span>Full Platform Services</span>
+                          <ArrowRight className="w-3 h-3" />
                         </Link>
                       </div>
                     </motion.div>
@@ -206,35 +146,54 @@ export default function Navbar() {
                 </AnimatePresence>
               </div>
 
-              {navLinks.slice(1).map((link) => (
-                <Link
-                  key={link.name}
-                  href={link.href}
-                  className={`px-3 py-2 rounded-full text-sm font-medium transition-colors ${
-                    pathname === link.href
-                      ? 'text-orange-600 bg-orange-50/80 font-semibold'
-                      : 'text-zinc-700 hover:text-orange-600 hover:bg-zinc-50'
-                  }`}
-                >
-                  {link.name}
-                </Link>
-              ))}
+              <Link
+                href="/case-studies"
+                className={`px-3 py-1.5 text-[13px] font-normal transition-colors rounded-lg ${
+                  pathname === '/case-studies' ? 'text-[#111111] font-medium' : 'text-zinc-600 hover:text-black'
+                }`}
+              >
+                Case Studies
+              </Link>
+
+              <Link
+                href="/blog"
+                className={`px-3 py-1.5 text-[13px] font-normal transition-colors rounded-lg ${
+                  pathname === '/blog' ? 'text-[#111111] font-medium' : 'text-zinc-600 hover:text-black'
+                }`}
+              >
+                Research
+              </Link>
+
+              <Link
+                href="/about"
+                className={`px-3 py-1.5 text-[13px] font-normal transition-colors rounded-lg ${
+                  pathname === '/about' ? 'text-[#111111] font-medium' : 'text-zinc-600 hover:text-black'
+                }`}
+              >
+                Company
+              </Link>
             </nav>
 
-            {/* Header Right Action */}
-            <div className="hidden lg:flex items-center space-x-3">
-              <Button href="/contact" size="sm" variant="primary" icon={<ArrowRight className="w-4 h-4" />}>
-                Start Project
+            {/* Right: Actions */}
+            <div className="hidden md:flex items-center space-x-3.5 flex-shrink-0">
+              <Link
+                href="/contact"
+                className="text-xs font-normal text-zinc-600 hover:text-[#111111] transition-colors"
+              >
+                Contact Sales
+              </Link>
+              <Button href="/contact" size="sm" variant="primary" icon={<ArrowRight className="w-3.5 h-3.5" />}>
+                Get Started
               </Button>
             </div>
 
             {/* Mobile Hamburger Button */}
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="lg:hidden p-2 rounded-xl text-zinc-700 hover:text-orange-600 hover:bg-orange-50 focus:outline-none transition-colors cursor-pointer"
+              className="md:hidden p-1.5 rounded-lg text-zinc-800 hover:bg-zinc-100 transition-colors cursor-pointer"
               aria-label="Toggle Navigation Menu"
             >
-              {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+              {isMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
             </button>
           </div>
         </div>
@@ -246,54 +205,63 @@ export default function Navbar() {
               initial={{ opacity: 0, height: 0 }}
               animate={{ opacity: 1, height: 'auto' }}
               exit={{ opacity: 0, height: 0 }}
-              transition={{ duration: 0.25, ease: 'easeInOut' }}
-              className="lg:hidden bg-white/95 backdrop-blur-2xl border-b border-zinc-200 overflow-hidden"
+              transition={{ duration: 0.2 }}
+              className="md:hidden bg-white border-b border-zinc-200 overflow-hidden"
             >
-              <div className="px-4 pt-3 pb-6 space-y-1.5 max-h-[80vh] overflow-y-auto">
+              <div className="px-4 py-4 space-y-1.5">
                 <Link
                   href="/"
-                  className={`block px-3.5 py-2.5 rounded-xl text-base font-medium transition-colors ${
-                    pathname === '/' ? 'bg-orange-50 text-orange-600 font-semibold' : 'text-zinc-800'
-                  }`}
+                  className="block px-3 py-2 rounded-lg text-sm text-zinc-900 font-medium hover:bg-zinc-50"
                 >
                   Home
                 </Link>
-
-                {/* Mobile Solutions Collapsible */}
-                <div className="border border-zinc-100 rounded-2xl p-2 bg-zinc-50/60 my-2">
-                  <div className="px-3 py-1.5 flex items-center justify-between text-xs font-bold uppercase tracking-wider text-zinc-600">
-                    <span>AI Solutions</span>
-                    <Badge variant="orange" size="sm">6 Verticals</Badge>
-                  </div>
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-1 mt-1.5">
+                <div className="px-3 py-2">
+                  <div className="text-[11px] font-mono uppercase text-zinc-400 tracking-wider mb-2">Solutions</div>
+                  <div className="grid grid-cols-2 gap-1.5">
                     {solutionsData.map((item) => (
                       <Link
                         key={item.id}
                         href={item.href}
-                        className="flex items-center gap-2.5 px-3 py-2 rounded-xl text-sm font-medium text-zinc-700 hover:bg-orange-50 hover:text-orange-600 transition-colors"
+                        className="text-xs text-zinc-700 py-1 hover:text-orange-600"
                       >
-                        <SolutionIcon name={item.iconName} className="w-4 h-4 text-orange-600" />
-                        <span>{item.shortTitle}</span>
+                        {item.shortTitle}
                       </Link>
                     ))}
                   </div>
                 </div>
-
-                {navLinks.slice(1).map((link) => (
-                  <Link
-                    key={link.name}
-                    href={link.href}
-                    className={`block px-3.5 py-2.5 rounded-xl text-base font-medium transition-colors ${
-                      pathname === link.href ? 'bg-orange-50 text-orange-600 font-semibold' : 'text-zinc-800'
-                    }`}
-                  >
-                    {link.name}
-                  </Link>
-                ))}
-
-                <div className="pt-4 px-1">
+                <Link
+                  href="/services"
+                  className="block px-3 py-2 rounded-lg text-sm text-zinc-900 font-medium hover:bg-zinc-50"
+                >
+                  Services & Capabilities
+                </Link>
+                <Link
+                  href="/case-studies"
+                  className="block px-3 py-2 rounded-lg text-sm text-zinc-900 font-medium hover:bg-zinc-50"
+                >
+                  Case Studies
+                </Link>
+                <Link
+                  href="/blog"
+                  className="block px-3 py-2 rounded-lg text-sm text-zinc-900 font-medium hover:bg-zinc-50"
+                >
+                  Research Papers
+                </Link>
+                <Link
+                  href="/about"
+                  className="block px-3 py-2 rounded-lg text-sm text-zinc-900 font-medium hover:bg-zinc-50"
+                >
+                  About Doxantro
+                </Link>
+                <Link
+                  href="/careers"
+                  className="block px-3 py-2 rounded-lg text-sm text-zinc-900 font-medium hover:bg-zinc-50"
+                >
+                  Careers
+                </Link>
+                <div className="pt-3">
                   <Button href="/contact" size="md" variant="primary" className="w-full">
-                    Start Your Project
+                    Get Started →
                   </Button>
                 </div>
               </div>

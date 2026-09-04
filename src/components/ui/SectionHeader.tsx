@@ -5,8 +5,9 @@ import { motion } from 'framer-motion';
 import Badge from './Badge';
 
 interface SectionHeaderProps {
+  eyebrow?: string;
   badge?: string;
-  badgeVariant?: 'orange' | 'green' | 'amber' | 'blue' | 'purple' | 'slate';
+  badgeVariant?: 'neutral' | 'orange' | 'green' | 'amber' | 'blue' | 'purple' | 'slate' | 'dark';
   title: string;
   highlightText?: string;
   subtitle?: string;
@@ -15,8 +16,9 @@ interface SectionHeaderProps {
 }
 
 export default function SectionHeader({
+  eyebrow,
   badge,
-  badgeVariant = 'orange',
+  badgeVariant = 'neutral',
   title,
   highlightText,
   subtitle,
@@ -27,31 +29,35 @@ export default function SectionHeader({
 
   return (
     <motion.div
-      initial={{ opacity: 0, y: 20 }}
+      initial={{ opacity: 0, y: 16 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: '-40px' }}
-      transition={{ duration: 0.5, ease: 'easeOut' }}
-      className={`mb-16 ${isCenter ? 'text-center max-w-3xl mx-auto' : 'max-w-2xl'} ${className}`}
+      transition={{ duration: 0.4, ease: 'easeOut' }}
+      className={`mb-14 ${isCenter ? 'text-center max-w-3xl mx-auto' : 'max-w-2xl'} ${className}`}
     >
-      {badge && (
-        <div className={`mb-4 ${isCenter ? 'flex justify-center' : ''}`}>
-          <Badge variant={badgeVariant} dot pulse size="md">
+      {eyebrow && (
+        <p className="text-[11px] sm:text-xs font-mono uppercase tracking-widest text-zinc-500 mb-3">
+          {eyebrow}
+        </p>
+      )}
+
+      {badge && !eyebrow && (
+        <div className={`mb-3.5 ${isCenter ? 'flex justify-center' : ''}`}>
+          <Badge variant={badgeVariant} dot size="sm">
             {badge}
           </Badge>
         </div>
       )}
 
-      <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-zinc-900 leading-tight">
+      <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-[2.65rem] font-semibold tracking-[-0.025em] text-[#111111] leading-[1.15]">
         {title}{' '}
         {highlightText && (
-          <span className="bg-gradient-to-r from-orange-600 to-amber-500 bg-clip-text text-transparent">
-            {highlightText}
-          </span>
+          <span className="text-zinc-900 font-medium">{highlightText}</span>
         )}
       </h2>
 
       {subtitle && (
-        <p className="mt-4 text-base sm:text-lg text-zinc-600 leading-relaxed">
+        <p className="mt-3.5 text-sm sm:text-base text-zinc-600 leading-relaxed max-w-2xl mx-auto">
           {subtitle}
         </p>
       )}

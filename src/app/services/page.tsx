@@ -6,297 +6,214 @@ import { motion } from 'framer-motion';
 import {
   ArrowRight,
   CheckCircle2,
-  Sparkles,
-  Layers,
   Cpu,
   ShieldCheck,
   Zap,
-  Activity,
-  Boxes,
-  Sprout,
-  BadgeDollarSign,
-  ShieldAlert,
   Server,
   GitFork,
   RefreshCw,
+  Search,
 } from 'lucide-react';
-import Badge from '../../components/ui/Badge';
 import Button from '../../components/ui/Button';
-import GlowCard from '../../components/ui/GlowCard';
-import SectionHeader from '../../components/ui/SectionHeader';
-import SolutionIcon from '../../components/ui/SolutionIcon';
 import { solutionsData } from '../../data/solutionsData';
 
-const methodologySteps = [
+const lifecycle = [
   {
     step: '01',
-    title: 'Discovery & Feasibility Audit',
-    desc: 'We evaluate your proprietary datasets, quantify business ROI bottlenecks, and architect a tailored neural strategy.',
-    icon: Sparkles,
+    title: 'Data & Architecture Feasibility',
+    desc: 'We audit your proprietary datasets, quantify throughput bottlenecks, and specify private foundation architectures.',
+    icon: Search,
   },
   {
     step: '02',
-    title: 'Model Fine-Tuning & Curation',
-    desc: 'Customizing foundation models on domain-specific ontologies with strict data sanitization and privacy controls.',
+    title: 'Domain Tuning & Quantization',
+    desc: 'Fine-tuning specialized weights on domain ontologies with automated PII masking and tensor memory compression.',
     icon: Cpu,
   },
   {
     step: '03',
-    title: 'Sub-10ms Integration & Deploy',
-    desc: 'Orchestrating high-concurrency microservices across your private cloud, on-prem clusters, or hybrid edge mesh.',
+    title: 'Sub-20ms VPC Deployment',
+    desc: 'Deploying high-concurrency microservices into your private AWS VPC, GCP, Azure, or bare-metal Kubernetes.',
     icon: GitFork,
   },
   {
     step: '04',
-    title: 'SRE Monitoring & Drift Guard',
-    desc: '24/7 automated telemetry, confidence scoring, model retraining loops, and SOC-2 / HIPAA compliance audits.',
+    title: 'SRE Drift & Compliance Guard',
+    desc: 'Continuous token telemetry, confidence score verification, automated retraining loops, and SOC-2/HIPAA audit trails.',
     icon: RefreshCw,
   },
 ];
 
-const technicalCapabilities = [
+const capabilities = [
   {
-    category: 'Model Architecture',
-    items: ['Multi-Modal Transformers', 'Computer Vision (YOLO/Segment)', 'Time-Series & Forecasting', 'Domain-Specific LLMs & RAG'],
+    category: 'Model Architectures',
+    items: ['Domain Transformers', 'Time-Series & Forecasting', 'Parameter-Efficient LoRA', 'Hybrid Vector RAG'],
   },
   {
-    category: 'Deployment & Infra',
-    items: ['Private Cloud (AWS/GCP/Azure)', 'Air-Gapped On-Premises', 'Edge Inference (TPU/Jetson)', 'Sub-10ms gRPC Microservices'],
+    category: 'Infrastructure & Edge',
+    items: ['Sub-20ms P99 Routing', 'Air-Gapped VPC Pods', 'TensorRT & CUDA Kernels', 'Multi-Region Anycast'],
   },
   {
-    category: 'Security & Compliance',
-    items: ['SOC-2 Type II Certified Pipeline', 'HIPAA & GDPR Compliant', 'Zero-Retention Data Vaults', 'End-to-End Enclave Encryption'],
+    category: 'Governance & Security',
+    items: ['Real-Time PII Masking', 'Zero-Retention Policies', 'Cryptographic Audit Trails', 'HIPAA / SOC-2 / ISO-27001'],
   },
   {
-    category: 'Enterprise SLAs',
-    items: ['99.95% API Availability SLA', 'Automated Fallback Circuits', 'Model Drift Auto-Alerting', 'Dedicated AI Support Engineers'],
+    category: 'Enterprise Operations',
+    items: ['24/7 SRE Latency SLAs', 'Continuous Retraining Loops', 'Automated Fallback Handlers', 'Custom SDK Generation'],
   },
 ];
 
 export default function Services() {
   return (
     <main className="min-h-screen bg-white">
-      {/* 1. Hero Section */}
-      <section className="relative pt-36 pb-20 md:pt-44 md:pb-28 overflow-hidden bg-gradient-to-b from-orange-50/50 via-white to-white border-b border-zinc-200/60">
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-96 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-orange-400/15 via-transparent to-transparent pointer-events-none" />
-        <div className="absolute -top-20 right-10 w-80 h-80 bg-orange-200/20 rounded-full blur-3xl pointer-events-none" />
-
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            className="max-w-4xl mx-auto"
-          >
-            <div className="inline-flex mb-5">
-              <Badge variant="orange" dot pulse size="md">
-                End-to-End Enterprise AI Solutions
-              </Badge>
-            </div>
-
-            <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight text-zinc-900 leading-[1.15] mb-6">
-              Applied Artificial Intelligence Built for{' '}
-              <span className="bg-gradient-to-r from-orange-600 via-orange-500 to-amber-500 bg-clip-text text-transparent">
-                High-Stakes Sectors
-              </span>
-            </h1>
-
-            <p className="text-lg sm:text-xl text-zinc-600 leading-relaxed max-w-3xl mx-auto mb-10">
-              We engineer, deploy, and manage production-grade AI systems that integrate directly into your operations—delivering deterministic accuracy, robust security, and compounding financial ROI.
-            </p>
-
-            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-              <Button
-                href="/contact"
-                size="lg"
-                variant="primary"
-                icon={<ArrowRight className="w-5 h-5" />}
-                className="w-full sm:w-auto"
-              >
-                Schedule Architecture Review
-              </Button>
-              <Button
-                href="#solutions-grid"
-                size="lg"
-                variant="glass"
-                className="w-full sm:w-auto"
-              >
-                Browse 6 Vertical Solutions
-              </Button>
-            </div>
-          </motion.div>
+      {/* 1. Hero */}
+      <section className="pt-32 pb-20 md:pt-40 md:pb-24 bg-white border-b border-black/[0.06]">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <p className="font-mono text-xs text-zinc-500 uppercase tracking-widest mb-4">
+            Platform Capabilities & Services
+          </p>
+          <h1 className="text-4xl sm:text-5xl md:text-[3.6rem] font-semibold tracking-[-0.03em] text-[#111111] leading-tight mb-6">
+            End-to-end intelligence infrastructure.
+          </h1>
+          <p className="text-base sm:text-lg text-zinc-600 leading-relaxed max-w-2xl mx-auto mb-8">
+            From proprietary model fine-tuning to sub-20ms VPC edge deployment and continuous drift governance — we engineer full-stack AI for high-reliability enterprise operations.
+          </p>
+          <div className="flex justify-center gap-3.5">
+            <Button href="/contact" size="md" variant="primary" icon={<ArrowRight className="w-4 h-4" />}>
+              Schedule Technical Consultation
+            </Button>
+            <Button href="#lifecycle" size="md" variant="secondary">
+              View Delivery Lifecycle
+            </Button>
+          </div>
         </div>
       </section>
 
-      {/* 2. Methodology & Delivery Lifecycle */}
-      <section className="py-24 bg-zinc-50/70 border-b border-zinc-200/60 relative">
+      {/* 2. Delivery Lifecycle (4 Steps) */}
+      <section id="lifecycle" className="py-24 bg-[#f9f9f8] border-b border-black/[0.06]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <SectionHeader
-            badge="Engineering Process"
-            badgeVariant="orange"
-            title="Our Full-Lifecycle"
-            highlightText="Deployment Flywheel"
-            subtitle="From initial data governance to sub-10ms production inference, our systematic delivery model guarantees velocity and compliance."
-          />
+          <div className="max-w-3xl mb-16">
+            <p className="font-mono text-xs text-zinc-500 uppercase tracking-wider mb-3">
+              Delivery Methodology
+            </p>
+            <h2 className="text-3xl sm:text-4xl font-semibold tracking-[-0.025em] text-[#111111] leading-tight">
+              A 4-stage engineering lifecycle.
+            </h2>
+          </div>
 
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {methodologySteps.map((item, idx) => {
-              const IconComp = item.icon;
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
+            {lifecycle.map((step) => {
+              const Icon = step.icon;
               return (
-                <GlowCard key={idx} className="p-7 bg-white flex flex-col justify-between">
-                  <div>
-                    <div className="flex items-center justify-between mb-4">
-                      <div className="w-12 h-12 rounded-2xl bg-orange-50 border border-orange-200/60 text-orange-600 flex items-center justify-center">
-                        <IconComp className="w-6 h-6" />
-                      </div>
-                      <span className="text-xs font-mono font-bold text-zinc-600">{item.step}</span>
-                    </div>
-                    <h3 className="text-base font-bold text-zinc-900 mb-2">{item.title}</h3>
-                    <p className="text-xs sm:text-sm text-zinc-600 leading-relaxed">{item.desc}</p>
+                <div key={step.step} className="flex flex-col">
+                  <div className="font-mono text-xs text-zinc-400 font-semibold mb-3">
+                    STEP {step.step}
                   </div>
-                </GlowCard>
+                  <div className="w-8 h-8 rounded-lg bg-white border border-black/[0.08] flex items-center justify-center text-zinc-800 mb-3.5">
+                    <Icon className="w-4 h-4" />
+                  </div>
+                  <h3 className="font-semibold text-base text-[#111111] tracking-tight mb-2">
+                    {step.title}
+                  </h3>
+                  <p className="text-xs sm:text-sm text-zinc-600 leading-relaxed">
+                    {step.desc}
+                  </p>
+                </div>
               );
             })}
           </div>
         </div>
       </section>
 
-      {/* 3. The 6 Vertical Solutions Grid */}
-      <section id="solutions-grid" className="py-24 bg-white relative">
+      {/* 3. Industry Solutions Overview */}
+      <section className="py-24 bg-white border-b border-black/[0.06]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <SectionHeader
-            badge="Vertical Specialization"
-            badgeVariant="orange"
-            title="Tailored Intelligence for"
-            highlightText="Industry Leaders"
-            subtitle="Explore our specialized neural architectures pre-trained on domain ontologies and ready for enterprise integration."
-          />
+          <div className="max-w-3xl mb-16">
+            <p className="font-mono text-xs text-zinc-500 uppercase tracking-wider mb-3">
+              Industry Verticals
+            </p>
+            <h2 className="text-3xl sm:text-4xl font-semibold tracking-[-0.025em] text-[#111111] leading-tight">
+              Tailored domain foundation models.
+            </h2>
+          </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {solutionsData.map((item, idx) => (
-              <motion.div
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {solutionsData.map((item) => (
+              <Link
                 key={item.id}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.4, delay: idx * 0.08 }}
+                href={item.href}
+                className="group rounded-2xl border border-black/[0.08] bg-[#fcfbf9] p-6 hover:bg-white hover:border-black/20 hover:shadow-md transition-all duration-200 flex flex-col justify-between"
               >
-                <GlowCard className="p-8 h-full flex flex-col justify-between group">
-                  <div>
-                    <div className="flex items-center justify-between mb-5">
-                      <div className="p-3.5 rounded-2xl bg-orange-50 border border-orange-200/60 text-orange-600 group-hover:bg-orange-600 group-hover:text-white transition-all duration-300 shadow-sm">
-                        <SolutionIcon name={item.iconName} className="w-6 h-6" />
-                      </div>
-                      <Badge variant="orange" size="sm">{item.badge}</Badge>
-                    </div>
-
-                    <h3 className="text-xl font-bold text-zinc-900 group-hover:text-orange-600 transition-colors mb-2.5">
-                      {item.title}
-                    </h3>
-                    <p className="text-sm text-zinc-600 leading-relaxed mb-6">
-                      {item.description}
-                    </p>
-
-                    <div className="mb-6 p-3.5 rounded-xl bg-zinc-50 border border-zinc-100 flex items-center justify-between">
-                      <span className="text-xs font-medium text-zinc-600">{item.statLabel}</span>
-                      <span className="text-sm font-extrabold font-mono text-orange-600">{item.stat}</span>
-                    </div>
-
-                    <div className="space-y-2 mb-8">
-                      <div className="text-xs font-bold uppercase tracking-wider text-zinc-600 mb-2">
-                        Core Capabilities
-                      </div>
-                      {item.features.map((feature, fIdx) => (
-                        <div key={fIdx} className="flex items-center text-xs sm:text-sm text-zinc-700">
-                          <CheckCircle2 className="w-4 h-4 text-emerald-500 mr-2.5 flex-shrink-0" />
-                          <span>{feature}</span>
-                        </div>
-                      ))}
-                    </div>
+                <div>
+                  <div className="flex items-center justify-between mb-4">
+                    <span className="font-mono text-[10px] uppercase text-zinc-400 font-medium">
+                      {item.badge}
+                    </span>
+                    <span className="font-mono text-[11px] text-orange-600 font-medium">
+                      {item.stat}
+                    </span>
                   </div>
-
-                  <div className="pt-4 border-t border-zinc-100 mt-auto">
-                    <Link
-                      href={item.href}
-                      className="inline-flex items-center justify-between w-full text-sm font-semibold text-zinc-900 group-hover:text-orange-600 transition-colors"
-                    >
-                      <span>Deep Dive & Specifications</span>
-                      <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1 text-orange-600" />
-                    </Link>
-                  </div>
-                </GlowCard>
-              </motion.div>
+                  <h3 className="font-semibold text-base text-[#111111] mb-2 group-hover:text-black">
+                    {item.title}
+                  </h3>
+                  <p className="text-xs sm:text-sm text-zinc-600 leading-relaxed mb-6">
+                    {item.description}
+                  </p>
+                </div>
+                <div className="flex items-center gap-1 text-xs font-medium text-[#111111] group-hover:text-orange-600 transition-colors">
+                  <span>View Solution Specs</span>
+                  <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-1" />
+                </div>
+              </Link>
             ))}
           </div>
         </div>
       </section>
 
-      {/* 4. Enterprise Architecture & Capabilities Matrix */}
-      <section className="py-24 bg-zinc-50/70 border-t border-zinc-200/60 relative">
+      {/* 4. Technical Capabilities Matrix */}
+      <section className="py-24 bg-[#f9f9f8] border-b border-black/[0.06]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <SectionHeader
-            badge="Technical Rigor"
-            badgeVariant="orange"
-            title="Enterprise-Grade AI"
-            highlightText="Architecture Matrix"
-            subtitle="Built to satisfy the stringent security, latency, and compliance mandates of Fortune 500 infrastructure."
-          />
+          <div className="max-w-3xl mb-16">
+            <p className="font-mono text-xs text-zinc-500 uppercase tracking-wider mb-3">
+              Full Spectrum
+            </p>
+            <h2 className="text-3xl sm:text-4xl font-semibold tracking-[-0.025em] text-[#111111] leading-tight">
+              Enterprise Technical Matrix
+            </h2>
+          </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {technicalCapabilities.map((cap, idx) => (
-              <GlowCard key={idx} className="p-7 bg-white">
-                <h4 className="text-base font-bold text-zinc-900 mb-4 pb-3 border-b border-zinc-100 flex items-center gap-2">
-                  <span className="w-2 h-2 rounded-full bg-orange-600" />
-                  <span>{cap.category}</span>
-                </h4>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
+            {capabilities.map((cap) => (
+              <div key={cap.category} className="flex flex-col">
+                <h3 className="font-semibold text-sm text-[#111111] mb-4 pb-2 border-b border-black/[0.08]">
+                  {cap.category}
+                </h3>
                 <ul className="space-y-2.5">
-                  {cap.items.map((item, iIdx) => (
-                    <li key={iIdx} className="text-xs sm:text-sm text-zinc-600 flex items-start gap-2">
-                      <span className="text-orange-500 font-bold">•</span>
-                      <span>{item}</span>
+                  {cap.items.map((i) => (
+                    <li key={i} className="flex items-start gap-2 text-xs sm:text-sm text-zinc-600">
+                      <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 flex-shrink-0 mt-0.5" />
+                      <span>{i}</span>
                     </li>
                   ))}
                 </ul>
-              </GlowCard>
+              </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* 5. Bottom Call to Action */}
-      <section className="py-24 bg-zinc-950 text-white relative overflow-hidden">
-        <div className="absolute top-0 right-1/4 w-96 h-96 bg-orange-600/15 rounded-full blur-3xl pointer-events-none" />
-
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
-          <Badge variant="orange" dot pulse size="md" className="mb-4">
-            Custom Enterprise Deployment
-          </Badge>
-
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight mb-6">
-            Ready to Accelerate Your AI Roadmap?
-          </h2>
-
-          <p className="text-base sm:text-lg text-zinc-300 mb-10 max-w-2xl mx-auto leading-relaxed">
-            Our principal AI engineers are ready to review your data infrastructure, assess model viability, and provide a comprehensive architecture blueprint.
-          </p>
-
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-            <Button
-              href="/contact"
-              size="lg"
-              variant="primary"
-              icon={<ArrowRight className="w-5 h-5" />}
-              className="w-full sm:w-auto"
-            >
-              Request Scoping Call
-            </Button>
-            <Button
-              href="/case-studies"
-              size="lg"
-              variant="glass-dark"
-              className="w-full sm:w-auto text-white font-semibold"
-            >
-              View Case Studies
+      {/* 5. Dark CTA */}
+      <section className="py-20 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="rounded-3xl bg-[#111111] text-white p-10 sm:p-16 text-center border border-white/10 shadow-2xl">
+            <h2 className="text-3xl sm:text-4xl font-semibold tracking-tight text-white mb-4">
+              Need custom model weights for your domain?
+            </h2>
+            <p className="text-sm text-zinc-400 max-w-xl mx-auto mb-8">
+              Our AI research team engineers private transformer architectures, fine-tunes custom foundation weights, and deploys air-gapped clusters with guaranteed SLAs.
+            </p>
+            <Button href="/contact" size="lg" variant="inverted" icon={<ArrowRight className="w-4 h-4" />}>
+              Start Architectural Scoping
             </Button>
           </div>
         </div>

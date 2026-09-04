@@ -2,117 +2,84 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
-import { ArrowRight, ShieldCheck, Cpu, Zap, Sparkles } from 'lucide-react';
+import { ArrowRight, ChevronRight } from 'lucide-react';
+import Link from 'next/link';
 import Button from '../components/ui/Button';
-import Badge from '../components/ui/Badge';
-import AITelemetryTerminal from '../components/hero/AITelemetryTerminal';
+import HeroDispatchConsole from '../components/hero/HeroDispatchConsole';
 
 export default function HeroSection() {
   return (
-    <section className="relative pt-32 pb-20 md:pt-40 md:pb-28 overflow-hidden bg-gradient-to-b from-orange-50/40 via-white to-white">
-      {/* Ambient Glows & Background Grid */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-96 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-orange-400/15 via-transparent to-transparent pointer-events-none" />
-      <div className="absolute -top-32 right-10 w-96 h-96 bg-orange-300/20 rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute top-40 -left-20 w-80 h-80 bg-amber-200/20 rounded-full blur-3xl pointer-events-none" />
-
-      {/* Subtle Dot Matrix Pattern */}
-      <div
-        className="absolute inset-0 opacity-[0.03] pointer-events-none"
-        style={{
-          backgroundImage: `radial-gradient(#18181b 1px, transparent 1px)`,
-          backgroundSize: '24px 24px',
-        }}
-      />
-
-      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid lg:grid-cols-12 gap-12 lg:gap-8 items-center">
-          {/* Left Column: Headline & Content */}
+    <section className="relative pt-32 pb-20 md:pt-36 md:pb-24 overflow-hidden bg-white border-b border-black/[0.06]">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="grid lg:grid-cols-12 gap-12 lg:gap-14 items-center">
+          {/* Left Column: Editorial Headline & Actions */}
           <motion.div
-            initial={{ opacity: 0, y: 24 }}
+            initial={{ opacity: 0, y: 18 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.55, ease: 'easeOut' }}
-            className="lg:col-span-6 text-center lg:text-left"
+            transition={{ duration: 0.45, ease: 'easeOut' }}
+            className="lg:col-span-7 text-left"
           >
-            {/* Live System Status Pill */}
-            <div className="inline-flex mb-6">
-              <Badge variant="orange" dot pulse size="md" className="shadow-sm">
-                SYSTEM ONLINE · Doxantro v3.4 Engine Active
-              </Badge>
+            {/* Minimalist Announcement Eyebrow */}
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-black/[0.08] bg-zinc-50 text-[12px] text-zinc-700 font-mono mb-6">
+              <span className="w-1.5 h-1.5 rounded-full bg-orange-600" />
+              <span>Doxantro Core v3.4 · Production Infrastructure</span>
             </div>
 
-            {/* Main Headline */}
-            <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight text-zinc-900 leading-[1.1] mb-6">
-              Think, Build and{' '}
-              <span className="bg-gradient-to-r from-orange-600 via-orange-500 to-amber-500 bg-clip-text text-transparent">
-                Solve
-              </span>{' '}
-              with Intelligence.
+            {/* Main Display Headline */}
+            <h1 className="text-4xl sm:text-5xl md:text-[3.6rem] font-semibold tracking-[-0.03em] text-[#111111] leading-[1.12] mb-6">
+              Enterprise AI built for{' '}
+              <span className="font-mono font-normal tracking-tight text-zinc-900 border-b border-black/20 pb-0.5">
+                modern industry.
+              </span>
             </h1>
 
-            {/* Subheadline */}
-            <p className="text-lg sm:text-xl text-zinc-600 mb-8 leading-relaxed max-w-2xl mx-auto lg:mx-0">
-              Empowering global enterprises, healthcare systems, and institutions with mission-critical AI solutions engineered for speed, accuracy, and measurable ROI.
+            {/* Editorial Body Text */}
+            <p className="text-base sm:text-lg text-zinc-600 mb-8 leading-relaxed max-w-xl">
+              Deploy domain-tuned models, autonomous workflow pipelines, and zero-trust guardrails. We engineer the mission-critical AI stack so your teams can scale without technical debt.
             </p>
 
-            {/* CTA Buttons */}
-            <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start items-center mb-10">
+            {/* CTA Button Row */}
+            <div className="flex flex-wrap items-center gap-3.5 mb-10">
               <Button
                 href="/contact"
                 size="lg"
                 variant="primary"
-                icon={<ArrowRight className="w-5 h-5" />}
-                className="w-full sm:w-auto"
+                icon={<ArrowRight className="w-4 h-4" />}
               >
-                Start Your Project
+                Get Started
               </Button>
               <Button
-                href="/case-studies"
+                href="/services"
                 size="lg"
-                variant="glass"
-                className="w-full sm:w-auto"
+                variant="secondary"
               >
-                Explore Case Studies
+                View Architecture
               </Button>
             </div>
 
-            {/* Trust Indicators with Micro-icons */}
-            <div className="pt-6 border-t border-zinc-200/80 grid grid-cols-3 gap-3 text-left">
-              <div className="flex items-center gap-2">
-                <div className="p-1.5 rounded-lg bg-orange-100 text-orange-600 flex-shrink-0">
-                  <ShieldCheck className="w-4 h-4" />
-                </div>
-                <div className="min-w-0">
-                  <div className="text-xs font-bold text-zinc-900">Enterprise</div>
-                  <div className="text-[11px] text-zinc-600 truncate">SOC-2 Ready</div>
-                </div>
+            {/* Bottom Proof Line */}
+            <div className="flex flex-wrap items-center gap-6 pt-6 border-t border-black/[0.06] text-xs font-mono text-zinc-500">
+              <div className="flex items-center gap-1.5">
+                <span className="text-[#111111] font-semibold">Sub-20ms</span> P99 Latency
               </div>
-
-              <div className="flex items-center gap-2">
-                <div className="p-1.5 rounded-lg bg-orange-100 text-orange-600 flex-shrink-0">
-                  <Cpu className="w-4 h-4" />
-                </div>
-                <div className="min-w-0">
-                  <div className="text-xs font-bold text-zinc-900">Sub-10ms</div>
-                  <div className="text-[11px] text-zinc-600 truncate">Ultra-low Latency</div>
-                </div>
+              <div className="flex items-center gap-1.5">
+                <span className="text-[#111111] font-semibold">SOC-2 / HIPAA</span> Air-Gapped
               </div>
-
-              <div className="flex items-center gap-2">
-                <div className="p-1.5 rounded-lg bg-orange-100 text-orange-600 flex-shrink-0">
-                  <Zap className="w-4 h-4" />
-                </div>
-                <div className="min-w-0">
-                  <div className="text-xs font-bold text-zinc-900">6 Verticals</div>
-                  <div className="text-[11px] text-zinc-600 truncate">Tailored Models</div>
-                </div>
+              <div className="flex items-center gap-1.5">
+                <span className="text-[#111111] font-semibold">6 Verticals</span> Pre-Tuned
               </div>
             </div>
           </motion.div>
 
-          {/* Right Column: AI Live Terminal Preview */}
-          <div className="lg:col-span-6 w-full max-w-xl mx-auto lg:max-w-none">
-            <AITelemetryTerminal />
-          </div>
+          {/* Right Column: Tactile Dispatch Console */}
+          <motion.div
+            initial={{ opacity: 0, y: 22 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.1, ease: 'easeOut' }}
+            className="lg:col-span-5 flex justify-center lg:justify-end"
+          >
+            <HeroDispatchConsole />
+          </motion.div>
         </div>
       </div>
     </section>
