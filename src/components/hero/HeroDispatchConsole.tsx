@@ -2,8 +2,8 @@
 
 import React, { useState } from 'react';
 import Image from 'next/image';
-import { motion, AnimatePresence } from 'framer-motion';
-import { CheckCircle2, Shield, Cpu, RefreshCw, Zap } from 'lucide-react';
+import { motion } from 'framer-motion';
+import { CheckCircle2, Shield, Zap } from 'lucide-react';
 
 interface JobPreset {
   id: string;
@@ -64,7 +64,7 @@ const presets: JobPreset[] = [
     accuracy: '100.00%',
     compression: '6.0x',
     costSaved: '$0.0142 / event',
-    compliance: 'FedRAMP High / CMMC',
+    compliance: 'FedRAMP / CMMC',
     tokenSpeed: '240 tok/s',
   },
 ];
@@ -76,15 +76,15 @@ export default function HeroDispatchConsole() {
   return (
     <div className="relative w-full max-w-[440px] mx-auto select-none font-mono">
       {/* Preset Switcher Tabs */}
-      <div className="flex items-center justify-between gap-1 mb-3 p-1 rounded-xl bg-zinc-100 border border-black/[0.08] text-[11px]">
+      <div className="flex items-center justify-between gap-1 mb-3 p-1 rounded-xl bg-zinc-100 border border-black/[0.08] text-[10px] sm:text-[11px] overflow-x-auto">
         {presets.map((p, idx) => (
           <button
             key={p.id}
             type="button"
             onClick={() => setActiveTab(idx)}
-            className={`flex-1 py-1 px-1.5 rounded-lg text-center font-mono transition-all duration-150 cursor-pointer ${
+            className={`flex-1 py-1 px-1.5 rounded-lg text-center font-mono whitespace-nowrap transition-all duration-150 cursor-pointer ${
               activeTab === idx
-                ? 'bg-white text-[#111111] font-medium shadow-xs border border-black/[0.08]'
+                ? 'bg-white text-[#111111] font-semibold shadow-xs border border-black/[0.08]'
                 : 'text-zinc-600 hover:text-black hover:bg-white/50'
             }`}
           >
@@ -117,10 +117,10 @@ export default function HeroDispatchConsole() {
           ))}
         </div>
 
-        <div className="p-5 sm:p-6 relative">
+        <div className="p-4 sm:p-6 relative">
           {/* Header Row with Real Logo & Motto */}
           <div className="flex items-center justify-between pb-3 border-b border-dashed border-zinc-300">
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-1.5 sm:gap-2">
               <div className="bg-white rounded px-1.5 py-0.5 border border-black/10">
                 <Image
                   src="/dox1.jpg"
@@ -130,35 +130,35 @@ export default function HeroDispatchConsole() {
                   className="h-4 sm:h-5 w-auto object-contain"
                 />
               </div>
-              <span className="font-mono text-[9px] uppercase tracking-wider text-zinc-500 border-l border-zinc-300 pl-1.5 hidden sm:inline-block">
+              <span className="font-mono text-[8px] sm:text-[9px] uppercase tracking-wider text-zinc-500 border-l border-zinc-300 pl-1.5 hidden xs:inline-block">
                 Think, Build and Solve
               </span>
             </div>
-            <div className="flex items-center gap-1.5 text-[10px] text-zinc-600 font-mono">
+            <div className="flex items-center gap-1 text-[9px] sm:text-[10px] text-zinc-600 font-mono">
               <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
               <span>LIVE DISPATCH</span>
             </div>
           </div>
 
           {/* Job Metadata */}
-          <div className="flex justify-between items-center text-[11px] text-zinc-600 py-2.5">
+          <div className="flex justify-between items-center text-[10px] sm:text-[11px] text-zinc-600 py-2">
             <span>JOB #{current.id.toUpperCase()}-88219</span>
-            <span>{current.category}</span>
+            <span className="truncate max-w-[150px]">{current.category}</span>
           </div>
 
           {/* Dotted Divider */}
-          <div className="h-px w-full dot-leader text-zinc-400 my-1" />
+          <div className="h-px w-full dot-leader text-zinc-400 my-0.5" />
 
           {/* Live Metric Rows with Dot Leaders */}
-          <div className="space-y-2 py-2.5 text-xs">
+          <div className="space-y-2 py-2 text-[11px] sm:text-xs">
             <div className="flex items-baseline gap-2">
-              <span className="text-zinc-600">Model Engine</span>
+              <span className="text-zinc-600 text-[10px] sm:text-[11px]">Model Engine</span>
               <span className="flex-1 h-px dot-leader text-zinc-300 mb-0.5" />
-              <span className="font-semibold text-zinc-900">{current.model}</span>
+              <span className="font-semibold text-zinc-900 truncate max-w-[160px]">{current.model}</span>
             </div>
 
             <div className="flex items-baseline gap-2">
-              <span className="text-zinc-600">Guardrail Audit</span>
+              <span className="text-zinc-600 text-[10px] sm:text-[11px]">Guardrail Audit</span>
               <span className="flex-1 h-px dot-leader text-zinc-300 mb-0.5" />
               <span className="text-emerald-700 font-semibold flex items-center gap-1">
                 <CheckCircle2 className="w-3 h-3 text-emerald-600" />
@@ -167,64 +167,64 @@ export default function HeroDispatchConsole() {
             </div>
 
             <div className="flex items-baseline gap-2">
-              <span className="text-zinc-600">Throughput Velocity</span>
+              <span className="text-zinc-600 text-[10px] sm:text-[11px]">Throughput</span>
               <span className="flex-1 h-px dot-leader text-zinc-300 mb-0.5" />
               <span className="text-zinc-900 font-medium">{current.tokenSpeed}</span>
             </div>
 
             <div className="flex items-baseline gap-2">
-              <span className="text-zinc-600">Tensor Compression</span>
+              <span className="text-zinc-600 text-[10px] sm:text-[11px]">Compression</span>
               <span className="flex-1 h-px dot-leader text-zinc-300 mb-0.5" />
               <span className="text-zinc-900">{current.compression}</span>
             </div>
 
-            <div className="flex items-baseline gap-2 text-zinc-600 text-[11px]">
-              <span>Compliance Rail</span>
+            <div className="flex items-baseline gap-2 text-zinc-600 text-[10px] sm:text-[11px]">
+              <span>Compliance</span>
               <span className="flex-1 h-px dot-leader text-zinc-300 mb-0.5" />
               <span className="text-zinc-800">{current.compliance}</span>
             </div>
           </div>
 
           {/* Dotted Divider */}
-          <div className="h-px w-full dot-leader text-zinc-400 my-1" />
+          <div className="h-px w-full dot-leader text-zinc-400 my-0.5" />
 
           {/* Main Total Metric Banner */}
-          <div className="flex justify-between items-baseline pt-3">
+          <div className="flex justify-between items-baseline pt-2.5">
             <div>
-              <span className="font-sans font-bold text-[10px] tracking-widest text-zinc-500 uppercase block">
+              <span className="font-sans font-bold text-[9px] sm:text-[10px] tracking-widest text-zinc-500 uppercase block">
                 P99 INFERENCE LATENCY
               </span>
-              <span className="text-[11px] text-emerald-700 font-medium flex items-center gap-1 mt-0.5">
+              <span className="text-[10px] sm:text-[11px] text-emerald-700 font-medium flex items-center gap-1 mt-0.5">
                 <Zap className="w-3 h-3 text-emerald-600" />
                 {current.costSaved}
               </span>
             </div>
-            <span className="text-2xl sm:text-3xl font-bold font-mono tracking-tight text-[#111111]">
+            <span className="text-xl sm:text-2xl md:text-3xl font-bold font-mono tracking-tight text-[#111111]">
               {current.latency}
             </span>
           </div>
 
           {/* Footer Receipt Status */}
-          <div className="flex items-center justify-between text-[10px] text-zinc-600 pt-4 mt-2 border-t border-dashed border-zinc-300">
-            <span className="flex items-center gap-1.5">
+          <div className="flex items-center justify-between text-[9px] sm:text-[10px] text-zinc-600 pt-3 mt-1.5 border-t border-dashed border-zinc-300">
+            <span className="flex items-center gap-1">
               <Shield className="w-3 h-3 text-zinc-700" />
-              Air-Gapped VPC Cluster
+              Air-Gapped VPC Pod
             </span>
             <span>✓ Verified · 0.0s</span>
           </div>
 
           {/* Stamped Approval Stamp */}
           <motion.div
-            initial={{ scale: 1.8, opacity: 0, rotate: -15 }}
+            initial={{ scale: 1.6, opacity: 0, rotate: -15 }}
             animate={{ scale: 1, opacity: 1, rotate: -8 }}
             transition={{ duration: 0.3, delay: 0.05 }}
-            className="absolute right-6 top-1/2 -translate-y-1/2 pointer-events-none"
+            className="absolute right-3 sm:right-6 top-1/2 -translate-y-1/2 pointer-events-none"
           >
-            <div className="border-2 border-emerald-800/80 text-emerald-800 px-3 py-1 rounded-sm text-center bg-emerald-500/[0.04] shadow-[inset_0_0_0_1px_rgba(22,101,52,0.15)] backdrop-blur-[0.5px]">
-              <div className="font-sans font-extrabold text-sm tracking-widest leading-tight">
+            <div className="border-2 border-emerald-800/80 text-emerald-800 px-2.5 py-0.5 sm:px-3 sm:py-1 rounded-sm text-center bg-emerald-500/[0.04] shadow-[inset_0_0_0_1px_rgba(22,101,52,0.15)] backdrop-blur-[0.5px]">
+              <div className="font-sans font-extrabold text-xs sm:text-sm tracking-widest leading-tight">
                 VERIFIED
               </div>
-              <div className="font-mono text-[7px] tracking-widest uppercase mt-0.5 text-emerald-900">
+              <div className="font-mono text-[6px] sm:text-[7px] tracking-widest uppercase mt-0.5 text-emerald-900">
                 ZERO-RETENTION
               </div>
             </div>

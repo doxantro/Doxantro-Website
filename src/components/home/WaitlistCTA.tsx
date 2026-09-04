@@ -14,25 +14,26 @@ export default function WaitlistCTA() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-40px' }}
           transition={{ duration: 0.45 }}
-          className="rounded-3xl bg-[#111111] text-white p-10 sm:p-16 lg:p-20 text-center relative overflow-hidden border border-white/10 shadow-2xl"
+          className="rounded-3xl bg-[#111111] text-white p-6 sm:p-14 lg:p-20 text-center relative overflow-hidden border border-white/10 shadow-2xl"
         >
           {/* Subtle Radial Gradient Accent */}
           <div className="absolute top-0 left-1/2 -translate-x-1/2 w-96 h-48 bg-orange-600/10 rounded-full blur-3xl pointer-events-none" />
 
           <div className="relative z-10 max-w-2xl mx-auto">
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-semibold tracking-[-0.03em] text-white leading-tight mb-4">
+            <h2 className="text-2xl sm:text-4xl md:text-5xl font-semibold tracking-[-0.03em] text-white leading-tight mb-4">
               Your enterprise AI infrastructure is ready.
             </h2>
-            <p className="text-sm sm:text-base text-zinc-400 leading-relaxed mb-8 max-w-xl mx-auto">
+            <p className="text-xs sm:text-base text-zinc-400 leading-relaxed mb-8 max-w-xl mx-auto">
               Built for engineering leaders shipping mission-critical intelligence. Deploy domain models, automate workflows, and eliminate hallucinations in minutes.
             </p>
 
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-3.5 mb-4">
+            <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-3 sm:gap-3.5 mb-4">
               <Button
                 href="/contact"
                 size="lg"
                 variant="inverted"
                 icon={<ArrowRight className="w-4 h-4" />}
+                className="w-full sm:w-auto"
               >
                 Start Building
               </Button>
@@ -40,6 +41,7 @@ export default function WaitlistCTA() {
                 href="/services"
                 size="lg"
                 variant="outline-white"
+                className="w-full sm:w-auto"
               >
                 View Architecture
               </Button>

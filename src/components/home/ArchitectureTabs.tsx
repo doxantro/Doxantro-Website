@@ -112,27 +112,29 @@ export default function ArchitectureTabs() {
             Integrate autonomous AI into your product in minutes.
           </h2>
 
-          {/* 3-Tab Pill Switcher */}
-          <div className="inline-flex items-center p-1 rounded-xl bg-white border border-black/[0.12] shadow-xs">
-            {tabs.map((tab) => (
-              <button
-                key={tab.id}
-                type="button"
-                onClick={() => setActiveTab(tab.id)}
-                className={`px-5 py-1.5 rounded-lg text-xs sm:text-sm font-medium transition-all duration-150 cursor-pointer ${
-                  activeTab === tab.id
-                    ? 'bg-[#111111] text-white shadow-xs'
-                    : 'text-zinc-600 hover:text-black hover:bg-zinc-100/60'
-                }`}
-              >
-                {tab.label}
-              </button>
-            ))}
+          {/* 3-Tab Pill Switcher with Responsive Scroll */}
+          <div className="flex justify-center overflow-x-auto py-1">
+            <div className="inline-flex items-center p-1 rounded-xl bg-white border border-black/[0.12] shadow-xs">
+              {tabs.map((tab) => (
+                <button
+                  key={tab.id}
+                  type="button"
+                  onClick={() => setActiveTab(tab.id)}
+                  className={`px-4 sm:px-5 py-1.5 rounded-lg text-xs sm:text-sm font-medium whitespace-nowrap transition-all duration-150 cursor-pointer ${
+                    activeTab === tab.id
+                      ? 'bg-[#111111] text-white shadow-xs'
+                      : 'text-zinc-600 hover:text-black hover:bg-zinc-100/60'
+                  }`}
+                >
+                  {tab.label}
+                </button>
+              ))}
+            </div>
           </div>
         </div>
 
         {/* 2-Column Content Preview */}
-        <div className="grid lg:grid-cols-12 gap-10 lg:gap-12 items-center">
+        <div className="grid lg:grid-cols-12 gap-8 lg:gap-12 items-center">
           {/* Left Column: Narrative Details */}
           <motion.div
             key={`left-${current.id}`}

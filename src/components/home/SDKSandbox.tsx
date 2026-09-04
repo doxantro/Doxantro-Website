@@ -138,15 +138,15 @@ export default function SDKSandbox() {
           </p>
         </div>
 
-        {/* Tab Selection Bar */}
-        <div className="flex justify-center mb-10">
+        {/* Tab Selection Bar with Horizontal Scroll */}
+        <div className="flex justify-center overflow-x-auto py-1 mb-10">
           <div className="inline-flex p-1 rounded-xl bg-zinc-100 border border-black/[0.08]">
             {sdks.map((sdk, idx) => (
               <button
                 key={sdk.id}
                 type="button"
                 onClick={() => setActiveTab(idx)}
-                className={`px-4 py-1.5 rounded-lg text-xs sm:text-sm font-medium transition-all duration-150 cursor-pointer ${
+                className={`px-3.5 sm:px-4 py-1.5 rounded-lg text-xs sm:text-sm font-medium whitespace-nowrap transition-all duration-150 cursor-pointer ${
                   activeTab === idx
                     ? 'bg-[#111111] text-white shadow-xs'
                     : 'text-zinc-600 hover:text-black'
@@ -159,7 +159,7 @@ export default function SDKSandbox() {
         </div>
 
         {/* 2-Column Content Grid */}
-        <div className="grid lg:grid-cols-12 gap-10 lg:gap-14 items-center">
+        <div className="grid lg:grid-cols-12 gap-8 lg:gap-14 items-center">
           {/* Left Column: Feature Highlights */}
           <div className="lg:col-span-6">
             <h3 className="text-xl sm:text-2xl font-semibold text-[#111111] mb-4">
