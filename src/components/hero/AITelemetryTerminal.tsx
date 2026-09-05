@@ -2,14 +2,13 @@
 
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { Terminal, Activity, Zap, CheckCircle2, Shield, Play, RefreshCw } from 'lucide-react';
-import Badge from '../ui/Badge';
+import { Play, RefreshCw, Activity, Layers, Terminal } from 'lucide-react';
 
 const initialLogs = [
   { id: 1, time: '10:42:01.104', type: 'info', text: 'Initializing Doxantro v3.4 Enterprise Cluster...' },
   { id: 2, time: '10:42:01.420', type: 'success', text: 'Neural weights mounted across 64 TPU nodes (Latency: 4.8ms)' },
   { id: 3, time: '10:42:02.012', type: 'info', text: 'Inference streaming active: Ingesting 18,400 events/sec' },
-  { id: 4, time: '10:42:02.890', type: 'success', text: '[FINANCE] Real-time fraud anomaly intercepted & neutralized ($42,800 saved)' },
+  { id: 4, time: '10:42:02.890', type: 'success', text: '[FINANCE] Real-time fraud anomaly intercepted ($42,800 saved)' },
   { id: 5, time: '10:42:03.510', type: 'warning', text: '[HEALTHCARE] DICOM CT Scan processed: Anomaly confidence 99.4%' },
   { id: 6, time: '10:42:04.112', type: 'info', text: '[SUPPLY] Route matrix re-computed: -14.2% delivery latency' },
 ];
@@ -37,7 +36,7 @@ export default function AITelemetryTerminal() {
       const timeStr = now.toTimeString().split(' ')[0] + '.' + String(now.getMilliseconds()).padStart(3, '0');
 
       setLogs((prev) => [
-        ...prev.slice(-7),
+        ...prev.slice(-6),
         {
           id: Date.now(),
           time: timeStr,
@@ -46,7 +45,7 @@ export default function AITelemetryTerminal() {
         },
       ]);
       setInferenceCount((prev) => prev + Math.floor(Math.random() * 24) + 8);
-    }, 3800);
+    }, 3600);
 
     return () => clearInterval(interval);
   }, []);
@@ -58,59 +57,50 @@ export default function AITelemetryTerminal() {
 
     setTimeout(() => {
       setLogs((prev) => [
-        ...prev.slice(-6),
+        ...prev.slice(-5),
         {
           id: Date.now(),
           time: timeStr,
           type: 'success',
-          text: `⚡ [SIMULATED BURST] Processed 100,000 concurrent tokens across 6 verticals in 14.8ms`,
+          text: `⚡ [BURST] 100,000 concurrent tokens processed across 6 verticals in 14.8ms`,
         },
       ]);
       setAvgLatency(6.2);
       setInferenceCount((prev) => prev + 100000);
       setIsSimulating(false);
-    }, 600);
+    }, 500);
   };
 
   return (
-    <motion.div
-      initial={{ opacity: 0, scale: 0.95, y: 30 }}
-      animate={{ opacity: 1, scale: 1, y: 0 }}
-      transition={{ duration: 0.6, ease: 'easeOut', delay: 0.2 }}
-      className="relative rounded-3xl border border-zinc-800 bg-zinc-950 text-zinc-100 shadow-2xl shadow-orange-950/20 overflow-hidden"
-    >
-      {/* Top Ambient Glow */}
-      <div className="absolute -top-24 -right-24 w-60 h-60 bg-orange-500/20 rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute -bottom-24 -left-24 w-60 h-60 bg-amber-500/10 rounded-full blur-3xl pointer-events-none" />
-
-      {/* Terminal Header */}
-      <div className="relative z-10 flex items-center justify-between px-5 py-3.5 bg-zinc-900/90 border-b border-zinc-800 backdrop-blur-md">
-        <div className="flex items-center space-x-2">
-          <div className="w-3 h-3 rounded-full bg-red-500/80 border border-red-600" />
-          <div className="w-3 h-3 rounded-full bg-amber-500/80 border border-amber-600" />
-          <div className="w-3 h-3 rounded-full bg-emerald-500/80 border border-emerald-600" />
-          <span className="ml-2 font-mono text-xs text-zinc-400 font-medium hidden sm:inline">
-            doxantro-core@v3.4-inference
+    <div className="relative rounded-2xl border border-black/[0.12] bg-[#0d0d10] text-zinc-200 shadow-[0_8px_32px_rgba(0,0,0,0.12)] overflow-hidden font-mono text-xs">
+      {/* Top Header Bar */}
+      <div className="flex items-center justify-between px-4 py-3 bg-[#131317] border-b border-white/[0.08]">
+        <div className="flex items-center gap-2">
+          <span className="w-2.5 h-2.5 rounded-full bg-[#ff5f56]" />
+          <span className="w-2.5 h-2.5 rounded-full bg-[#ffbd2e]" />
+          <span className="w-2.5 h-2.5 rounded-full bg-[#27c93f]" />
+          <span className="ml-2 text-[11px] text-zinc-400 font-mono hidden sm:inline">
+            doxantro-node-01 · telemetry
           </span>
         </div>
 
-        {/* Tab Buttons */}
-        <div className="flex items-center bg-zinc-950 rounded-xl p-1 border border-zinc-800 text-xs">
+        {/* Minimalist Switcher */}
+        <div className="flex items-center bg-[#0d0d10] rounded-lg p-0.5 border border-white/[0.08]">
           <button
             onClick={() => setActiveTab('terminal')}
-            className={`px-3 py-1 rounded-lg font-medium transition-all ${
+            className={`px-2.5 py-1 rounded-md text-[11px] font-mono transition-colors ${
               activeTab === 'terminal'
-                ? 'bg-orange-600 text-white shadow-sm'
+                ? 'bg-[#222228] text-white font-medium shadow-sm'
                 : 'text-zinc-400 hover:text-zinc-200'
             }`}
           >
-            Live Logs
+            Logs
           </button>
           <button
             onClick={() => setActiveTab('metrics')}
-            className={`px-3 py-1 rounded-lg font-medium transition-all ${
+            className={`px-2.5 py-1 rounded-md text-[11px] font-mono transition-colors ${
               activeTab === 'metrics'
-                ? 'bg-orange-600 text-white shadow-sm'
+                ? 'bg-[#222228] text-white font-medium shadow-sm'
                 : 'text-zinc-400 hover:text-zinc-200'
             }`}
           >
@@ -118,9 +108,9 @@ export default function AITelemetryTerminal() {
           </button>
           <button
             onClick={() => setActiveTab('nodes')}
-            className={`px-3 py-1 rounded-lg font-medium transition-all ${
+            className={`px-2.5 py-1 rounded-md text-[11px] font-mono transition-colors ${
               activeTab === 'nodes'
-                ? 'bg-orange-600 text-white shadow-sm'
+                ? 'bg-[#222228] text-white font-medium shadow-sm'
                 : 'text-zinc-400 hover:text-zinc-200'
             }`}
           >
@@ -129,39 +119,36 @@ export default function AITelemetryTerminal() {
         </div>
       </div>
 
-      {/* Terminal Content Body */}
-      <div className="relative z-10 p-5 min-h-[320px] flex flex-col justify-between">
+      {/* Content Area */}
+      <div className="p-4 sm:p-5 min-h-[300px] flex flex-col justify-between">
         {activeTab === 'terminal' && (
           <div>
-            <div className="flex items-center justify-between mb-3 text-xs text-zinc-400 pb-2 border-b border-zinc-800/80">
+            <div className="flex items-center justify-between mb-3 text-[11px] text-zinc-400 pb-2 border-b border-white/[0.06]">
               <div className="flex items-center gap-2">
-                <span className="relative flex h-2 w-2">
-                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
-                  <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" />
-                </span>
-                <span className="font-mono text-emerald-400 font-semibold">STREAM ACTIVE</span>
+                <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                <span className="text-emerald-400">STREAMING</span>
               </div>
-              <span className="font-mono">{inferenceCount.toLocaleString()} total ops</span>
+              <span className="font-mono tabular-nums">{inferenceCount.toLocaleString()} events</span>
             </div>
 
-            <div className="font-mono text-xs sm:text-[13px] space-y-2.5 overflow-hidden">
+            <div className="space-y-2 text-[12px] leading-relaxed">
               {logs.slice(-5).map((log) => (
                 <motion.div
                   key={log.id}
-                  initial={{ opacity: 0, x: -10 }}
+                  initial={{ opacity: 0, x: -6 }}
                   animate={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.2 }}
-                  className="flex items-start gap-2 leading-relaxed"
+                  transition={{ duration: 0.15 }}
+                  className="flex items-start gap-2.5"
                 >
-                  <span className="text-zinc-500 select-none text-[11px] whitespace-nowrap mt-0.5">
+                  <span className="text-zinc-500 text-[10px] whitespace-nowrap mt-0.5">
                     {log.time}
                   </span>
                   <span
                     className={
                       log.type === 'success'
-                        ? 'text-emerald-400'
+                        ? 'text-emerald-300'
                         : log.type === 'warning'
-                        ? 'text-amber-400'
+                        ? 'text-amber-300'
                         : 'text-zinc-300'
                     }
                   >
@@ -174,80 +161,76 @@ export default function AITelemetryTerminal() {
         )}
 
         {activeTab === 'metrics' && (
-          <div className="space-y-4">
-            <div className="grid grid-cols-2 gap-3">
-              <div className="bg-zinc-900/80 rounded-2xl p-3.5 border border-zinc-800">
-                <div className="text-xs text-zinc-400 mb-1">Average Response Latency</div>
-                <div className="text-2xl font-bold font-mono text-orange-400">{avgLatency}ms</div>
-                <div className="text-[11px] text-emerald-400 mt-1">✓ Sub-10ms target met</div>
+          <div className="space-y-3">
+            <div className="grid grid-cols-2 gap-2.5">
+              <div className="bg-[#141418] rounded-xl p-3 border border-white/[0.06]">
+                <div className="text-[11px] text-zinc-400 mb-1">Latency (p99)</div>
+                <div className="text-2xl font-bold font-mono text-zinc-100 tabular-nums">{avgLatency}ms</div>
+                <div className="text-[10px] text-emerald-400 mt-1">✓ SLA Guarantee &lt; 10ms</div>
               </div>
-              <div className="bg-zinc-900/80 rounded-2xl p-3.5 border border-zinc-800">
-                <div className="text-xs text-zinc-400 mb-1">Model Accuracy (AUC)</div>
-                <div className="text-2xl font-bold font-mono text-emerald-400">99.84%</div>
-                <div className="text-[11px] text-zinc-400 mt-1">Cross-validated across 6 datasets</div>
+              <div className="bg-[#141418] rounded-xl p-3 border border-white/[0.06]">
+                <div className="text-[11px] text-zinc-400 mb-1">Model Accuracy</div>
+                <div className="text-2xl font-bold font-mono text-emerald-400 tabular-nums">99.84%</div>
+                <div className="text-[10px] text-zinc-400 mt-1">Across 6 enterprise benchmarks</div>
               </div>
             </div>
 
-            <div className="bg-zinc-900/80 rounded-2xl p-3.5 border border-zinc-800">
-              <div className="flex justify-between text-xs text-zinc-400 mb-2">
-                <span>GPU Inference Memory Load</span>
-                <span className="font-mono text-orange-400">76% Allocated</span>
+            <div className="bg-[#141418] rounded-xl p-3 border border-white/[0.06]">
+              <div className="flex justify-between text-[11px] text-zinc-400 mb-1.5">
+                <span>Inference Memory Load</span>
+                <span className="font-mono text-zinc-200">76% / 128 TPU cores</span>
               </div>
-              <div className="w-full bg-zinc-800 h-2 rounded-full overflow-hidden">
-                <div className="bg-gradient-to-r from-orange-500 to-amber-400 h-full rounded-full w-[76%]" />
+              <div className="w-full bg-zinc-800 h-1.5 rounded-full overflow-hidden">
+                <div className="bg-orange-500 h-full rounded-full w-[76%]" />
               </div>
             </div>
           </div>
         )}
 
         {activeTab === 'nodes' && (
-          <div className="space-y-3">
-            <div className="text-xs text-zinc-400 mb-2">Distributed Inference Mesh (6 Available Regions)</div>
+          <div className="space-y-2">
+            <div className="text-[11px] text-zinc-400 mb-2">Distributed Low-Latency Regional Mesh</div>
             <div className="grid grid-cols-3 gap-2">
               {[
-                { name: 'US-East (Finance)', status: 'Healthy', ping: '3.8ms' },
-                { name: 'EU-Central (Health)', status: 'Healthy', ping: '7.1ms' },
-                { name: 'APAC-South (Agri)', status: 'Healthy', ping: '11.4ms' },
-                { name: 'US-West (Energy)', status: 'Healthy', ping: '5.2ms' },
-                { name: 'LATAM-East (Supply)', status: 'Healthy', ping: '14.1ms' },
-                { name: 'Cyber-Vault (Sec)', status: 'Protected', ping: '2.1ms' },
+                { name: 'US-East (Fin)', ping: '3.8ms' },
+                { name: 'EU-Central (Med)', ping: '7.1ms' },
+                { name: 'APAC-South (Agri)', ping: '11.4ms' },
+                { name: 'US-West (Energy)', ping: '5.2ms' },
+                { name: 'LATAM-East (Supply)', ping: '14.1ms' },
+                { name: 'Cyber-Vault (Sec)', ping: '2.1ms' },
               ].map((node, i) => (
-                <div key={i} className="bg-zinc-900/90 border border-zinc-800 rounded-xl p-2.5 text-center">
-                  <div className="text-xs font-semibold text-zinc-200 truncate">{node.name}</div>
-                  <div className="text-[10px] text-emerald-400 mt-0.5">{node.status}</div>
-                  <div className="text-[10px] font-mono text-zinc-500">{node.ping}</div>
+                <div key={i} className="bg-[#141418] border border-white/[0.06] rounded-lg p-2 text-center">
+                  <div className="text-[11px] font-medium text-zinc-200 truncate">{node.name}</div>
+                  <div className="text-[10px] text-emerald-400 mt-0.5">● Online</div>
+                  <div className="text-[10px] text-zinc-500 tabular-nums">{node.ping}</div>
                 </div>
               ))}
             </div>
           </div>
         )}
 
-        {/* Action / Trigger Footer */}
-        <div className="mt-5 pt-3 border-t border-zinc-800/80 flex flex-col sm:flex-row items-center justify-between gap-3">
-          <div className="flex items-center gap-2 text-xs text-zinc-400">
-            <Zap className="w-3.5 h-3.5 text-orange-500" />
-            <span>Encrypted zero-retention enterprise tunnel</span>
-          </div>
-
+        {/* Footer Bar */}
+        <div className="mt-4 pt-3 border-t border-white/[0.06] flex items-center justify-between text-[11px] text-zinc-400">
+          <span>Zero-retention enterprise tunnel</span>
           <button
             onClick={handleSimulateInference}
             disabled={isSimulating}
-            className="w-full sm:w-auto inline-flex items-center justify-center gap-1.5 px-3.5 py-1.5 rounded-full bg-zinc-800 hover:bg-zinc-700 text-xs font-medium text-orange-400 border border-orange-500/30 transition-colors cursor-pointer disabled:opacity-50"
+            className="inline-flex items-center gap-1 px-2.5 py-1 rounded-md bg-[#1f1f26] hover:bg-[#282832] text-zinc-200 border border-white/[0.1] transition-colors cursor-pointer disabled:opacity-50"
           >
             {isSimulating ? (
               <>
-                <RefreshCw className="w-3.5 h-3.5 animate-spin" />
-                <span>Running Inference...</span>
+                <RefreshCw className="w-3 h-3 animate-spin text-orange-400" />
+                <span>Simulating...</span>
               </>
             ) : (
               <>
-                <Play className="w-3 h-3 fill-orange-400" />
-                <span>Simulate AI Spike</span>
+                <Play className="w-2.5 h-2.5 fill-current text-orange-400" />
+                <span>Simulate Burst</span>
               </>
             )}
           </button>
         </div>
       </div>
-    </motion.div>
+    </div>
   );
 }

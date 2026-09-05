@@ -1,35 +1,36 @@
 'use client';
 
 import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import {
-  ArrowRight,
   CheckCircle2,
   Mail,
-  ShieldCheck,
-  Lock,
+  Building2,
   Clock,
+  ShieldCheck,
   Send,
   Loader2,
 } from 'lucide-react';
 import Button from '../../components/ui/Button';
 
-const verticals = [
+const verticalsList = [
   'Finance & Banking',
   'Healthcare & Diagnostics',
-  'Supply Chain & Logistics',
   'Precision Agriculture',
+  'Supply Chain & Logistics',
   'Cybersecurity & Defense',
   'Smart Grid & Energy',
-  'Custom Enterprise Architecture',
+  'Custom Enterprise AI',
 ];
 
+const timelineOptions = ['Immediate (< 1 mo)', '1 - 3 months', '3 - 6 months', 'Exploratory / R&D'];
+
 const modelScopes = [
-  'Domain Model Fine-Tuning',
-  'Low-Latency Edge Deployment',
-  'Zero-Trust Guardrails & PII',
-  'Private Air-Gapped VPC Pods',
-  'Technical Architecture Audit',
+  'Fine-Tuning Domain Models',
+  'Computer Vision & Imaging Pipeline',
+  'Real-Time Anomaly & Fraud Interception',
+  'Private On-Premise / Air-Gapped Deploy',
+  'Full-Lifecycle Architecture Audit',
 ];
 
 export default function Contact() {
@@ -38,24 +39,40 @@ export default function Contact() {
     lastName: '',
     email: '',
     company: '',
-    vertical: verticals[0],
+    vertical: verticalsList[0],
+    timeline: timelineOptions[1],
     selectedScopes: [modelScopes[0]],
     message: '',
   });
 
-  const [status, setStatus] = useState<'idle' | 'loading' | 'success'>('idle');
+  const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
+  const [errorMessage, setErrorMessage] = useState('');
 
   const handleScopeToggle = (scope: string) => {
-    setFormData((prev) => ({
-      ...prev,
-      selectedScopes: prev.selectedScopes.includes(scope)
-        ? prev.selectedScopes.filter((s) => s !== scope)
-        : [...prev.selectedScopes, scope],
-    }));
+    setFormData((prev) => {
+      const exists = prev.selectedScopes.includes(scope);
+      if (exists) {
+        return {
+          ...prev,
+          selectedScopes: prev.selectedScopes.filter((s) => s !== scope),
+        };
+      } else {
+        return {
+          ...prev,
+          selectedScopes: [...prev.selectedScopes, scope],
+        };
+      }
+    });
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    if (!formData.firstName || !formData.email || !formData.email.includes('@')) {
+      setStatus('error');
+      setErrorMessage('Please enter your name and a valid corporate email address.');
+      return;
+    }
+
     setStatus('loading');
     setTimeout(() => {
       setStatus('success');
@@ -64,130 +81,87 @@ export default function Contact() {
 
   return (
     <main className="min-h-screen bg-white">
-      {/* 1. Hero */}
-      <section className="pt-28 pb-14 sm:pt-36 sm:pb-20 bg-white border-b border-black/[0.06]">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <p className="font-mono text-xs text-zinc-500 uppercase tracking-widest mb-4">
-            Contact & Scoping
-          </p>
-          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-[3.6rem] font-semibold tracking-[-0.03em] text-[#111111] leading-tight mb-6">
-            Partner with Doxantro Systems.
-          </h1>
-          <p className="text-sm sm:text-base md:text-lg text-zinc-600 leading-relaxed max-w-2xl mx-auto">
-            Discuss your technical requirements directly with our AI infrastructure architects. We respond to enterprise scoping requests within 2 business hours.
-          </p>
+      {/* 1. Hero Section */}
+      <section className="relative pt-32 pb-16 md:pt-40 md:pb-20 border-b border-black/[0.06] bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.45 }}
+            className="max-w-4xl mx-auto"
+          >
+            <div className="mb-3.5">
+              <span className="subheading">
+                Direct Engineering & Architecture Consultation
+              </span>
+            </div>
+
+            <h1 className="display-1 mb-5">
+              Start Your Enterprise AI Initiative
+            </h1>
+
+            <p className="body-lg max-w-2xl mx-auto text-zinc-600">
+              Connect directly with our Principal AI Architects to evaluate your data pipelines, establish performance SLAs, and map project ROI under standard non-disclosure agreements.
+            </p>
+          </motion.div>
         </div>
       </section>
 
-      {/* 2. Contact Grid */}
-      <section className="py-16 sm:py-20 bg-[#f9f9f8] border-b border-black/[0.06]">
+      {/* 2. Scoping Form & Details */}
+      <section className="py-16 md:py-20 bg-[#fafafa] border-b border-black/[0.06]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid lg:grid-cols-12 gap-10 lg:gap-16">
-            {/* Left Column: Direct Info & Guarantees (5 cols) */}
-            <div className="lg:col-span-5 space-y-8">
-              <div>
-                <h2 className="text-xl sm:text-2xl font-semibold tracking-tight text-[#111111] mb-3">
-                  Enterprise Technical Engagement
-                </h2>
-                <p className="text-xs sm:text-sm text-zinc-600 leading-relaxed">
-                  Whether you are planning an air-gapped VPC cluster or benchmarking domain models against existing pipelines, our systems engineers will guide your architecture.
-                </p>
-              </div>
-
-              {/* Direct Info Box */}
-              <div className="rounded-2xl border border-black/[0.08] bg-white p-5 sm:p-6 space-y-4 font-mono text-xs">
-                <div className="flex items-center gap-3">
-                  <Mail className="w-4 h-4 text-zinc-600 flex-shrink-0" />
-                  <div className="truncate">
-                    <div className="text-zinc-400 text-[10px] uppercase">Direct Email</div>
-                    <a href="mailto:solutions@doxantro.com" className="font-semibold text-zinc-900 hover:underline truncate block">
-                      solutions@doxantro.com
-                    </a>
-                  </div>
-                </div>
-
-                <div className="flex items-center gap-3 pt-3 border-t border-black/[0.06]">
-                  <Clock className="w-4 h-4 text-zinc-600 flex-shrink-0" />
-                  <div>
-                    <div className="text-zinc-400 text-[10px] uppercase">Enterprise Response SLA</div>
-                    <div className="font-semibold text-zinc-900">&lt; 2 Business Hours</div>
-                  </div>
-                </div>
-
-                <div className="flex items-center gap-3 pt-3 border-t border-black/[0.06]">
-                  <ShieldCheck className="w-4 h-4 text-zinc-600 flex-shrink-0" />
-                  <div>
-                    <div className="text-zinc-400 text-[10px] uppercase">Security Standard</div>
-                    <div className="font-semibold text-zinc-900 text-[11px] sm:text-xs">SOC-2 Type II · HIPAA · NDA Ready</div>
-                  </div>
-                </div>
-              </div>
-
-              {/* Guarantee Items */}
-              <div className="space-y-3">
-                <div className="flex items-start gap-3">
-                  <CheckCircle2 className="w-4 h-4 text-emerald-600 flex-shrink-0 mt-0.5" />
-                  <span className="text-xs sm:text-sm text-zinc-700">
-                    Mutual Non-Disclosure Agreement (NDA) executed prior to data sharing.
-                  </span>
-                </div>
-                <div className="flex items-start gap-3">
-                  <CheckCircle2 className="w-4 h-4 text-emerald-600 flex-shrink-0 mt-0.5" />
-                  <span className="text-xs sm:text-sm text-zinc-700">
-                    Dedicated Principal AI Solutions Architect assigned to each deployment.
-                  </span>
-                </div>
-                <div className="flex items-start gap-3">
-                  <CheckCircle2 className="w-4 h-4 text-emerald-600 flex-shrink-0 mt-0.5" />
-                  <span className="text-xs sm:text-sm text-zinc-700">
-                    Proof-of-Concept benchmark sandbox deployed in under 7 business days.
-                  </span>
-                </div>
-              </div>
-            </div>
-
-            {/* Right Column: Scoping Form (7 cols) */}
+          <div className="grid lg:grid-cols-12 gap-8 lg:gap-12 items-start">
+            {/* Left: Scoping Form (7 cols) */}
             <div className="lg:col-span-7">
-              <div className="rounded-3xl border border-black/[0.09] bg-white p-5 sm:p-8 lg:p-10 shadow-[0_4px_24px_rgba(0,0,0,0.04)]">
+              <div className="card-minimal p-6 sm:p-8 bg-white">
                 {status === 'success' ? (
                   <motion.div
-                    initial={{ opacity: 0, scale: 0.95 }}
+                    initial={{ opacity: 0, scale: 0.98 }}
                     animate={{ opacity: 1, scale: 1 }}
-                    className="text-center py-12"
+                    className="text-center py-10 space-y-3"
                   >
-                    <div className="w-12 h-12 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-200 flex items-center justify-center mx-auto mb-4">
+                    <div className="w-12 h-12 rounded-xl bg-emerald-100 text-emerald-600 flex items-center justify-center mx-auto">
                       <CheckCircle2 className="w-6 h-6" />
                     </div>
-                    <h3 className="text-xl font-semibold text-[#111111] mb-2">
-                      Inquiry Dispatched Successfully
+
+                    <h3 className="text-xl font-bold text-zinc-900">
+                      Inquiry Received & Scoped
                     </h3>
-                    <p className="text-sm text-zinc-600 max-w-md mx-auto mb-6">
-                      Thank you for contacting Doxantro Systems. A senior AI architect has received your scoping requirements and will reach out within 2 business hours.
+
+                    <p className="text-xs text-zinc-600 max-w-md mx-auto leading-relaxed">
+                      Thank you, <span className="font-semibold text-zinc-900">{formData.firstName}</span>. An AI Principal Architect from our <span className="font-semibold text-zinc-900">{formData.vertical}</span> division has received your parameters and will respond within 24 hours.
                     </p>
-                    <Button
-                      onClick={() => {
-                        setStatus('idle');
-                        setFormData({
-                          firstName: '',
-                          lastName: '',
-                          email: '',
-                          company: '',
-                          vertical: verticals[0],
-                          selectedScopes: [modelScopes[0]],
-                          message: '',
-                        });
-                      }}
-                      size="sm"
-                      variant="secondary"
-                    >
-                      Submit Another Scoping Inquiry
-                    </Button>
+
+                    <div className="p-3.5 rounded-lg bg-zinc-50 border border-black/[0.04] text-[11px] text-zinc-600 max-w-md mx-auto text-left space-y-1 font-mono">
+                      <div>● Target Vertical: {formData.vertical}</div>
+                      <div>● Est. Timeline: {formData.timeline}</div>
+                      <div>● Model Scope: {formData.selectedScopes.join(', ')}</div>
+                    </div>
+
+                    <div className="pt-2">
+                      <button
+                        onClick={() => setStatus('idle')}
+                        className="px-4 py-1.5 rounded-full border border-black/[0.1] text-xs font-medium text-zinc-700 hover:bg-zinc-100 transition-colors"
+                      >
+                        Submit Another Inquiry
+                      </button>
+                    </div>
                   </motion.div>
                 ) : (
-                  <form onSubmit={handleSubmit} className="space-y-6">
-                    <div className="grid sm:grid-cols-2 gap-4">
+                  <form onSubmit={handleSubmit} className="space-y-4">
+                    <div>
+                      <h3 className="text-lg font-bold text-zinc-900 mb-0.5">
+                        Enterprise Scoping Questionnaire
+                      </h3>
+                      <p className="text-xs text-zinc-500 font-mono">
+                        Fields marked with * are required for evaluation.
+                      </p>
+                    </div>
+
+                    {/* Name inputs */}
+                    <div className="grid sm:grid-cols-2 gap-3">
                       <div>
-                        <label className="block text-xs font-mono uppercase text-zinc-600 mb-1.5">
+                        <label className="block text-[11px] font-mono uppercase tracking-wider text-zinc-500 mb-1">
                           First Name *
                         </label>
                         <input
@@ -195,129 +169,231 @@ export default function Contact() {
                           required
                           value={formData.firstName}
                           onChange={(e) => setFormData({ ...formData, firstName: e.target.value })}
-                          placeholder="e.g. Alex"
-                          className="w-full px-3.5 py-2.5 rounded-xl border border-black/[0.1] bg-zinc-50 text-xs sm:text-sm text-zinc-900 focus:outline-none focus:ring-2 focus:ring-black focus:bg-white transition-all"
+                          placeholder="e.g. Sarah"
+                          className="w-full px-3.5 py-2 text-xs bg-zinc-50 border border-black/[0.08] rounded-lg focus:outline-none focus:border-black text-zinc-900"
                         />
                       </div>
                       <div>
-                        <label className="block text-xs font-mono uppercase text-zinc-600 mb-1.5">
-                          Last Name *
+                        <label className="block text-[11px] font-mono uppercase tracking-wider text-zinc-500 mb-1">
+                          Last Name
                         </label>
                         <input
                           type="text"
-                          required
                           value={formData.lastName}
                           onChange={(e) => setFormData({ ...formData, lastName: e.target.value })}
-                          placeholder="e.g. Mercer"
-                          className="w-full px-3.5 py-2.5 rounded-xl border border-black/[0.1] bg-zinc-50 text-xs sm:text-sm text-zinc-900 focus:outline-none focus:ring-2 focus:ring-black focus:bg-white transition-all"
+                          placeholder="e.g. Connor"
+                          className="w-full px-3.5 py-2 text-xs bg-zinc-50 border border-black/[0.08] rounded-lg focus:outline-none focus:border-black text-zinc-900"
                         />
                       </div>
                     </div>
 
-                    <div className="grid sm:grid-cols-2 gap-4">
+                    {/* Email & Company */}
+                    <div className="grid sm:grid-cols-2 gap-3">
                       <div>
-                        <label className="block text-xs font-mono uppercase text-zinc-600 mb-1.5">
-                          Work Email *
+                        <label className="block text-[11px] font-mono uppercase tracking-wider text-zinc-500 mb-1">
+                          Corporate Email *
                         </label>
                         <input
                           type="email"
                           required
                           value={formData.email}
                           onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                          placeholder="alex@enterprise.com"
-                          className="w-full px-3.5 py-2.5 rounded-xl border border-black/[0.1] bg-zinc-50 text-xs sm:text-sm text-zinc-900 focus:outline-none focus:ring-2 focus:ring-black focus:bg-white transition-all"
+                          placeholder="sarah@enterprise.com"
+                          className="w-full px-3.5 py-2 text-xs bg-zinc-50 border border-black/[0.08] rounded-lg focus:outline-none focus:border-black text-zinc-900"
                         />
                       </div>
                       <div>
-                        <label className="block text-xs font-mono uppercase text-zinc-600 mb-1.5">
-                          Company / Organization *
+                        <label className="block text-[11px] font-mono uppercase tracking-wider text-zinc-500 mb-1">
+                          Company / Institution
                         </label>
                         <input
                           type="text"
-                          required
                           value={formData.company}
                           onChange={(e) => setFormData({ ...formData, company: e.target.value })}
-                          placeholder="Enterprise Inc."
-                          className="w-full px-3.5 py-2.5 rounded-xl border border-black/[0.1] bg-zinc-50 text-xs sm:text-sm text-zinc-900 focus:outline-none focus:ring-2 focus:ring-black focus:bg-white transition-all"
+                          placeholder="e.g. Global Financial Corp"
+                          className="w-full px-3.5 py-2 text-xs bg-zinc-50 border border-black/[0.08] rounded-lg focus:outline-none focus:border-black text-zinc-900"
                         />
                       </div>
                     </div>
 
+                    {/* Vertical Selector */}
                     <div>
-                      <label className="block text-xs font-mono uppercase text-zinc-600 mb-1.5">
-                        Industry Vertical *
+                      <label className="block text-[11px] font-mono uppercase tracking-wider text-zinc-500 mb-1">
+                        Industry Vertical
                       </label>
                       <select
                         value={formData.vertical}
                         onChange={(e) => setFormData({ ...formData, vertical: e.target.value })}
-                        className="w-full px-3.5 py-2.5 rounded-xl border border-black/[0.1] bg-zinc-50 text-xs sm:text-sm text-zinc-900 focus:outline-none focus:ring-2 focus:ring-black focus:bg-white transition-all"
+                        className="w-full px-3.5 py-2 text-xs bg-zinc-50 border border-black/[0.08] rounded-lg focus:outline-none focus:border-black text-zinc-900 cursor-pointer"
                       >
-                        {verticals.map((v) => (
-                          <option key={v} value={v}>
+                        {verticalsList.map((v, idx) => (
+                          <option key={idx} value={v}>
                             {v}
                           </option>
                         ))}
                       </select>
                     </div>
 
-                    {/* Scope Pills */}
+                    {/* Scopes Multi-select */}
                     <div>
-                      <label className="block text-xs font-mono uppercase text-zinc-600 mb-2">
-                        Project Scope Areas
+                      <label className="block text-[11px] font-mono uppercase tracking-wider text-zinc-500 mb-1.5">
+                        Target AI Capabilities (Select all that apply)
                       </label>
-                      <div className="flex flex-wrap gap-1.5">
-                        {modelScopes.map((scope) => {
+                      <div className="grid sm:grid-cols-2 gap-1.5">
+                        {modelScopes.map((scope, idx) => {
                           const isSelected = formData.selectedScopes.includes(scope);
                           return (
                             <button
-                              key={scope}
                               type="button"
+                              key={idx}
                               onClick={() => handleScopeToggle(scope)}
-                              className={`px-3 py-1 rounded-lg text-xs font-mono transition-all duration-150 cursor-pointer ${
+                              className={`p-2 rounded-lg text-xs text-left border transition-colors cursor-pointer flex items-center justify-between ${
                                 isSelected
-                                  ? 'bg-[#111111] text-white'
-                                  : 'bg-zinc-100 text-zinc-700 hover:bg-zinc-200/70'
+                                  ? 'bg-zinc-100 border-black text-[#111111] font-semibold'
+                                  : 'bg-zinc-50 border-black/[0.06] text-zinc-600 hover:border-black/[0.15]'
                               }`}
                             >
-                              {scope}
+                              <span>{scope}</span>
+                              {isSelected && <CheckCircle2 className="w-3.5 h-3.5 text-zinc-900 flex-shrink-0" />}
                             </button>
                           );
                         })}
                       </div>
                     </div>
 
+                    {/* Timeline */}
                     <div>
-                      <label className="block text-xs font-mono uppercase text-zinc-600 mb-1.5">
-                        Technical Requirements & Objectives
+                      <label className="block text-[11px] font-mono uppercase tracking-wider text-zinc-500 mb-1">
+                        Estimated Project Timeline
+                      </label>
+                      <div className="grid grid-cols-2 sm:grid-cols-4 gap-1.5">
+                        {timelineOptions.map((opt, idx) => (
+                          <button
+                            type="button"
+                            key={idx}
+                            onClick={() => setFormData({ ...formData, timeline: opt })}
+                            className={`p-2 rounded-lg text-xs text-center border transition-colors cursor-pointer ${
+                              formData.timeline === opt
+                                ? 'bg-[#111111] text-white font-medium border-[#111111]'
+                                : 'bg-zinc-50 border-black/[0.06] text-zinc-600 hover:border-black/[0.15]'
+                            }`}
+                          >
+                            {opt}
+                          </button>
+                        ))}
+                      </div>
+                    </div>
+
+                    {/* Message textarea */}
+                    <div>
+                      <label className="block text-[11px] font-mono uppercase tracking-wider text-zinc-500 mb-1">
+                        Project Parameters & Constraints
                       </label>
                       <textarea
-                        rows={4}
+                        rows={3}
                         value={formData.message}
                         onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                        placeholder="Describe your current pipeline, target latency SLAs, volume requirements, or security constraints..."
-                        className="w-full px-3.5 py-2.5 rounded-xl border border-black/[0.1] bg-zinc-50 text-xs sm:text-sm text-zinc-900 focus:outline-none focus:ring-2 focus:ring-black focus:bg-white transition-all"
+                        placeholder="Describe data volume, current infrastructure, target latency SLA, or privacy requirements..."
+                        className="w-full px-3.5 py-2 text-xs bg-zinc-50 border border-black/[0.08] rounded-lg focus:outline-none focus:border-black text-zinc-900"
                       />
                     </div>
 
-                    <button
+                    {status === 'error' && (
+                      <p className="text-xs text-rose-600 font-mono">{errorMessage}</p>
+                    )}
+
+                    <Button
                       type="submit"
                       disabled={status === 'loading'}
-                      className="w-full h-11 bg-[#111111] hover:bg-black text-white rounded-full font-medium text-sm flex items-center justify-center gap-2 cursor-pointer transition-colors"
+                      size="lg"
+                      variant="primary"
+                      className="w-full"
                     >
                       {status === 'loading' ? (
                         <>
-                          <Loader2 className="w-4 h-4 animate-spin" />
-                          <span>Dispatching Request...</span>
+                          <Loader2 className="w-3.5 h-3.5 animate-spin mr-2" />
+                          <span>Processing Scope...</span>
                         </>
                       ) : (
                         <>
-                          <span>Submit Scoping Inquiry</span>
-                          <ArrowRight className="w-4 h-4" />
+                          <span>Submit Scoping Request</span>
+                          <Send className="w-3.5 h-3.5 ml-1.5" />
                         </>
                       )}
-                    </button>
+                    </Button>
                   </form>
                 )}
+              </div>
+            </div>
+
+            {/* Right: Security Guarantees & Direct Channels (5 cols) */}
+            <div className="lg:col-span-5 space-y-4">
+              {/* Security & Confidentiality Box */}
+              <div className="p-6 rounded-2xl bg-[#0d0d10] text-white border border-white/[0.08] shadow-sm">
+                <div className="flex items-center gap-1.5 text-[11px] font-mono text-emerald-400 mb-3">
+                  <ShieldCheck className="w-4 h-4" />
+                  <span>NDA & SOC-2 Compliant Ingestion</span>
+                </div>
+
+                <h3 className="text-base font-bold text-white mb-2">
+                  Enterprise Data Confidentiality
+                </h3>
+
+                <p className="text-xs text-zinc-400 leading-relaxed mb-4">
+                  All scoping details, technical parameters, and submitted materials are handled under strict non-disclosure terms and never used to train public models.
+                </p>
+
+                <div className="space-y-2 text-xs text-zinc-300 font-mono">
+                  <div className="flex items-center gap-2">
+                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
+                    <span>Zero-retention evaluation pipelines</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
+                    <span>24-Hour SLA direct architect response</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
+                    <span>Air-gapped on-premise consultation</span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Direct Channels */}
+              <div className="card-minimal p-6 bg-white space-y-3.5">
+                <div className="text-[11px] font-mono tracking-wider uppercase text-zinc-500 pb-2 border-b border-black/[0.04]">
+                  ■ Direct Channels
+                </div>
+
+                <div className="flex items-start gap-3 text-xs text-zinc-700">
+                  <div className="p-1.5 rounded-md bg-zinc-100 text-zinc-900 flex-shrink-0">
+                    <Mail className="w-3.5 h-3.5" />
+                  </div>
+                  <div>
+                    <div className="font-semibold text-zinc-900">Enterprise Inquiries</div>
+                    <div className="text-[11px] text-zinc-500 font-mono">architects@doxantro.com</div>
+                  </div>
+                </div>
+
+                <div className="flex items-start gap-3 text-xs text-zinc-700">
+                  <div className="p-1.5 rounded-md bg-zinc-100 text-zinc-900 flex-shrink-0">
+                    <Building2 className="w-3.5 h-3.5" />
+                  </div>
+                  <div>
+                    <div className="font-semibold text-zinc-900">Global Campus</div>
+                    <div className="text-[11px] text-zinc-500">Doxantro Systems Technology Group</div>
+                  </div>
+                </div>
+
+                <div className="flex items-start gap-3 text-xs text-zinc-700">
+                  <div className="p-1.5 rounded-md bg-zinc-100 text-zinc-900 flex-shrink-0">
+                    <Clock className="w-3.5 h-3.5" />
+                  </div>
+                  <div>
+                    <div className="font-semibold text-zinc-900">Operating Availability</div>
+                    <div className="text-[11px] text-zinc-500">24/7 Global SRE & Support</div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>

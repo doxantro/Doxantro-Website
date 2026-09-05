@@ -1,4 +1,4 @@
-import type { Metadata, Viewport } from "next";
+import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Navbar from "../components/Navbar";
@@ -14,16 +14,9 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-export const viewport: Viewport = {
-  width: "device-width",
-  initialScale: 1,
-  maximumScale: 5,
-  themeColor: "#ffffff",
-};
-
 export const metadata: Metadata = {
-  title: "Doxantro Systems - Enterprise AI for Modern Industry",
-  description: "Think, build, and solve with domain-tuned AI models, low-latency edge orchestration, and zero-trust guardrails across finance, healthcare, agriculture, supply chain, security, and energy.",
+  title: "Doxantro Systems - AI Solutions for Modern Business",
+  description: "Doxantro Systems helps businesses, government agencies, and organizations solve their challenges with innovative AI solutions across finance, healthcare, agriculture, supply chain, security, and energy.",
 };
 
 export default function RootLayout({
@@ -32,9 +25,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="scroll-smooth">
+    <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-white text-[#111111] overflow-x-hidden min-h-screen selection:bg-orange-100 selection:text-orange-900`}
+        className={`${geistSans.variable} ${geistMono.variable} font-sans antialiased text-zinc-900 bg-white selection:bg-orange-500 selection:text-white`}
       >
         <Navbar />
         {children}

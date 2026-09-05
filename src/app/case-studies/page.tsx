@@ -5,12 +5,13 @@ import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
   ArrowRight,
-  CheckCircle2,
   Search,
-  Building2,
   Clock,
+  Sparkles,
 } from 'lucide-react';
 import Button from '../../components/ui/Button';
+import SectionHeader from '../../components/ui/SectionHeader';
+import SolutionIcon from '../../components/ui/SolutionIcon';
 
 const industries = ['All', 'Finance', 'Healthcare', 'Agriculture', 'Supply Chain', 'Security', 'Energy'];
 
@@ -21,15 +22,16 @@ const caseStudiesData = [
     client: 'Tier-1 Multinational Commercial Bank',
     industry: 'Finance',
     duration: '6 months',
-    challenge: 'The institution faced synthetic identity fraud that bypassed legacy rule engines, resulting in rising chargebacks and high false-positive decline rates.',
-    solution: 'Doxantro engineered a graph neural network and behavioral anomaly engine analyzing 18,000+ tx/sec with real-time risk scoring in under 6 milliseconds.',
+    challenge: 'The institution faced an influx of sophisticated synthetic identity and velocity fraud that bypassed legacy rule engines, resulting in rising chargebacks and high false positives.',
+    solution: 'Doxantro engineered an end-to-end graph neural network and behavioral anomaly engine analyzing 18,000+ ops/sec with real-time risk scoring in under 6 milliseconds.',
     results: [
-      { metric: '90%', label: 'Fraud Losses Prevented' },
-      { metric: '99.94%', label: 'Detection Precision' },
-      { metric: '87%', label: 'Fewer False Declines' },
-      { metric: '<6ms', label: 'Inference SLA' },
+      { metric: '90%', label: 'Reduction in Fraud Losses' },
+      { metric: '99.9%', label: 'Detection Accuracy' },
+      { metric: '87%', label: 'Drop in False Positives' },
+      { metric: '<6ms', label: 'Inference SLA at Scale' },
     ],
-    technologies: ['Graph Neural Networks', 'Streaming Pipeline', 'Zero-Trust Vaults', 'FINRA Compliance'],
+    technologies: ['Graph Neural Networks', 'Real-Time Streaming APIs', 'Behavioral Fingerprinting', 'SOC-2 Private Vaults'],
+    iconName: 'BadgeDollarSign',
     badge: 'Fintech Tier 1',
   },
   {
@@ -38,84 +40,89 @@ const caseStudiesData = [
     client: 'Regional University Hospital Network (42 Centers)',
     industry: 'Healthcare',
     duration: '8 months',
-    challenge: 'Radiology departments experienced imaging backlogs and diagnostic fatigue, causing prolonged triage wait times for emergency CT and MRI scans.',
-    solution: 'Developed a HIPAA-compliant vision transformer pipeline that pre-segments abnormalities, computes confidence heatmaps, and flags high-urgency scans to doctors.',
+    challenge: 'Radiology departments experienced massive imaging backlogs and diagnostic fatigue, causing prolonged triage wait times for emergency CT and MRI scans.',
+    solution: 'Developed a HIPAA-compliant computer vision diagnostic pipeline that pre-segments abnormalities, computes confidence heatmaps, and flags high-urgency scans to doctors instantly.',
     results: [
-      { metric: '85%', label: 'Triage Speed Gain' },
-      { metric: '60%', label: 'Faster Emergency Reads' },
+      { metric: '85%', label: 'Triage Accuracy Boost' },
+      { metric: '60%', label: 'Faster Emergency Scan Reads' },
       { metric: '99.4%', label: 'Anomaly Detection AUC' },
-      { metric: '100%', label: 'HIPAA Air-Gapped' },
+      { metric: '24/7', label: 'Zero-Downtime Triage' },
     ],
-    technologies: ['Vision Transformers', 'DICOM Segmentation', 'HIPAA Secure Pipeline', 'Edge GPU Nodes'],
+    technologies: ['Vision Transformers', 'DICOM Image Segmentation', 'HIPAA Secure Pipeline', 'Edge TPU Acceleration'],
+    iconName: 'Activity',
     badge: 'Clinical Grade',
   },
   {
     id: 'agriculture-yield',
-    title: 'Autonomous Crop Health & Satellite Yield Intelligence',
-    client: 'AgriCorp Global Operations (120,000+ Hectares)',
+    title: 'Precision Agricultural Multispectral Yield Engine',
+    client: 'Agricultural Farming Cooperative (85,000 Acres)',
     industry: 'Agriculture',
-    duration: '5 months',
-    challenge: 'Unpredictable pest outbreaks and microclimate fluctuations resulted in substantial harvest losses and inefficient nitrogen application across farming zones.',
-    solution: 'Integrated multi-spectral satellite telemetry and edge drone vision models to predict crop stress 14 days before visible leaf symptoms appear.',
+    duration: '12 months',
+    challenge: 'Unpredictable weather microclimates and pest blights caused yield variance and excessive fertilizer expenditure across extensive arable land.',
+    solution: 'Implemented satellite NDVI indexing, drone multispectral imagery processing, and soil IoT sensor aggregation to generate daily micro-precision resource recommendations.',
     results: [
-      { metric: '35%', label: 'Higher Crop Yield' },
-      { metric: '40%', label: 'Reduced Fertilizer Use' },
-      { metric: '14 Days', label: 'Early Pest Warning' },
-      { metric: '$4.2M', label: 'Annual Cost Saved' },
+      { metric: '+30%', label: 'Crop Yield Increase' },
+      { metric: '-40%', label: 'Water Usage Saved' },
+      { metric: '-25%', label: 'Fertilizer Cost Reduction' },
+      { metric: '12k', label: 'Acres Indexed Daily' },
     ],
-    technologies: ['Multi-Spectral Vision', 'Weather RNNs', 'Edge Inference Pods', 'Offline Sync'],
-    badge: 'Precision Agri',
+    technologies: ['Satellite NDVI Analytics', 'Drone Multispectral Vision', 'IoT Sensor Fusion', 'Yield Prediction Models'],
+    iconName: 'Sprout',
+    badge: 'Eco-Precision',
   },
   {
     id: 'supply-chain-routing',
-    title: 'Dynamic Multi-Modal Logistics & Port Bottleneck Optimizer',
-    client: 'Global Ocean & Rail Freight Logistics Consortium',
+    title: 'Multi-Echelon Dynamic Supply Chain & Route Optimization',
+    client: 'Global Logistics & Manufacturing Enterprise',
     industry: 'Supply Chain',
-    duration: '7 months',
-    challenge: 'Port congestion, customs delays, and container imbalances caused high demurrage penalties and missed supply chain delivery windows.',
-    solution: 'Deployed a reinforcement learning multi-agent scheduler that continuously simulates 100,000+ route variations in real time, dynamically rerouting freight.',
+    duration: '10 months',
+    challenge: 'Supply bottlenecks, fluctuating fuel tariffs, and unpredictable demand spikes led to substantial inventory holding penalties and delivery delays.',
+    solution: 'Created an intelligent routing and inventory forecasting suite that dynamically recalculates transport vectors in real-time based on weather, port congestion, and demand signals.',
     results: [
-      { metric: '28%', label: 'Faster Port Turnaround' },
-      { metric: '$18M', label: 'Demurrage Eliminated' },
-      { metric: '94%', label: 'On-Time Delivery Rate' },
-      { metric: '18ms', label: 'Route Optimization' },
+      { metric: '-35%', label: 'Logistics Operating Cost' },
+      { metric: '+50%', label: 'On-Time Freight Deliveries' },
+      { metric: '-45%', label: 'Dead-Inventory Waste' },
+      { metric: '100%', label: 'Real-Time Visibility' },
     ],
-    technologies: ['Multi-Agent RL', 'Graph Routing', 'Kafka Stream Engine', 'Predictive Customs'],
-    badge: 'Global Freight',
+    technologies: ['Dynamic Route Heuristics', 'Multi-Echelon Demand Forecasting', 'Live Telemetry Ingestion', 'ERP Integrations'],
+    iconName: 'Boxes',
+    badge: 'Global Supply',
   },
   {
-    id: 'cybersecurity-threat',
-    title: 'Autonomous SOC Threat Triage & Zero-Day Neutralization',
-    client: 'Defense & Cloud Infrastructure Provider',
+    id: 'security-threat',
+    title: 'Autonomous Zero-Trust Threat Intelligence & Defend Mesh',
+    client: 'Critical Infrastructure & Government Defense Agency',
     industry: 'Security',
-    duration: '4 months',
-    challenge: 'Security teams were overwhelmed by 45,000+ daily alerts, causing alert fatigue and increasing mean time to respond (MTTR) for genuine lateral movements.',
-    solution: 'Built an air-gapped LLM agent mesh that correlates multi-cloud telemetry, eliminates 96% of false positives, and executes zero-day isolation scripts automatically.',
+    duration: '9 months',
+    challenge: 'Nation-state cyber threats and zero-day memory exploits were evading conventional rule-based SIEM systems, demanding millisecond automated isolation.',
+    solution: 'Deployed an autonomous neural network that continuously monitors packet payloads, user authorization graphs, and system process anomalies with automated quarantine triggers.',
     results: [
-      { metric: '96%', label: 'False Positive Drop' },
-      { metric: '<30s', label: 'Zero-Day MTTR' },
-      { metric: '100%', label: 'Audit Trail Grounding' },
-      { metric: 'Zero', label: 'Alert Fatigue' },
+      { metric: '<1s', label: 'Incident Containment' },
+      { metric: '99.99%', label: 'Threat Neutralization' },
+      { metric: '-92%', label: 'SecOps Alert Fatigue' },
+      { metric: 'Zero', label: 'Data Exfiltration Breaches' },
     ],
-    technologies: ['Cyber LLM Agents', 'eBPF Kernel Telemetry', 'Air-Gapped Sandbox', 'Automated Containment'],
-    badge: 'Defense SOC-2',
+    technologies: ['Zero-Trust Behavioral AI', 'eBPF Kernel Anomaly Sensing', 'Air-Gapped Enclaves', 'Automated Containment'],
+    iconName: 'ShieldAlert',
+    badge: 'National Defense',
   },
   {
-    id: 'energy-grid-forecasting',
-    title: 'Renewable Power Grid Load Balancing & Battery Dispatch',
-    client: 'National Clean Energy & Grid Utility Operator',
+    id: 'energy-smart-grid',
+    title: 'Smart Grid Autonomous Load Balancing & Renewable Optimizer',
+    client: 'National Power Grid & Clean Energy Provider',
     industry: 'Energy',
-    duration: '9 months',
-    challenge: 'High intermittency of solar and wind generation created severe grid imbalances and curtailment penalties during peak transmission hours.',
-    solution: 'Engineered a physics-informed neural network (PINN) forecasting sub-hourly generation and optimizing utility-scale battery storage dispatch.',
+    duration: '11 months',
+    challenge: 'Integrating intermittent solar and wind generation created severe grid instability, peak-load surges, and costly reliance on legacy fossil peaker plants.',
+    solution: 'Implemented predictive machine learning models that forecast renewable generation 48 hours ahead and autonomously orchestrate battery storage and load distribution.',
     results: [
-      { metric: '45%', label: 'Fewer Grid Imbalances' },
-      { metric: '99.1%', label: 'Generation Forecast Accuracy' },
-      { metric: '22%', label: 'Extended Battery Lifetime' },
-      { metric: '10ms', label: 'Sub-Grid Dispatch SLA' },
+      { metric: '+25%', label: 'Grid Efficiency Gain' },
+      { metric: '-38%', label: 'Peak-Load Surges Mitigated' },
+      { metric: '+45%', label: 'Storage Utilization' },
+      { metric: '99.98%', label: 'Grid Stability Index' },
     ],
-    technologies: ['Physics-Informed NNs', 'Time-Series Transformers', 'SCADA Integrations', 'Battery Optimization'],
-    badge: 'Utility Scale',
+    technologies: ['Time-Series Load Forecasting', 'Battery Storage Optimization', 'Smart Grid SCADA Integration', 'Predictive Maintenance'],
+    iconName: 'Zap',
+    badge: 'Clean Energy',
   },
 ];
 
@@ -124,7 +131,7 @@ export default function CaseStudies() {
   const [searchQuery, setSearchQuery] = useState('');
 
   const filteredStudies = caseStudiesData.filter((study) => {
-    const matchesIndustry = selectedIndustry === 'All' || study.industry === selectedIndustry;
+    const matchesIndustry = selectedIndustry === 'All' || study.industry.toLowerCase() === selectedIndustry.toLowerCase();
     const matchesSearch =
       study.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
       study.client.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -135,163 +142,205 @@ export default function CaseStudies() {
 
   return (
     <main className="min-h-screen bg-white">
-      {/* 1. Hero */}
-      <section className="pt-28 pb-16 sm:pt-36 sm:pb-24 bg-white border-b border-black/[0.06]">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <p className="font-mono text-xs text-zinc-500 uppercase tracking-widest mb-4">
-            Proven Performance
-          </p>
-          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-[3.6rem] font-semibold tracking-[-0.03em] text-[#111111] leading-tight mb-6">
-            Case studies and measured enterprise impact.
-          </h1>
-          <p className="text-sm sm:text-base md:text-lg text-zinc-600 leading-relaxed max-w-2xl mx-auto mb-8 sm:mb-10">
-            Explore how global banks, hospital networks, and energy operators deploy Doxantro to eliminate latency, automate decisions, and guarantee data privacy.
-          </p>
-
-          {/* Search Bar & Filter Pills */}
-          <div className="max-w-xl mx-auto space-y-3.5">
-            <div className="relative">
-              <Search className="w-4 h-4 text-zinc-400 absolute left-4 top-1/2 -translate-y-1/2" />
-              <input
-                type="text"
-                placeholder="Search by industry, technology, or challenge..."
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full pl-10 pr-4 py-2.5 rounded-full border border-black/[0.1] bg-zinc-50 text-xs sm:text-sm text-zinc-900 focus:outline-none focus:ring-2 focus:ring-black focus:bg-white transition-all"
-              />
+      {/* 1. Hero Section */}
+      <section className="relative pt-32 pb-16 md:pt-40 md:pb-24 border-b border-black/[0.06] bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.45 }}
+            className="max-w-4xl mx-auto"
+          >
+            <div className="mb-3.5">
+              <span className="subheading">
+                Verified Production Case Studies
+              </span>
             </div>
 
+            <h1 className="display-1 mb-5">
+              Proven Results in Mission-Critical Environments
+            </h1>
+
+            <p className="body-lg max-w-2xl mx-auto text-zinc-600">
+              Explore how leading institutions, Fortune 500 enterprises, and healthcare networks deploy Doxantro Systems to eliminate operational risk and unlock compounding ROI.
+            </p>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* 2. Interactive Filter & Search Bar */}
+      <section className="py-6 bg-[#fafafa] border-b border-black/[0.06] sticky top-14 z-20 backdrop-blur-md">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex flex-col md:flex-row items-center justify-between gap-4">
             {/* Filter Pills */}
-            <div className="flex flex-wrap items-center justify-center gap-1.5 pt-1">
+            <div className="flex items-center gap-1 overflow-x-auto w-full md:w-auto pb-1 md:pb-0 scrollbar-none">
               {industries.map((ind) => (
                 <button
                   key={ind}
-                  type="button"
                   onClick={() => setSelectedIndustry(ind)}
-                  className={`px-3 py-1 rounded-full text-xs font-mono transition-all duration-150 cursor-pointer ${
+                  className={`px-3.5 py-1.5 rounded-full text-xs font-medium whitespace-nowrap transition-colors cursor-pointer ${
                     selectedIndustry === ind
-                      ? 'bg-[#111111] text-white shadow-xs'
-                      : 'bg-zinc-100 text-zinc-600 hover:text-black hover:bg-zinc-200/70'
+                      ? 'bg-[#111111] text-white'
+                      : 'bg-white border border-black/[0.08] text-zinc-600 hover:text-[#111111] hover:border-black/[0.15]'
                   }`}
                 >
                   {ind}
                 </button>
               ))}
             </div>
+
+            {/* Search Input */}
+            <div className="relative w-full md:w-64">
+              <Search className="w-3.5 h-3.5 text-zinc-400 absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none" />
+              <input
+                type="text"
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                placeholder="Search case studies..."
+                className="w-full pl-9 pr-3 py-1.5 text-xs bg-white border border-black/[0.08] rounded-full focus:outline-none focus:border-black text-zinc-900 placeholder-zinc-400"
+              />
+            </div>
           </div>
         </div>
       </section>
 
-      {/* 2. Case Studies List */}
-      <section className="py-24 bg-[#f9f9f8] border-b border-black/[0.06]">
+      {/* 3. Case Studies Grid */}
+      <section className="py-16 md:py-20 bg-white border-b border-black/[0.06]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="space-y-12">
-            <AnimatePresence>
-              {filteredStudies.map((study) => (
-                <motion.article
-                  key={study.id}
-                  initial={{ opacity: 0, y: 16 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: 10 }}
-                  transition={{ duration: 0.3 }}
-                  className="rounded-3xl border border-black/[0.09] bg-white p-5 sm:p-8 lg:p-10 shadow-[0_4px_24px_rgba(0,0,0,0.04)]"
-                >
-                  <div className="grid lg:grid-cols-12 gap-6 lg:gap-12">
-                    {/* Left: Narrative (7 cols) */}
-                    <div className="lg:col-span-7 flex flex-col justify-between">
-                      <div>
-                        <div className="flex items-center gap-2 mb-3">
-                          <span className="text-[10px] font-mono uppercase px-2.5 py-0.5 rounded-full bg-zinc-100 text-zinc-700 font-medium">
-                            {study.industry}
-                          </span>
-                          <span className="text-[10px] font-mono text-zinc-400">
-                            {study.badge}
-                          </span>
-                        </div>
-
-                        <h2 className="text-xl sm:text-2xl font-semibold tracking-tight text-[#111111] mb-2">
-                          {study.title}
-                        </h2>
-                        <div className="flex flex-wrap items-center gap-x-4 gap-y-2 text-xs text-zinc-500 font-mono mb-6 pb-4 border-b border-black/[0.06]">
-                          <span className="flex items-center gap-1">
-                            <Building2 className="w-3.5 h-3.5 text-zinc-400" />
-                            {study.client}
-                          </span>
-                          <span className="flex items-center gap-1">
-                            <Clock className="w-3.5 h-3.5 text-zinc-400" />
-                            {study.duration}
-                          </span>
-                        </div>
-
-                        <div className="space-y-3.5 text-xs sm:text-sm text-zinc-600 leading-relaxed mb-6">
-                          <div>
-                            <span className="font-semibold text-zinc-900 font-mono text-xs uppercase block mb-1">
-                              Challenge
-                            </span>
-                            <p>{study.challenge}</p>
-                          </div>
-                          <div>
-                            <span className="font-semibold text-zinc-900 font-mono text-xs uppercase block mb-1">
-                              Engineered Solution
-                            </span>
-                            <p>{study.solution}</p>
-                          </div>
-                        </div>
-                      </div>
-
-                      {/* Tech Tags */}
-                      <div className="flex flex-wrap gap-1.5 pt-4 border-t border-black/[0.06]">
-                        {study.technologies.map((tech) => (
-                          <span
-                            key={tech}
-                            className="text-[10px] font-mono px-2.5 py-1 rounded-md bg-zinc-50 border border-black/[0.06] text-zinc-700"
-                          >
-                            {tech}
-                          </span>
-                        ))}
-                      </div>
-                    </div>
-
-                    {/* Right: Quantified Results Grid (5 cols) */}
-                    <div className="lg:col-span-5 flex flex-col justify-center">
-                      <div className="rounded-2xl border border-black/[0.08] bg-[#fcfbf9] p-5 sm:p-6">
-                        <div className="font-mono text-[10px] uppercase text-zinc-400 font-semibold tracking-wider mb-4 pb-2 border-b border-black/[0.06]">
-                          Quantified Results
-                        </div>
-                        <div className="grid grid-cols-2 gap-4">
-                          {study.results.map((res) => (
-                            <div key={res.label} className="flex flex-col">
-                              <span className="font-mono text-2xl sm:text-3xl font-bold tracking-tight text-[#111111] mb-0.5">
-                                {res.metric}
-                              </span>
-                              <span className="text-[11px] text-zinc-600 font-medium">
-                                {res.label}
-                              </span>
+          <AnimatePresence mode="popLayout">
+            {filteredStudies.length === 0 ? (
+              <div className="text-center py-16 bg-zinc-50 rounded-2xl border border-black/[0.06]">
+                <h3 className="text-sm font-semibold text-zinc-900 mb-1">No case studies found</h3>
+                <p className="text-xs text-zinc-500">Try adjusting your search query or industry filter.</p>
+              </div>
+            ) : (
+              <div className="space-y-6">
+                {filteredStudies.map((study, idx) => (
+                  <motion.div
+                    key={study.id}
+                    layout
+                    initial={{ opacity: 0, y: 16 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, scale: 0.98 }}
+                    transition={{ duration: 0.3, delay: idx * 0.04 }}
+                  >
+                    <div className="card-minimal p-6 sm:p-8">
+                      <div className="grid lg:grid-cols-12 gap-8 items-start">
+                        {/* Left Info & Story (7 cols) */}
+                        <div className="lg:col-span-7 space-y-4">
+                          <div className="flex flex-wrap items-center gap-2">
+                            <div className="w-7 h-7 rounded-md bg-zinc-100 flex items-center justify-center text-zinc-900">
+                              <SolutionIcon name={study.iconName} className="w-3.5 h-3.5" />
                             </div>
-                          ))}
+                            <span className="text-[10px] font-mono text-zinc-700 bg-zinc-100 px-2 py-0.5 rounded">
+                              {study.industry}
+                            </span>
+                            <span className="text-[10px] font-mono text-zinc-500 border border-black/[0.06] px-2 py-0.5 rounded">
+                              {study.badge}
+                            </span>
+                            <div className="text-[11px] font-mono text-zinc-400 flex items-center gap-1 ml-auto">
+                              <Clock className="w-3 h-3 text-zinc-400" />
+                              <span>{study.duration}</span>
+                            </div>
+                          </div>
+
+                          <div>
+                            <h3 className="text-lg sm:text-xl font-bold text-zinc-900 mb-1">
+                              {study.title}
+                            </h3>
+                            <div className="text-xs font-mono text-zinc-500">
+                              Client: {study.client}
+                            </div>
+                          </div>
+
+                          <div className="space-y-2 text-xs text-zinc-600 leading-relaxed">
+                            <div>
+                              <span className="font-semibold text-zinc-900 block mb-0.5">Challenge:</span>
+                              <p>{study.challenge}</p>
+                            </div>
+                            <div>
+                              <span className="font-semibold text-zinc-900 block mb-0.5">Solution:</span>
+                              <p>{study.solution}</p>
+                            </div>
+                          </div>
+
+                          {/* Tech Stack Tags */}
+                          <div>
+                            <div className="text-[10px] font-mono uppercase tracking-wider text-zinc-400 mb-1.5">
+                              Technologies:
+                            </div>
+                            <div className="flex flex-wrap gap-1">
+                              {study.technologies.map((tech, tIdx) => (
+                                <span
+                                  key={tIdx}
+                                  className="text-[11px] font-mono px-2 py-0.5 rounded bg-zinc-100 text-zinc-700 border border-black/[0.04]"
+                                >
+                                  {tech}
+                                </span>
+                              ))}
+                            </div>
+                          </div>
+                        </div>
+
+                        {/* Right Results Matrix (5 cols) */}
+                        <div className="lg:col-span-5 bg-[#0f0f12] text-white rounded-xl p-5 sm:p-6 border border-white/[0.08] shadow-sm">
+                          <div className="text-[11px] font-mono tracking-wider uppercase text-zinc-400 mb-4 flex items-center gap-1.5">
+                            <Sparkles className="w-3.5 h-3.5 text-orange-400" />
+                            <span>Quantified Business Results</span>
+                          </div>
+
+                          <div className="grid grid-cols-2 gap-2.5 mb-5">
+                            {study.results.map((res, rIdx) => (
+                              <div key={rIdx} className="bg-white/[0.04] rounded-lg p-3 border border-white/[0.06]">
+                                <div className="text-xl sm:text-2xl font-bold font-mono text-zinc-100 tabular-nums mb-0.5">
+                                  {res.metric}
+                                </div>
+                                <div className="text-[11px] text-zinc-400 leading-tight">
+                                  {res.label}
+                                </div>
+                              </div>
+                            ))}
+                          </div>
+
+                          <Link
+                            href="/contact"
+                            className="inline-flex items-center justify-between w-full p-2.5 rounded-lg bg-white/[0.06] border border-white/[0.1] hover:bg-white hover:text-black text-xs font-medium transition-all group"
+                          >
+                            <span>Request Architecture Blueprint</span>
+                            <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5" />
+                          </Link>
                         </div>
                       </div>
                     </div>
-                  </div>
-                </motion.article>
-              ))}
-            </AnimatePresence>
-          </div>
+                  </motion.div>
+                ))}
+              </div>
+            )}
+          </AnimatePresence>
         </div>
       </section>
 
-      {/* 3. Dark CTA Card */}
-      <section className="py-16 sm:py-20 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="rounded-3xl bg-[#111111] text-white p-6 sm:p-14 lg:p-16 text-center border border-white/10 shadow-2xl">
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold tracking-tight text-white mb-4">
-              Achieve measurable AI ROI in your organization.
-            </h2>
-            <p className="text-xs sm:text-sm text-zinc-400 max-w-xl mx-auto mb-8">
-              Let&apos;s evaluate your workflows, benchmark model performance, and deploy custom intelligence pipelines with guaranteed latency SLAs.
-            </p>
-            <Button href="/contact" size="lg" variant="inverted" icon={<ArrowRight className="w-4 h-4" />} className="w-full sm:w-auto">
-              Request Technical Evaluation
+      {/* 4. Bottom CTA */}
+      <section className="py-20 md:py-24 bg-[#0c0c0e] text-white">
+        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <span className="text-[11px] font-mono tracking-widest uppercase text-zinc-400 mb-3 block">
+            ■ CUSTOM PILOT INITIATIVE
+          </span>
+
+          <h2 className="display-2 text-white mb-4">
+            Have a Specific High-Stakes Use Case?
+          </h2>
+
+          <p className="body-lg text-zinc-400 mb-8 max-w-xl mx-auto">
+            Let’s discuss your technical parameters, performance benchmarks, and deployment timeline under standard non-disclosure terms.
+          </p>
+
+          <div className="flex flex-wrap gap-3 justify-center items-center">
+            <Button href="/contact" size="lg" variant="primary">
+              Start an Architectural Pilot
+            </Button>
+            <Button href="/services" size="lg" variant="outline-white">
+              Explore Solutions
             </Button>
           </div>
         </div>

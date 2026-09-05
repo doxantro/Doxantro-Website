@@ -2,27 +2,7 @@
 
 import React, { useState } from 'react';
 import Link from 'next/link';
-import { motion, AnimatePresence } from 'framer-motion';
-import {
-  Play,
-  RefreshCw,
-  Sparkles,
-  CheckCircle2,
-  AlertTriangle,
-  ShieldCheck,
-  Zap,
-  Activity,
-  Boxes,
-  Sprout,
-  BadgeDollarSign,
-  ShieldAlert,
-  ArrowRight,
-  Sliders,
-  Terminal,
-} from 'lucide-react';
-import Badge from '../components/ui/Badge';
-import Button from '../components/ui/Button';
-import GlowCard from '../components/ui/GlowCard';
+import { Play, RefreshCw, AlertTriangle, ArrowRight, Sliders } from 'lucide-react';
 import SectionHeader from '../components/ui/SectionHeader';
 import SolutionIcon from '../components/ui/SolutionIcon';
 
@@ -165,89 +145,90 @@ export default function AIDemoSection() {
         });
       }
       setIsRunningInference(false);
-    }, 650);
+    }, 500);
   };
 
   const currentVertObj = demoVerts.find((v) => v.id === activeVert) || demoVerts[0];
 
   return (
-    <section className="py-24 bg-zinc-950 text-white relative overflow-hidden">
-      {/* Ambient background glows */}
-      <div className="absolute top-0 right-1/4 w-[500px] h-[500px] bg-orange-600/15 rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute bottom-0 left-1/4 w-[400px] h-[400px] bg-amber-600/10 rounded-full blur-3xl pointer-events-none" />
-
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+    <section className="py-20 md:py-24 bg-white border-b border-black/[0.06]">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <SectionHeader
-          badge="Interactive Sandbox"
-          badgeVariant="orange"
-          title="Experience Doxantro AI"
-          highlightText="in Action"
-          subtitle="Interact directly with our specialized inference simulators across 6 high-stakes industries and observe real-time decision outputs."
-          className="text-white"
+          badge="INTERACTIVE SANDBOX"
+          title="Simulate Real-Time Inference Across 6 Verticals"
+          subtitle="Interact directly with our specialized neural simulators and observe production telemetry decision outputs."
         />
 
-        {/* Vertical Tabs */}
-        <div className="flex items-center justify-start md:justify-center gap-2 overflow-x-auto pb-4 mb-10 scrollbar-none">
+        {/* Minimalist Switcher Pills */}
+        <div className="flex items-center justify-start md:justify-center gap-1.5 overflow-x-auto pb-4 mb-8">
           {demoVerts.map((vert) => (
             <button
               key={vert.id}
               onClick={() => setActiveVert(vert.id)}
-              className={`flex items-center gap-2 px-5 py-3 rounded-full text-xs sm:text-sm font-semibold transition-all duration-200 whitespace-nowrap cursor-pointer ${
+              className={`flex items-center gap-2 px-4 py-2 rounded-full text-xs font-medium transition-colors whitespace-nowrap cursor-pointer ${
                 activeVert === vert.id
-                  ? 'bg-orange-600 text-white shadow-lg shadow-orange-600/30'
-                  : 'bg-zinc-900/90 text-zinc-400 border border-zinc-800 hover:text-white hover:border-zinc-700'
+                  ? 'bg-[#111111] text-white'
+                  : 'bg-zinc-100 text-zinc-600 hover:text-zinc-900 hover:bg-zinc-200/70'
               }`}
             >
-              <SolutionIcon name={vert.iconName} className="w-4 h-4" />
+              <SolutionIcon name={vert.iconName} className="w-3.5 h-3.5" />
               <span>{vert.name}</span>
             </button>
           ))}
         </div>
 
         {/* Sandbox Canvas */}
-        <div className="rounded-3xl bg-zinc-900/90 border border-zinc-800 p-6 sm:p-10 shadow-2xl relative overflow-hidden backdrop-blur-xl">
-          <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4 pb-6 mb-8 border-b border-zinc-800">
+        <div className="rounded-2xl border border-black/[0.08] bg-[#fafafa] p-6 sm:p-8 shadow-sm">
+          <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4 pb-5 mb-6 border-b border-black/[0.06]">
             <div>
-              <div className="flex items-center gap-2 mb-1.5">
-                <Badge variant="orange" dot pulse size="sm">
+              <div className="flex items-center gap-2 mb-1">
+                <span className="text-[10px] font-mono uppercase tracking-wider text-zinc-500 bg-white border border-black/[0.06] px-2 py-0.5 rounded">
                   {currentVertObj.badge}
-                </Badge>
-                <span className="text-xs font-mono text-zinc-400">Model: doxantro-{currentVertObj.id}-v3.4</span>
+                </span>
+                <span className="text-[11px] font-mono text-zinc-400">Model: doxantro-{currentVertObj.id}-v3.4</span>
               </div>
-              <h3 className="text-2xl sm:text-3xl font-bold text-white">
+              <h3 className="text-xl sm:text-2xl font-bold text-zinc-900">
                 {currentVertObj.title}
               </h3>
             </div>
 
-            <Button
+            <button
               onClick={runSimulation}
               disabled={isRunningInference}
-              size="md"
-              variant="primary"
-              icon={isRunningInference ? <RefreshCw className="w-4 h-4 animate-spin" /> : <Play className="w-4 h-4 fill-white" />}
+              className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-[#111111] hover:bg-black text-white text-xs font-medium transition-all shadow-sm cursor-pointer disabled:opacity-50"
             >
-              {isRunningInference ? 'Running Inference...' : 'Execute Neural Scan'}
-            </Button>
+              {isRunningInference ? (
+                <>
+                  <RefreshCw className="w-3.5 h-3.5 animate-spin" />
+                  <span>Evaluating...</span>
+                </>
+              ) : (
+                <>
+                  <Play className="w-3 h-3 fill-white" />
+                  <span>Run Inference</span>
+                </>
+              )}
+            </button>
           </div>
 
-          <div className="grid lg:grid-cols-12 gap-8 items-start">
-            {/* Left: Interactive Controls (5 cols) */}
-            <div className="lg:col-span-5 bg-zinc-950/80 rounded-2xl p-6 border border-zinc-800 space-y-6">
-              <div className="flex items-center justify-between text-xs font-bold uppercase tracking-wider text-zinc-400 pb-2 border-b border-zinc-800">
+          <div className="grid lg:grid-cols-12 gap-6 items-start">
+            {/* Left: Input Controls (5 cols) */}
+            <div className="lg:col-span-5 bg-white rounded-xl p-5 border border-black/[0.06] space-y-4">
+              <div className="flex items-center justify-between text-[11px] font-mono uppercase tracking-wider text-zinc-500 pb-2 border-b border-black/[0.04]">
                 <span className="flex items-center gap-1.5">
-                  <Sliders className="w-3.5 h-3.5 text-orange-500" />
-                  <span>Input Parameters</span>
+                  <Sliders className="w-3.5 h-3.5 text-zinc-700" />
+                  <span>Parameters</span>
                 </span>
-                <span className="text-orange-400 font-mono">Live Inputs</span>
+                <span className="text-zinc-900 font-medium">Active Input</span>
               </div>
 
               {/* Finance Controls */}
               {activeVert === 'finance' && (
-                <div className="space-y-4">
+                <div className="space-y-3.5">
                   <div>
-                    <div className="flex justify-between text-xs mb-1.5">
-                      <span className="text-zinc-400">Transaction Amount</span>
-                      <span className="font-mono text-orange-400 font-bold">${txAmount.toLocaleString()}</span>
+                    <div className="flex justify-between text-xs mb-1">
+                      <span className="text-zinc-500">Transaction Value</span>
+                      <span className="font-mono text-zinc-900 font-bold tabular-nums">${txAmount.toLocaleString()}</span>
                     </div>
                     <input
                       type="range"
@@ -256,28 +237,28 @@ export default function AIDemoSection() {
                       step="500"
                       value={txAmount}
                       onChange={(e) => setTxAmount(Number(e.target.value))}
-                      className="w-full accent-orange-600 cursor-pointer"
+                      className="w-full accent-[#111111] cursor-pointer"
                     />
                   </div>
 
-                  <div className="flex items-center justify-between p-3 rounded-xl bg-zinc-900 border border-zinc-800">
-                    <span className="text-xs text-zinc-300">Foreign IP Routing</span>
+                  <div className="flex items-center justify-between p-2.5 rounded-lg bg-zinc-50 border border-black/[0.04]">
+                    <span className="text-xs text-zinc-600">Foreign IP Routing</span>
                     <button
                       onClick={() => setIsForeignIp(!isForeignIp)}
-                      className={`px-3 py-1 rounded-lg text-xs font-bold transition-colors ${
-                        isForeignIp ? 'bg-orange-600 text-white' : 'bg-zinc-800 text-zinc-400'
+                      className={`px-2.5 py-1 rounded text-[11px] font-mono font-medium transition-colors ${
+                        isForeignIp ? 'bg-[#111111] text-white' : 'bg-zinc-200 text-zinc-600'
                       }`}
                     >
-                      {isForeignIp ? 'YES (Mismatch)' : 'NO (Domestic)'}
+                      {isForeignIp ? 'FLAGGED (AS-9402)' : 'VERIFIED (DOMESTIC)'}
                     </button>
                   </div>
 
-                  <div className="flex items-center justify-between p-3 rounded-xl bg-zinc-900 border border-zinc-800">
-                    <span className="text-xs text-zinc-300">Velocity Spike Anomaly</span>
+                  <div className="flex items-center justify-between p-2.5 rounded-lg bg-zinc-50 border border-black/[0.04]">
+                    <span className="text-xs text-zinc-600">Velocity Anomaly</span>
                     <button
                       onClick={() => setVelocitySpike(!velocitySpike)}
-                      className={`px-3 py-1 rounded-lg text-xs font-bold transition-colors ${
-                        velocitySpike ? 'bg-orange-600 text-white' : 'bg-zinc-800 text-zinc-400'
+                      className={`px-2.5 py-1 rounded text-[11px] font-mono font-medium transition-colors ${
+                        velocitySpike ? 'bg-[#111111] text-white' : 'bg-zinc-200 text-zinc-600'
                       }`}
                     >
                       {velocitySpike ? 'DETECTED' : 'NORMAL'}
@@ -288,13 +269,13 @@ export default function AIDemoSection() {
 
               {/* Healthcare Controls */}
               {activeVert === 'healthcare' && (
-                <div className="space-y-4">
+                <div className="space-y-3.5">
                   <div>
-                    <label className="block text-xs text-zinc-400 mb-2">Scan Modality</label>
+                    <label className="block text-xs text-zinc-500 mb-1.5">Scan Modality</label>
                     <select
                       value={scanType}
                       onChange={(e) => setScanType(e.target.value)}
-                      className="w-full p-2.5 rounded-xl bg-zinc-900 border border-zinc-800 text-xs text-white"
+                      className="w-full p-2 rounded-lg bg-zinc-50 border border-black/[0.06] text-xs text-zinc-900"
                     >
                       <option>Chest CT (Multi-Slice)</option>
                       <option>Brain MRI (T1/T2 Axial)</option>
@@ -302,15 +283,15 @@ export default function AIDemoSection() {
                     </select>
                   </div>
 
-                  <div className="flex items-center justify-between p-3 rounded-xl bg-zinc-900 border border-zinc-800">
-                    <span className="text-xs text-zinc-300">Contrast Agent Enhanced</span>
+                  <div className="flex items-center justify-between p-2.5 rounded-lg bg-zinc-50 border border-black/[0.04]">
+                    <span className="text-xs text-zinc-600">Contrast Agent</span>
                     <button
                       onClick={() => setContrastEnhanced(!contrastEnhanced)}
-                      className={`px-3 py-1 rounded-lg text-xs font-bold transition-colors ${
-                        contrastEnhanced ? 'bg-orange-600 text-white' : 'bg-zinc-800 text-zinc-400'
+                      className={`px-2.5 py-1 rounded text-[11px] font-mono font-medium transition-colors ${
+                        contrastEnhanced ? 'bg-[#111111] text-white' : 'bg-zinc-200 text-zinc-600'
                       }`}
                     >
-                      {contrastEnhanced ? 'ENABLED' : 'DISABLED'}
+                      {contrastEnhanced ? 'ENHANCED' : 'STANDARD'}
                     </button>
                   </div>
                 </div>
@@ -318,11 +299,11 @@ export default function AIDemoSection() {
 
               {/* Agriculture Controls */}
               {activeVert === 'agriculture' && (
-                <div className="space-y-4">
+                <div className="space-y-3.5">
                   <div>
-                    <div className="flex justify-between text-xs mb-1.5">
-                      <span className="text-zinc-400">Multispectral NDVI Index</span>
-                      <span className="font-mono text-orange-400 font-bold">{ndviIndex}</span>
+                    <div className="flex justify-between text-xs mb-1">
+                      <span className="text-zinc-500">NDVI Canopy Index</span>
+                      <span className="font-mono text-zinc-900 font-bold tabular-nums">{ndviIndex}</span>
                     </div>
                     <input
                       type="range"
@@ -331,14 +312,14 @@ export default function AIDemoSection() {
                       step="0.01"
                       value={ndviIndex}
                       onChange={(e) => setNdviIndex(Number(e.target.value))}
-                      className="w-full accent-orange-600 cursor-pointer"
+                      className="w-full accent-[#111111] cursor-pointer"
                     />
                   </div>
 
                   <div>
-                    <div className="flex justify-between text-xs mb-1.5">
-                      <span className="text-zinc-400">Soil Moisture Content</span>
-                      <span className="font-mono text-orange-400 font-bold">{soilMoisture}%</span>
+                    <div className="flex justify-between text-xs mb-1">
+                      <span className="text-zinc-500">Soil Moisture Content</span>
+                      <span className="font-mono text-zinc-900 font-bold tabular-nums">{soilMoisture}%</span>
                     </div>
                     <input
                       type="range"
@@ -346,7 +327,7 @@ export default function AIDemoSection() {
                       max="90"
                       value={soilMoisture}
                       onChange={(e) => setSoilMoisture(Number(e.target.value))}
-                      className="w-full accent-orange-600 cursor-pointer"
+                      className="w-full accent-[#111111] cursor-pointer"
                     />
                   </div>
                 </div>
@@ -354,11 +335,11 @@ export default function AIDemoSection() {
 
               {/* Supply Chain Controls */}
               {activeVert === 'supply-chain' && (
-                <div className="space-y-4">
+                <div className="space-y-3.5">
                   <div>
-                    <div className="flex justify-between text-xs mb-1.5">
-                      <span className="text-zinc-400">Port Delay Bottleneck</span>
-                      <span className="font-mono text-orange-400 font-bold">{portDelay} Hours</span>
+                    <div className="flex justify-between text-xs mb-1">
+                      <span className="text-zinc-500">Port Bottleneck Delay</span>
+                      <span className="font-mono text-zinc-900 font-bold tabular-nums">{portDelay} Hours</span>
                     </div>
                     <input
                       type="range"
@@ -366,7 +347,7 @@ export default function AIDemoSection() {
                       max="120"
                       value={portDelay}
                       onChange={(e) => setPortDelay(Number(e.target.value))}
-                      className="w-full accent-orange-600 cursor-pointer"
+                      className="w-full accent-[#111111] cursor-pointer"
                     />
                   </div>
                 </div>
@@ -374,13 +355,13 @@ export default function AIDemoSection() {
 
               {/* Security Controls */}
               {activeVert === 'security' && (
-                <div className="space-y-4">
+                <div className="space-y-3.5">
                   <div>
-                    <label className="block text-xs text-zinc-400 mb-2">Simulated Exploit Payload</label>
+                    <label className="block text-xs text-zinc-500 mb-1.5">Simulated Exploit Payload</label>
                     <select
                       value={attackVector}
                       onChange={(e) => setAttackVector(e.target.value)}
-                      className="w-full p-2.5 rounded-xl bg-zinc-900 border border-zinc-800 text-xs text-white"
+                      className="w-full p-2 rounded-lg bg-zinc-50 border border-black/[0.06] text-xs text-zinc-900"
                     >
                       <option>Privilege Escalation</option>
                       <option>Lateral Kerberos Pass-The-Hash</option>
@@ -392,11 +373,11 @@ export default function AIDemoSection() {
 
               {/* Energy Controls */}
               {activeVert === 'energy' && (
-                <div className="space-y-4">
+                <div className="space-y-3.5">
                   <div>
-                    <div className="flex justify-between text-xs mb-1.5">
-                      <span className="text-zinc-400">Intermittent Solar & Wind Output</span>
-                      <span className="font-mono text-orange-400 font-bold">{solarOutput}% Capacity</span>
+                    <div className="flex justify-between text-xs mb-1">
+                      <span className="text-zinc-500">Renewable Output Capacity</span>
+                      <span className="font-mono text-zinc-900 font-bold tabular-nums">{solarOutput}%</span>
                     </div>
                     <input
                       type="range"
@@ -404,54 +385,56 @@ export default function AIDemoSection() {
                       max="100"
                       value={solarOutput}
                       onChange={(e) => setSolarOutput(Number(e.target.value))}
-                      className="w-full accent-orange-600 cursor-pointer"
+                      className="w-full accent-[#111111] cursor-pointer"
                     />
                   </div>
                 </div>
               )}
 
-              <div className="pt-2 text-[11px] text-zinc-500">
-                Adjust sliders or toggles, then click "Execute Neural Scan" to trigger client-side evaluation.
+              <div className="pt-2 text-[11px] text-zinc-400 font-mono">
+                Real-time weights updated on client-side simulation bus.
               </div>
             </div>
 
-            {/* Right: Live Telemetry Output Canvas (7 cols) */}
-            <div className="lg:col-span-7 bg-zinc-950 rounded-2xl p-6 sm:p-8 border border-zinc-800 space-y-6">
-              <div className="flex items-center justify-between text-xs font-mono pb-3 border-b border-zinc-800">
-                <span className="text-emerald-400 flex items-center gap-1.5">
-                  <span className="w-2 h-2 rounded-full bg-emerald-400 animate-ping" />
-                  <span>INFERENCE RESULT CANVAS</span>
+            {/* Right: Output Canvas (7 cols) */}
+            <div className="lg:col-span-7 bg-white rounded-xl p-5 sm:p-6 border border-black/[0.06] space-y-4">
+              <div className="flex items-center justify-between text-xs font-mono pb-2.5 border-b border-black/[0.04]">
+                <span className="text-zinc-900 font-semibold flex items-center gap-1.5">
+                  <span className="w-2 h-2 rounded-full bg-emerald-500" />
+                  <span>INFERENCE TELEMETRY</span>
                 </span>
-                <span className="text-zinc-400">Response SLA: &lt;10ms</span>
+                <span className="text-zinc-400">Response &lt; 10ms</span>
               </div>
 
               {/* Dynamic Results Display */}
               {activeVert === 'finance' && (
-                <div className="space-y-4">
-                  <div className="flex items-center justify-between p-4 rounded-2xl bg-zinc-900/90 border border-zinc-800">
+                <div className="space-y-3">
+                  <div className="flex items-center justify-between p-3.5 rounded-xl bg-zinc-50 border border-black/[0.04]">
                     <div>
-                      <div className="text-xs text-zinc-400">Neural Risk Score</div>
-                      <div className="text-3xl font-extrabold font-mono text-orange-400">
+                      <div className="text-[11px] text-zinc-500">Risk Score</div>
+                      <div className="text-2xl font-bold font-mono text-[#111111] tabular-nums">
                         {financeResult.riskScore} / 100
                       </div>
                     </div>
                     <div className="text-right">
-                      <Badge variant={financeResult.riskScore > 70 ? 'orange' : 'green'} size="sm">
+                      <span className={`text-[11px] font-mono px-2 py-0.5 rounded border ${
+                        financeResult.riskScore > 70 ? 'bg-orange-50 text-orange-700 border-orange-200' : 'bg-emerald-50 text-emerald-700 border-emerald-200'
+                      }`}>
                         {financeResult.status}
-                      </Badge>
-                      <div className="text-xs font-mono text-zinc-400 mt-1">
-                        Inference: {financeResult.latency}
+                      </span>
+                      <div className="text-[10px] font-mono text-zinc-400 mt-1 tabular-nums">
+                        Latency: {financeResult.latency}
                       </div>
                     </div>
                   </div>
 
-                  <div className="space-y-2">
-                    <div className="text-xs font-bold uppercase tracking-wider text-zinc-400">
-                      Neural Decision Signals:
+                  <div className="space-y-1.5">
+                    <div className="text-[11px] font-mono uppercase tracking-wider text-zinc-500">
+                      Evaluated Signals:
                     </div>
                     {financeResult.signals.map((sig, sIdx) => (
-                      <div key={sIdx} className="p-3 rounded-xl bg-zinc-900/60 border border-zinc-800/80 text-xs text-zinc-300 flex items-center gap-2">
-                        <AlertTriangle className="w-3.5 h-3.5 text-orange-500 flex-shrink-0" />
+                      <div key={sIdx} className="p-2 rounded-lg bg-zinc-50 border border-black/[0.04] text-xs text-zinc-700 flex items-center gap-2">
+                        <AlertTriangle className="w-3.5 h-3.5 text-zinc-700 flex-shrink-0" />
                         <span>{sig}</span>
                       </div>
                     ))}
@@ -460,74 +443,76 @@ export default function AIDemoSection() {
               )}
 
               {activeVert === 'healthcare' && (
-                <div className="space-y-4">
-                  <div className="p-4 rounded-2xl bg-zinc-900/90 border border-zinc-800">
-                    <div className="flex justify-between text-xs text-zinc-400 mb-1">
-                      <span>Diagnostic Confidence Score</span>
-                      <span className="font-mono text-emerald-400 font-bold">{healthResult.confidence}</span>
+                <div className="space-y-3">
+                  <div className="p-3.5 rounded-xl bg-zinc-50 border border-black/[0.04]">
+                    <div className="flex justify-between text-xs text-zinc-500 mb-1">
+                      <span>Diagnostic Confidence</span>
+                      <span className="font-mono text-zinc-900 font-bold tabular-nums">{healthResult.confidence}</span>
                     </div>
-                    <div className="text-sm font-bold text-white mb-2">{healthResult.finding}</div>
-                    <Badge variant="orange" size="sm">{healthResult.urgency}</Badge>
+                    <div className="text-xs font-semibold text-zinc-900 mb-1.5">{healthResult.finding}</div>
+                    <span className="text-[10px] font-mono text-orange-700 bg-orange-50 border border-orange-200 px-2 py-0.5 rounded">
+                      {healthResult.urgency}
+                    </span>
                   </div>
                 </div>
               )}
 
               {activeVert === 'agriculture' && (
-                <div className="space-y-4">
-                  <div className="grid grid-cols-2 gap-3">
-                    <div className="p-3.5 rounded-xl bg-zinc-900 border border-zinc-800">
-                      <div className="text-xs text-zinc-400">Projected Yield</div>
-                      <div className="text-lg font-bold font-mono text-emerald-400">{agriResult.projectedYield}</div>
+                <div className="space-y-3">
+                  <div className="grid grid-cols-2 gap-2.5">
+                    <div className="p-3 rounded-lg bg-zinc-50 border border-black/[0.04]">
+                      <div className="text-[11px] text-zinc-500">Projected Yield</div>
+                      <div className="text-sm font-bold font-mono text-zinc-900 tabular-nums">{agriResult.projectedYield}</div>
                     </div>
-                    <div className="p-3.5 rounded-xl bg-zinc-900 border border-zinc-800">
-                      <div className="text-xs text-zinc-400">Water Conservation</div>
-                      <div className="text-lg font-bold font-mono text-orange-400">{agriResult.waterSaving}</div>
+                    <div className="p-3 rounded-lg bg-zinc-50 border border-black/[0.04]">
+                      <div className="text-[11px] text-zinc-500">Water Conservation</div>
+                      <div className="text-sm font-bold font-mono text-zinc-900 tabular-nums">{agriResult.waterSaving}</div>
                     </div>
                   </div>
-                  <div className="p-3.5 rounded-xl bg-zinc-900 border border-zinc-800 text-xs text-zinc-300">
-                    <span className="font-bold text-white block mb-1">Prescription Action:</span>
+                  <div className="p-3 rounded-lg bg-zinc-50 border border-black/[0.04] text-xs text-zinc-600">
+                    <span className="font-semibold text-zinc-900 block mb-0.5">Recommendation:</span>
                     {agriResult.recommendation}
                   </div>
                 </div>
               )}
 
               {activeVert === 'supply-chain' && (
-                <div className="space-y-3">
-                  <div className="p-4 rounded-xl bg-zinc-900 border border-zinc-800">
-                    <div className="text-xs text-zinc-400">Dynamic Re-routing Vector</div>
-                    <div className="text-sm font-bold text-white mb-1">{supplyResult.reRouteVector}</div>
-                    <div className="text-xs font-mono text-emerald-400">Saved: {supplyResult.etaSaved} | {supplyResult.costReduction} Costs</div>
+                <div className="space-y-2.5">
+                  <div className="p-3.5 rounded-xl bg-zinc-50 border border-black/[0.04]">
+                    <div className="text-[11px] text-zinc-500">Re-Routing Corridor</div>
+                    <div className="text-xs font-semibold text-zinc-900 mb-1">{supplyResult.reRouteVector}</div>
+                    <div className="text-[11px] font-mono text-zinc-600">Saved: {supplyResult.etaSaved} | {supplyResult.costReduction} Costs</div>
                   </div>
                 </div>
               )}
 
               {activeVert === 'security' && (
-                <div className="space-y-3">
-                  <div className="p-4 rounded-xl bg-zinc-900 border border-zinc-800">
-                    <div className="text-xs text-zinc-400">Autonomous Defense Trigger</div>
-                    <div className="text-sm font-bold text-white mb-1">{secResult.action}</div>
-                    <div className="text-xs font-mono text-emerald-400">Containment Latency: {secResult.containmentTime}</div>
+                <div className="space-y-2.5">
+                  <div className="p-3.5 rounded-xl bg-zinc-50 border border-black/[0.04]">
+                    <div className="text-[11px] text-zinc-500">Autonomous Quarantine</div>
+                    <div className="text-xs font-semibold text-zinc-900 mb-1">{secResult.action}</div>
+                    <div className="text-[11px] font-mono text-zinc-600">Containment Latency: {secResult.containmentTime}</div>
                   </div>
                 </div>
               )}
 
               {activeVert === 'energy' && (
-                <div className="space-y-3">
-                  <div className="p-4 rounded-xl bg-zinc-900 border border-zinc-800">
-                    <div className="text-xs text-zinc-400">Grid Stabilization Status</div>
-                    <div className="text-sm font-bold text-white mb-1">{energyResult.gridFrequency}</div>
-                    <div className="text-xs font-mono text-orange-400">{energyResult.batteryDispatch} ({energyResult.peakerSavings})</div>
+                <div className="space-y-2.5">
+                  <div className="p-3.5 rounded-xl bg-zinc-50 border border-black/[0.04]">
+                    <div className="text-[11px] text-zinc-500">Grid Stabilization</div>
+                    <div className="text-xs font-semibold text-zinc-900 mb-1">{energyResult.gridFrequency}</div>
+                    <div className="text-[11px] font-mono text-zinc-600">{energyResult.batteryDispatch} ({energyResult.peakerSavings})</div>
                   </div>
                 </div>
               )}
 
-              <div className="pt-4 border-t border-zinc-800 flex items-center justify-between">
-                <span className="text-xs text-zinc-400">Need this model fine-tuned on your private dataset?</span>
+              <div className="pt-3 border-t border-black/[0.04] flex items-center justify-between text-xs">
+                <span className="text-zinc-500">Fine-tune on your private dataset</span>
                 <Link
                   href={`/ai-${activeVert === 'finance' ? 'finance' : activeVert === 'healthcare' ? 'healthcare' : activeVert === 'agriculture' ? 'agriculture' : activeVert === 'supply-chain' ? 'supply-chain' : activeVert === 'security' ? 'security' : 'energy'}`}
-                  className="text-xs font-semibold text-orange-400 hover:text-orange-300 inline-flex items-center gap-1"
+                  className="font-medium text-zinc-900 hover:text-orange-600 inline-flex items-center gap-1"
                 >
-                  <span>Explore Full Architecture</span>
+                  <span>Explore Architecture</span>
                   <ArrowRight className="w-3.5 h-3.5" />
                 </Link>
               </div>

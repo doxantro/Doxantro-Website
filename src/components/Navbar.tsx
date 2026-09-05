@@ -7,8 +7,17 @@ import { usePathname } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronDown, ArrowRight, Menu, X } from 'lucide-react';
 import ScrollProgress from './ui/ScrollProgress';
-import Button from './ui/Button';
+import SolutionIcon from './ui/SolutionIcon';
 import { solutionsData } from '../data/solutionsData';
+
+const navLinks = [
+  { name: 'About', href: '/about' },
+  { name: 'Services', href: '/services' },
+  { name: 'Case Studies', href: '/case-studies' },
+  { name: 'Research', href: '/blog' },
+  { name: 'Careers', href: '/careers' },
+  { name: 'Contact', href: '/contact' },
+];
 
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -38,51 +47,60 @@ export default function Navbar() {
   const handleMouseLeaveSolutions = () => {
     dropdownTimeoutRef.current = setTimeout(() => {
       setIsSolutionsOpen(false);
-    }, 150);
+    }, 160);
   };
 
   return (
     <>
       <ScrollProgress />
       <header
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-200 ${
+        className={`fixed top-0 left-0 right-0 z-40 transition-all duration-200 ${
           isScrolled
-            ? 'bg-white/95 backdrop-blur-md border-b border-black/[0.08] py-2.5 sm:py-3 shadow-[0_1px_8px_rgba(0,0,0,0.03)]'
-            : 'bg-white/85 backdrop-blur-sm border-b border-black/[0.06] py-3 sm:py-3.5'
+            ? 'bg-white/95 backdrop-blur-md border-b border-black/[0.08] shadow-[0_1px_8px_rgba(0,0,0,0.03)] py-3'
+            : 'bg-white/80 backdrop-blur-sm border-b border-black/[0.05] py-4'
         }`}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between relative h-10">
-            {/* Left: Brand Logo & Motto */}
+          <div className="flex justify-between items-center h-10">
+            {/* Brand Lettermark */}
             <Link
               href="/"
-              className="flex items-center space-x-2 sm:space-x-2.5 flex-shrink-0 group focus:outline-none"
+              className="flex items-center space-x-2.5 group focus:outline-none"
             >
-              <Image
-                src="/dox1.jpg"
-                alt="Doxantro Systems"
-                width={120}
-                height={32}
-                className="h-6 sm:h-7 md:h-8 w-auto object-contain"
-                priority
-              />
-              <span className="hidden xl:inline-block font-mono text-[11px] uppercase tracking-wider text-zinc-500 font-medium pl-2.5 border-l border-black/10">
-                Think, Build and Solve
-              </span>
+              <div className="relative overflow-hidden rounded-md border border-zinc-200/80 bg-zinc-950 p-0.5">
+                <Image
+                  src="/dox1.jpg"
+                  alt="Doxantro Systems"
+                  width={28}
+                  height={28}
+                  className="rounded-[3px] object-cover"
+                  priority
+                />
+              </div>
+              <div className="flex items-baseline gap-1.5">
+                <span className="font-bold tracking-tight text-[#111111] text-base sm:text-lg">
+                  DOXANTRO
+                </span>
+                <span className="text-[10px] font-mono tracking-widest text-zinc-400 uppercase hidden sm:inline">
+                  SYSTEMS
+                </span>
+              </div>
             </Link>
 
-            {/* Center: bachs.io-style Floating Dock Pill (Visible on lg+ displays) */}
-            <nav className="hidden lg:flex items-center absolute left-1/2 -translate-x-1/2 border border-black/[0.12] rounded-xl bg-white px-2 py-1 shadow-[0_2px_12px_rgba(0,0,0,0.06)]">
+            {/* Desktop Centered Pill Menu */}
+            <nav className="hidden lg:flex items-center gap-1 border border-black/[0.08] rounded-full px-3 py-1 bg-white shadow-[0_1px_3px_rgba(0,0,0,0.03)]">
               <Link
-                href="/#features"
-                className={`px-3 py-1.5 text-[13px] font-normal transition-colors rounded-lg ${
-                  pathname === '/' ? 'text-[#111111] hover:text-black' : 'text-zinc-600 hover:text-black'
+                href="/"
+                className={`px-3 py-1.5 rounded-full text-xs font-medium transition-colors ${
+                  pathname === '/'
+                    ? 'text-[#111111] bg-zinc-100 font-semibold'
+                    : 'text-zinc-600 hover:text-[#111111]'
                 }`}
               >
-                Features
+                Overview
               </Link>
 
-              {/* Solutions Dropdown */}
+              {/* Solutions Mega Menu Trigger */}
               <div
                 className="relative"
                 onMouseEnter={handleMouseEnterSolutions}
@@ -90,48 +108,84 @@ export default function Navbar() {
               >
                 <button
                   type="button"
-                  className="inline-flex items-center gap-1 px-3 py-1.5 text-[13px] font-normal text-zinc-600 hover:text-black transition-colors rounded-lg cursor-pointer"
+                  className={`inline-flex items-center gap-1 px-3 py-1.5 rounded-full text-xs font-medium transition-colors cursor-pointer ${
+                    pathname.startsWith('/ai-')
+                      ? 'text-[#111111] bg-zinc-100 font-semibold'
+                      : 'text-zinc-600 hover:text-[#111111]'
+                  }`}
                   aria-expanded={isSolutionsOpen}
                 >
                   <span>Solutions</span>
                   <ChevronDown
-                    className={`w-3.5 h-3.5 text-zinc-400 transition-transform duration-150 ${
-                      isSolutionsOpen ? 'rotate-180 text-black' : ''
+                    className={`w-3.5 h-3.5 transition-transform duration-150 ${
+                      isSolutionsOpen ? 'rotate-180 text-zinc-900' : 'text-zinc-400'
                     }`}
                   />
                 </button>
 
+                {/* Mega Menu Dropdown */}
                 <AnimatePresence>
                   {isSolutionsOpen && (
                     <motion.div
-                      initial={{ opacity: 0, y: 6 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      exit={{ opacity: 0, y: 4 }}
-                      transition={{ duration: 0.15 }}
-                      className="absolute top-full left-1/2 -translate-x-1/2 mt-2 w-72 rounded-xl border border-black/[0.1] bg-white p-2 shadow-xl shadow-black/5 z-50"
+                      initial={{ opacity: 0, y: 8, scale: 0.99 }}
+                      animate={{ opacity: 1, y: 0, scale: 1 }}
+                      exit={{ opacity: 0, y: 6, scale: 0.99 }}
+                      transition={{ duration: 0.15, ease: 'easeOut' }}
+                      className="absolute top-full left-1/2 -translate-x-1/2 mt-3 w-[680px] rounded-2xl border border-black/[0.08] bg-white p-5 shadow-[0_12px_40px_rgba(0,0,0,0.08)] z-50 overflow-hidden"
                     >
-                      <div className="px-2.5 py-1.5 text-[10px] font-mono uppercase tracking-wider text-zinc-400 font-medium">
-                        Industry Verticals
+                      <div className="flex items-center justify-between pb-3 mb-3 border-b border-black/[0.06]">
+                        <span className="text-[11px] font-mono tracking-wider uppercase text-zinc-500">
+                          ■ Production AI Verticals
+                        </span>
+                        <Link
+                          href="/services"
+                          className="text-xs font-medium text-zinc-900 hover:text-orange-600 flex items-center gap-1 group"
+                        >
+                          All Capabilities
+                          <ArrowRight className="w-3 h-3 transition-transform group-hover:translate-x-0.5" />
+                        </Link>
                       </div>
-                      <div className="space-y-0.5">
+
+                      {/* 2-column Grid of Solutions */}
+                      <div className="grid grid-cols-2 gap-2">
                         {solutionsData.map((item) => (
                           <Link
                             key={item.id}
                             href={item.href}
-                            className="flex items-center justify-between px-2.5 py-2 rounded-lg text-xs font-normal text-zinc-800 hover:bg-zinc-100/80 transition-colors"
+                            className="group flex items-start gap-3 p-2.5 rounded-xl transition-all duration-150 hover:bg-zinc-50 border border-transparent hover:border-black/[0.06]"
                           >
-                            <span>{item.title}</span>
-                            <span className="text-[10px] font-mono text-zinc-400">{item.badge}</span>
+                            <div className="p-2 rounded-lg bg-zinc-100 text-zinc-800 group-hover:bg-[#111111] group-hover:text-white transition-colors">
+                              <SolutionIcon name={item.iconName} className="w-4 h-4" />
+                            </div>
+                            <div className="flex-1 min-w-0">
+                              <div className="flex items-center gap-1.5">
+                                <h4 className="text-xs font-semibold text-zinc-900 group-hover:text-orange-600 transition-colors">
+                                  {item.shortTitle}
+                                </h4>
+                                {item.badge && (
+                                  <span className="text-[9px] font-mono px-1 py-0.2 rounded bg-zinc-100 text-zinc-600">
+                                    {item.badge}
+                                  </span>
+                                )}
+                              </div>
+                              <p className="text-[11px] text-zinc-500 line-clamp-1 mt-0.5">
+                                {item.description}
+                              </p>
+                            </div>
                           </Link>
                         ))}
                       </div>
-                      <div className="mt-1.5 pt-1.5 border-t border-zinc-100">
+
+                      {/* Mega Menu Bottom Bar */}
+                      <div className="mt-3 pt-3 border-t border-black/[0.06] flex items-center justify-between">
+                        <span className="text-xs text-zinc-500">
+                          Custom model training on sovereign enterprise infrastructure
+                        </span>
                         <Link
-                          href="/services"
-                          className="flex items-center justify-between px-2.5 py-1.5 text-xs font-medium text-orange-600 hover:text-orange-700 transition-colors"
+                          href="/contact"
+                          className="text-xs font-medium text-zinc-900 hover:text-orange-600 flex items-center gap-1"
                         >
-                          <span>Full Platform Services</span>
-                          <ArrowRight className="w-3 h-3" />
+                          Scoping questionnaire →
                         </Link>
                       </div>
                     </motion.div>
@@ -139,51 +193,38 @@ export default function Navbar() {
                 </AnimatePresence>
               </div>
 
-              <Link
-                href="/case-studies"
-                className={`px-3 py-1.5 text-[13px] font-normal transition-colors rounded-lg ${
-                  pathname === '/case-studies' ? 'text-[#111111] font-medium' : 'text-zinc-600 hover:text-black'
-                }`}
-              >
-                Case Studies
-              </Link>
-
-              <Link
-                href="/blog"
-                className={`px-3 py-1.5 text-[13px] font-normal transition-colors rounded-lg ${
-                  pathname === '/blog' ? 'text-[#111111] font-medium' : 'text-zinc-600 hover:text-black'
-                }`}
-              >
-                Research
-              </Link>
-
-              <Link
-                href="/about"
-                className={`px-3 py-1.5 text-[13px] font-normal transition-colors rounded-lg ${
-                  pathname === '/about' ? 'text-[#111111] font-medium' : 'text-zinc-600 hover:text-black'
-                }`}
-              >
-                Company
-              </Link>
+              {navLinks.map((link) => (
+                <Link
+                  key={link.name}
+                  href={link.href}
+                  className={`px-3 py-1.5 rounded-full text-xs font-medium transition-colors ${
+                    pathname === link.href
+                      ? 'text-[#111111] bg-zinc-100 font-semibold'
+                      : 'text-zinc-600 hover:text-[#111111]'
+                  }`}
+                >
+                  {link.name}
+                </Link>
+              ))}
             </nav>
 
-            {/* Right: Actions (Visible on lg+ displays) */}
-            <div className="hidden lg:flex items-center space-x-3.5 flex-shrink-0">
+            {/* Right Action Button */}
+            <div className="hidden lg:flex items-center gap-3">
               <Link
                 href="/contact"
-                className="text-xs font-normal text-zinc-600 hover:text-[#111111] transition-colors"
+                className="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-[#111111] hover:bg-black text-white text-xs font-medium transition-all shadow-[0_1px_2px_rgba(0,0,0,0.08)] hover:shadow-md"
               >
-                Contact Sales
+                <span>Get Started</span>
+                <svg width="12" height="12" viewBox="0 0 16 16" fill="none">
+                  <path d="M6 3l5 5-5 5" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
               </Link>
-              <Button href="/contact" size="sm" variant="primary" icon={<ArrowRight className="w-3.5 h-3.5" />}>
-                Get Started
-              </Button>
             </div>
 
-            {/* Mobile/Tablet Hamburger Button (Visible on < lg) */}
+            {/* Mobile Hamburger Button */}
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="lg:hidden p-2 -mr-1 rounded-lg text-zinc-800 hover:bg-zinc-100 transition-colors cursor-pointer"
+              className="lg:hidden p-2 rounded-lg text-zinc-800 hover:bg-zinc-100 focus:outline-none transition-colors"
               aria-label="Toggle Navigation Menu"
             >
               {isMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
@@ -191,82 +232,66 @@ export default function Navbar() {
           </div>
         </div>
 
-        {/* Mobile & Tablet Navigation Drawer */}
+        {/* Mobile Navigation Drawer */}
         <AnimatePresence>
           {isMenuOpen && (
             <motion.div
               initial={{ opacity: 0, height: 0 }}
               animate={{ opacity: 1, height: 'auto' }}
               exit={{ opacity: 0, height: 0 }}
-              transition={{ duration: 0.2 }}
-              className="lg:hidden bg-white/98 backdrop-blur-xl border-b border-zinc-200 overflow-hidden shadow-2xl"
+              transition={{ duration: 0.2, ease: 'easeInOut' }}
+              className="lg:hidden bg-white border-b border-black/[0.08] overflow-hidden"
             >
-              <div className="px-4 py-5 space-y-1.5 max-h-[calc(100vh-64px)] overflow-y-auto">
+              <div className="px-4 pt-3 pb-6 space-y-1 max-h-[80vh] overflow-y-auto">
                 <Link
                   href="/"
-                  className="block px-3.5 py-2.5 rounded-xl text-sm text-zinc-900 font-medium hover:bg-zinc-100/80 transition-colors"
+                  className={`block px-3 py-2 rounded-lg text-sm font-medium transition-colors ${
+                    pathname === '/' ? 'bg-zinc-100 text-[#111111] font-semibold' : 'text-zinc-700'
+                  }`}
                 >
-                  Home
+                  Overview
                 </Link>
 
-                <div className="px-3.5 py-2 rounded-xl bg-zinc-50 border border-black/[0.06] my-2">
-                  <div className="text-[10px] font-mono uppercase text-zinc-500 tracking-wider mb-2 font-semibold">
-                    Vertical Solutions
+                <div className="border border-black/[0.06] rounded-xl p-2.5 bg-zinc-50 my-2">
+                  <div className="px-2 py-1 text-[11px] font-mono tracking-wider uppercase text-zinc-500">
+                    ■ AI Solutions
                   </div>
-                  <div className="grid grid-cols-2 gap-1.5">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-1 mt-1">
                     {solutionsData.map((item) => (
                       <Link
                         key={item.id}
                         href={item.href}
-                        className="text-xs text-zinc-800 py-1.5 px-2 rounded-lg hover:bg-white hover:text-orange-600 transition-colors"
+                        className="flex items-center gap-2 px-2.5 py-1.5 rounded-lg text-xs font-medium text-zinc-700 hover:bg-white transition-colors"
                       >
-                        {item.shortTitle}
+                        <SolutionIcon name={item.iconName} className="w-3.5 h-3.5 text-zinc-900" />
+                        <span>{item.shortTitle}</span>
                       </Link>
                     ))}
                   </div>
                 </div>
 
-                <Link
-                  href="/services"
-                  className="block px-3.5 py-2.5 rounded-xl text-sm text-zinc-900 font-medium hover:bg-zinc-100/80 transition-colors"
-                >
-                  Services & Capabilities
-                </Link>
-                <Link
-                  href="/case-studies"
-                  className="block px-3.5 py-2.5 rounded-xl text-sm text-zinc-900 font-medium hover:bg-zinc-100/80 transition-colors"
-                >
-                  Case Studies
-                </Link>
-                <Link
-                  href="/blog"
-                  className="block px-3.5 py-2.5 rounded-xl text-sm text-zinc-900 font-medium hover:bg-zinc-100/80 transition-colors"
-                >
-                  Research Papers
-                </Link>
-                <Link
-                  href="/about"
-                  className="block px-3.5 py-2.5 rounded-xl text-sm text-zinc-900 font-medium hover:bg-zinc-100/80 transition-colors"
-                >
-                  About Doxantro
-                </Link>
-                <Link
-                  href="/careers"
-                  className="block px-3.5 py-2.5 rounded-xl text-sm text-zinc-900 font-medium hover:bg-zinc-100/80 transition-colors"
-                >
-                  Careers
-                </Link>
-                <Link
-                  href="/contact"
-                  className="block px-3.5 py-2.5 rounded-xl text-sm text-zinc-900 font-medium hover:bg-zinc-100/80 transition-colors"
-                >
-                  Contact Sales
-                </Link>
+                {navLinks.map((link) => (
+                  <Link
+                    key={link.name}
+                    href={link.href}
+                    className={`block px-3 py-2 rounded-lg text-sm font-medium transition-colors ${
+                      pathname === link.href ? 'bg-zinc-100 text-[#111111] font-semibold' : 'text-zinc-700'
+                    }`}
+                  >
+                    {link.name}
+                  </Link>
+                ))}
 
-                <div className="pt-3 pb-2">
-                  <Button href="/contact" size="md" variant="primary" className="w-full">
-                    Get Started →
-                  </Button>
+                <div className="pt-3">
+                  <Link
+                    href="/contact"
+                    className="w-full flex items-center justify-center gap-1.5 px-4 py-2.5 rounded-full bg-[#111111] text-white text-xs font-medium"
+                  >
+                    <span>Get Started</span>
+                    <svg width="12" height="12" viewBox="0 0 16 16" fill="none">
+                      <path d="M6 3l5 5-5 5" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" />
+                    </svg>
+                  </Link>
                 </div>
               </div>
             </motion.div>

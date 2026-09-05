@@ -4,8 +4,8 @@ import React from 'react';
 import Link from 'next/link';
 import { motion, HTMLMotionProps } from 'framer-motion';
 
-export interface ButtonBaseProps {
-  variant?: 'primary' | 'secondary' | 'orange' | 'inverted' | 'outline' | 'ghost' | 'glass' | 'glass-dark' | 'outline-white';
+interface ButtonBaseProps {
+  variant?: 'primary' | 'accent' | 'secondary' | 'outline' | 'ghost' | 'glass' | 'glass-dark' | 'outline-white';
   size?: 'sm' | 'md' | 'lg';
   children: React.ReactNode;
   icon?: React.ReactNode;
@@ -36,43 +36,49 @@ export default function Button({
   ...props
 }: ButtonProps) {
   const baseStyles =
-    'inline-flex items-center justify-center font-normal tracking-tight transition-all duration-150 focus:outline-none focus:ring-2 focus:ring-zinc-900 focus:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none active:scale-[0.98] select-none cursor-pointer rounded-full';
+    'inline-flex items-center justify-center font-medium transition-all duration-150 focus:outline-none focus-visible:ring-2 focus-visible:ring-orange-500 focus-visible:ring-offset-2 disabled:opacity-40 disabled:pointer-events-none select-none cursor-pointer tracking-tight';
 
   const sizeStyles = {
-    sm: 'text-xs px-3.5 py-1.5 gap-1.5',
-    md: 'text-sm px-5 py-2.5 gap-2',
-    lg: 'text-sm sm:text-base px-6 py-3 gap-2.5',
+    sm: 'text-xs h-8 px-3.5 rounded-full gap-1.5',
+    md: 'text-sm h-10 px-5 rounded-full gap-2',
+    lg: 'text-sm sm:text-base h-12 px-6 rounded-full gap-2.5',
   };
 
   const variantStyles = {
     primary:
-      'bg-[#111111] text-white hover:bg-black border border-[#111111] shadow-[0_1px_2px_rgba(0,0,0,0.08)]',
-    orange:
-      'bg-orange-600 text-white hover:bg-orange-700 border border-orange-600 shadow-[0_1px_2px_rgba(234,88,12,0.12)]',
+      'bg-[#111111] hover:bg-black text-white border border-[#222222] shadow-[0_1px_2px_rgba(0,0,0,0.08)] hover:shadow-[0_4px_12px_rgba(0,0,0,0.12)]',
+    accent:
+      'bg-orange-600 hover:bg-orange-700 text-white border border-orange-500 shadow-sm hover:shadow-md',
     secondary:
-      'bg-white text-zinc-900 border border-zinc-200/90 hover:bg-zinc-50 hover:border-zinc-300 shadow-[0_1px_2px_rgba(0,0,0,0.04)]',
-    inverted:
-      'bg-white text-[#111111] hover:bg-zinc-100 border border-white font-medium shadow-sm',
+      'bg-zinc-100 hover:bg-zinc-200/80 text-zinc-900 border border-zinc-200/80',
     outline:
-      'border border-zinc-200/90 hover:border-zinc-300 hover:text-zinc-900 text-zinc-700 bg-white/50 backdrop-blur-sm',
+      'border border-zinc-300 hover:border-zinc-900 text-zinc-900 bg-white hover:bg-zinc-50 shadow-sm',
     'outline-white':
-      'border border-white/20 hover:border-white/40 text-white hover:bg-white/5 bg-transparent',
+      'border border-zinc-700 hover:border-white text-white hover:bg-zinc-900 bg-transparent',
     ghost:
-      'text-zinc-700 hover:text-zinc-950 hover:bg-zinc-100/80',
+      'text-zinc-600 hover:text-zinc-950 hover:bg-zinc-100/80',
     glass:
-      'backdrop-blur-md bg-white/90 hover:bg-white text-zinc-900 border border-zinc-200/80 shadow-[0_1px_3px_rgba(0,0,0,0.04)]',
+      'backdrop-blur-md bg-white/90 hover:bg-white text-zinc-900 border border-zinc-200/80 shadow-sm hover:shadow hover:border-zinc-400',
     'glass-dark':
-      'backdrop-blur-md bg-zinc-900/90 hover:bg-zinc-800 text-white border border-zinc-800 shadow-sm',
+      'backdrop-blur-md bg-zinc-900/90 hover:bg-zinc-800 text-white border border-zinc-800 hover:border-zinc-700 shadow-sm',
   };
 
   const combinedClasses = `${baseStyles} ${sizeStyles[size]} ${variantStyles[variant]} ${className}`;
+
+  const defaultArrow = (
+    <svg width="13" height="13" viewBox="0 0 16 16" fill="none" className="transition-transform group-hover:translate-x-0.5">
+      <path d="M6 3l5 5-5 5" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  );
+
+  const renderedIcon = icon || (variant === 'primary' || variant === 'accent' ? defaultArrow : null);
 
   const content = (
     <>
       {icon && iconPosition === 'left' && <span className="flex-shrink-0">{icon}</span>}
       <span>{children}</span>
-      {icon && iconPosition === 'right' && (
-        <span className="flex-shrink-0 transition-transform duration-150 group-hover:translate-x-0.5">{icon}</span>
+      {renderedIcon && iconPosition === 'right' && (
+        <span className="flex-shrink-0">{renderedIcon}</span>
       )}
     </>
   );

@@ -27,7 +27,6 @@ export default function StatCounter({
   useEffect(() => {
     if (!isInView) return;
 
-    // Parse numeric value if given as string like "500" or "40" or "3.5"
     const strVal = String(value);
     const numericMatch = strVal.match(/[\d.]+/);
     if (!numericMatch) {
@@ -47,7 +46,6 @@ export default function StatCounter({
     const animate = (currentTime: number) => {
       if (!startTime) startTime = currentTime;
       const progress = Math.min((currentTime - startTime) / (duration * 1000), 1);
-      // easeOutExpo
       const easeProgress = progress === 1 ? 1 : 1 - Math.pow(2, -10 * progress);
       const currentVal = (targetNum * easeProgress).toFixed(decimalPlaces);
 
@@ -68,10 +66,10 @@ export default function StatCounter({
 
   return (
     <div ref={ref} className={`text-center ${className}`}>
-      <div className="text-4xl md:text-5xl font-extrabold tracking-tight text-orange-600 mb-2">
+      <div className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-[#111111] font-mono tabular-nums mb-1.5">
         {displayValue}
       </div>
-      {label && <p className="text-sm md:text-base text-zinc-600 font-medium">{label}</p>}
+      {label && <p className="text-xs sm:text-sm text-zinc-500 font-medium leading-relaxed">{label}</p>}
     </div>
   );
 }

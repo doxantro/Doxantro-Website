@@ -2,85 +2,72 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
-import { ArrowRight } from 'lucide-react';
 import Button from '../components/ui/Button';
-import HeroDispatchConsole from '../components/hero/HeroDispatchConsole';
+import AITelemetryTerminal from '../components/hero/AITelemetryTerminal';
 
 export default function HeroSection() {
   return (
-    <section className="relative pt-28 pb-16 sm:pt-32 sm:pb-20 md:pt-36 md:pb-24 overflow-hidden bg-white border-b border-black/[0.06]">
+    <section className="relative pt-32 pb-16 md:pt-40 md:pb-24 border-b border-black/[0.06] bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid lg:grid-cols-12 gap-10 lg:gap-14 items-center">
-          {/* Left Column: Editorial Headline & Actions */}
+        <div className="grid lg:grid-cols-12 gap-12 lg:gap-8 items-start">
+          {/* Left Column: Headline & Value Prop */}
           <motion.div
-            initial={{ opacity: 0, y: 18 }}
+            initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.45, ease: 'easeOut' }}
-            className="lg:col-span-7 text-left"
+            className="lg:col-span-6 text-left"
           >
-            {/* Minimalist Announcement Eyebrow with Motto */}
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-black/[0.08] bg-zinc-50 text-[11px] sm:text-xs text-zinc-700 font-mono mb-6 max-w-full truncate">
-              <span className="w-1.5 h-1.5 rounded-full bg-orange-600 flex-shrink-0" />
-              <span className="truncate">Think, Build and Solve · Doxantro Core v3.4</span>
+            {/* Monospace Subheading */}
+            <div className="mb-4">
+              <span className="subheading">
+                Enterprise Applied AI · v3.4 Infrastructure
+              </span>
             </div>
 
-            {/* Main Display Headline */}
-            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-[3.5rem] font-semibold tracking-[-0.03em] text-[#111111] leading-[1.12] mb-5 sm:mb-6">
-              Think, build, and solve with{' '}
-              <span className="font-mono font-normal tracking-tight text-zinc-900 border-b border-black/20 pb-0.5">
-                enterprise AI.
-              </span>
+            {/* Main Headline */}
+            <h1 className="display-1 mb-5">
+              Think, Build and <br className="hidden sm:inline" />
+              Solve with Intelligence.
             </h1>
 
-            {/* Editorial Body Text */}
-            <p className="text-sm sm:text-base md:text-lg text-zinc-600 mb-7 sm:mb-8 leading-relaxed max-w-xl">
-              Deploy domain-tuned models, autonomous workflow pipelines, and zero-trust guardrails. We engineer the intelligence infrastructure so your teams can think, build, and solve complex challenges without technical debt.
+            {/* Subheadline */}
+            <p className="body-lg mb-8 max-w-xl text-zinc-600">
+              Empowering global enterprises, healthcare systems, and institutions with mission-critical AI solutions engineered for speed, accuracy, and measurable ROI.
             </p>
 
-            {/* CTA Button Row */}
-            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-3.5 mb-8 sm:mb-10">
-              <Button
-                href="/contact"
-                size="lg"
-                variant="primary"
-                icon={<ArrowRight className="w-4 h-4" />}
-                className="w-full sm:w-auto"
-              >
-                Get Started
+            {/* CTA Row */}
+            <div className="flex flex-wrap items-center gap-3 mb-10">
+              <Button href="/contact" size="lg" variant="primary">
+                Start Your Project
               </Button>
-              <Button
-                href="/services"
-                size="lg"
-                variant="secondary"
-                className="w-full sm:w-auto"
-              >
-                View Architecture
+              <Button href="/case-studies" size="lg" variant="outline">
+                Explore Case Studies
               </Button>
             </div>
 
-            {/* Bottom Proof Line */}
-            <div className="flex flex-wrap items-center gap-4 sm:gap-6 pt-5 sm:pt-6 border-t border-black/[0.06] text-[11px] sm:text-xs font-mono text-zinc-500">
-              <div className="flex items-center gap-1.5">
-                <span className="text-[#111111] font-semibold">Sub-20ms</span> P99 Latency
+            {/* 3 Hairline Metric Indicators */}
+            <div className="pt-6 border-t border-black/[0.06] grid grid-cols-3 gap-4">
+              <div>
+                <div className="text-xs font-semibold text-zinc-900">SOC-2 Type II</div>
+                <div className="text-[11px] text-zinc-500 font-mono mt-0.5">Air-gapped & sovereign</div>
               </div>
-              <div className="flex items-center gap-1.5">
-                <span className="text-[#111111] font-semibold">SOC-2 / HIPAA</span> Air-Gapped
+
+              <div>
+                <div className="text-xs font-semibold text-zinc-900">&lt; 10ms Latency</div>
+                <div className="text-[11px] text-zinc-500 font-mono mt-0.5">Real-time inference</div>
               </div>
-              <div className="flex items-center gap-1.5">
-                <span className="text-[#111111] font-semibold">6 Verticals</span> Pre-Tuned
+
+              <div>
+                <div className="text-xs font-semibold text-zinc-900">6 Verticals</div>
+                <div className="text-[11px] text-zinc-500 font-mono mt-0.5">Domain-trained models</div>
               </div>
             </div>
           </motion.div>
 
-          {/* Right Column: Tactile Dispatch Console */}
-          <motion.div
-            initial={{ opacity: 0, y: 22 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.1, ease: 'easeOut' }}
-            className="lg:col-span-5 flex justify-center lg:justify-end w-full"
-          >
-            <HeroDispatchConsole />
-          </motion.div>
+          {/* Right Column: Precision Developer Console */}
+          <div className="lg:col-span-6 w-full">
+            <AITelemetryTerminal />
+          </div>
         </div>
       </div>
     </section>

@@ -6,8 +6,13 @@ import { motion } from 'framer-motion';
 import {
   ArrowRight,
   CheckCircle2,
+  Cpu,
+  TrendingUp,
+  Sparkles,
 } from 'lucide-react';
 import Button from '../ui/Button';
+import SectionHeader from '../ui/SectionHeader';
+import SolutionIcon from '../ui/SolutionIcon';
 
 export interface VerticalSolutionItem {
   title: string;
@@ -38,166 +43,221 @@ export default function SolutionPageLayout({
   titleHighlight,
   titleSuffix = '',
   subtitle,
+  iconName,
   metrics,
   solutions,
   architectureSpecs,
   useCases,
-  ctaTitle = 'Deploy domain intelligence in your stack.',
-  ctaSubtitle = 'Schedule a technical scoping consultation with our AI systems architects to assess latency, models, and VPC deployment.',
+  ctaTitle = 'Ready to Deploy Proprietary AI Architecture?',
+  ctaSubtitle = 'Schedule a technical review with our principal AI engineers to assess model feasibility, data pipelines, and deployment parameters.',
 }: SolutionPageProps) {
   return (
     <main className="min-h-screen bg-white">
-      {/* 1. Hero */}
-      <section className="pt-28 pb-16 sm:pt-36 sm:pb-24 bg-white border-b border-black/[0.06]">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <p className="font-mono text-xs text-zinc-500 uppercase tracking-widest mb-4">
-            {badge}
-          </p>
-          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-[3.5rem] font-semibold tracking-[-0.03em] text-[#111111] leading-tight mb-6">
-            {titlePrefix} {titleHighlight} {titleSuffix}
-          </h1>
-          <p className="text-sm sm:text-base md:text-lg text-zinc-600 leading-relaxed max-w-2xl mx-auto mb-8">
-            {subtitle}
-          </p>
-          <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-3 sm:gap-3.5">
-            <Button href="/contact" size="md" variant="primary" icon={<ArrowRight className="w-4 h-4" />} className="w-full sm:w-auto">
-              Schedule Technical Review
-            </Button>
-            <Button href="/services" size="md" variant="secondary" className="w-full sm:w-auto">
-              Platform Architecture
-            </Button>
-          </div>
-        </div>
-      </section>
+      {/* 1. Hero Section */}
+      <section className="relative pt-32 pb-16 md:pt-40 md:pb-24 border-b border-black/[0.06] bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.45 }}
+            className="max-w-4xl mx-auto"
+          >
+            <div className="mb-3.5">
+              <span className="subheading">
+                {badge}
+              </span>
+            </div>
 
-      {/* 2. Measured Metrics Banner */}
-      <section className="py-14 sm:py-16 bg-[#f9f9f8] border-b border-black/[0.06]">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
-            {metrics.map((m) => (
-              <div key={m.label} className="flex flex-col">
-                <span className="font-mono text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight text-[#111111] mb-1">
-                  {m.value}
-                </span>
-                <span className="font-semibold text-xs sm:text-sm text-zinc-900 mb-0.5">{m.label}</span>
-                <span className="text-[11px] text-zinc-500 font-mono">{m.sublabel}</span>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+            <h1 className="display-1 mb-5">
+              {titlePrefix} {titleHighlight} {titleSuffix}
+            </h1>
 
-      {/* 3. Core Capabilities Grid */}
-      <section className="py-20 sm:py-24 bg-white border-b border-black/[0.06]">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="max-w-3xl mb-12 sm:mb-16">
-            <p className="font-mono text-xs text-zinc-500 uppercase tracking-wider mb-2 sm:mb-3">
-              Vertical Capabilities
+            <p className="body-lg max-w-2xl mx-auto mb-8 text-zinc-600">
+              {subtitle}
             </p>
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold tracking-[-0.025em] text-[#111111] leading-tight">
-              Pre-calibrated neural modules for this domain.
-            </h2>
-          </div>
 
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
-            {solutions.map((item) => (
-              <div
-                key={item.title}
-                className="rounded-2xl border border-black/[0.08] bg-[#fcfbf9] p-5 sm:p-6 flex flex-col justify-between"
-              >
-                <div>
-                  <h3 className="font-semibold text-sm sm:text-base text-[#111111] tracking-tight mb-2">
-                    {item.title}
-                  </h3>
-                  <p className="text-xs sm:text-sm text-zinc-600 leading-relaxed mb-5">
-                    {item.description}
-                  </p>
+            <div className="flex flex-wrap gap-3 justify-center items-center mb-12">
+              <Button href="/contact" size="lg" variant="primary">
+                Schedule Architecture Consultation
+              </Button>
+              <Button href="#solutions-list" size="lg" variant="outline">
+                Explore Capabilities
+              </Button>
+            </div>
+
+            {/* Metrics Grid */}
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 text-left">
+              {metrics.map((m, idx) => (
+                <div
+                  key={idx}
+                  className="card-minimal p-4 sm:p-5"
+                >
+                  <div className="text-2xl sm:text-3xl font-bold font-mono text-[#111111] tabular-nums mb-1">
+                    {m.value}
+                  </div>
+                  <div className="text-xs font-semibold text-zinc-900">{m.label}</div>
+                  <div className="text-[11px] text-zinc-500 mt-0.5">{m.sublabel}</div>
                 </div>
+              ))}
+            </div>
+          </motion.div>
+        </div>
+      </section>
 
-                <div className="space-y-2 pt-4 border-t border-black/[0.06]">
-                  {item.features.map((feat) => (
-                    <div key={feat} className="flex items-start gap-2 text-[11px] sm:text-xs text-zinc-700 font-mono">
-                      <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 flex-shrink-0 mt-0.5" />
-                      <span>{feat}</span>
+      {/* 2. Solutions Breakdown */}
+      <section id="solutions-list" className="py-20 md:py-24 bg-[#fafafa] border-b border-black/[0.06]">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <SectionHeader
+            badge="MODULAR CAPABILITIES"
+            title="Specialized Systems Engineered for Production"
+            subtitle="Explore our pre-configured neural models and real-time processing pipelines."
+          />
+
+          <div className="space-y-6">
+            {solutions.map((item, idx) => (
+              <motion.div
+                key={idx}
+                initial={{ opacity: 0, y: 16 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.35, delay: idx * 0.05 }}
+              >
+                <div className="card-minimal p-6 sm:p-8">
+                  <div className="grid lg:grid-cols-12 gap-8 items-start">
+                    {/* Left: Solution & Features (7 cols) */}
+                    <div className="lg:col-span-7 space-y-4">
+                      <div className="flex items-center gap-3">
+                        <div className="w-9 h-9 rounded-lg bg-zinc-100 flex items-center justify-center text-zinc-900">
+                          <SolutionIcon name={item.iconName} className="w-4 h-4" />
+                        </div>
+                        <h3 className="text-lg sm:text-xl font-bold text-zinc-900">
+                          {item.title}
+                        </h3>
+                      </div>
+
+                      <p className="text-xs sm:text-sm text-zinc-600 leading-relaxed">
+                        {item.description}
+                      </p>
+
+                      <div className="pt-2">
+                        <div className="text-[11px] font-mono tracking-wider uppercase text-zinc-500 mb-2">
+                          ■ Technical Features
+                        </div>
+                        <div className="grid sm:grid-cols-2 gap-2">
+                          {item.features.map((feat, fIdx) => (
+                            <div key={fIdx} className="flex items-center text-xs text-zinc-700">
+                              <CheckCircle2 className="w-3.5 h-3.5 text-zinc-900 mr-2 flex-shrink-0" />
+                              <span>{feat}</span>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
                     </div>
-                  ))}
+
+                    {/* Right: Quantified Benefits (5 cols) */}
+                    <div className="lg:col-span-5 bg-[#0f0f12] text-white rounded-xl p-5 sm:p-6 border border-white/[0.08] shadow-sm">
+                      <div className="text-[11px] font-mono tracking-wider uppercase text-zinc-400 mb-3 flex items-center gap-1.5">
+                        <TrendingUp className="w-3.5 h-3.5 text-orange-400" />
+                        <span>Business Impact</span>
+                      </div>
+
+                      <ul className="space-y-2 mb-5">
+                        {item.benefits.map((ben, bIdx) => (
+                          <li key={bIdx} className="flex items-start gap-2 text-xs text-zinc-300">
+                            <span className="w-1 h-1 rounded-full bg-orange-400 mt-1.5 flex-shrink-0" />
+                            <span>{ben}</span>
+                          </li>
+                        ))}
+                      </ul>
+
+                      <Link
+                        href="/contact"
+                        className="inline-flex items-center justify-between w-full p-2.5 rounded-lg bg-white/[0.06] border border-white/[0.1] hover:bg-white hover:text-black text-xs font-medium transition-all group"
+                      >
+                        <span>Deploy This Module</span>
+                        <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5" />
+                      </Link>
+                    </div>
+                  </div>
                 </div>
-              </div>
+              </motion.div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* 4. Architecture Specifications */}
-      <section className="py-20 sm:py-24 bg-[#f9f9f8] border-b border-black/[0.06]">
+      {/* 3. Industry Use Cases & Architecture Specs */}
+      <section className="py-20 md:py-24 bg-white border-b border-black/[0.06]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="max-w-3xl mb-12 sm:mb-16">
-            <p className="font-mono text-xs text-zinc-500 uppercase tracking-wider mb-2 sm:mb-3">
-              Technical Blueprint
-            </p>
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold tracking-[-0.025em] text-[#111111] leading-tight">
-              Deployment & Infrastructure Specs
-            </h2>
-          </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
-            {architectureSpecs.map((spec) => (
-              <div key={spec.category} className="flex flex-col">
-                <h3 className="font-semibold text-sm text-[#111111] mb-3 sm:mb-4 pb-2 border-b border-black/[0.08]">
-                  {spec.category}
-                </h3>
-                <ul className="space-y-2">
-                  {spec.items.map((i) => (
-                    <li key={i} className="flex items-start gap-2 text-xs sm:text-sm text-zinc-600">
-                      <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 flex-shrink-0 mt-0.5" />
-                      <span>{i}</span>
-                    </li>
-                  ))}
-                </ul>
+          <div className="grid lg:grid-cols-12 gap-10">
+            {/* Target Environments (6 cols) */}
+            <div className="lg:col-span-6 space-y-4">
+              <div className="subheading">Target Environments</div>
+              <h3 className="display-3">
+                Who We Build For
+              </h3>
+              <div className="space-y-3">
+                {useCases.map((uc, idx) => (
+                  <div key={idx} className="card-minimal p-4">
+                    <h4 className="text-sm font-bold text-zinc-900 mb-1">{uc.title}</h4>
+                    <p className="text-xs text-zinc-500 leading-relaxed">{uc.desc}</p>
+                  </div>
+                ))}
               </div>
-            ))}
+            </div>
+
+            {/* Technical Specifications (6 cols) */}
+            <div className="lg:col-span-6 space-y-4">
+              <div className="subheading">System Architecture</div>
+              <h3 className="display-3">
+                Technical Specifications
+              </h3>
+              <div className="space-y-3">
+                {architectureSpecs.map((spec, idx) => (
+                  <div key={idx} className="card-minimal p-4">
+                    <h4 className="text-xs font-mono uppercase tracking-wider text-zinc-700 mb-2 flex items-center gap-1.5">
+                      <Cpu className="w-3.5 h-3.5" />
+                      <span>{spec.category}</span>
+                    </h4>
+                    <div className="flex flex-wrap gap-1.5">
+                      {spec.items.map((item, sIdx) => (
+                        <span
+                          key={sIdx}
+                          className="text-[11px] font-mono px-2.5 py-1 rounded bg-zinc-100 text-zinc-700 border border-black/[0.04]"
+                        >
+                          {item}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* 5. Production Use Cases */}
-      <section className="py-20 sm:py-24 bg-white border-b border-black/[0.06]">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="max-w-3xl mb-12 sm:mb-16">
-            <p className="font-mono text-xs text-zinc-500 uppercase tracking-wider mb-2 sm:mb-3">
-              Production Workflows
-            </p>
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold tracking-[-0.025em] text-[#111111] leading-tight">
-              Real-World Implementation Scenarios
-            </h2>
-          </div>
+      {/* 4. Bottom CTA */}
+      <section className="py-20 md:py-24 bg-[#0c0c0e] text-white">
+        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <span className="text-[11px] font-mono tracking-widest uppercase text-zinc-400 mb-3 block">
+            ■ PRODUCTION READINESS GUARANTEE
+          </span>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 sm:gap-6">
-            {useCases.map((uc) => (
-              <div
-                key={uc.title}
-                className="rounded-2xl border border-black/[0.08] bg-[#fcfbf9] p-5 sm:p-6"
-              >
-                <h3 className="font-semibold text-sm sm:text-base text-[#111111] mb-2">{uc.title}</h3>
-                <p className="text-xs sm:text-sm text-zinc-600 leading-relaxed">{uc.desc}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+          <h2 className="display-2 text-white mb-4">
+            {ctaTitle}
+          </h2>
 
-      {/* 6. Dark CTA */}
-      <section className="py-16 sm:py-20 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="rounded-3xl bg-[#111111] text-white p-6 sm:p-14 lg:p-16 text-center border border-white/10 shadow-2xl">
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold tracking-tight text-white mb-4">
-              {ctaTitle}
-            </h2>
-            <p className="text-xs sm:text-sm text-zinc-400 max-w-xl mx-auto mb-8">
-              {ctaSubtitle}
-            </p>
-            <Button href="/contact" size="lg" variant="inverted" icon={<ArrowRight className="w-4 h-4" />} className="w-full sm:w-auto">
-              Start Architectural Scoping
+          <p className="body-lg text-zinc-400 mb-8 max-w-xl mx-auto">
+            {ctaSubtitle}
+          </p>
+
+          <div className="flex flex-wrap gap-3 justify-center items-center">
+            <Button href="/contact" size="lg" variant="primary">
+              Start Architectural Consultation
+            </Button>
+            <Button href="/case-studies" size="lg" variant="outline-white">
+              View Verified Case Studies
             </Button>
           </div>
         </div>
