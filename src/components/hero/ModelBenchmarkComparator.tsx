@@ -114,20 +114,20 @@ export default function ModelBenchmarkComparator() {
     <div className="relative rounded-2xl border border-black/[0.1] bg-white shadow-[0_4px_24px_rgba(0,0,0,0.06)] overflow-hidden w-full max-w-full">
       {/* Top Header & Vertical Selector */}
       <div className="p-3.5 sm:p-5 pb-3 border-b border-black/[0.06] bg-[#fafafa]">
-        <div className="flex items-center justify-between gap-2 mb-2.5 sm:mb-3">
+        <div className="flex items-center justify-between gap-1.5 mb-2.5 sm:mb-3">
           <div className="flex items-center gap-1.5 min-w-0">
-            <span className="w-2 h-2 rounded-full bg-orange-600 flex-shrink-0" />
-            <span className="text-[11px] font-mono tracking-wider uppercase text-zinc-600 font-semibold truncate">
+            <span className="w-2 h-2 rounded-full bg-orange-600 animate-pulse flex-shrink-0" />
+            <span className="text-[10px] sm:text-[11px] font-mono tracking-wider uppercase text-zinc-700 font-semibold truncate">
               Model Benchmark & ROI
             </span>
           </div>
-          <span className="text-[10px] font-mono text-zinc-500 bg-white border border-black/[0.06] px-2 py-0.5 rounded flex-shrink-0">
+          <span className="text-[9px] sm:text-[10px] font-mono text-zinc-500 bg-white border border-black/[0.06] px-1.5 sm:px-2 py-0.5 rounded flex-shrink-0">
             v3.4 Telemetry
           </span>
         </div>
 
         {/* Horizontal Scrollable Presets with Momentum Scrolling */}
-        <div className="flex items-center gap-1.5 overflow-x-auto pb-1 scrollbar-none -mx-3.5 px-3.5 sm:-mx-5 sm:px-5">
+        <div className="flex items-center gap-1.5 overflow-x-auto pb-1 scrollbar-none -mx-3.5 px-3.5 sm:mx-0 sm:px-0">
           {presets.map((preset) => (
             <button
               key={preset.id}
@@ -135,7 +135,7 @@ export default function ModelBenchmarkComparator() {
               className={`px-3 py-1.5 rounded-full text-xs font-medium whitespace-nowrap transition-colors cursor-pointer flex-shrink-0 ${
                 activePresetId === preset.id
                   ? 'bg-[#111111] text-white shadow-sm'
-                  : 'bg-white border border-black/[0.06] text-zinc-600 hover:text-[#111111] hover:border-black/[0.15]'
+                  : 'bg-white border border-black/[0.08] text-zinc-600 hover:text-[#111111] hover:border-black/[0.15]'
               }`}
             >
               {preset.shortName}

@@ -9,7 +9,7 @@ export default function HeroSection() {
   return (
     <section className="relative pt-24 pb-12 sm:pt-32 sm:pb-16 md:pt-40 md:pb-24 border-b border-black/[0.06] bg-white overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid lg:grid-cols-12 gap-8 lg:gap-8 items-start">
+        <div className="grid lg:grid-cols-12 gap-8 lg:gap-10 items-start">
           {/* Left Column: Headline & Value Prop */}
           <motion.div
             initial={{ opacity: 0, y: 16 }}
@@ -24,10 +24,9 @@ export default function HeroSection() {
               </span>
             </div>
 
-            {/* Main Headline */}
-            <h1 className="display-1 mb-3.5 sm:mb-5">
-              Think, Build and <br className="hidden sm:inline" />
-              Solve with Intelligence.
+            {/* Main Headline with responsive text sizes and natural wrapping */}
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-[3.25rem] font-bold tracking-tight text-[#111111] leading-[1.12] mb-4 sm:mb-5">
+              Think, Build and Solve with Intelligence.
             </h1>
 
             {/* Subheadline */}
@@ -36,7 +35,7 @@ export default function HeroSection() {
             </p>
 
             {/* CTA Row */}
-            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2.5 sm:gap-3 mb-6 sm:mb-10">
+            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2.5 sm:gap-3 mb-6 sm:mb-8">
               <Button href="/contact" size="lg" variant="primary" className="w-full sm:w-auto text-center">
                 Start Your Project
               </Button>
@@ -45,21 +44,30 @@ export default function HeroSection() {
               </Button>
             </div>
 
-            {/* 3 Hairline Metric Indicators - 3-column compact grid on all screens */}
-            <div className="pt-4 sm:pt-6 border-t border-black/[0.06] grid grid-cols-3 gap-2 sm:gap-4">
-              <div className="p-2 sm:p-0 rounded-lg bg-zinc-50 sm:bg-transparent text-left">
-                <div className="text-[11px] sm:text-xs font-semibold text-zinc-900 leading-tight">SOC-2 Type II</div>
-                <div className="text-[10px] sm:text-[11px] text-zinc-500 font-mono mt-0.5 leading-tight">Air-gapped</div>
+            {/* 3 Hairline Metric Indicators - Clean mobile stacked list and desktop flex row */}
+            <div className="pt-4 sm:pt-6 border-t border-black/[0.06] flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-2 sm:gap-4">
+              <div className="flex items-center gap-2.5 p-2 sm:p-0 rounded-lg bg-zinc-50 sm:bg-transparent">
+                <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 flex-shrink-0" />
+                <div className="flex sm:flex-col items-baseline sm:items-start gap-1.5 sm:gap-0">
+                  <span className="text-xs font-semibold text-zinc-900">SOC-2 Type II</span>
+                  <span className="text-[11px] text-zinc-500 font-mono">Air-gapped</span>
+                </div>
               </div>
 
-              <div className="p-2 sm:p-0 rounded-lg bg-zinc-50 sm:bg-transparent text-left">
-                <div className="text-[11px] sm:text-xs font-semibold text-zinc-900 leading-tight">&lt; 10ms Latency</div>
-                <div className="text-[10px] sm:text-[11px] text-zinc-500 font-mono mt-0.5 leading-tight">Real-time</div>
+              <div className="flex items-center gap-2.5 p-2 sm:p-0 rounded-lg bg-zinc-50 sm:bg-transparent">
+                <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 flex-shrink-0" />
+                <div className="flex sm:flex-col items-baseline sm:items-start gap-1.5 sm:gap-0">
+                  <span className="text-xs font-semibold text-zinc-900">&lt; 10ms Latency</span>
+                  <span className="text-[11px] text-zinc-500 font-mono">Real-time</span>
+                </div>
               </div>
 
-              <div className="p-2 sm:p-0 rounded-lg bg-zinc-50 sm:bg-transparent text-left">
-                <div className="text-[11px] sm:text-xs font-semibold text-zinc-900 leading-tight">6 Verticals</div>
-                <div className="text-[10px] sm:text-[11px] text-zinc-500 font-mono mt-0.5 leading-tight">Domain models</div>
+              <div className="flex items-center gap-2.5 p-2 sm:p-0 rounded-lg bg-zinc-50 sm:bg-transparent">
+                <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 flex-shrink-0" />
+                <div className="flex sm:flex-col items-baseline sm:items-start gap-1.5 sm:gap-0">
+                  <span className="text-xs font-semibold text-zinc-900">6 Verticals</span>
+                  <span className="text-[11px] text-zinc-500 font-mono">Domain models</span>
+                </div>
               </div>
             </div>
           </motion.div>
