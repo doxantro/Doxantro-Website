@@ -3,7 +3,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import Button from '../components/ui/Button';
-import AITelemetryTerminal from '../components/hero/AITelemetryTerminal';
+import ModelBenchmarkComparator from '../components/hero/ModelBenchmarkComparator';
 
 export default function HeroSection() {
   return (
@@ -64,9 +64,9 @@ export default function HeroSection() {
             </div>
           </motion.div>
 
-          {/* Right Column: Precision Developer Console */}
+          {/* Right Column: Model Benchmark & ROI Comparator */}
           <div className="lg:col-span-6 w-full">
-            <AITelemetryTerminal />
+            <ModelBenchmarkComparator />
           </div>
         </div>
       </div>
