@@ -28,8 +28,8 @@ export default function Home() {
             subtitle="Our AI implementations deliver compounding ROI, operational velocity, and defensible competitive advantages."
           />
 
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
-            <div className="card-minimal p-6 text-center">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3.5 sm:gap-4">
+            <div className="card-minimal p-5 sm:p-6 text-center">
               <StatCounter
                 value="500"
                 prefix="$"
@@ -39,7 +39,7 @@ export default function Home() {
               <p className="text-[11px] font-mono text-zinc-400 mt-2">Enterprise adoption curve</p>
             </div>
 
-            <div className="card-minimal p-6 text-center">
+            <div className="card-minimal p-5 sm:p-6 text-center">
               <StatCounter
                 value="40"
                 suffix="%"
@@ -48,7 +48,7 @@ export default function Home() {
               <p className="text-[11px] font-mono text-zinc-400 mt-2">Across automated workflows</p>
             </div>
 
-            <div className="card-minimal p-6 text-center">
+            <div className="card-minimal p-5 sm:p-6 text-center">
               <StatCounter
                 value="85"
                 suffix="%"
@@ -57,7 +57,7 @@ export default function Home() {
               <p className="text-[11px] font-mono text-zinc-400 mt-2">Active production infrastructure</p>
             </div>
 
-            <div className="card-minimal p-6 text-center">
+            <div className="card-minimal p-5 sm:p-6 text-center">
               <StatCounter
                 value="3.5"
                 suffix="x"
@@ -76,9 +76,9 @@ export default function Home() {
       <ServicesSection />
 
       {/* 5. Enterprise Industry Verticals Grid */}
-      <section className="py-20 bg-white border-b border-black/[0.06]">
+      <section className="py-16 md:py-20 bg-white border-b border-black/[0.06]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-10 pb-4 border-b border-black/[0.06] gap-4">
+          <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-8 pb-4 border-b border-black/[0.06] gap-4">
             <div>
               <div className="subheading mb-2">PRODUCTION ARCHITECTURE</div>
               <h3 className="display-3">
@@ -87,14 +87,14 @@ export default function Home() {
             </div>
             <Link
               href="/services"
-              className="text-xs font-medium text-zinc-900 hover:text-orange-600 inline-flex items-center gap-1 group"
+              className="text-xs font-medium text-zinc-900 hover:text-orange-600 inline-flex items-center gap-1 group self-start sm:self-auto"
             >
               <span>Explore technical architecture</span>
               <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5" />
             </Link>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3.5 sm:gap-4">
             {solutionsData.map((item) => (
               <Link
                 key={item.id}

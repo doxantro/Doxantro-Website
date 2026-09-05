@@ -1,7 +1,6 @@
 'use client';
 
 import React from 'react';
-import Link from 'next/link';
 import { motion } from 'framer-motion';
 import {
   Target,
@@ -96,7 +95,7 @@ export default function About() {
   return (
     <main className="min-h-screen bg-white">
       {/* 1. Hero Section */}
-      <section className="relative pt-32 pb-16 md:pt-40 md:pb-24 border-b border-black/[0.06] bg-white">
+      <section className="relative pt-28 pb-14 sm:pt-36 sm:pb-20 md:pt-40 md:pb-24 border-b border-black/[0.06] bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <motion.div
             initial={{ opacity: 0, y: 16 }}
@@ -110,16 +109,16 @@ export default function About() {
               </span>
             </div>
 
-            <h1 className="display-1 mb-5">
+            <h1 className="display-1 mb-4 sm:mb-5">
               Empowering Human Ambition with Applied Intelligence
             </h1>
 
-            <p className="body-lg max-w-2xl mx-auto mb-10 text-zinc-600">
+            <p className="body-lg max-w-2xl mx-auto mb-8 sm:mb-10 text-zinc-600">
               Doxantro Systems was founded on a singular premise: the greatest technological breakthroughs occur when human domain mastery is amplified by specialized, high-precision artificial intelligence.
             </p>
 
             {/* Milestones Grid */}
-            <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 text-left">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 text-left">
               {milestones.map((item, idx) => (
                 <div
                   key={idx}
@@ -138,9 +137,9 @@ export default function About() {
       </section>
 
       {/* 2. Company Story & Flywheel */}
-      <section className="py-20 md:py-24 bg-white border-b border-black/[0.06]">
+      <section className="py-16 md:py-24 bg-white border-b border-black/[0.06]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-center">
             {/* Story Text */}
             <motion.div
               initial={{ opacity: 0, y: 16 }}
@@ -184,7 +183,7 @@ export default function About() {
               viewport={{ once: true }}
               className="lg:col-span-6"
             >
-              <div className="rounded-2xl bg-[#0d0d10] p-6 sm:p-8 text-white border border-white/[0.08] shadow-sm">
+              <div className="rounded-2xl bg-[#0d0d10] p-5 sm:p-7 md:p-8 text-white border border-white/[0.08] shadow-sm">
                 <div className="flex items-center justify-between pb-3 mb-4 border-b border-white/[0.06]">
                   <span className="text-[11px] font-mono tracking-wider uppercase text-zinc-400">
                     ■ THE DOXANTRO FLYWHEEL
@@ -228,15 +227,15 @@ export default function About() {
       </section>
 
       {/* 3. Mission & Vision */}
-      <section className="py-20 bg-[#fafafa] border-b border-black/[0.06]">
+      <section className="py-16 md:py-20 bg-[#fafafa] border-b border-black/[0.06]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid md:grid-cols-2 gap-6">
-            <div className="card-minimal p-6 sm:p-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
+            <div className="card-minimal p-5 sm:p-7 md:p-8">
               <div className="w-10 h-10 rounded-lg bg-zinc-100 flex items-center justify-center text-zinc-900 mb-4">
                 <Target className="w-5 h-5" />
               </div>
               <div className="subheading mb-2">Our Mission</div>
-              <h3 className="text-lg sm:text-xl font-bold text-zinc-900 mb-2">
+              <h3 className="text-base sm:text-xl font-bold text-zinc-900 mb-2">
                 Engineering AI for Certainty & Action
               </h3>
               <p className="text-xs sm:text-sm text-zinc-600 leading-relaxed">
@@ -244,12 +243,12 @@ export default function About() {
               </p>
             </div>
 
-            <div className="card-minimal p-6 sm:p-8">
+            <div className="card-minimal p-5 sm:p-7 md:p-8">
               <div className="w-10 h-10 rounded-lg bg-zinc-100 flex items-center justify-center text-zinc-900 mb-4">
                 <Compass className="w-5 h-5" />
               </div>
               <div className="subheading mb-2">Our Vision</div>
-              <h3 className="text-lg sm:text-xl font-bold text-zinc-900 mb-2">
+              <h3 className="text-base sm:text-xl font-bold text-zinc-900 mb-2">
                 The Global Standard for Domain AI
               </h3>
               <p className="text-xs sm:text-sm text-zinc-600 leading-relaxed">
@@ -261,7 +260,7 @@ export default function About() {
       </section>
 
       {/* 4. Core Operating Principles */}
-      <section className="py-20 md:py-24 bg-white border-b border-black/[0.06]">
+      <section className="py-16 md:py-24 bg-white border-b border-black/[0.06]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <SectionHeader
             badge="ENGINEERING CULTURE"
@@ -269,7 +268,7 @@ export default function About() {
             subtitle="How we design, test, and deploy mission-critical AI systems for demanding enterprises."
           />
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3.5 sm:gap-4">
             {principles.map((item, idx) => {
               const IconComp = item.icon;
               return (
@@ -291,7 +290,7 @@ export default function About() {
       </section>
 
       {/* 5. Multidisciplinary Team Structure */}
-      <section className="py-20 md:py-24 bg-[#fafafa] border-b border-black/[0.06]">
+      <section className="py-16 md:py-24 bg-[#fafafa] border-b border-black/[0.06]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <SectionHeader
             badge="CROSS-DISCIPLINARY TALENT"
@@ -299,12 +298,12 @@ export default function About() {
             subtitle="Combining elite machine learning researchers with veteran practitioners from finance, medicine, agriculture, and cybersecurity."
           />
 
-          <div className="grid md:grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {teamPillars.map((team, idx) => {
               const IconComp = team.icon;
               return (
-                <div key={idx} className="card-minimal p-6">
-                  <div className="flex items-start gap-4">
+                <div key={idx} className="card-minimal p-5 sm:p-6">
+                  <div className="flex items-start gap-3.5 sm:gap-4">
                     <div className="w-9 h-9 rounded-lg bg-zinc-100 flex items-center justify-center text-zinc-900 flex-shrink-0">
                       <IconComp className="w-4 h-4" />
                     </div>
@@ -336,7 +335,7 @@ export default function About() {
       </section>
 
       {/* 6. Bottom Call to Action */}
-      <section className="py-20 md:py-24 bg-[#0c0c0e] text-white">
+      <section className="py-16 md:py-24 bg-[#0c0c0e] text-white">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <span className="text-[11px] font-mono tracking-widest uppercase text-zinc-400 mb-3 block">
             ■ PARTNER WITH DOXANTRO
@@ -350,11 +349,11 @@ export default function About() {
             Schedule an architectural consultation with our AI researchers and engineering directors to evaluate your data pipelines and compute strategy.
           </p>
 
-          <div className="flex flex-wrap gap-3 justify-center items-center">
-            <Button href="/contact" size="lg" variant="primary">
+          <div className="flex flex-col sm:flex-row gap-3 justify-center items-stretch sm:items-center">
+            <Button href="/contact" size="lg" variant="primary" className="w-full sm:w-auto">
               Start an AI Initiative
             </Button>
-            <Button href="/services" size="lg" variant="outline-white">
+            <Button href="/services" size="lg" variant="outline-white" className="w-full sm:w-auto">
               Explore Solutions
             </Button>
           </div>

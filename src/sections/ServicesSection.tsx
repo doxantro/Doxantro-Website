@@ -10,7 +10,7 @@ import { solutionsData } from '../data/solutionsData';
 
 export default function ServicesSection() {
   return (
-    <section className="py-20 md:py-24 bg-[#fafafa] border-b border-black/[0.06]">
+    <section className="py-16 md:py-24 bg-[#fafafa] border-b border-black/[0.06]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <SectionHeader
           badge="ENTERPRISE CAPABILITIES"
@@ -19,7 +19,7 @@ export default function ServicesSection() {
         />
 
         {/* 6-Card Solution Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4 mb-14">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3.5 sm:gap-4 mb-10 sm:mb-14">
           {solutionsData.map((service, index) => (
             <motion.div
               key={service.id}
@@ -29,7 +29,7 @@ export default function ServicesSection() {
               transition={{ duration: 0.35, delay: index * 0.05 }}
               className="h-full"
             >
-              <div className="card-minimal h-full flex flex-col justify-between p-6 group">
+              <div className="card-minimal h-full flex flex-col justify-between p-5 sm:p-6 group">
                 <div>
                   {/* Top Bar with Icon & Badge */}
                   <div className="flex items-center justify-between mb-4">
@@ -88,29 +88,29 @@ export default function ServicesSection() {
         </div>
 
         {/* Bottom Banner */}
-        <div className="rounded-2xl bg-[#0f0f12] p-8 sm:p-10 text-white border border-white/[0.08] shadow-sm">
+        <div className="rounded-2xl bg-[#0f0f12] p-6 sm:p-8 md:p-10 text-white border border-white/[0.08] shadow-sm">
           <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6">
             <div>
               <span className="text-[11px] font-mono tracking-wider uppercase text-zinc-400 mb-2 block">
                 ■ CUSTOM SOVEREIGN DEPLOYMENT
               </span>
-              <h3 className="text-xl sm:text-2xl font-bold mb-1.5">
+              <h3 className="text-lg sm:text-2xl font-bold mb-1.5">
                 Have proprietary data or a specialized domain requirement?
               </h3>
               <p className="text-zinc-400 text-xs sm:text-sm max-w-xl">
                 We design custom neural foundation models, private cloud deployments, and air-gapped on-premise AI architectures.
               </p>
             </div>
-            <div className="flex flex-wrap items-center gap-3">
+            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2.5 sm:gap-3 w-full lg:w-auto">
               <Link
                 href="/contact"
-                className="inline-flex items-center justify-center px-5 py-2.5 rounded-full bg-white text-[#111111] font-medium hover:bg-zinc-100 transition-colors text-xs"
+                className="inline-flex items-center justify-center px-5 py-2.5 rounded-full bg-white text-[#111111] font-medium hover:bg-zinc-100 transition-colors text-xs text-center"
               >
                 Schedule Architecture Review
               </Link>
               <Link
                 href="/services"
-                className="inline-flex items-center justify-center px-5 py-2.5 rounded-full border border-white/[0.15] text-zinc-300 font-medium hover:bg-white/[0.05] transition-colors text-xs"
+                className="inline-flex items-center justify-center px-5 py-2.5 rounded-full border border-white/[0.15] text-zinc-300 font-medium hover:bg-white/[0.05] transition-colors text-xs text-center"
               >
                 Full Services Spec
               </Link>

@@ -4,7 +4,6 @@ import React, { useState } from 'react';
 import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
-  ArrowRight,
   MapPin,
   Clock,
   CheckCircle2,
@@ -181,7 +180,7 @@ export default function Careers() {
   return (
     <main className="min-h-screen bg-white">
       {/* 1. Hero Section */}
-      <section className="relative pt-32 pb-16 md:pt-40 md:pb-24 border-b border-black/[0.06] bg-white">
+      <section className="relative pt-28 pb-14 sm:pt-36 sm:pb-20 md:pt-40 md:pb-24 border-b border-black/[0.06] bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <motion.div
             initial={{ opacity: 0, y: 16 }}
@@ -195,7 +194,7 @@ export default function Careers() {
               </span>
             </div>
 
-            <h1 className="display-1 mb-5">
+            <h1 className="display-1 mb-4 sm:mb-5">
               Build the Future of Applied Artificial Intelligence
             </h1>
 
@@ -203,11 +202,11 @@ export default function Careers() {
               Join a high-caliber team of machine learning scientists, distributed systems engineers, and domain veterans solving real-world challenges with high-precision AI.
             </p>
 
-            <div className="flex flex-wrap gap-3 justify-center items-center">
-              <Button href="#open-roles" size="lg" variant="primary">
+            <div className="flex flex-col sm:flex-row gap-3 justify-center items-stretch sm:items-center">
+              <Button href="#open-roles" size="lg" variant="primary" className="w-full sm:w-auto">
                 View {jobOpeningsData.length} Open Roles
               </Button>
-              <Button href="#culture-perks" size="lg" variant="outline">
+              <Button href="#culture-perks" size="lg" variant="outline" className="w-full sm:w-auto">
                 Culture & Benefits
               </Button>
             </div>
@@ -216,7 +215,7 @@ export default function Careers() {
       </section>
 
       {/* 2. Perks & Culture Grid */}
-      <section id="culture-perks" className="py-20 md:py-24 bg-[#fafafa] border-b border-black/[0.06]">
+      <section id="culture-perks" className="py-16 md:py-24 bg-[#fafafa] border-b border-black/[0.06]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <SectionHeader
             badge="ENGINEERING CULTURE"
@@ -224,11 +223,11 @@ export default function Careers() {
             subtitle="We prioritize high agency, deep technical autonomy, transparent ownership, and meaningful impact over corporate bureaucracy."
           />
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3.5 sm:gap-4">
             {perks.map((perk, idx) => {
               const IconComp = perk.icon;
               return (
-                <div key={idx} className="card-minimal p-6 flex flex-col justify-between">
+                <div key={idx} className="card-minimal p-5 sm:p-6 flex flex-col justify-between">
                   <div>
                     <div className="w-8 h-8 rounded-lg bg-zinc-100 flex items-center justify-center text-zinc-900 mb-3">
                       <IconComp className="w-4 h-4" />
@@ -248,17 +247,17 @@ export default function Careers() {
       </section>
 
       {/* 3. Open Roles Filter & Search */}
-      <section id="open-roles" className="py-6 bg-white sticky top-14 z-20 border-b border-black/[0.06] backdrop-blur-md">
+      <section id="open-roles" className="py-4 sm:py-6 bg-white sticky top-14 z-20 border-b border-black/[0.06] backdrop-blur-md">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-col md:flex-row items-center justify-between gap-4">
-            <div className="flex items-center gap-1 overflow-x-auto w-full md:w-auto pb-1 md:pb-0 scrollbar-none">
+          <div className="flex flex-col md:flex-row items-stretch md:items-center justify-between gap-3 sm:gap-4">
+            <div className="flex items-center gap-1.5 overflow-x-auto scrollbar-none pb-1 md:pb-0 -mx-4 px-4 sm:mx-0 sm:px-0">
               {departments.map((dept) => (
                 <button
                   key={dept}
                   onClick={() => setSelectedDept(dept)}
-                  className={`px-3.5 py-1.5 rounded-full text-xs font-medium whitespace-nowrap transition-colors cursor-pointer ${
+                  className={`px-3.5 py-1.5 rounded-full text-xs font-medium whitespace-nowrap transition-colors cursor-pointer flex-shrink-0 ${
                     selectedDept === dept
-                      ? 'bg-[#111111] text-white'
+                      ? 'bg-[#111111] text-white shadow-sm'
                       : 'bg-white border border-black/[0.08] text-zinc-600 hover:text-[#111111] hover:border-black/[0.15]'
                   }`}
                 >
@@ -282,7 +281,7 @@ export default function Careers() {
       </section>
 
       {/* 4. Jobs List */}
-      <section className="py-16 md:py-20 bg-white border-b border-black/[0.06]">
+      <section className="py-12 sm:py-16 md:py-20 bg-white border-b border-black/[0.06]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <AnimatePresence mode="popLayout">
             {filteredJobs.length === 0 ? (
@@ -303,8 +302,8 @@ export default function Careers() {
                       exit={{ opacity: 0, scale: 0.98 }}
                       transition={{ duration: 0.3 }}
                     >
-                      <div className="card-minimal p-6 sm:p-7">
-                        <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4 mb-3">
+                      <div className="card-minimal p-5 sm:p-7">
+                        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-3">
                           <div>
                             <div className="flex flex-wrap items-center gap-2 mb-1.5">
                               <span className="text-[10px] font-mono text-zinc-700 bg-zinc-100 px-2 py-0.5 rounded">
@@ -327,7 +326,7 @@ export default function Careers() {
                             </h3>
                           </div>
 
-                          <div className="flex items-center gap-2">
+                          <div className="flex items-center gap-2 self-start sm:self-center">
                             <button
                               onClick={() => setExpandedJobId(isExpanded ? null : job.id)}
                               className="px-3 py-1.5 rounded-full border border-black/[0.1] hover:border-black text-zinc-700 text-xs font-medium inline-flex items-center gap-1 transition-colors cursor-pointer"
@@ -356,7 +355,7 @@ export default function Careers() {
                               initial={{ opacity: 0, height: 0 }}
                               animate={{ opacity: 1, height: 'auto' }}
                               exit={{ opacity: 0, height: 0 }}
-                              className="pt-4 mt-3 border-t border-black/[0.04] grid md:grid-cols-2 gap-6"
+                              className="pt-4 mt-3 border-t border-black/[0.04] grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6"
                             >
                               <div>
                                 <div className="text-[11px] font-mono uppercase tracking-wider text-zinc-500 mb-2 flex items-center gap-1.5">
@@ -401,7 +400,7 @@ export default function Careers() {
       </section>
 
       {/* 5. Open Application CTA */}
-      <section className="py-20 md:py-24 bg-[#0c0c0e] text-white">
+      <section className="py-16 md:py-24 bg-[#0c0c0e] text-white">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <span className="text-[11px] font-mono tracking-widest uppercase text-zinc-400 mb-3 block">
             ■ OPEN APPLICATION
@@ -415,15 +414,16 @@ export default function Careers() {
             We are always looking for exceptional researchers, systems architects, and applied AI specialists. Send us your GitHub, papers, or portfolio.
           </p>
 
-          <div className="flex flex-wrap gap-3 justify-center items-center">
+          <div className="flex flex-col sm:flex-row gap-3 justify-center items-stretch sm:items-center">
             <Button
               href="/contact?subject=General%20Engineering%20Application"
               size="lg"
               variant="primary"
+              className="w-full sm:w-auto"
             >
               Send Open Application
             </Button>
-            <Button href="/about" size="lg" variant="outline-white">
+            <Button href="/about" size="lg" variant="outline-white" className="w-full sm:w-auto">
               Read About Our Team
             </Button>
           </div>

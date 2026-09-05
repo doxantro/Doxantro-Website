@@ -18,12 +18,12 @@ const quickLinks = [
 export default function Footer() {
   return (
     <footer className="bg-[#0c0c0e] text-zinc-300 border-t border-white/[0.08] relative">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 lg:gap-8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-8 lg:gap-8">
           {/* Company Info (5 cols) */}
           <div className="lg:col-span-5">
             <Link href="/" className="inline-flex items-center space-x-2.5 mb-4 group">
-              <div className="overflow-hidden rounded-md border border-white/[0.12] bg-zinc-900 p-0.5">
+              <div className="overflow-hidden rounded-md border border-white/[0.12] bg-zinc-900 p-0.5 flex-shrink-0">
                 <Image
                   src="/dox1.jpg"
                   alt="Doxantro Systems"
@@ -124,11 +124,11 @@ export default function Footer() {
         </div>
 
         {/* Bottom Bar */}
-        <div className="border-t border-white/[0.06] mt-12 pt-6 flex flex-col sm:flex-row justify-between items-center gap-3">
+        <div className="border-t border-white/[0.06] mt-10 sm:mt-12 pt-6 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3">
           <p className="text-zinc-500 text-xs font-mono">
             © {new Date().getFullYear()} Doxantro Systems Limited. All rights reserved.
           </p>
-          <div className="flex space-x-5 text-xs text-zinc-500 font-mono">
+          <div className="flex flex-wrap gap-x-4 gap-y-1 text-xs text-zinc-500 font-mono">
             <Link href="/contact" className="hover:text-zinc-300 transition-colors">
               Enterprise Inquiries
             </Link>

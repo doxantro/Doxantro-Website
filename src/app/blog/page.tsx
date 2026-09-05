@@ -11,7 +11,6 @@ import {
   Sparkles,
 } from 'lucide-react';
 import Button from '../../components/ui/Button';
-import SectionHeader from '../../components/ui/SectionHeader';
 import SolutionIcon from '../../components/ui/SolutionIcon';
 
 const categories = ['All', 'Engineering', 'Finance', 'Healthcare', 'Agriculture', 'Supply Chain', 'Security', 'Energy'];
@@ -126,7 +125,7 @@ export default function Blog() {
   return (
     <main className="min-h-screen bg-white">
       {/* 1. Hero Section */}
-      <section className="relative pt-32 pb-16 md:pt-40 md:pb-20 border-b border-black/[0.06] bg-white">
+      <section className="relative pt-28 pb-14 sm:pt-36 sm:pb-20 md:pt-40 md:pb-20 border-b border-black/[0.06] bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <motion.div
             initial={{ opacity: 0, y: 16 }}
@@ -140,7 +139,7 @@ export default function Blog() {
               </span>
             </div>
 
-            <h1 className="display-1 mb-5">
+            <h1 className="display-1 mb-4 sm:mb-5">
               Engineering Notes on Applied AI Systems
             </h1>
 
@@ -152,15 +151,15 @@ export default function Blog() {
       </section>
 
       {/* 2. Featured Engineering Deep-Dive */}
-      <section className="py-12 bg-white border-b border-black/[0.06]">
+      <section className="py-10 sm:py-12 bg-white border-b border-black/[0.06]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-[11px] font-mono uppercase tracking-widest text-zinc-500 mb-3 flex items-center gap-1.5">
             <Sparkles className="w-3.5 h-3.5 text-orange-600" />
             <span>Featured Technical Breakdown</span>
           </div>
 
-          <div className="rounded-2xl bg-[#0d0d10] p-6 sm:p-8 text-white border border-white/[0.08] shadow-sm">
-            <div className="grid lg:grid-cols-12 gap-8 items-center">
+          <div className="rounded-2xl bg-[#0d0d10] p-5 sm:p-7 md:p-8 text-white border border-white/[0.08] shadow-sm">
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-center">
               {/* Left Column: Article Metadata & Synopsis */}
               <div className="lg:col-span-7 space-y-3.5">
                 <div className="flex flex-wrap items-center gap-2">
@@ -177,7 +176,7 @@ export default function Blog() {
                   </div>
                 </div>
 
-                <h2 className="text-xl sm:text-2xl font-bold text-white leading-tight">
+                <h2 className="text-lg sm:text-2xl font-bold text-white leading-tight">
                   {featuredArticle.title}
                 </h2>
 
@@ -193,7 +192,7 @@ export default function Blog() {
                   ))}
                 </div>
 
-                <div className="pt-3 flex items-center justify-between border-t border-white/[0.06]">
+                <div className="pt-3 flex flex-col sm:flex-row sm:items-center justify-between gap-2.5 border-t border-white/[0.06]">
                   <div>
                     <div className="text-xs font-semibold text-white">{featuredArticle.author}</div>
                     <div className="text-[10px] text-zinc-400 font-mono">{featuredArticle.role}</div>
@@ -210,7 +209,7 @@ export default function Blog() {
               </div>
 
               {/* Right Column: Grounded Engineering Benchmark Preview */}
-              <div className="lg:col-span-5 bg-[#141418] rounded-xl p-5 border border-white/[0.06] space-y-3">
+              <div className="lg:col-span-5 bg-[#141418] rounded-xl p-4 sm:p-5 border border-white/[0.06] space-y-3">
                 <div className="flex items-center justify-between text-[11px] font-mono pb-2 border-b border-white/[0.06]">
                   <span className="text-zinc-300 font-medium">BENCHMARK SUMMARY</span>
                   <span className="text-zinc-500">v3.4 Mesh</span>
@@ -223,7 +222,7 @@ export default function Blog() {
                         <div className="text-xs text-zinc-300">{bm.label}</div>
                         <div className="text-[10px] text-zinc-500 font-mono">{bm.note}</div>
                       </div>
-                      <div className="text-base font-bold font-mono text-emerald-400 tabular-nums">
+                      <div className="text-sm sm:text-base font-bold font-mono text-emerald-400 tabular-nums">
                         {bm.value}
                       </div>
                     </div>
@@ -240,17 +239,17 @@ export default function Blog() {
       </section>
 
       {/* 3. Category Filter & Search Bar */}
-      <section className="py-6 bg-[#fafafa] border-b border-black/[0.06] sticky top-14 z-20 backdrop-blur-md">
+      <section className="py-4 sm:py-6 bg-[#fafafa] border-b border-black/[0.06] sticky top-14 z-20 backdrop-blur-md">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-col md:flex-row items-center justify-between gap-4">
-            <div className="flex items-center gap-1 overflow-x-auto w-full md:w-auto pb-1 md:pb-0 scrollbar-none">
+          <div className="flex flex-col md:flex-row items-stretch md:items-center justify-between gap-3 sm:gap-4">
+            <div className="flex items-center gap-1.5 overflow-x-auto scrollbar-none pb-1 md:pb-0 -mx-4 px-4 sm:mx-0 sm:px-0">
               {categories.map((cat) => (
                 <button
                   key={cat}
                   onClick={() => setSelectedCategory(cat)}
-                  className={`px-3.5 py-1.5 rounded-full text-xs font-medium whitespace-nowrap transition-colors cursor-pointer ${
+                  className={`px-3.5 py-1.5 rounded-full text-xs font-medium whitespace-nowrap transition-colors cursor-pointer flex-shrink-0 ${
                     selectedCategory === cat
-                      ? 'bg-[#111111] text-white'
+                      ? 'bg-[#111111] text-white shadow-sm'
                       : 'bg-white border border-black/[0.08] text-zinc-600 hover:text-[#111111] hover:border-black/[0.15]'
                   }`}
                 >
@@ -274,7 +273,7 @@ export default function Blog() {
       </section>
 
       {/* 4. Article Grid */}
-      <section className="py-16 md:py-20 bg-white border-b border-black/[0.06]">
+      <section className="py-12 sm:py-16 md:py-20 bg-white border-b border-black/[0.06]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <AnimatePresence mode="popLayout">
             {filteredPosts.length === 0 ? (
@@ -283,7 +282,7 @@ export default function Blog() {
                 <p className="text-xs text-zinc-500">Try adjusting your keywords or category filter.</p>
               </div>
             ) : (
-              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3.5 sm:gap-4">
                 {filteredPosts.map((post, idx) => (
                   <motion.div
                     key={post.id}
@@ -293,11 +292,11 @@ export default function Blog() {
                     exit={{ opacity: 0, scale: 0.98 }}
                     transition={{ duration: 0.3, delay: idx * 0.04 }}
                   >
-                    <div className="card-minimal p-6 h-full flex flex-col justify-between group">
+                    <div className="card-minimal p-5 sm:p-6 h-full flex flex-col justify-between group">
                       <div>
                         {/* Top bar with category & read time */}
                         <div className="flex items-center justify-between mb-3">
-                          <div className="w-7 h-7 rounded-md bg-zinc-100 flex items-center justify-center text-zinc-900 group-hover:bg-[#111111] group-hover:text-white transition-colors">
+                          <div className="w-7 h-7 rounded-md bg-zinc-100 flex items-center justify-center text-zinc-900 group-hover:bg-[#111111] group-hover:text-white transition-colors flex-shrink-0">
                             <SolutionIcon name={post.iconName} className="w-3.5 h-3.5" />
                           </div>
                           <div className="text-[11px] font-mono text-zinc-400 flex items-center gap-1">
@@ -350,7 +349,7 @@ export default function Blog() {
       </section>
 
       {/* 5. Bottom Briefing Newsletter CTA */}
-      <section className="py-20 md:py-24 bg-[#0c0c0e] text-white">
+      <section className="py-16 md:py-24 bg-[#0c0c0e] text-white">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <span className="text-[11px] font-mono tracking-widest uppercase text-zinc-400 mb-3 block">
             ■ AI EXECUTIVE BRIEFING
@@ -364,11 +363,11 @@ export default function Blog() {
             Join 10,000+ AI engineers and technology leaders who receive our bi-weekly architecture teardowns and benchmark analyses.
           </p>
 
-          <div className="flex flex-wrap gap-3 justify-center items-center">
-            <Button href="/contact" size="lg" variant="primary">
+          <div className="flex flex-col sm:flex-row gap-3 justify-center items-stretch sm:items-center">
+            <Button href="/contact" size="lg" variant="primary" className="w-full sm:w-auto">
               Subscribe to Briefings
             </Button>
-            <Button href="/services" size="lg" variant="outline-white">
+            <Button href="/services" size="lg" variant="outline-white" className="w-full sm:w-auto">
               Explore Services
             </Button>
           </div>

@@ -10,7 +10,6 @@ import {
   Sparkles,
 } from 'lucide-react';
 import Button from '../../components/ui/Button';
-import SectionHeader from '../../components/ui/SectionHeader';
 import SolutionIcon from '../../components/ui/SolutionIcon';
 
 const industries = ['All', 'Finance', 'Healthcare', 'Agriculture', 'Supply Chain', 'Security', 'Energy'];
@@ -143,7 +142,7 @@ export default function CaseStudies() {
   return (
     <main className="min-h-screen bg-white">
       {/* 1. Hero Section */}
-      <section className="relative pt-32 pb-16 md:pt-40 md:pb-24 border-b border-black/[0.06] bg-white">
+      <section className="relative pt-28 pb-14 sm:pt-36 sm:pb-20 md:pt-40 md:pb-24 border-b border-black/[0.06] bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <motion.div
             initial={{ opacity: 0, y: 16 }}
@@ -157,7 +156,7 @@ export default function CaseStudies() {
               </span>
             </div>
 
-            <h1 className="display-1 mb-5">
+            <h1 className="display-1 mb-4 sm:mb-5">
               Proven Results in Mission-Critical Environments
             </h1>
 
@@ -169,18 +168,18 @@ export default function CaseStudies() {
       </section>
 
       {/* 2. Interactive Filter & Search Bar */}
-      <section className="py-6 bg-[#fafafa] border-b border-black/[0.06] sticky top-14 z-20 backdrop-blur-md">
+      <section className="py-4 sm:py-6 bg-[#fafafa] border-b border-black/[0.06] sticky top-14 z-20 backdrop-blur-md">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-col md:flex-row items-center justify-between gap-4">
-            {/* Filter Pills */}
-            <div className="flex items-center gap-1 overflow-x-auto w-full md:w-auto pb-1 md:pb-0 scrollbar-none">
+          <div className="flex flex-col md:flex-row items-stretch md:items-center justify-between gap-3 sm:gap-4">
+            {/* Filter Pills - Native Horizontal Momentum Swipe on Mobile */}
+            <div className="flex items-center gap-1.5 overflow-x-auto scrollbar-none pb-1 md:pb-0 -mx-4 px-4 sm:mx-0 sm:px-0">
               {industries.map((ind) => (
                 <button
                   key={ind}
                   onClick={() => setSelectedIndustry(ind)}
-                  className={`px-3.5 py-1.5 rounded-full text-xs font-medium whitespace-nowrap transition-colors cursor-pointer ${
+                  className={`px-3.5 py-1.5 rounded-full text-xs font-medium whitespace-nowrap transition-colors cursor-pointer flex-shrink-0 ${
                     selectedIndustry === ind
-                      ? 'bg-[#111111] text-white'
+                      ? 'bg-[#111111] text-white shadow-sm'
                       : 'bg-white border border-black/[0.08] text-zinc-600 hover:text-[#111111] hover:border-black/[0.15]'
                   }`}
                 >
@@ -205,7 +204,7 @@ export default function CaseStudies() {
       </section>
 
       {/* 3. Case Studies Grid */}
-      <section className="py-16 md:py-20 bg-white border-b border-black/[0.06]">
+      <section className="py-12 sm:py-16 md:py-20 bg-white border-b border-black/[0.06]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <AnimatePresence mode="popLayout">
             {filteredStudies.length === 0 ? (
@@ -224,12 +223,12 @@ export default function CaseStudies() {
                     exit={{ opacity: 0, scale: 0.98 }}
                     transition={{ duration: 0.3, delay: idx * 0.04 }}
                   >
-                    <div className="card-minimal p-6 sm:p-8">
-                      <div className="grid lg:grid-cols-12 gap-8 items-start">
+                    <div className="card-minimal p-5 sm:p-7 md:p-8">
+                      <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-start">
                         {/* Left Info & Story (7 cols) */}
                         <div className="lg:col-span-7 space-y-4">
                           <div className="flex flex-wrap items-center gap-2">
-                            <div className="w-7 h-7 rounded-md bg-zinc-100 flex items-center justify-center text-zinc-900">
+                            <div className="w-7 h-7 rounded-md bg-zinc-100 flex items-center justify-center text-zinc-900 flex-shrink-0">
                               <SolutionIcon name={study.iconName} className="w-3.5 h-3.5" />
                             </div>
                             <span className="text-[10px] font-mono text-zinc-700 bg-zinc-100 px-2 py-0.5 rounded">
@@ -238,14 +237,14 @@ export default function CaseStudies() {
                             <span className="text-[10px] font-mono text-zinc-500 border border-black/[0.06] px-2 py-0.5 rounded">
                               {study.badge}
                             </span>
-                            <div className="text-[11px] font-mono text-zinc-400 flex items-center gap-1 ml-auto">
+                            <div className="text-[11px] font-mono text-zinc-400 flex items-center gap-1 sm:ml-auto">
                               <Clock className="w-3 h-3 text-zinc-400" />
                               <span>{study.duration}</span>
                             </div>
                           </div>
 
                           <div>
-                            <h3 className="text-lg sm:text-xl font-bold text-zinc-900 mb-1">
+                            <h3 className="text-base sm:text-xl font-bold text-zinc-900 mb-1">
                               {study.title}
                             </h3>
                             <div className="text-xs font-mono text-zinc-500">
@@ -284,12 +283,12 @@ export default function CaseStudies() {
 
                         {/* Right Results Matrix (5 cols) */}
                         <div className="lg:col-span-5 bg-[#0f0f12] text-white rounded-xl p-5 sm:p-6 border border-white/[0.08] shadow-sm">
-                          <div className="text-[11px] font-mono tracking-wider uppercase text-zinc-400 mb-4 flex items-center gap-1.5">
+                          <div className="text-[11px] font-mono tracking-wider uppercase text-zinc-400 mb-3 sm:mb-4 flex items-center gap-1.5">
                             <Sparkles className="w-3.5 h-3.5 text-orange-400" />
                             <span>Quantified Business Results</span>
                           </div>
 
-                          <div className="grid grid-cols-2 gap-2.5 mb-5">
+                          <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 mb-5">
                             {study.results.map((res, rIdx) => (
                               <div key={rIdx} className="bg-white/[0.04] rounded-lg p-3 border border-white/[0.06]">
                                 <div className="text-xl sm:text-2xl font-bold font-mono text-zinc-100 tabular-nums mb-0.5">
@@ -321,7 +320,7 @@ export default function CaseStudies() {
       </section>
 
       {/* 4. Bottom CTA */}
-      <section className="py-20 md:py-24 bg-[#0c0c0e] text-white">
+      <section className="py-16 md:py-24 bg-[#0c0c0e] text-white">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <span className="text-[11px] font-mono tracking-widest uppercase text-zinc-400 mb-3 block">
             ■ CUSTOM PILOT INITIATIVE
@@ -335,11 +334,11 @@ export default function CaseStudies() {
             Let’s discuss your technical parameters, performance benchmarks, and deployment timeline under standard non-disclosure terms.
           </p>
 
-          <div className="flex flex-wrap gap-3 justify-center items-center">
-            <Button href="/contact" size="lg" variant="primary">
+          <div className="flex flex-col sm:flex-row gap-3 justify-center items-stretch sm:items-center">
+            <Button href="/contact" size="lg" variant="primary" className="w-full sm:w-auto">
               Start an Architectural Pilot
             </Button>
-            <Button href="/services" size="lg" variant="outline-white">
+            <Button href="/services" size="lg" variant="outline-white" className="w-full sm:w-auto">
               Explore Solutions
             </Button>
           </div>

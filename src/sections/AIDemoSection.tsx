@@ -151,7 +151,7 @@ export default function AIDemoSection() {
   const currentVertObj = demoVerts.find((v) => v.id === activeVert) || demoVerts[0];
 
   return (
-    <section className="py-20 md:py-24 bg-white border-b border-black/[0.06]">
+    <section className="py-16 md:py-24 bg-white border-b border-black/[0.06]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <SectionHeader
           badge="INTERACTIVE SANDBOX"
@@ -159,15 +159,15 @@ export default function AIDemoSection() {
           subtitle="Interact directly with our specialized neural simulators and observe production telemetry decision outputs."
         />
 
-        {/* Minimalist Switcher Pills */}
-        <div className="flex items-center justify-start md:justify-center gap-1.5 overflow-x-auto pb-4 mb-8">
+        {/* Minimalist Switcher Pills - Native Horizontal Momentum Swipe on Mobile */}
+        <div className="flex items-center justify-start md:justify-center gap-1.5 overflow-x-auto scrollbar-none pb-3 mb-6 -mx-4 px-4 sm:mx-0 sm:px-0">
           {demoVerts.map((vert) => (
             <button
               key={vert.id}
               onClick={() => setActiveVert(vert.id)}
-              className={`flex items-center gap-2 px-4 py-2 rounded-full text-xs font-medium transition-colors whitespace-nowrap cursor-pointer ${
+              className={`flex items-center gap-2 px-3.5 py-2 rounded-full text-xs font-medium transition-colors whitespace-nowrap cursor-pointer flex-shrink-0 ${
                 activeVert === vert.id
-                  ? 'bg-[#111111] text-white'
+                  ? 'bg-[#111111] text-white shadow-sm'
                   : 'bg-zinc-100 text-zinc-600 hover:text-zinc-900 hover:bg-zinc-200/70'
               }`}
             >
@@ -178,16 +178,16 @@ export default function AIDemoSection() {
         </div>
 
         {/* Sandbox Canvas */}
-        <div className="rounded-2xl border border-black/[0.08] bg-[#fafafa] p-6 sm:p-8 shadow-sm">
-          <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4 pb-5 mb-6 border-b border-black/[0.06]">
+        <div className="rounded-2xl border border-black/[0.08] bg-[#fafafa] p-4 sm:p-6 md:p-8 shadow-sm">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 mb-6 border-b border-black/[0.06]">
             <div>
-              <div className="flex items-center gap-2 mb-1">
+              <div className="flex flex-wrap items-center gap-2 mb-1">
                 <span className="text-[10px] font-mono uppercase tracking-wider text-zinc-500 bg-white border border-black/[0.06] px-2 py-0.5 rounded">
                   {currentVertObj.badge}
                 </span>
                 <span className="text-[11px] font-mono text-zinc-400">Model: doxantro-{currentVertObj.id}-v3.4</span>
               </div>
-              <h3 className="text-xl sm:text-2xl font-bold text-zinc-900">
+              <h3 className="text-lg sm:text-2xl font-bold text-zinc-900">
                 {currentVertObj.title}
               </h3>
             </div>
@@ -195,7 +195,7 @@ export default function AIDemoSection() {
             <button
               onClick={runSimulation}
               disabled={isRunningInference}
-              className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-[#111111] hover:bg-black text-white text-xs font-medium transition-all shadow-sm cursor-pointer disabled:opacity-50"
+              className="inline-flex items-center justify-center gap-1.5 px-4 py-2.5 rounded-full bg-[#111111] hover:bg-black text-white text-xs font-medium transition-all shadow-sm cursor-pointer disabled:opacity-50 w-full sm:w-auto flex-shrink-0"
             >
               {isRunningInference ? (
                 <>
@@ -211,9 +211,9 @@ export default function AIDemoSection() {
             </button>
           </div>
 
-          <div className="grid lg:grid-cols-12 gap-6 items-start">
+          <div className="grid lg:grid-cols-12 gap-5 sm:gap-6 items-start">
             {/* Left: Input Controls (5 cols) */}
-            <div className="lg:col-span-5 bg-white rounded-xl p-5 border border-black/[0.06] space-y-4">
+            <div className="lg:col-span-5 bg-white rounded-xl p-4 sm:p-5 border border-black/[0.06] space-y-4">
               <div className="flex items-center justify-between text-[11px] font-mono uppercase tracking-wider text-zinc-500 pb-2 border-b border-black/[0.04]">
                 <span className="flex items-center gap-1.5">
                   <Sliders className="w-3.5 h-3.5 text-zinc-700" />
@@ -397,7 +397,7 @@ export default function AIDemoSection() {
             </div>
 
             {/* Right: Output Canvas (7 cols) */}
-            <div className="lg:col-span-7 bg-white rounded-xl p-5 sm:p-6 border border-black/[0.06] space-y-4">
+            <div className="lg:col-span-7 bg-white rounded-xl p-4 sm:p-6 border border-black/[0.06] space-y-4">
               <div className="flex items-center justify-between text-xs font-mono pb-2.5 border-b border-black/[0.04]">
                 <span className="text-zinc-900 font-semibold flex items-center gap-1.5">
                   <span className="w-2 h-2 rounded-full bg-emerald-500" />
@@ -409,15 +409,15 @@ export default function AIDemoSection() {
               {/* Dynamic Results Display */}
               {activeVert === 'finance' && (
                 <div className="space-y-3">
-                  <div className="flex items-center justify-between p-3.5 rounded-xl bg-zinc-50 border border-black/[0.04]">
+                  <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 p-3.5 rounded-xl bg-zinc-50 border border-black/[0.04]">
                     <div>
                       <div className="text-[11px] text-zinc-500">Risk Score</div>
                       <div className="text-2xl font-bold font-mono text-[#111111] tabular-nums">
                         {financeResult.riskScore} / 100
                       </div>
                     </div>
-                    <div className="text-right">
-                      <span className={`text-[11px] font-mono px-2 py-0.5 rounded border ${
+                    <div className="text-left sm:text-right">
+                      <span className={`text-[11px] font-mono px-2 py-0.5 rounded border inline-block ${
                         financeResult.riskScore > 70 ? 'bg-orange-50 text-orange-700 border-orange-200' : 'bg-emerald-50 text-emerald-700 border-emerald-200'
                       }`}>
                         {financeResult.status}
@@ -459,7 +459,7 @@ export default function AIDemoSection() {
 
               {activeVert === 'agriculture' && (
                 <div className="space-y-3">
-                  <div className="grid grid-cols-2 gap-2.5">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
                     <div className="p-3 rounded-lg bg-zinc-50 border border-black/[0.04]">
                       <div className="text-[11px] text-zinc-500">Projected Yield</div>
                       <div className="text-sm font-bold font-mono text-zinc-900 tabular-nums">{agriResult.projectedYield}</div>
@@ -506,7 +506,7 @@ export default function AIDemoSection() {
                 </div>
               )}
 
-              <div className="pt-3 border-t border-black/[0.04] flex items-center justify-between text-xs">
+              <div className="pt-3 border-t border-black/[0.04] flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 text-xs">
                 <span className="text-zinc-500">Fine-tune on your private dataset</span>
                 <Link
                   href={`/ai-${activeVert === 'finance' ? 'finance' : activeVert === 'healthcare' ? 'healthcare' : activeVert === 'agriculture' ? 'agriculture' : activeVert === 'supply-chain' ? 'supply-chain' : activeVert === 'security' ? 'security' : 'energy'}`}

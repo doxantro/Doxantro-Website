@@ -1,9 +1,8 @@
 'use client';
 
 import React from 'react';
-import Link from 'next/link';
 import { motion } from 'framer-motion';
-import { Lightbulb, Layers, ShieldCheck, ArrowRight, BrainCircuit, CheckCircle2 } from 'lucide-react';
+import { Lightbulb, Layers, ShieldCheck, BrainCircuit, CheckCircle2 } from 'lucide-react';
 import Button from '../components/ui/Button';
 
 const pillars = [
@@ -32,9 +31,9 @@ const pillars = [
 
 export default function AboutSection() {
   return (
-    <section className="py-20 md:py-24 bg-white border-b border-black/[0.06]">
+    <section className="py-16 md:py-24 bg-white border-b border-black/[0.06]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-center">
           {/* Left Column: Story & Highlights */}
           <motion.div
             initial={{ opacity: 0, y: 16 }}
@@ -47,7 +46,7 @@ export default function AboutSection() {
               About Doxantro Systems
             </div>
 
-            <h2 className="display-2 mb-5">
+            <h2 className="display-2 mb-4 sm:mb-5">
               Pioneering Applied AI for Real-World Operations
             </h2>
 
@@ -81,7 +80,7 @@ export default function AboutSection() {
               </div>
             </div>
 
-            <Button href="/about" variant="primary" size="md">
+            <Button href="/about" variant="primary" size="md" className="w-full sm:w-auto">
               Read Our Full Story
             </Button>
           </motion.div>
@@ -101,9 +100,9 @@ export default function AboutSection() {
             {pillars.map((pillar, idx) => {
               const IconComp = pillar.icon;
               return (
-                <div key={idx} className="card-minimal p-5">
-                  <div className="flex items-start gap-4">
-                    <div className="flex flex-col items-center">
+                <div key={idx} className="card-minimal p-4 sm:p-5">
+                  <div className="flex items-start gap-3.5 sm:gap-4">
+                    <div className="flex flex-col items-center flex-shrink-0">
                       <div className="w-9 h-9 rounded-lg bg-[#111111] text-white flex items-center justify-center font-bold">
                         <IconComp className="w-4 h-4" />
                       </div>

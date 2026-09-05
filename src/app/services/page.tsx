@@ -66,7 +66,7 @@ export default function Services() {
   return (
     <main className="min-h-screen bg-white">
       {/* 1. Hero Section */}
-      <section className="relative pt-32 pb-16 md:pt-40 md:pb-24 border-b border-black/[0.06] bg-white">
+      <section className="relative pt-28 pb-14 sm:pt-36 sm:pb-20 md:pt-40 md:pb-24 border-b border-black/[0.06] bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <motion.div
             initial={{ opacity: 0, y: 16 }}
@@ -80,7 +80,7 @@ export default function Services() {
               </span>
             </div>
 
-            <h1 className="display-1 mb-5">
+            <h1 className="display-1 mb-4 sm:mb-5">
               Applied Artificial Intelligence Built for High-Stakes Sectors
             </h1>
 
@@ -88,11 +88,11 @@ export default function Services() {
               We engineer, deploy, and manage production-grade AI systems that integrate directly into your operations—delivering deterministic accuracy, robust security, and compounding financial ROI.
             </p>
 
-            <div className="flex flex-wrap gap-3 justify-center items-center">
-              <Button href="/contact" size="lg" variant="primary">
+            <div className="flex flex-col sm:flex-row gap-3 justify-center items-stretch sm:items-center">
+              <Button href="/contact" size="lg" variant="primary" className="w-full sm:w-auto">
                 Schedule Architecture Review
               </Button>
-              <Button href="#solutions-grid" size="lg" variant="outline">
+              <Button href="#solutions-grid" size="lg" variant="outline" className="w-full sm:w-auto">
                 Browse 6 Vertical Solutions
               </Button>
             </div>
@@ -101,7 +101,7 @@ export default function Services() {
       </section>
 
       {/* 2. Methodology & Delivery Lifecycle */}
-      <section className="py-20 md:py-24 bg-[#fafafa] border-b border-black/[0.06]">
+      <section className="py-16 md:py-24 bg-[#fafafa] border-b border-black/[0.06]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <SectionHeader
             badge="ENGINEERING PROCESS"
@@ -109,7 +109,7 @@ export default function Services() {
             subtitle="From initial data governance to sub-10ms production inference, our systematic delivery model guarantees velocity and compliance."
           />
 
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3.5 sm:gap-4">
             {methodologySteps.map((item, idx) => {
               const IconComp = item.icon;
               return (
@@ -132,7 +132,7 @@ export default function Services() {
       </section>
 
       {/* 3. The 6 Vertical Solutions Grid */}
-      <section id="solutions-grid" className="py-20 md:py-24 bg-white border-b border-black/[0.06]">
+      <section id="solutions-grid" className="py-16 md:py-24 bg-white border-b border-black/[0.06]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <SectionHeader
             badge="VERTICAL SPECIALIZATION"
@@ -140,7 +140,7 @@ export default function Services() {
             subtitle="Explore our specialized neural architectures pre-trained on domain ontologies and ready for enterprise integration."
           />
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3.5 sm:gap-4">
             {solutionsData.map((item, idx) => (
               <motion.div
                 key={item.id}
@@ -149,7 +149,7 @@ export default function Services() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.35, delay: idx * 0.05 }}
               >
-                <div className="card-minimal p-6 h-full flex flex-col justify-between group">
+                <div className="card-minimal p-5 sm:p-6 h-full flex flex-col justify-between group">
                   <div>
                     <div className="flex items-center justify-between mb-4">
                       <div className="w-9 h-9 rounded-lg bg-zinc-100 flex items-center justify-center text-zinc-900 group-hover:bg-[#111111] group-hover:text-white transition-colors">
@@ -202,7 +202,7 @@ export default function Services() {
       </section>
 
       {/* 4. Enterprise Architecture & Capabilities Matrix */}
-      <section className="py-20 md:py-24 bg-[#fafafa] border-b border-black/[0.06]">
+      <section className="py-16 md:py-24 bg-[#fafafa] border-b border-black/[0.06]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <SectionHeader
             badge="TECHNICAL RIGOR"
@@ -210,7 +210,7 @@ export default function Services() {
             subtitle="Built to satisfy the stringent security, latency, and compliance mandates of modern infrastructure."
           />
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3.5 sm:gap-4">
             {technicalCapabilities.map((cap, idx) => (
               <div key={idx} className="card-minimal p-5">
                 <h4 className="text-xs font-mono uppercase tracking-wider text-zinc-900 mb-3 pb-2 border-b border-black/[0.04]">
@@ -231,7 +231,7 @@ export default function Services() {
       </section>
 
       {/* 5. Bottom Call to Action */}
-      <section className="py-20 md:py-24 bg-[#0c0c0e] text-white">
+      <section className="py-16 md:py-24 bg-[#0c0c0e] text-white">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <span className="text-[11px] font-mono tracking-widest uppercase text-zinc-400 mb-3 block">
             ■ CUSTOM ENTERPRISE DEPLOYMENT
@@ -245,11 +245,11 @@ export default function Services() {
             Our principal AI engineers are ready to review your data infrastructure, assess model viability, and provide a comprehensive architecture blueprint.
           </p>
 
-          <div className="flex flex-wrap gap-3 justify-center items-center">
-            <Button href="/contact" size="lg" variant="primary">
+          <div className="flex flex-col sm:flex-row gap-3 justify-center items-stretch sm:items-center">
+            <Button href="/contact" size="lg" variant="primary" className="w-full sm:w-auto">
               Request Scoping Call
             </Button>
-            <Button href="/case-studies" size="lg" variant="outline-white">
+            <Button href="/case-studies" size="lg" variant="outline-white" className="w-full sm:w-auto">
               View Case Studies
             </Button>
           </div>

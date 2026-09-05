@@ -8,7 +8,6 @@ import {
   CheckCircle2,
   Cpu,
   TrendingUp,
-  Sparkles,
 } from 'lucide-react';
 import Button from '../ui/Button';
 import SectionHeader from '../ui/SectionHeader';
@@ -54,7 +53,7 @@ export default function SolutionPageLayout({
   return (
     <main className="min-h-screen bg-white">
       {/* 1. Hero Section */}
-      <section className="relative pt-32 pb-16 md:pt-40 md:pb-24 border-b border-black/[0.06] bg-white">
+      <section className="relative pt-28 pb-14 sm:pt-36 sm:pb-20 md:pt-40 md:pb-24 border-b border-black/[0.06] bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <motion.div
             initial={{ opacity: 0, y: 16 }}
@@ -68,7 +67,7 @@ export default function SolutionPageLayout({
               </span>
             </div>
 
-            <h1 className="display-1 mb-5">
+            <h1 className="display-1 mb-4 sm:mb-5">
               {titlePrefix} {titleHighlight} {titleSuffix}
             </h1>
 
@@ -76,17 +75,17 @@ export default function SolutionPageLayout({
               {subtitle}
             </p>
 
-            <div className="flex flex-wrap gap-3 justify-center items-center mb-12">
-              <Button href="/contact" size="lg" variant="primary">
+            <div className="flex flex-col sm:flex-row gap-3 justify-center items-stretch sm:items-center mb-10 sm:mb-12">
+              <Button href="/contact" size="lg" variant="primary" className="w-full sm:w-auto">
                 Schedule Architecture Consultation
               </Button>
-              <Button href="#solutions-list" size="lg" variant="outline">
+              <Button href="#solutions-list" size="lg" variant="outline" className="w-full sm:w-auto">
                 Explore Capabilities
               </Button>
             </div>
 
             {/* Metrics Grid */}
-            <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 text-left">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 text-left">
               {metrics.map((m, idx) => (
                 <div
                   key={idx}
@@ -105,7 +104,7 @@ export default function SolutionPageLayout({
       </section>
 
       {/* 2. Solutions Breakdown */}
-      <section id="solutions-list" className="py-20 md:py-24 bg-[#fafafa] border-b border-black/[0.06]">
+      <section id="solutions-list" className="py-16 md:py-24 bg-[#fafafa] border-b border-black/[0.06]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <SectionHeader
             badge="MODULAR CAPABILITIES"
@@ -122,15 +121,15 @@ export default function SolutionPageLayout({
                 viewport={{ once: true }}
                 transition={{ duration: 0.35, delay: idx * 0.05 }}
               >
-                <div className="card-minimal p-6 sm:p-8">
-                  <div className="grid lg:grid-cols-12 gap-8 items-start">
+                <div className="card-minimal p-5 sm:p-7 md:p-8">
+                  <div className="grid lg:grid-cols-12 gap-6 lg:gap-8 items-start">
                     {/* Left: Solution & Features (7 cols) */}
                     <div className="lg:col-span-7 space-y-4">
                       <div className="flex items-center gap-3">
-                        <div className="w-9 h-9 rounded-lg bg-zinc-100 flex items-center justify-center text-zinc-900">
+                        <div className="w-9 h-9 rounded-lg bg-zinc-100 flex items-center justify-center text-zinc-900 flex-shrink-0">
                           <SolutionIcon name={item.iconName} className="w-4 h-4" />
                         </div>
-                        <h3 className="text-lg sm:text-xl font-bold text-zinc-900">
+                        <h3 className="text-base sm:text-xl font-bold text-zinc-900">
                           {item.title}
                         </h3>
                       </div>
@@ -143,7 +142,7 @@ export default function SolutionPageLayout({
                         <div className="text-[11px] font-mono tracking-wider uppercase text-zinc-500 mb-2">
                           ■ Technical Features
                         </div>
-                        <div className="grid sm:grid-cols-2 gap-2">
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                           {item.features.map((feat, fIdx) => (
                             <div key={fIdx} className="flex items-center text-xs text-zinc-700">
                               <CheckCircle2 className="w-3.5 h-3.5 text-zinc-900 mr-2 flex-shrink-0" />
@@ -187,9 +186,9 @@ export default function SolutionPageLayout({
       </section>
 
       {/* 3. Industry Use Cases & Architecture Specs */}
-      <section className="py-20 md:py-24 bg-white border-b border-black/[0.06]">
+      <section className="py-16 md:py-24 bg-white border-b border-black/[0.06]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid lg:grid-cols-12 gap-10">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10">
             {/* Target Environments (6 cols) */}
             <div className="lg:col-span-6 space-y-4">
               <div className="subheading">Target Environments</div>
@@ -238,7 +237,7 @@ export default function SolutionPageLayout({
       </section>
 
       {/* 4. Bottom CTA */}
-      <section className="py-20 md:py-24 bg-[#0c0c0e] text-white">
+      <section className="py-16 md:py-24 bg-[#0c0c0e] text-white">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <span className="text-[11px] font-mono tracking-widest uppercase text-zinc-400 mb-3 block">
             ■ PRODUCTION READINESS GUARANTEE
@@ -252,11 +251,11 @@ export default function SolutionPageLayout({
             {ctaSubtitle}
           </p>
 
-          <div className="flex flex-wrap gap-3 justify-center items-center">
-            <Button href="/contact" size="lg" variant="primary">
+          <div className="flex flex-col sm:flex-row gap-3 justify-center items-stretch sm:items-center">
+            <Button href="/contact" size="lg" variant="primary" className="w-full sm:w-auto">
               Start Architectural Consultation
             </Button>
-            <Button href="/case-studies" size="lg" variant="outline-white">
+            <Button href="/case-studies" size="lg" variant="outline-white" className="w-full sm:w-auto">
               View Verified Case Studies
             </Button>
           </div>

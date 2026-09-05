@@ -56,32 +56,32 @@ export default function Navbar() {
       <header
         className={`fixed top-0 left-0 right-0 z-40 transition-all duration-200 ${
           isScrolled
-            ? 'bg-white/95 backdrop-blur-md border-b border-black/[0.08] shadow-[0_1px_8px_rgba(0,0,0,0.03)] py-3'
-            : 'bg-white/80 backdrop-blur-sm border-b border-black/[0.05] py-4'
+            ? 'bg-white/95 backdrop-blur-md border-b border-black/[0.08] shadow-[0_1px_8px_rgba(0,0,0,0.03)] py-2.5 sm:py-3'
+            : 'bg-white/85 backdrop-blur-sm border-b border-black/[0.05] py-3 sm:py-4'
         }`}
       >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-10">
             {/* Brand Lettermark */}
             <Link
               href="/"
-              className="flex items-center space-x-2.5 group focus:outline-none"
+              className="flex items-center space-x-2 group focus:outline-none flex-shrink-0"
             >
-              <div className="relative overflow-hidden rounded-md border border-zinc-200/80 bg-zinc-950 p-0.5">
+              <div className="relative overflow-hidden rounded-md border border-zinc-200/80 bg-zinc-950 p-0.5 flex-shrink-0">
                 <Image
                   src="/dox1.jpg"
                   alt="Doxantro Systems"
-                  width={28}
-                  height={28}
+                  width={26}
+                  height={26}
                   className="rounded-[3px] object-cover"
                   priority
                 />
               </div>
-              <div className="flex items-baseline gap-1.5">
-                <span className="font-bold tracking-tight text-[#111111] text-base sm:text-lg">
+              <div className="flex items-baseline gap-1">
+                <span className="font-bold tracking-tight text-[#111111] text-sm sm:text-base md:text-lg">
                   DOXANTRO
                 </span>
-                <span className="text-[10px] font-mono tracking-widest text-zinc-400 uppercase hidden sm:inline">
+                <span className="text-[9px] sm:text-[10px] font-mono tracking-widest text-zinc-400 uppercase hidden xs:inline sm:inline">
                   SYSTEMS
                 </span>
               </div>
@@ -224,7 +224,7 @@ export default function Navbar() {
             {/* Mobile Hamburger Button */}
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="lg:hidden p-2 rounded-lg text-zinc-800 hover:bg-zinc-100 focus:outline-none transition-colors"
+              className="lg:hidden p-2 -mr-1 rounded-lg text-zinc-800 hover:bg-zinc-100 focus:outline-none transition-colors cursor-pointer"
               aria-label="Toggle Navigation Menu"
             >
               {isMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
@@ -242,10 +242,10 @@ export default function Navbar() {
               transition={{ duration: 0.2, ease: 'easeInOut' }}
               className="lg:hidden bg-white border-b border-black/[0.08] overflow-hidden"
             >
-              <div className="px-4 pt-3 pb-6 space-y-1 max-h-[80vh] overflow-y-auto">
+              <div className="px-4 pt-2 pb-6 space-y-1 max-h-[calc(100vh-4rem)] overflow-y-auto">
                 <Link
                   href="/"
-                  className={`block px-3 py-2 rounded-lg text-sm font-medium transition-colors ${
+                  className={`block px-3 py-2.5 rounded-lg text-sm font-medium transition-colors ${
                     pathname === '/' ? 'bg-zinc-100 text-[#111111] font-semibold' : 'text-zinc-700'
                   }`}
                 >
@@ -253,18 +253,19 @@ export default function Navbar() {
                 </Link>
 
                 <div className="border border-black/[0.06] rounded-xl p-2.5 bg-zinc-50 my-2">
-                  <div className="px-2 py-1 text-[11px] font-mono tracking-wider uppercase text-zinc-500">
-                    ■ AI Solutions
+                  <div className="px-2 py-1 text-[10px] font-mono tracking-wider uppercase text-zinc-500">
+                    ■ AI Verticals
                   </div>
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-1 mt-1">
+                  <div className="grid grid-cols-1 gap-1 mt-1">
                     {solutionsData.map((item) => (
                       <Link
                         key={item.id}
                         href={item.href}
-                        className="flex items-center gap-2 px-2.5 py-1.5 rounded-lg text-xs font-medium text-zinc-700 hover:bg-white transition-colors"
+                        className="flex items-center gap-2.5 px-2.5 py-2 rounded-lg text-xs font-medium text-zinc-700 hover:bg-white transition-colors"
                       >
-                        <SolutionIcon name={item.iconName} className="w-3.5 h-3.5 text-zinc-900" />
-                        <span>{item.shortTitle}</span>
+                        <SolutionIcon name={item.iconName} className="w-3.5 h-3.5 text-zinc-900 flex-shrink-0" />
+                        <span className="truncate">{item.shortTitle}</span>
+                        <span className="text-[10px] font-mono text-zinc-400 ml-auto">{item.stat}</span>
                       </Link>
                     ))}
                   </div>
@@ -274,7 +275,7 @@ export default function Navbar() {
                   <Link
                     key={link.name}
                     href={link.href}
-                    className={`block px-3 py-2 rounded-lg text-sm font-medium transition-colors ${
+                    className={`block px-3 py-2.5 rounded-lg text-sm font-medium transition-colors ${
                       pathname === link.href ? 'bg-zinc-100 text-[#111111] font-semibold' : 'text-zinc-700'
                     }`}
                   >
@@ -285,7 +286,7 @@ export default function Navbar() {
                 <div className="pt-3">
                   <Link
                     href="/contact"
-                    className="w-full flex items-center justify-center gap-1.5 px-4 py-2.5 rounded-full bg-[#111111] text-white text-xs font-medium"
+                    className="w-full flex items-center justify-center gap-1.5 px-4 py-3 rounded-full bg-[#111111] text-white text-xs font-medium text-center"
                   >
                     <span>Get Started</span>
                     <svg width="12" height="12" viewBox="0 0 16 16" fill="none">

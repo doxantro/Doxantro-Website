@@ -82,7 +82,7 @@ export default function Contact() {
   return (
     <main className="min-h-screen bg-white">
       {/* 1. Hero Section */}
-      <section className="relative pt-32 pb-16 md:pt-40 md:pb-20 border-b border-black/[0.06] bg-white">
+      <section className="relative pt-28 pb-14 sm:pt-36 sm:pb-20 md:pt-40 md:pb-20 border-b border-black/[0.06] bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <motion.div
             initial={{ opacity: 0, y: 16 }}
@@ -96,7 +96,7 @@ export default function Contact() {
               </span>
             </div>
 
-            <h1 className="display-1 mb-5">
+            <h1 className="display-1 mb-4 sm:mb-5">
               Start Your Enterprise AI Initiative
             </h1>
 
@@ -108,17 +108,17 @@ export default function Contact() {
       </section>
 
       {/* 2. Scoping Form & Details */}
-      <section className="py-16 md:py-20 bg-[#fafafa] border-b border-black/[0.06]">
+      <section className="py-12 sm:py-16 md:py-20 bg-[#fafafa] border-b border-black/[0.06]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid lg:grid-cols-12 gap-8 lg:gap-12 items-start">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-12 items-start">
             {/* Left: Scoping Form (7 cols) */}
             <div className="lg:col-span-7">
-              <div className="card-minimal p-6 sm:p-8 bg-white">
+              <div className="card-minimal p-5 sm:p-7 md:p-8 bg-white">
                 {status === 'success' ? (
                   <motion.div
                     initial={{ opacity: 0, scale: 0.98 }}
                     animate={{ opacity: 1, scale: 1 }}
-                    className="text-center py-10 space-y-3"
+                    className="text-center py-8 sm:py-10 space-y-3"
                   >
                     <div className="w-12 h-12 rounded-xl bg-emerald-100 text-emerald-600 flex items-center justify-center mx-auto">
                       <CheckCircle2 className="w-6 h-6" />
@@ -150,7 +150,7 @@ export default function Contact() {
                 ) : (
                   <form onSubmit={handleSubmit} className="space-y-4">
                     <div>
-                      <h3 className="text-lg font-bold text-zinc-900 mb-0.5">
+                      <h3 className="text-base sm:text-lg font-bold text-zinc-900 mb-0.5">
                         Enterprise Scoping Questionnaire
                       </h3>
                       <p className="text-xs text-zinc-500 font-mono">
@@ -159,7 +159,7 @@ export default function Contact() {
                     </div>
 
                     {/* Name inputs */}
-                    <div className="grid sm:grid-cols-2 gap-3">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                       <div>
                         <label className="block text-[11px] font-mono uppercase tracking-wider text-zinc-500 mb-1">
                           First Name *
@@ -188,7 +188,7 @@ export default function Contact() {
                     </div>
 
                     {/* Email & Company */}
-                    <div className="grid sm:grid-cols-2 gap-3">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                       <div>
                         <label className="block text-[11px] font-mono uppercase tracking-wider text-zinc-500 mb-1">
                           Corporate Email *
@@ -239,7 +239,7 @@ export default function Contact() {
                       <label className="block text-[11px] font-mono uppercase tracking-wider text-zinc-500 mb-1.5">
                         Target AI Capabilities (Select all that apply)
                       </label>
-                      <div className="grid sm:grid-cols-2 gap-1.5">
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-1.5">
                         {modelScopes.map((scope, idx) => {
                           const isSelected = formData.selectedScopes.includes(scope);
                           return (
@@ -329,7 +329,7 @@ export default function Contact() {
             {/* Right: Security Guarantees & Direct Channels (5 cols) */}
             <div className="lg:col-span-5 space-y-4">
               {/* Security & Confidentiality Box */}
-              <div className="p-6 rounded-2xl bg-[#0d0d10] text-white border border-white/[0.08] shadow-sm">
+              <div className="p-5 sm:p-6 rounded-2xl bg-[#0d0d10] text-white border border-white/[0.08] shadow-sm">
                 <div className="flex items-center gap-1.5 text-[11px] font-mono text-emerald-400 mb-3">
                   <ShieldCheck className="w-4 h-4" />
                   <span>NDA & SOC-2 Compliant Ingestion</span>
@@ -360,7 +360,7 @@ export default function Contact() {
               </div>
 
               {/* Direct Channels */}
-              <div className="card-minimal p-6 bg-white space-y-3.5">
+              <div className="card-minimal p-5 sm:p-6 bg-white space-y-3.5">
                 <div className="text-[11px] font-mono tracking-wider uppercase text-zinc-500 pb-2 border-b border-black/[0.04]">
                   ■ Direct Channels
                 </div>
