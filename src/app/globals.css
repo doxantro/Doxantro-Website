@@ -64,10 +64,10 @@ body {
 
 .display-1 {
   font-family: var(--font-geist-sans), sans-serif;
-  font-size: clamp(1.85rem, 5.5vw, 3.5rem);
+  font-size: clamp(1.75rem, 5.5vw, 3.5rem);
   font-weight: 700;
   letter-spacing: -0.035em;
-  line-height: 1.1;
+  line-height: 1.12;
   color: #111111;
   word-break: break-word;
   overflow-wrap: break-word;
@@ -75,7 +75,7 @@ body {
 
 .display-2 {
   font-family: var(--font-geist-sans), sans-serif;
-  font-size: clamp(1.5rem, 3.8vw, 2.5rem);
+  font-size: clamp(1.45rem, 3.8vw, 2.5rem);
   font-weight: 600;
   letter-spacing: -0.025em;
   line-height: 1.18;
@@ -86,7 +86,7 @@ body {
 
 .display-3 {
   font-family: var(--font-geist-sans), sans-serif;
-  font-size: clamp(1.2rem, 2.8vw, 1.75rem);
+  font-size: clamp(1.15rem, 2.8vw, 1.75rem);
   font-weight: 600;
   letter-spacing: -0.02em;
   line-height: 1.25;
@@ -113,58 +113,75 @@ body {
   color: #71717a;
 }
 
-/* Hairline Grid & Subtle Borders */
-.hairline-border {
-  border: 1px solid rgba(0, 0, 0, 0.08);
-}
-
-.hairline-divider {
-  height: 1px;
-  background: rgba(0, 0, 0, 0.06);
-  width: 100%;
+/* Minimalist Hairline Borders & Cards */
+.border-subtle {
+  border-color: var(--border-subtle);
 }
 
 .card-minimal {
-  background: #ffffff;
-  border: 1px solid rgba(0, 0, 0, 0.08);
-  border-radius: 0.875rem;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03), 0 6px 16px rgba(0, 0, 0, 0.02);
+  background-color: #ffffff;
+  border: 1px solid var(--border-card);
+  border-radius: 1rem;
   transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .card-minimal:hover {
-  border-color: rgba(0, 0, 0, 0.16);
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+  border-color: rgba(0, 0, 0, 0.14);
+  box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.05);
 }
 
-/* Monospace telemetry & numbers */
-.font-mono-tabular {
-  font-family: var(--font-geist-mono), ui-monospace, monospace;
-  font-variant-numeric: tabular-nums;
+.card-dark {
+  background-color: #0d0d10;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 1rem;
+}
+
+.card-dark:hover {
+  border-color: rgba(255, 255, 255, 0.15);
 }
 
 /* Hide scrollbars for horizontal tab strips */
-.scrollbar-none {
-  -ms-overflow-style: none;
-  scrollbar-width: none;
-  -webkit-overflow-scrolling: touch;
-}
 .scrollbar-none::-webkit-scrollbar {
   display: none;
 }
+.scrollbar-none {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
 
-/* Clean Custom Scrollbar */
-::-webkit-scrollbar {
-  width: 5px;
-  height: 5px;
+/* Custom interactive input range */
+input[type="range"] {
+  -webkit-appearance: none;
+  appearance: none;
+  background: #e4e4e7;
+  height: 6px;
+  border-radius: 9999px;
+  outline: none;
 }
-::-webkit-scrollbar-track {
-  background: #f4f4f5;
+
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #111111;
+  cursor: pointer;
+  border: 2px solid #ffffff;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+  transition: transform 0.1s ease;
 }
-::-webkit-scrollbar-thumb {
-  background: #d4d4d8;
-  border-radius: 3px;
+
+input[type="range"]::-webkit-slider-thumb:hover {
+  transform: scale(1.15);
 }
-::-webkit-scrollbar-thumb:hover {
-  background: #a1a1aa;
+
+input[type="range"]::-moz-range-thumb {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #111111;
+  cursor: pointer;
+  border: 2px solid #ffffff;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
 }

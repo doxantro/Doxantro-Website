@@ -113,9 +113,9 @@ export default function ModelBenchmarkComparator() {
   return (
     <div className="relative rounded-2xl border border-black/[0.1] bg-white shadow-[0_4px_24px_rgba(0,0,0,0.06)] overflow-hidden w-full max-w-full">
       {/* Top Header & Vertical Selector */}
-      <div className="p-4 sm:p-5 pb-3 border-b border-black/[0.06] bg-[#fafafa]">
-        <div className="flex flex-wrap items-center justify-between gap-2 mb-3">
-          <div className="flex items-center gap-1.5">
+      <div className="p-3.5 sm:p-5 pb-3 border-b border-black/[0.06] bg-[#fafafa]">
+        <div className="flex items-center justify-between gap-2 mb-2.5 sm:mb-3">
+          <div className="flex items-center gap-1.5 min-w-0">
             <span className="w-2 h-2 rounded-full bg-orange-600 flex-shrink-0" />
             <span className="text-[11px] font-mono tracking-wider uppercase text-zinc-600 font-semibold truncate">
               Model Benchmark & ROI
@@ -126,8 +126,8 @@ export default function ModelBenchmarkComparator() {
           </span>
         </div>
 
-        {/* Horizontal Scrollable Presets */}
-        <div className="flex items-center gap-1 overflow-x-auto pb-1.5 scrollbar-none -mx-1 px-1">
+        {/* Horizontal Scrollable Presets with Momentum Scrolling */}
+        <div className="flex items-center gap-1.5 overflow-x-auto pb-1 scrollbar-none -mx-3.5 px-3.5 sm:-mx-5 sm:px-5">
           {presets.map((preset) => (
             <button
               key={preset.id}
@@ -145,7 +145,7 @@ export default function ModelBenchmarkComparator() {
       </div>
 
       {/* Main Body */}
-      <div className="p-4 sm:p-5 lg:p-6 space-y-4 sm:space-y-5">
+      <div className="p-3.5 sm:p-5 lg:p-6 space-y-3.5 sm:space-y-4">
         {/* Interactive Volume Slider */}
         <div className="bg-[#fafafa] rounded-xl p-3 sm:p-3.5 border border-black/[0.05]">
           <div className="flex items-center justify-between mb-1.5 gap-2">
@@ -164,7 +164,7 @@ export default function ModelBenchmarkComparator() {
             step={500000}
             value={eventVolume}
             onChange={(e) => setEventVolume(Number(e.target.value))}
-            className="w-full accent-[#111111] cursor-pointer"
+            className="w-full accent-[#111111] cursor-pointer h-2 bg-zinc-200 rounded-lg"
           />
           <div className="flex justify-between text-[10px] font-mono text-zinc-400 mt-1">
             <span>1M</span>
@@ -173,35 +173,35 @@ export default function ModelBenchmarkComparator() {
           </div>
         </div>
 
-        {/* Side-by-Side Comparison Columns */}
+        {/* Side-by-Side / Stacked Comparison Columns */}
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
           {/* Column A: Generic Cloud AI */}
-          <div className="rounded-xl p-3.5 sm:p-4 bg-zinc-50/80 border border-black/[0.06] space-y-2.5 sm:space-y-3">
+          <div className="rounded-xl p-3.5 sm:p-4 bg-zinc-50/80 border border-black/[0.06] space-y-2.5">
             <div className="text-[11px] font-mono uppercase tracking-wider text-zinc-500 flex items-center gap-1.5 pb-2 border-b border-black/[0.04]">
               <X className="w-3.5 h-3.5 text-zinc-400 flex-shrink-0" />
               <span className="truncate">Generic Cloud AI</span>
             </div>
 
-            <div className="grid grid-cols-2 sm:grid-cols-1 gap-2">
-              <div>
-                <div className="text-[10px] font-mono text-zinc-500">Latency (p99)</div>
-                <div className="text-base sm:text-lg font-bold font-mono text-zinc-700 tabular-nums">
+            <div className="space-y-2">
+              <div className="flex items-center justify-between gap-2">
+                <span className="text-[11px] font-mono text-zinc-500">Latency (p99)</span>
+                <span className="text-sm font-bold font-mono text-zinc-700 tabular-nums">
                   {currentPreset.genericLatency}
-                </div>
+                </span>
               </div>
 
-              <div>
-                <div className="text-[10px] font-mono text-zinc-500">Domain Accuracy</div>
-                <div className="text-base sm:text-lg font-bold font-mono text-zinc-700 tabular-nums">
+              <div className="flex items-center justify-between gap-2">
+                <span className="text-[11px] font-mono text-zinc-500">Domain Accuracy</span>
+                <span className="text-sm font-bold font-mono text-zinc-700 tabular-nums">
                   {currentPreset.genericAccuracy}
-                </div>
+                </span>
               </div>
-            </div>
 
-            <div>
-              <div className="text-[10px] font-mono text-zinc-500">Est. Monthly Cost</div>
-              <div className="text-base sm:text-lg font-bold font-mono text-zinc-700 tabular-nums">
-                ${genericMonthlyCost.toLocaleString()}
+              <div className="flex items-center justify-between gap-2">
+                <span className="text-[11px] font-mono text-zinc-500">Est. Monthly Cost</span>
+                <span className="text-sm font-bold font-mono text-zinc-700 tabular-nums">
+                  ${genericMonthlyCost.toLocaleString()}
+                </span>
               </div>
             </div>
 
@@ -211,47 +211,47 @@ export default function ModelBenchmarkComparator() {
           </div>
 
           {/* Column B: Doxantro Domain AI (Highlighted) */}
-          <div className="rounded-xl p-3.5 sm:p-4 bg-[#0d0d10] text-white border border-black/[0.12] shadow-sm space-y-2.5 sm:space-y-3 relative overflow-hidden">
+          <div className="rounded-xl p-3.5 sm:p-4 bg-[#0d0d10] text-white border border-black/[0.12] shadow-sm space-y-2.5 relative overflow-hidden">
             <div className="text-[11px] font-mono uppercase tracking-wider text-emerald-400 flex items-center gap-1.5 pb-2 border-b border-white/[0.08]">
               <Check className="w-3.5 h-3.5 text-emerald-400 flex-shrink-0" />
               <span className="truncate">Doxantro Sovereign</span>
             </div>
 
-            <div className="grid grid-cols-2 sm:grid-cols-1 gap-2">
-              <div>
-                <div className="text-[10px] font-mono text-zinc-400 flex items-center justify-between gap-1">
-                  <span>Latency</span>
-                  <span className="text-[9px] text-emerald-400 bg-emerald-950/60 px-1 rounded border border-emerald-500/30 whitespace-nowrap">
+            <div className="space-y-2">
+              <div className="flex items-center justify-between gap-2">
+                <div className="flex items-center gap-1 min-w-0">
+                  <span className="text-[11px] font-mono text-zinc-400 truncate">Latency</span>
+                  <span className="text-[9px] text-emerald-400 bg-emerald-950/80 px-1.5 py-0.5 rounded border border-emerald-500/30 whitespace-nowrap font-mono flex-shrink-0">
                     {currentPreset.latencyMultiplier}
                   </span>
                 </div>
-                <div className="text-base sm:text-lg font-bold font-mono text-white tabular-nums">
+                <span className="text-sm font-bold font-mono text-white tabular-nums flex-shrink-0">
                   {currentPreset.doxantroLatency}
-                </div>
+                </span>
               </div>
 
-              <div>
-                <div className="text-[10px] font-mono text-zinc-400 flex items-center justify-between gap-1">
-                  <span>Accuracy</span>
-                  <span className="text-[9px] text-emerald-400 bg-emerald-950/60 px-1 rounded border border-emerald-500/30 whitespace-nowrap">
+              <div className="flex items-center justify-between gap-2">
+                <div className="flex items-center gap-1 min-w-0">
+                  <span className="text-[11px] font-mono text-zinc-400 truncate">Accuracy</span>
+                  <span className="text-[9px] text-emerald-400 bg-emerald-950/80 px-1.5 py-0.5 rounded border border-emerald-500/30 whitespace-nowrap font-mono flex-shrink-0">
                     Zero Drift
                   </span>
                 </div>
-                <div className="text-base sm:text-lg font-bold font-mono text-emerald-400 tabular-nums">
+                <span className="text-sm font-bold font-mono text-emerald-400 tabular-nums flex-shrink-0">
                   {currentPreset.doxantroAccuracy}
-                </div>
-              </div>
-            </div>
-
-            <div>
-              <div className="text-[10px] font-mono text-zinc-400 flex items-center justify-between gap-1">
-                <span>Est. Monthly Cost</span>
-                <span className="text-[9px] text-emerald-400 bg-emerald-950/60 px-1 rounded border border-emerald-500/30 whitespace-nowrap">
-                  -{savingsPercent}%
                 </span>
               </div>
-              <div className="text-base sm:text-lg font-bold font-mono text-white tabular-nums">
-                ${doxantroMonthlyCost.toLocaleString()}
+
+              <div className="flex items-center justify-between gap-2">
+                <div className="flex items-center gap-1 min-w-0">
+                  <span className="text-[11px] font-mono text-zinc-400 truncate">Monthly Cost</span>
+                  <span className="text-[9px] text-emerald-400 bg-emerald-950/80 px-1.5 py-0.5 rounded border border-emerald-500/30 whitespace-nowrap font-mono flex-shrink-0">
+                    -{savingsPercent}%
+                  </span>
+                </div>
+                <span className="text-sm font-bold font-mono text-white tabular-nums flex-shrink-0">
+                  ${doxantroMonthlyCost.toLocaleString()}
+                </span>
               </div>
             </div>
 
