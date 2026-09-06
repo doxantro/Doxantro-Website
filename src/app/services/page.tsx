@@ -246,7 +246,12 @@ export default function Services() {
           </p>
 
           <div className="flex flex-col sm:flex-row gap-3 justify-center items-stretch sm:items-center">
-            <Button href="/contact" size="lg" variant="primary" className="w-full sm:w-auto">
+            <Button
+              href="/contact"
+              size="lg"
+              variant="secondary"
+              className="w-full sm:w-auto bg-white text-zinc-950 hover:bg-zinc-100 font-semibold"
+            >
               Request Scoping Call
             </Button>
             <Button href="/case-studies" size="lg" variant="outline-white" className="w-full sm:w-auto">

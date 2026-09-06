@@ -418,8 +418,8 @@ export default function Careers() {
             <Button
               href="/contact?subject=General%20Engineering%20Application"
               size="lg"
-              variant="primary"
-              className="w-full sm:w-auto"
+              variant="secondary"
+              className="w-full sm:w-auto bg-white text-zinc-950 hover:bg-zinc-100 font-semibold"
             >
               Send Open Application
             </Button>
