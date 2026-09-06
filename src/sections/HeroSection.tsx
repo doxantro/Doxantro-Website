@@ -3,7 +3,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import Button from '../components/ui/Button';
-import ArchitecturalBlueprint from '../components/hero/ArchitecturalBlueprint';
+import AppliedSolutionMatrix from '../components/hero/AppliedSolutionMatrix';
 
 export default function HeroSection() {
   return (
@@ -66,9 +66,9 @@ export default function HeroSection() {
             </div>
           </motion.div>
 
-          {/* Right Column: Architectural Blueprint */}
+          {/* Right Column: Applied Solution Matrix */}
           <div className="lg:col-span-6 w-full min-w-0 max-w-full overflow-hidden">
-            <ArchitecturalBlueprint />
+            <AppliedSolutionMatrix />
           </div>
         </div>
       </div>
