@@ -3,74 +3,75 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import Button from '../components/ui/Button';
-import AppliedSolutionMatrix from '../components/hero/AppliedSolutionMatrix';
 
 export default function HeroSection() {
   return (
-    <section className="relative pt-18 pb-10 sm:pt-28 sm:pb-16 md:pt-36 md:pb-20 border-b border-black/[0.06] bg-white overflow-hidden w-full">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
-        <div className="grid lg:grid-cols-12 gap-8 lg:gap-10 items-start w-full">
-          {/* Left Column: Headline & Value Prop */}
-          <motion.div
-            initial={{ opacity: 0, y: 14 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.4, ease: 'easeOut' }}
-            className="lg:col-span-6 text-left w-full min-w-0 max-w-full"
-          >
-            {/* Monospace Subheading */}
-            <div className="mb-2 sm:mb-3">
-              <span className="subheading text-[10px] sm:text-xs">
-                Enterprise Applied AI · v3.4 Infrastructure
-              </span>
-            </div>
-
-            {/* Main Headline */}
-            <h1 className="text-2xl xs:text-3xl sm:text-4xl md:text-5xl lg:text-[3.25rem] font-bold tracking-tight text-[#111111] leading-[1.16] mb-3 sm:mb-4 break-words">
-              Think, Build and Solve with Intelligence.
-            </h1>
-
-            {/* Subheadline */}
-            <p className="text-xs sm:text-base text-zinc-600 leading-relaxed mb-5 sm:mb-6 max-w-xl">
-              Empowering global enterprises, healthcare systems, and institutions with mission-critical AI solutions engineered for speed, accuracy, and measurable ROI.
-            </p>
-
-            {/* CTA Row */}
-            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2.5 sm:gap-3 mb-5 sm:mb-6 w-full">
-              <Button href="/contact" size="md" variant="primary" className="w-full sm:w-auto text-xs sm:text-sm text-center px-4 py-2.5 justify-center">
-                Start Your Project
-              </Button>
-              <Button href="/case-studies" size="md" variant="outline" className="w-full sm:w-auto text-xs sm:text-sm text-center px-4 py-2.5 justify-center">
-                Case Studies
-              </Button>
-            </div>
-
-            {/* 3 Hairline Metric Indicators */}
-            <div className="pt-3 sm:pt-4 border-t border-black/[0.06] flex flex-wrap items-center justify-between gap-2 sm:gap-4 text-[10px] sm:text-xs font-mono">
-              <div className="flex items-center gap-1.5 min-w-0">
-                <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 flex-shrink-0" />
-                <span className="font-semibold text-zinc-900">SOC-2 Type II</span>
-                <span className="hidden sm:inline text-zinc-400">· Air-gapped</span>
-              </div>
-
-              <div className="flex items-center gap-1.5 min-w-0">
-                <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 flex-shrink-0" />
-                <span className="font-semibold text-zinc-900">&lt; 10ms Latency</span>
-                <span className="hidden sm:inline text-zinc-400">· Real-time</span>
-              </div>
-
-              <div className="flex items-center gap-1.5 min-w-0">
-                <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 flex-shrink-0" />
-                <span className="font-semibold text-zinc-900">6 Verticals</span>
-                <span className="hidden sm:inline text-zinc-400">· Domain AI</span>
-              </div>
-            </div>
-          </motion.div>
-
-          {/* Right Column: Applied Solution Matrix */}
-          <div className="lg:col-span-6 w-full min-w-0 max-w-full overflow-hidden">
-            <AppliedSolutionMatrix />
+    <section className="relative pt-24 pb-14 sm:pt-32 sm:pb-20 md:pt-40 md:pb-24 border-b border-black/[0.06] bg-white overflow-hidden w-full">
+      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 w-full text-center">
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.45, ease: 'easeOut' }}
+          className="max-w-3xl mx-auto flex flex-col items-center"
+        >
+          {/* 1. Monospace Subheading Pill */}
+          <div className="mb-3 sm:mb-4 inline-flex items-center justify-center">
+            <span className="subheading text-[10px] sm:text-xs tracking-wider">
+              Enterprise Applied AI · v3.4 Infrastructure
+            </span>
           </div>
-        </div>
+
+          {/* 2. Main Centralized Headline */}
+          <h1 className="text-3xl xs:text-4xl sm:text-5xl md:text-6xl lg:text-[4rem] font-bold tracking-tight text-[#111111] leading-[1.12] mb-4 sm:mb-6 max-w-3xl">
+            Think, Build and Solve with Intelligence.
+          </h1>
+
+          {/* 3. Subheadline Description */}
+          <p className="text-sm sm:text-lg md:text-xl text-zinc-600 leading-relaxed mb-6 sm:mb-8 max-w-2xl">
+            Empowering global enterprises, healthcare systems, and institutions with mission-critical AI solutions engineered for speed, accuracy, and measurable ROI.
+          </p>
+
+          {/* 4. Action Buttons */}
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-3 mb-8 sm:mb-12 w-full sm:w-auto">
+            <Button
+              href="/contact"
+              size="lg"
+              variant="primary"
+              className="w-full sm:w-auto px-6 py-3 text-sm font-semibold justify-center"
+            >
+              Start Your Project
+            </Button>
+            <Button
+              href="/case-studies"
+              size="lg"
+              variant="outline"
+              className="w-full sm:w-auto px-6 py-3 text-sm font-semibold justify-center"
+            >
+              Case Studies
+            </Button>
+          </div>
+
+          {/* 5. 3 Hairline Metric Indicators (Centered Strip) */}
+          <div className="pt-6 sm:pt-8 border-t border-black/[0.06] flex flex-wrap items-center justify-center gap-4 sm:gap-8 text-xs font-mono w-full">
+            <div className="flex items-center gap-2 min-w-0">
+              <span className="w-2 h-2 rounded-full bg-emerald-500 flex-shrink-0" />
+              <span className="font-semibold text-zinc-900">SOC-2 Type II</span>
+              <span className="text-zinc-400">· Air-Gapped</span>
+            </div>
+
+            <div className="flex items-center gap-2 min-w-0">
+              <span className="w-2 h-2 rounded-full bg-emerald-500 flex-shrink-0" />
+              <span className="font-semibold text-zinc-900">&lt; 10ms Latency</span>
+              <span className="text-zinc-400">· Real-Time</span>
+            </div>
+
+            <div className="flex items-center gap-2 min-w-0">
+              <span className="w-2 h-2 rounded-full bg-emerald-500 flex-shrink-0" />
+              <span className="font-semibold text-zinc-900">6 Verticals</span>
+              <span className="text-zinc-400">· Domain AI</span>
+            </div>
+          </div>
+        </motion.div>
       </div>
     </section>
   );
