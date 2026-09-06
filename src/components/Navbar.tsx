@@ -71,8 +71,8 @@ export default function Navbar() {
                 <Image
                   src="/dox1.jpg"
                   alt="Doxantro Systems"
-                  width={26}
-                  height={26}
+                  width={42}
+                  height={42}
                   className="rounded-[3px] object-cover"
                   priority
                 />

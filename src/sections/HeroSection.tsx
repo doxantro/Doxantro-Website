@@ -52,7 +52,7 @@ export default function HeroSection() {
           </div>
 
           {/* 5. 3 Hairline Metric Indicators (Centered Strip) */}
-          <div className="pt-6 sm:pt-8 border-t border-black/[0.06] flex flex-wrap items-center justify-center gap-4 sm:gap-8 text-xs font-mono w-full">
+          {/* <div className="pt-6 sm:pt-8 border-t border-black/[0.06] flex flex-wrap items-center justify-center gap-4 sm:gap-8 text-xs font-mono w-full">
             <div className="flex items-center gap-2 min-w-0">
               <span className="w-2 h-2 rounded-full bg-emerald-500 flex-shrink-0" />
               <span className="font-semibold text-zinc-900">SOC-2 Type II</span>
@@ -70,7 +70,7 @@ export default function HeroSection() {
               <span className="font-semibold text-zinc-900">6 Verticals</span>
               <span className="text-zinc-400">· Domain AI</span>
             </div>
-          </div>
+          </div> */}
         </motion.div>
       </div>
     </section>
