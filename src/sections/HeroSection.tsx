@@ -3,7 +3,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import Button from '../components/ui/Button';
-import NeuralPipelineVisualizer from '../components/hero/NeuralPipelineVisualizer';
+import ArchitecturalBlueprint from '../components/hero/ArchitecturalBlueprint';
 
 export default function HeroSection() {
   return (
@@ -66,9 +66,9 @@ export default function HeroSection() {
             </div>
           </motion.div>
 
-          {/* Right Column: Sovereign Neural Pipeline Visualizer */}
+          {/* Right Column: Architectural Blueprint */}
           <div className="lg:col-span-6 w-full min-w-0 max-w-full overflow-hidden">
-            <NeuralPipelineVisualizer />
+            <ArchitecturalBlueprint />
           </div>
         </div>
       </div>
