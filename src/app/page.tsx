@@ -6,7 +6,6 @@ import { ArrowRight } from 'lucide-react';
 import HeroSection from '../sections/HeroSection';
 import AboutSection from '../sections/AboutSection';
 import ServicesSection from '../sections/ServicesSection';
-import AIDemoSection from '../sections/AIDemoSection';
 import NewsletterSubscribe from '../components/home/NewsletterSubscribe';
 import StatCounter from '../components/ui/StatCounter';
 import SectionHeader from '../components/ui/SectionHeader';
@@ -129,10 +128,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 6. AI Demo Section */}
-      <AIDemoSection />
-
-      {/* 7. Newsletter Subscription */}
+      {/* 6. Newsletter Subscription */}
       <NewsletterSubscribe />
     </main>
   );
