@@ -3,7 +3,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import Button from '../components/ui/Button';
-import ModelBenchmarkComparator from '../components/hero/ModelBenchmarkComparator';
+import NeuralPipelineVisualizer from '../components/hero/NeuralPipelineVisualizer';
 
 export default function HeroSection() {
   return (
@@ -66,9 +66,9 @@ export default function HeroSection() {
             </div>
           </motion.div>
 
-          {/* Right Column: Model Benchmark & ROI Comparator */}
+          {/* Right Column: Sovereign Neural Pipeline Visualizer */}
           <div className="lg:col-span-6 w-full max-w-full">
-            <ModelBenchmarkComparator />
+            <NeuralPipelineVisualizer />
           </div>
         </div>
       </div>
