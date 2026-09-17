@@ -19,7 +19,7 @@ const featuredArticle = {
   id: 'domain-models-vs-rag-benchmarks',
   title: 'Benchmarking Domain-Tuned Models vs. Generic RAG in Enterprise Workflows',
   excerpt: 'A practical look at throughput, memory quantization, and accuracy tradeoffs when deploying dedicated models for high-velocity transaction and imaging workloads.',
-  author: 'Doxantro Systems Engineering',
+  author: 'Doxantro Technologies Engineering',
   role: 'Systems & ML Infrastructure Group',
   date: 'August 2024',
   readTime: '7 min read',
@@ -144,7 +144,7 @@ export default function Blog() {
             </h1>
 
             <p className="body-lg max-w-2xl mx-auto text-zinc-600">
-              Architectural deep-dives, production latency benchmarks, and implementation notes from the Doxantro Systems engineering team.
+              Architectural deep-dives, production latency benchmarks, and implementation notes from the Doxantro Technologies engineering team.
             </p>
           </motion.div>
         </div>
@@ -212,7 +212,7 @@ export default function Blog() {
               <div className="lg:col-span-5 bg-[#141418] rounded-xl p-4 sm:p-5 border border-white/[0.06] space-y-3">
                 <div className="flex items-center justify-between text-[11px] font-mono pb-2 border-b border-white/[0.06]">
                   <span className="text-zinc-300 font-medium">BENCHMARK SUMMARY</span>
-                  <span className="text-zinc-500">v3.4 Mesh</span>
+                  <span className="text-zinc-500">Enterprise Mesh</span>
                 </div>
 
                 <div className="space-y-2">

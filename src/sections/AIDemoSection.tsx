@@ -185,7 +185,7 @@ export default function AIDemoSection() {
                 <span className="text-[10px] font-mono uppercase tracking-wider text-zinc-500 bg-white border border-black/[0.06] px-2 py-0.5 rounded">
                   {currentVertObj.badge}
                 </span>
-                <span className="text-[11px] font-mono text-zinc-400">Model: doxantro-{currentVertObj.id}-v3.4</span>
+                <span className="text-[11px] font-mono text-zinc-400">Model: doxantro-{currentVertObj.id}</span>
               </div>
               <h3 className="text-lg sm:text-2xl font-bold text-zinc-900">
                 {currentVertObj.title}

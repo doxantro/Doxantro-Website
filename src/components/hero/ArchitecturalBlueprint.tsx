@@ -241,7 +241,7 @@ export default function ArchitecturalBlueprint() {
             </span>
           </div>
           <span className="text-[9px] sm:text-[10px] font-mono text-zinc-500 bg-white border border-black/[0.08] px-2 py-0.5 rounded flex-shrink-0">
-            SOVEREIGN STACK · V3.4
+            SOVEREIGN STACK
           </span>
         </div>
 

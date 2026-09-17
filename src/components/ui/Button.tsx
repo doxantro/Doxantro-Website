@@ -71,12 +71,13 @@ export default function Button({
     </svg>
   );
 
-  const renderedIcon = icon || (variant === 'primary' || variant === 'accent' ? defaultArrow : null);
+  const renderedIcon =
+    icon !== undefined ? icon : variant === 'primary' || variant === 'accent' ? defaultArrow : null;
 
   const content = (
     <>
       {icon && iconPosition === 'left' && <span className="flex-shrink-0">{icon}</span>}
-      <span>{children}</span>
+      <span className="inline-flex items-center gap-1.5">{children}</span>
       {renderedIcon && iconPosition === 'right' && (
         <span className="flex-shrink-0">{renderedIcon}</span>
       )}

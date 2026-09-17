@@ -51,7 +51,7 @@ export default function HeroSection() {
             className="mb-3 sm:mb-4 inline-flex items-center justify-center"
           >
             <span className="subheading text-[10px] sm:text-xs tracking-wider bg-white/80 backdrop-blur-xs px-3 py-1 rounded-full border border-black/[0.06] shadow-[0_1px_2px_rgba(0,0,0,0.02)]">
-              Enterprise Applied AI · v3.4 Infrastructure
+              Enterprise Applied AI
             </span>
           </motion.div>
 

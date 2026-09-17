@@ -105,7 +105,7 @@ export default function About() {
           >
             <div className="mb-3.5">
               <span className="subheading">
-                About Doxantro Systems · Story & Vision
+                About Doxantro Technologies · Story & Vision
               </span>
             </div>
 
@@ -114,7 +114,7 @@ export default function About() {
             </h1>
 
             <p className="body-lg max-w-2xl mx-auto mb-8 sm:mb-10 text-zinc-600">
-              Doxantro Systems was founded on a singular premise: the greatest technological breakthroughs occur when human domain mastery is amplified by specialized, high-precision artificial intelligence.
+              Doxantro Technologies was founded on a singular premise: the greatest technological breakthroughs occur when human domain mastery is amplified by specialized, high-precision artificial intelligence.
             </p>
 
             {/* Milestones Grid */}
@@ -157,7 +157,7 @@ export default function About() {
               </p>
 
               <p className="body-md text-zinc-600">
-                We started Doxantro Systems to provide an antidote: <strong>purpose-built AI systems</strong> trained for high-stakes industries where error margins are measured in fractions of a percent—from bank transaction security and clinical diagnosis to autonomous agriculture and smart energy grids.
+                We started Doxantro Technologies to provide an antidote: <strong>purpose-built AI systems</strong> trained for high-stakes industries where error margins are measured in fractions of a percent—from bank transaction security and clinical diagnosis to autonomous agriculture and smart energy grids.
               </p>
 
               <div className="pt-2 space-y-2">

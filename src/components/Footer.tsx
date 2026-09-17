@@ -26,7 +26,7 @@ export default function Footer() {
               <div className="overflow-hidden rounded-md border border-white/[0.12] bg-zinc-900 p-0.5 flex-shrink-0">
                 <Image
                   src="/dox1.jpg"
-                  alt="Doxantro Systems"
+                  alt="Doxantro Technologies"
                   width={28}
                   height={28}
                   className="rounded-[3px] object-cover"
@@ -37,7 +37,7 @@ export default function Footer() {
                   DOXANTRO
                 </span>
                 <span className="text-[10px] font-mono tracking-widest text-zinc-500 uppercase">
-                  SYSTEMS
+                  TECHNOLOGIES
                 </span>
               </div>
             </Link>
@@ -48,7 +48,7 @@ export default function Footer() {
 
             <div className="inline-flex items-center gap-2 px-2.5 py-1 rounded-full bg-white/[0.04] border border-white/[0.08] text-[11px] font-mono text-zinc-400 mb-6">
               <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
-              <span>All systems operational · v3.4</span>
+              <span>All systems operational</span>
             </div>
 
             {/* Social Media Links (LinkedIn & X) - Pure Bright White */}
@@ -126,7 +126,7 @@ export default function Footer() {
         {/* Bottom Bar */}
         <div className="border-t border-white/[0.06] mt-10 sm:mt-12 pt-6 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3">
           <p className="text-zinc-500 text-xs font-mono">
-            © {new Date().getFullYear()} Doxantro Systems Limited. All rights reserved.
+            © {new Date().getFullYear()} Doxantro Technologies Limited. All rights reserved.
           </p>
           <div className="flex flex-wrap gap-x-4 gap-y-1 text-xs text-zinc-500 font-mono">
             <Link href="/contact" className="hover:text-zinc-300 transition-colors">

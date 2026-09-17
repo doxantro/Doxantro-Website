@@ -23,8 +23,8 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <SectionHeader
             badge="MEASURABLE IMPACT"
-            title="Quantifiable Results Across Global Deployments"
-            subtitle="Our AI implementations deliver compounding ROI, operational velocity, and defensible competitive advantages."
+            title="Quantifiable Results Across AI Implementation, Integration & Deployment"
+            subtitle="Our AI implementations, custom integrations, and production deployments deliver compounding ROI, operational velocity, and defensible competitive advantages."
           />
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3.5 sm:gap-4">
@@ -51,9 +51,9 @@ export default function Home() {
               <StatCounter
                 value="85"
                 suffix="%"
-                label="Enterprises Deploying Private AI"
+                label="Enterprises Integrating Private AI"
               />
-              <p className="text-[11px] font-mono text-zinc-400 mt-2">Active production infrastructure</p>
+              <p className="text-[11px] font-mono text-zinc-400 mt-2">Production workflows & systems</p>
             </div>
 
             <div className="card-minimal p-5 sm:p-6 text-center">

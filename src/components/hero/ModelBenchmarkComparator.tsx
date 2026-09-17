@@ -122,7 +122,7 @@ export default function ModelBenchmarkComparator() {
             </span>
           </div>
           <span className="text-[9px] sm:text-[10px] font-mono text-zinc-500 bg-white border border-black/[0.06] px-1.5 py-0.5 rounded flex-shrink-0">
-            v3.4 Telemetry
+            Live Telemetry
           </span>
         </div>
 

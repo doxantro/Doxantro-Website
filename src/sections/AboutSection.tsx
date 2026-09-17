@@ -17,7 +17,7 @@ const pillars = [
     step: '02',
     title: 'Build',
     subtitle: 'High-Throughput Engineering',
-    desc: 'Developing specialized models, computer vision pipelines, and secure API integrations with low latency.',
+    desc: 'Developing specialized models, pipelines, and secure API integrations with low latency.',
     icon: Layers,
   },
   {
@@ -43,11 +43,11 @@ export default function AboutSection() {
             className="lg:col-span-6"
           >
             <div className="subheading mb-3">
-              About Doxantro Systems
+              About Doxantro Technologies
             </div>
 
             <h2 className="display-2 mb-4 sm:mb-5">
-              Pioneering Applied AI for Real-World Operations
+              Pioneering Applied AI for Business Operations
             </h2>
 
             <p className="body-lg mb-6 text-zinc-600">

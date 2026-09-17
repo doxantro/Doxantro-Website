@@ -161,7 +161,7 @@ export default function CaseStudies() {
             </h1>
 
             <p className="body-lg max-w-2xl mx-auto text-zinc-600">
-              Explore how leading institutions, Fortune 500 enterprises, and healthcare networks deploy Doxantro Systems to eliminate operational risk and unlock compounding ROI.
+              Explore how leading institutions, Fortune 500 enterprises, and healthcare networks deploy Doxantro Technologies to eliminate operational risk and unlock compounding ROI.
             </p>
           </motion.div>
         </div>

@@ -15,8 +15,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Doxantro Systems - AI Solutions for Modern Business",
-  description: "Doxantro Systems helps businesses, government agencies, and organizations solve their challenges with innovative AI solutions across finance, healthcare, agriculture, supply chain, security, and energy.",
+  title: "Doxantro Technologies - AI Solutions for Modern Business",
+  description: "Doxantro Technologies helps businesses, government agencies, and organizations solve their challenges with innovative AI solutions across finance, healthcare, agriculture, supply chain, security, and energy.",
 };
 
 export default function RootLayout({

@@ -407,7 +407,7 @@ export default function Careers() {
           </span>
 
           <h2 className="display-2 text-white mb-4">
-            Don't See Your Exact Role?
+            Don&apos;t See Your Exact Role?
           </h2>
 
           <p className="body-lg text-zinc-400 mb-8 max-w-xl mx-auto">

@@ -307,19 +307,17 @@ export default function Contact() {
                       disabled={status === 'loading'}
                       size="lg"
                       variant="primary"
-                      className="w-full"
+                      className="w-full justify-center text-sm font-semibold shadow-[0_2px_8px_rgba(0,0,0,0.08)] hover:shadow-[0_6px_20px_rgba(0,0,0,0.12)] cursor-pointer"
+                      icon={
+                        status === 'loading' ? (
+                          <Loader2 className="w-4 h-4 animate-spin" />
+                        ) : (
+                          <Send className="w-4 h-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                        )
+                      }
+                      iconPosition={status === 'loading' ? 'left' : 'right'}
                     >
-                      {status === 'loading' ? (
-                        <>
-                          <Loader2 className="w-3.5 h-3.5 animate-spin mr-2" />
-                          <span>Processing Scope...</span>
-                        </>
-                      ) : (
-                        <>
-                          <span>Submit Scoping Request</span>
-                          <Send className="w-3.5 h-3.5 ml-1.5" />
-                        </>
-                      )}
+                      {status === 'loading' ? 'Processing Scope...' : 'Submit Scoping Request'}
                     </Button>
                   </form>
                 )}
@@ -381,7 +379,7 @@ export default function Contact() {
                   </div>
                   <div>
                     <div className="font-semibold text-zinc-900">Global Campus</div>
-                    <div className="text-[11px] text-zinc-500">Doxantro Systems Technology Group</div>
+                    <div className="text-[11px] text-zinc-500">Doxantro Technologies Group</div>
                   </div>
                 </div>
 

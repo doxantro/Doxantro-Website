@@ -60,38 +60,40 @@ export default function Navbar() {
             : 'bg-white/85 backdrop-blur-sm border-b border-black/[0.05] py-3 sm:py-4'
         }`}
       >
-        <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-10">
-            {/* Brand Lettermark */}
-            <Link
-              href="/"
-              className="flex items-center space-x-2 group focus:outline-none flex-shrink-0"
-            >
-              <div className="relative overflow-hidden rounded-md border border-zinc-200/80 bg-zinc-950 p-0.5 flex-shrink-0">
-                <Image
-                  src="/dox1.jpg"
-                  alt="Doxantro Systems"
-                  width={42}
-                  height={42}
-                  className="rounded-[3px] object-cover"
-                  priority
-                />
-              </div>
-              <div className="flex items-baseline gap-1">
-                <span className="font-bold tracking-tight text-[#111111] text-sm sm:text-base md:text-lg">
-                  DOXANTRO
-                </span>
-                <span className="text-[9px] sm:text-[10px] font-mono tracking-widest text-zinc-400 uppercase hidden xs:inline sm:inline">
-                  SYSTEMS
-                </span>
-              </div>
-            </Link>
-
-            {/* Desktop Centered Pill Menu */}
-            <nav className="hidden lg:flex items-center gap-1 border border-black/[0.08] rounded-full px-3 py-1 bg-white shadow-[0_1px_3px_rgba(0,0,0,0.03)]">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex items-center justify-between h-11 w-full gap-2 sm:gap-4">
+            {/* Left: Brand Lettermark */}
+            <div className="flex items-center justify-start flex-1 min-w-0">
               <Link
                 href="/"
-                className={`px-3 py-1.5 rounded-full text-xs font-medium transition-colors ${
+                className="flex items-center space-x-2 group focus:outline-none flex-shrink-0"
+              >
+                <div className="relative overflow-hidden rounded-md border border-zinc-200/80 bg-zinc-950 p-0.5 flex-shrink-0">
+                  <Image
+                    src="/dox1.jpg"
+                    alt="Doxantro Technologies"
+                    width={38}
+                    height={38}
+                    className="rounded-[3px] object-cover"
+                    priority
+                  />
+                </div>
+                <div className="flex items-baseline gap-1">
+                  <span className="font-bold tracking-tight text-[#111111] text-sm sm:text-base md:text-lg whitespace-nowrap">
+                    DOXANTRO
+                  </span>
+                  <span className="text-[9px] sm:text-[10px] font-mono font-medium tracking-widest text-orange-600 uppercase inline lg:hidden xl:inline whitespace-nowrap">
+                    TECHNOLOGIES
+                  </span>
+                </div>
+              </Link>
+            </div>
+
+            {/* Center: Desktop Centered Pill Menu */}
+            <nav className="hidden lg:flex items-center gap-0.5 xl:gap-1 border border-black/[0.08] rounded-full px-2 xl:px-3 py-1 bg-white shadow-[0_1px_3px_rgba(0,0,0,0.03)] flex-shrink-0">
+              <Link
+                href="/"
+                className={`px-2.5 xl:px-3 py-1.5 rounded-full text-xs font-medium transition-colors whitespace-nowrap ${
                   pathname === '/'
                     ? 'text-[#111111] bg-zinc-100 font-semibold'
                     : 'text-zinc-600 hover:text-[#111111]'
@@ -108,7 +110,7 @@ export default function Navbar() {
               >
                 <button
                   type="button"
-                  className={`inline-flex items-center gap-1 px-3 py-1.5 rounded-full text-xs font-medium transition-colors cursor-pointer ${
+                  className={`inline-flex items-center gap-1 px-2.5 xl:px-3 py-1.5 rounded-full text-xs font-medium transition-colors cursor-pointer whitespace-nowrap ${
                     pathname.startsWith('/ai-')
                       ? 'text-[#111111] bg-zinc-100 font-semibold'
                       : 'text-zinc-600 hover:text-[#111111]'
@@ -197,7 +199,7 @@ export default function Navbar() {
                 <Link
                   key={link.name}
                   href={link.href}
-                  className={`px-3 py-1.5 rounded-full text-xs font-medium transition-colors ${
+                  className={`px-2.5 xl:px-3 py-1.5 rounded-full text-xs font-medium transition-colors whitespace-nowrap ${
                     pathname === link.href
                       ? 'text-[#111111] bg-zinc-100 font-semibold'
                       : 'text-zinc-600 hover:text-[#111111]'
@@ -208,27 +210,29 @@ export default function Navbar() {
               ))}
             </nav>
 
-            {/* Right Action Button */}
-            <div className="hidden lg:flex items-center gap-3">
-              <Link
-                href="/contact"
-                className="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-[#111111] hover:bg-black text-white text-xs font-medium transition-all shadow-[0_1px_2px_rgba(0,0,0,0.08)] hover:shadow-md"
-              >
-                <span>Get Started</span>
-                <svg width="12" height="12" viewBox="0 0 16 16" fill="none">
-                  <path d="M6 3l5 5-5 5" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" />
-                </svg>
-              </Link>
-            </div>
+            {/* Right: Action Button & Mobile Menu Button */}
+            <div className="flex items-center justify-end flex-1 min-w-0">
+              <div className="hidden lg:flex items-center">
+                <Link
+                  href="/contact"
+                  className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-[#111111] hover:bg-black text-white text-xs font-medium transition-all shadow-[0_1px_2px_rgba(0,0,0,0.08)] hover:shadow-md whitespace-nowrap flex-shrink-0"
+                >
+                  <span>Get Started</span>
+                  <svg width="12" height="12" viewBox="0 0 16 16" fill="none" className="flex-shrink-0">
+                    <path d="M6 3l5 5-5 5" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
+                </Link>
+              </div>
 
-            {/* Mobile Hamburger Button */}
-            <button
-              onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="lg:hidden p-2 -mr-1 rounded-lg text-zinc-800 hover:bg-zinc-100 focus:outline-none transition-colors cursor-pointer"
-              aria-label="Toggle Navigation Menu"
-            >
-              {isMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
-            </button>
+              {/* Mobile Hamburger Button */}
+              <button
+                onClick={() => setIsMenuOpen(!isMenuOpen)}
+                className="lg:hidden p-2 -mr-1 rounded-lg text-zinc-800 hover:bg-zinc-100 focus:outline-none transition-colors cursor-pointer"
+                aria-label="Toggle Navigation Menu"
+              >
+                {isMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+              </button>
+            </div>
           </div>
         </div>
 

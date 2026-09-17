@@ -5,7 +5,7 @@ import { motion } from 'framer-motion';
 import { Play, RefreshCw, Activity, Layers, Terminal } from 'lucide-react';
 
 const initialLogs = [
-  { id: 1, time: '10:42:01.104', type: 'info', text: 'Initializing Doxantro v3.4 Enterprise Cluster...' },
+  { id: 1, time: '10:42:01.104', type: 'info', text: 'Initializing Doxantro Enterprise Cluster...' },
   { id: 2, time: '10:42:01.420', type: 'success', text: 'Neural weights mounted across 64 TPU nodes (Latency: 4.8ms)' },
   { id: 3, time: '10:42:02.012', type: 'info', text: 'Inference streaming active: Ingesting 18,400 events/sec' },
   { id: 4, time: '10:42:02.890', type: 'success', text: '[FINANCE] Real-time fraud anomaly intercepted ($42,800 saved)' },
