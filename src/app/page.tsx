@@ -75,7 +75,7 @@ export default function Home() {
       <ServicesSection />
 
       {/* 5. Enterprise Industry Verticals Grid */}
-      <section className="py-16 md:py-20 bg-white border-b border-black/[0.06]">
+      {/* <section className="py-16 md:py-20 bg-white border-b border-black/[0.06]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-8 pb-4 border-b border-black/[0.06] gap-4">
             <div>
@@ -126,7 +126,7 @@ export default function Home() {
             ))}
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* 6. Newsletter Subscription */}
       <NewsletterSubscribe />
