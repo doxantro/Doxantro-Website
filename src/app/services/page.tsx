@@ -54,11 +54,11 @@ const technicalCapabilities = [
   },
   {
     category: 'Security & Compliance',
-    items: ['SOC-2 Type II Certified Pipeline', 'HIPAA & GDPR Compliant', 'Zero-Retention Data Vaults', 'End-to-End Enclave Encryption'],
+    items: ['SOC-2 Certification Roadmap', 'HIPAA & GDPR Control Mapping', 'Zero-Retention Data Vault Design', 'End-to-End Enclave Encryption'],
   },
   {
     category: 'Enterprise SLAs',
-    items: ['99.95% API Availability SLA', 'Automated Fallback Circuits', 'Model Drift Auto-Alerting', 'Dedicated AI Support Engineers'],
+    items: ['Availability SLA Pending', 'Automated Fallback Circuits', 'Model Drift Alerting Concept', 'Dedicated Support Model'],
   },
 ];
 
@@ -106,7 +106,7 @@ export default function Services() {
           <SectionHeader
             badge="ENGINEERING PROCESS"
             title="Our Full-Lifecycle Deployment Flywheel"
-            subtitle="From initial data governance to sub-10ms production inference, our systematic delivery model guarantees velocity and compliance."
+            subtitle="From initial data governance to measurable production targets, our delivery model makes assumptions, controls and validation requirements explicit."
           />
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3.5 sm:gap-4">

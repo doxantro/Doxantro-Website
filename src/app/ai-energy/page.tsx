@@ -17,8 +17,8 @@ const solutions = [
       'Substation transformer overload early warning',
     ],
     benefits: [
-      'Increase overall grid transmission efficiency by 25%',
-      'Mitigate costly peak-load surges by up to 38%',
+      'Model grid transmission efficiency scenarios',
+      'Support peak-load surge planning',
       'Prevent cascading transformer blackouts and grid faults',
       'Lower wholesale energy procurement expenditure',
     ],
@@ -36,8 +36,8 @@ const solutions = [
       'Historical generation asset degradation analytics',
     ],
     benefits: [
-      'Improve renewable day-ahead forecast accuracy by 40%',
-      'Eliminate renewable curtailment penalties by up to 65%',
+      'Support renewable day-ahead forecasting',
+      'Model renewable curtailment scenarios',
       'Maximize clean energy market arbitrage revenue',
       'Accelerate zero-carbon grid integration mandates',
     ],
@@ -56,9 +56,9 @@ const solutions = [
     ],
     benefits: [
       'Prevent catastrophic asset failures up to 30 days in advance',
-      'Reduce utility asset downtime by 50%',
-      'Cut annual field technician inspection costs by 35%',
-      'Extend physical capital equipment lifespan by 5+ years',
+      'Identify utility asset maintenance signals',
+      'Support field inspection prioritization',
+      'Model equipment health and maintenance windows',
     ],
   },
 ];
@@ -74,7 +74,7 @@ const architectureSpecs = [
   },
   {
     category: 'Reliability & Scale',
-    items: ['Gigawatt-Scale Grid Network Modeling', '99.98% Grid Stability Index', 'NERC CIP Compliance Ready', 'Automated Failover Circuits'],
+    items: ['0 Verified Utility Deployments', 'Grid Network Modeling Concept', 'NERC CIP Alignment Roadmap', 'Automated Failover Design'],
   },
 ];
 
@@ -94,10 +94,10 @@ const useCases = [
 ];
 
 const metrics = [
-  { value: '+25%', label: 'Grid Energy Efficiency Gain', sublabel: 'Autonomous load balancing' },
-  { value: '-38%', label: 'Peak-Load Surges Mitigated', sublabel: 'Automated battery dispatch' },
+  { value: '0', label: 'Verified Efficiency Gains', sublabel: 'Pre-launch baseline' },
+  { value: '0', label: 'Verified Surge Reductions', sublabel: 'Awaiting utility validation' },
   { value: '48 Hrs', label: 'Renewable Forecast Horizon', sublabel: 'Solar & wind generation models' },
-  { value: '99.98%', label: 'Grid Stability Index', sublabel: 'Demonstrated in production utilities' },
+  { value: '0', label: 'Published Stability Benchmarks', sublabel: 'Awaiting utility validation' },
 ];
 
 export default function AIEnergyPage() {

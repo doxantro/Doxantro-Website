@@ -135,7 +135,7 @@ const jobOpeningsData = [
     responsibilities: [
       'Architect and maintain our global edge inference mesh and streaming telemetry',
       'Implement zero-downtime rolling model updates and automated failover circuits',
-      'Ensure 99.95%+ uptime SLAs across our multi-tenant enterprise clusters',
+      'Define and validate uptime targets across enterprise deployment environments',
       'Build automated security instrumentation and zero-retention privacy vaults',
     ],
   },

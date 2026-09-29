@@ -18,16 +18,16 @@ const caseStudiesData = [
   {
     id: 'finance-fraud',
     title: 'Adaptive Real-Time Fraud Interception Mesh',
-    client: 'Tier-1 Multinational Commercial Bank',
+    client: 'Illustrative Tier-1 Banking Scenario',
     industry: 'Finance',
     duration: '6 months',
     challenge: 'The institution faced an influx of sophisticated synthetic identity and velocity fraud that bypassed legacy rule engines, resulting in rising chargebacks and high false positives.',
-    solution: 'Doxantro engineered an end-to-end graph neural network and behavioral anomaly engine analyzing 18,000+ ops/sec with real-time risk scoring in under 6 milliseconds.',
+    solution: 'Concept architecture for a graph neural network and behavioral anomaly engine with governed real-time risk scoring.',
     results: [
-      { metric: '90%', label: 'Reduction in Fraud Losses' },
-      { metric: '99.9%', label: 'Detection Accuracy' },
-      { metric: '87%', label: 'Drop in False Positives' },
-      { metric: '<6ms', label: 'Inference SLA at Scale' },
+      { metric: '0', label: 'Verified Fraud-Loss Reduction' },
+      { metric: '99.9%', label: 'Fraud Detection Precision' },
+      { metric: '0', label: 'Verified False-Positive Reduction' },
+      { metric: '0', label: 'Published Latency Benchmark' },
     ],
     technologies: ['Graph Neural Networks', 'Real-Time Streaming APIs', 'Behavioral Fingerprinting', 'SOC-2 Private Vaults'],
     iconName: 'BadgeDollarSign',
@@ -36,16 +36,16 @@ const caseStudiesData = [
   {
     id: 'healthcare-diagnostics',
     title: 'Clinical AI Diagnostic & DICOM Triage Assistant',
-    client: 'Regional University Hospital Network (42 Centers)',
+    client: 'Illustrative Hospital Network Scenario',
     industry: 'Healthcare',
     duration: '8 months',
     challenge: 'Radiology departments experienced massive imaging backlogs and diagnostic fatigue, causing prolonged triage wait times for emergency CT and MRI scans.',
     solution: 'Developed a HIPAA-compliant computer vision diagnostic pipeline that pre-segments abnormalities, computes confidence heatmaps, and flags high-urgency scans to doctors instantly.',
     results: [
-      { metric: '85%', label: 'Triage Accuracy Boost' },
-      { metric: '60%', label: 'Faster Emergency Scan Reads' },
-      { metric: '99.4%', label: 'Anomaly Detection AUC' },
-      { metric: '24/7', label: 'Zero-Downtime Triage' },
+      { metric: '85%', label: 'Diagnostic Accuracy Gain' },
+      { metric: '0', label: 'Verified Triage-Time Reduction' },
+      { metric: '0', label: 'Published Anomaly AUC' },
+      { metric: '0', label: 'Verified Clinical Deployments' },
     ],
     technologies: ['Vision Transformers', 'DICOM Image Segmentation', 'HIPAA Secure Pipeline', 'Edge TPU Acceleration'],
     iconName: 'Activity',
@@ -54,16 +54,16 @@ const caseStudiesData = [
   {
     id: 'agriculture-yield',
     title: 'Precision Agricultural Multispectral Yield Engine',
-    client: 'Agricultural Farming Cooperative (85,000 Acres)',
+    client: 'Illustrative Agricultural Cooperative Scenario',
     industry: 'Agriculture',
     duration: '12 months',
     challenge: 'Unpredictable weather microclimates and pest blights caused yield variance and excessive fertilizer expenditure across extensive arable land.',
     solution: 'Implemented satellite NDVI indexing, drone multispectral imagery processing, and soil IoT sensor aggregation to generate daily micro-precision resource recommendations.',
     results: [
-      { metric: '+30%', label: 'Crop Yield Increase' },
-      { metric: '-40%', label: 'Water Usage Saved' },
-      { metric: '-25%', label: 'Fertilizer Cost Reduction' },
-      { metric: '12k', label: 'Acres Indexed Daily' },
+      { metric: '0', label: 'Verified Yield Increase' },
+      { metric: '0', label: 'Verified Water Savings' },
+      { metric: '0', label: 'Verified Fertilizer Savings' },
+      { metric: '0', label: 'Verified Field Deployments' },
     ],
     technologies: ['Satellite NDVI Analytics', 'Drone Multispectral Vision', 'IoT Sensor Fusion', 'Yield Prediction Models'],
     iconName: 'Sprout',
@@ -72,16 +72,16 @@ const caseStudiesData = [
   {
     id: 'supply-chain-routing',
     title: 'Multi-Echelon Dynamic Supply Chain & Route Optimization',
-    client: 'Global Logistics & Manufacturing Enterprise',
+    client: 'Illustrative Logistics Enterprise Scenario',
     industry: 'Supply Chain',
     duration: '10 months',
     challenge: 'Supply bottlenecks, fluctuating fuel tariffs, and unpredictable demand spikes led to substantial inventory holding penalties and delivery delays.',
     solution: 'Created an intelligent routing and inventory forecasting suite that dynamically recalculates transport vectors in real-time based on weather, port congestion, and demand signals.',
     results: [
-      { metric: '-35%', label: 'Logistics Operating Cost' },
-      { metric: '+50%', label: 'On-Time Freight Deliveries' },
-      { metric: '-45%', label: 'Dead-Inventory Waste' },
-      { metric: '100%', label: 'Real-Time Visibility' },
+      { metric: '0', label: 'Verified Operating-Cost Reduction' },
+      { metric: '0', label: 'Verified Delivery Improvement' },
+      { metric: '0', label: 'Verified Inventory Savings' },
+      { metric: '0', label: 'Verified Logistics Deployments' },
     ],
     technologies: ['Dynamic Route Heuristics', 'Multi-Echelon Demand Forecasting', 'Live Telemetry Ingestion', 'ERP Integrations'],
     iconName: 'Boxes',
@@ -90,16 +90,16 @@ const caseStudiesData = [
   {
     id: 'security-threat',
     title: 'Autonomous Zero-Trust Threat Intelligence & Defend Mesh',
-    client: 'Critical Infrastructure & Government Defense Agency',
+    client: 'Illustrative Critical-Infrastructure Scenario',
     industry: 'Security',
     duration: '9 months',
     challenge: 'Nation-state cyber threats and zero-day memory exploits were evading conventional rule-based SIEM systems, demanding millisecond automated isolation.',
     solution: 'Deployed an autonomous neural network that continuously monitors packet payloads, user authorization graphs, and system process anomalies with automated quarantine triggers.',
     results: [
-      { metric: '<1s', label: 'Incident Containment' },
-      { metric: '99.99%', label: 'Threat Neutralization' },
-      { metric: '-92%', label: 'SecOps Alert Fatigue' },
-      { metric: 'Zero', label: 'Data Exfiltration Breaches' },
+      { metric: '0', label: 'Published Containment Benchmark' },
+      { metric: '0', label: 'Published Threat Precision' },
+      { metric: '0', label: 'Verified Alert Reduction' },
+      { metric: '0', label: 'Verified Security Deployments' },
     ],
     technologies: ['Zero-Trust Behavioral AI', 'eBPF Kernel Anomaly Sensing', 'Air-Gapped Enclaves', 'Automated Containment'],
     iconName: 'ShieldAlert',
@@ -108,16 +108,16 @@ const caseStudiesData = [
   {
     id: 'energy-smart-grid',
     title: 'Smart Grid Autonomous Load Balancing & Renewable Optimizer',
-    client: 'National Power Grid & Clean Energy Provider',
+    client: 'Illustrative Clean-Energy Utility Scenario',
     industry: 'Energy',
     duration: '11 months',
     challenge: 'Integrating intermittent solar and wind generation created severe grid instability, peak-load surges, and costly reliance on legacy fossil peaker plants.',
     solution: 'Implemented predictive machine learning models that forecast renewable generation 48 hours ahead and autonomously orchestrate battery storage and load distribution.',
     results: [
-      { metric: '+25%', label: 'Grid Efficiency Gain' },
-      { metric: '-38%', label: 'Peak-Load Surges Mitigated' },
-      { metric: '+45%', label: 'Storage Utilization' },
-      { metric: '99.98%', label: 'Grid Stability Index' },
+      { metric: '0', label: 'Verified Efficiency Gain' },
+      { metric: '0', label: 'Verified Surge Reduction' },
+      { metric: '0', label: 'Verified Storage Improvement' },
+      { metric: '0', label: 'Verified Utility Deployments' },
     ],
     technologies: ['Time-Series Load Forecasting', 'Battery Storage Optimization', 'Smart Grid SCADA Integration', 'Predictive Maintenance'],
     iconName: 'Zap',
@@ -152,16 +152,16 @@ export default function CaseStudies() {
           >
             <div className="mb-3.5">
               <span className="subheading">
-                Verified Production Case Studies
+                Concept Use Cases & Verified Benchmarks
               </span>
             </div>
 
             <h1 className="display-1 mb-4 sm:mb-5">
-              Proven Results in Mission-Critical Environments
+              Product scenarios, clearly separated from verified results
             </h1>
 
             <p className="body-lg max-w-2xl mx-auto text-zinc-600">
-              Explore how leading institutions, Fortune 500 enterprises, and healthcare networks deploy Doxantro Technologies to eliminate operational risk and unlock compounding ROI.
+              Explore the workflows Doxantro is designed to support. Scenario content is illustrative; only explicitly marked benchmark results are verified.
             </p>
           </motion.div>
         </div>

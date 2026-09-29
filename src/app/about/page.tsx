@@ -22,9 +22,9 @@ import SectionHeader from '../../components/ui/SectionHeader';
 
 const milestones = [
   { value: '6', label: 'Core Industry Verticals', desc: 'Finance, Health, Agri, Supply, Sec, Energy' },
-  { value: '99.8%', label: 'Inference Precision', desc: 'Cross-validated model benchmarks' },
-  { value: '<10ms', label: 'Average Response Time', desc: 'Low-latency edge orchestration' },
-  { value: '100%', label: 'Private Data Sovereignty', desc: 'Zero-retention enterprise pipelines' },
+  { value: '0', label: 'Verified Production Deployments', desc: 'Pre-launch baseline' },
+  { value: '0', label: 'Published Latency Benchmarks', desc: 'Benchmark pending' },
+  { value: '0', label: 'Certified Private Deployments', desc: 'Certification roadmap in progress' },
 ];
 
 const principles = [
@@ -85,8 +85,8 @@ const teamPillars = [
   {
     title: 'Security & Enterprise Delivery',
     role: 'Compliance & Governance',
-    desc: 'Ensuring all models adhere to strict SOC-2, HIPAA, GDPR, and ISO standards with enterprise-grade SLAs.',
-    skills: ['Zero-Trust', 'HIPAA/SOC-2', 'Air-Gapped Ops', 'Enterprise SLAs'],
+    desc: 'Designing models toward SOC-2, HIPAA, GDPR, and ISO-aligned controls with documented governance requirements.',
+    skills: ['Zero-Trust Design', 'Compliance Roadmap', 'Air-Gapped Concepts', 'SLA Planning'],
     icon: Lock,
   },
 ];
@@ -188,7 +188,7 @@ export default function About() {
                   <span className="text-[11px] font-mono tracking-wider uppercase text-zinc-400">
                     ■ THE DOXANTRO FLYWHEEL
                   </span>
-                  <span className="text-[10px] font-mono text-emerald-400">● 100% Sovereign</span>
+                  <span className="text-[10px] font-mono text-[#ffd966]">● Sovereign by design</span>
                 </div>
 
                 <div className="space-y-2.5 font-mono text-xs">
@@ -209,7 +209,7 @@ export default function About() {
                   <div className="p-3 rounded-xl bg-[#141418] border border-white/[0.06]">
                     <div className="text-zinc-100 font-bold mb-0.5">03. High-Throughput Edge Mesh</div>
                     <div className="text-zinc-400 text-[11px]">
-                      Distributed orchestration delivering sub-10ms response SLAs.
+                      Distributed orchestration designed for measurable response targets.
                     </div>
                   </div>
 

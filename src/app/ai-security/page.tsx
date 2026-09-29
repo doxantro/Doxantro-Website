@@ -18,8 +18,8 @@ const solutions = [
     ],
     benefits: [
       'Contain critical exploits in under 1 second',
-      '99.99% malicious threat neutralization precision',
-      'Drastically reduce SecOps alert fatigue by 92%',
+      'Rank malicious threat signals for human review',
+      'Reduce duplicated and low-confidence SecOps alerts',
       'Zero unauthorized lateral data exfiltration',
     ],
   },
@@ -38,7 +38,7 @@ const solutions = [
     benefits: [
       'Stop account take-overs (ATO) before data access',
       'Detect insider threats without privacy overreach',
-      'Automate 90% of routine IAM security triage',
+      'Assist routine IAM security triage',
       'Ensure SOC-2, ISO 27001, and NIST 800-53 compliance',
     ],
   },
@@ -56,7 +56,7 @@ const solutions = [
     ],
     benefits: [
       'Reduce Mean Time to Detect (MTTD) from days to milliseconds',
-      'Reduce Mean Time to Respond (MTTR) by 95%',
+      'Support faster, governed response workflows',
       'Eliminate manual repetitive playbook engineering',
       '24/7 autonomous SOC operations with human auditability',
     ],
@@ -74,7 +74,7 @@ const architectureSpecs = [
   },
   {
     category: 'Compliance & Governance',
-    items: ['SOC-2 Type II Certified', 'NIST 800-53 & ISO 27001 Ready', 'FedRAMP High Compatible Architecture', 'Zero-Retention Immutable Audit Vault'],
+    items: ['0 Verified Security Deployments', 'NIST 800-53 & ISO 27001 Roadmap', 'FedRAMP Architecture Roadmap', 'Immutable Audit Vault Concept'],
   },
 ];
 
@@ -95,8 +95,8 @@ const useCases = [
 
 const metrics = [
   { value: '<1s', label: 'Autonomous Threat Containment', sublabel: 'Sub-second breach mitigation' },
-  { value: '99.99%', label: 'Exploit Neutralization Precision', sublabel: 'Benchmarked against zero-day CVEs' },
-  { value: '-92%', label: 'SecOps Alert Fatigue', sublabel: 'Noise suppression filtering' },
+  { value: '0', label: 'Verified Security Deployments', sublabel: 'Pre-launch baseline' },
+  { value: '0', label: 'Published Threat Benchmarks', sublabel: 'Benchmark pending' },
   { value: 'Zero', label: 'Data Exfiltration Breaches', sublabel: 'Active production track record' },
 ];
 

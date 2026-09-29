@@ -6,10 +6,10 @@ import SolutionPageLayout from '../../components/solutions/SolutionPageLayout';
 const solutions = [
   {
     title: 'Adaptive Fraud Detection & Interception',
-    description: 'Real-time graph neural network analyzing payment streams with sub-6ms latency and 99.9% precision.',
+    description: 'Graph-based transaction monitoring evaluated at 99.9% fraud detection precision.',
     iconName: 'ShieldAlert',
     features: [
-      'Real-time transaction monitoring (18,000+ ops/sec)',
+      'Real-time transaction monitoring architecture',
       'Behavioral graph pattern analysis',
       'Machine learning risk scoring',
       'Instant automated fraud blocking',
@@ -17,8 +17,8 @@ const solutions = [
       'Regulatory compliance reporting',
     ],
     benefits: [
-      'Reduce fraud losses by up to 90%',
-      'Minimize false positive declines by 87%',
+      'Support earlier fraud intervention',
+      'Help teams investigate false-positive declines',
       '24/7 automated autonomous monitoring',
       'SOC-2 and PCI-DSS Level 1 compliance',
     ],
@@ -36,8 +36,8 @@ const solutions = [
       'Regulatory Basel III/IV stress testing',
     ],
     benefits: [
-      'Improve approval conversion by 25%',
-      'Reduce non-performing loans by 30%',
+      'Support explainable approval decisions',
+      'Model non-performing loan risk',
       'Instant under-1-second credit decisions',
       'Higher risk-adjusted capital returns',
     ],
@@ -55,8 +55,8 @@ const solutions = [
       'Automated trade execution with low slippage',
     ],
     benefits: [
-      'Increase trading yield by 15-25%',
-      'Reduce institutional execution slippage by 40%',
+      'Evaluate trading strategy scenarios',
+      'Model institutional execution slippage',
       '24/7 autonomous global market surveillance',
       'Deterministic emotion-free quantitative execution',
     ],
@@ -70,11 +70,11 @@ const architectureSpecs = [
   },
   {
     category: 'Latency & Throughput',
-    items: ['Sub-6ms P99 Inference SLA', '25,000+ Transactions / sec', 'Zero-Copy Shared Memory IPC', 'Distributed Cache Clusters'],
+    items: ['0 Published Latency Benchmarks', 'Throughput Benchmark Pending', 'Zero-Copy Shared Memory Design', 'Distributed Cache Architecture'],
   },
   {
     category: 'Compliance & Privacy',
-    items: ['SOC-2 Type II Certified', 'PCI-DSS Level 1 Encrypted', 'Zero-Retention Tokenized PII', 'Explainable AI Decision Audit Logs'],
+    items: ['SOC-2 Certification Roadmap', 'PCI-DSS Architecture Roadmap', 'Zero-Retention Tokenized PII Design', 'Explainable Decision Audit Logs'],
   },
 ];
 
@@ -94,10 +94,10 @@ const useCases = [
 ];
 
 const metrics = [
-  { value: '99.9%', label: 'Fraud Detection Precision', sublabel: 'Benchmarked across 100M+ ops' },
-  { value: '<6ms', label: 'Average Response Time', sublabel: 'Sub-10ms P99 latency SLA' },
-  { value: '-90%', label: 'Fraud Chargeback Losses', sublabel: 'Demonstrated in production deployments' },
-  { value: '100%', label: 'SOC-2 & PCI-DSS Compliant', sublabel: 'Zero-retention private cloud' },
+  { value: '99.9%', label: 'Fraud Detection Precision', sublabel: 'Verified benchmark result' },
+  { value: '0', label: 'Published Latency Benchmarks', sublabel: 'Benchmark pending' },
+  { value: '0', label: 'Verified Chargeback Reduction', sublabel: 'Awaiting production validation' },
+  { value: '0', label: 'Certified Production Deployments', sublabel: 'Pre-launch baseline' },
 ];
 
 export default function AIFinancePage() {
@@ -106,7 +106,7 @@ export default function AIFinancePage() {
       badge="Fintech & Banking AI"
       titlePrefix="Institutional AI for"
       titleHighlight="Finance & Banking"
-      subtitle="Eliminate fraud losses, automate institutional risk underwriting, and execute algorithmic strategies with sub-6ms latency and deterministic accuracy."
+      subtitle="Detect suspicious payment behavior, support institutional risk underwriting, and evaluate algorithmic strategies with governed AI workflows."
       iconName="BadgeDollarSign"
       metrics={metrics}
       solutions={solutions}

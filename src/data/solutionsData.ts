@@ -44,8 +44,8 @@ export const solutionsData: SolutionItem[] = [
     href: '/ai-agriculture',
     iconName: 'Sprout',
     badge: 'Eco-Tech',
-    stat: '30%',
-    statLabel: 'Average Yield Increase',
+    stat: '0',
+    statLabel: 'Verified Field Deployments',
     features: ['Satellite Crop Surveillance', 'Pest & Blight Detection', 'Water & Fertilizer Optimization'],
   },
   {
@@ -56,8 +56,8 @@ export const solutionsData: SolutionItem[] = [
     href: '/ai-supply-chain',
     iconName: 'Boxes',
     badge: 'Enterprise',
-    stat: '40%',
-    statLabel: 'Logistics Cost Reduction',
+    stat: '0',
+    statLabel: 'Verified Logistics Benchmarks',
     features: ['Real-time Route Optimization', 'Demand Forecasting', 'Supplier Risk Analytics'],
   },
   {
@@ -68,8 +68,8 @@ export const solutionsData: SolutionItem[] = [
     href: '/ai-security',
     iconName: 'ShieldAlert',
     badge: 'Zero-Trust',
-    stat: '<1s',
-    statLabel: 'Threat Incident Response',
+    stat: '0',
+    statLabel: 'Verified Security Deployments',
     features: ['Zero-Day Anomaly Detection', 'Network Behavioral Analysis', 'Automated Threat Mitigation'],
   },
   {
@@ -80,8 +80,8 @@ export const solutionsData: SolutionItem[] = [
     href: '/ai-energy',
     iconName: 'Zap',
     badge: 'Next-Gen',
-    stat: '25%',
-    statLabel: 'Energy Efficiency Gain',
+    stat: '0',
+    statLabel: 'Verified Utility Deployments',
     features: ['Grid Load Optimization', 'Renewable Forecasting', 'Predictive Asset Maintenance'],
   },
 ];

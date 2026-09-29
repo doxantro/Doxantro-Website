@@ -17,10 +17,10 @@ const solutions = [
       'Live GPS telemetry tracking with sub-second recalculation',
     ],
     benefits: [
-      'Reduce total logistics and fuel costs by up to 35%',
-      'Improve on-time freight delivery arrival rates to 99%',
-      'Cut fleet carbon emissions and empty deadhead miles by 30%',
-      'Automate 80% of dispatch decision overhead',
+      'Model logistics and fuel-cost tradeoffs',
+      'Support on-time delivery planning',
+      'Identify empty-mile and emissions reduction opportunities',
+      'Assist dispatch teams with ranked recommendations',
     ],
   },
   {
@@ -36,8 +36,8 @@ const solutions = [
       'ERP integration (SAP, Oracle, NetSuite, Blue Yonder)',
     ],
     benefits: [
-      'Reduce dead-inventory carrying costs by 45%',
-      'Eliminate stockout lost-sales revenue by 85%',
+      'Model dead-inventory carrying cost exposure',
+      'Identify stockout and lost-sales risk',
       'Accurate 90-day forward demand projections',
       'Automated replenishment purchase order workflows',
     ],
@@ -74,7 +74,7 @@ const architectureSpecs = [
   },
   {
     category: 'Enterprise Scale',
-    items: ['Millions of SKUs Handled Concurrently', 'Global Multi-Modal Network Mapping', 'SOC-2 Private Vaults', '99.95% Availability SLA'],
+    items: ['0 Verified Logistics Deployments', 'Global Multi-Modal Network Concept', 'Private Vault Architecture', 'Availability SLA Pending'],
   },
 ];
 
@@ -94,10 +94,10 @@ const useCases = [
 ];
 
 const metrics = [
-  { value: '-35%', label: 'Logistics Operating Cost', sublabel: 'Demonstrated in production deployments' },
-  { value: '+50%', label: 'On-Time Freight Deliveries', sublabel: 'Dynamic real-time rerouting' },
-  { value: '-45%', label: 'Dead-Inventory Waste', sublabel: 'Multi-echelon demand forecasting' },
-  { value: '<10ms', label: 'Route Recalculation Speed', sublabel: 'Low-latency heuristic engine' },
+  { value: '0', label: 'Verified Logistics Deployments', sublabel: 'Pre-launch baseline' },
+  { value: '0', label: 'Published Delivery Benchmarks', sublabel: 'Awaiting pilot validation' },
+  { value: '0', label: 'Verified Inventory Savings', sublabel: 'Awaiting pilot validation' },
+  { value: '0', label: 'Published Latency Benchmarks', sublabel: 'Benchmark pending' },
 ];
 
 export default function AISupplyChainPage() {

@@ -18,7 +18,7 @@ const solutions = [
     ],
     benefits: [
       'Detect crop disease up to 14 days before visible damage',
-      'Cut crop loss from preventable blights by 35%',
+      'Flag preventable crop blights for earlier human review',
       'Daily autonomous indexing across thousands of arable acres',
       'Seamless export to tractor guidance & GIS software',
     ],
@@ -36,9 +36,9 @@ const solutions = [
       'Carbon sequestration and soil health metrics',
     ],
     benefits: [
-      'Increase crop yields by 25-35%',
-      'Reduce irrigation water consumption by 40%',
-      'Decrease fertilizer expenditure by 25%',
+      'Support more informed crop-yield planning',
+      'Model precision irrigation strategies',
+      'Support targeted fertilizer recommendations',
       'Comply with agricultural environmental sustainability standards',
     ],
   },
@@ -55,7 +55,7 @@ const solutions = [
       'Integration with ag-retailer ERPs and cooperatives',
     ],
     benefits: [
-      'Minimize post-harvest spoilage and drying costs by 30%',
+      'Model post-harvest spoilage and drying risk',
       'Optimize harvest equipment utilization and fuel costs',
       'Secure higher commodity sales pricing at peak demand',
       'End-to-end farm-to-table provenance traceability',
@@ -74,7 +74,7 @@ const architectureSpecs = [
   },
   {
     category: 'Scale & Coverage',
-    items: ['100,000+ Acres Processed Daily', 'Sub-Meter Resolution Mapping', 'Automated Daily Orbit Ingestion', 'Multi-Crop Model Library'],
+    items: ['0 Verified Field Deployments', 'Sub-Meter Resolution Mapping', 'Automated Orbit Ingestion Concept', 'Multi-Crop Model Roadmap'],
   },
 ];
 
@@ -94,9 +94,9 @@ const useCases = [
 ];
 
 const metrics = [
-  { value: '+30%', label: 'Average Yield Increase', sublabel: 'Demonstrated across 85,000+ acres' },
-  { value: '-40%', label: 'Water Usage Reduction', sublabel: 'Precision variable rate irrigation' },
-  { value: '-25%', label: 'Fertilizer Cost Savings', sublabel: 'Targeted micro-dosing prescriptions' },
+  { value: '0', label: 'Verified Field Deployments', sublabel: 'Pre-launch baseline' },
+  { value: '0', label: 'Published Yield Benchmarks', sublabel: 'Awaiting field validation' },
+  { value: '0', label: 'Verified Resource Savings', sublabel: 'Awaiting field validation' },
   { value: '14 Days', label: 'Early Disease Detection', sublabel: 'Before visible canopy leaf decay' },
 ];
 

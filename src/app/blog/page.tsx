@@ -28,7 +28,7 @@ const featuredArticle = {
   tags: ['Benchmarking', 'Quantization', 'Inference Latency', 'Architecture'],
   benchmarks: [
     { label: 'P99 Latency', value: '5.8ms', note: 'vs. 320ms cloud LLM' },
-    { label: 'Domain Accuracy', value: '99.8%', note: 'Zero hallucination margin' },
+    { label: 'Published Benchmarks', value: '0', note: 'Methodology in preparation' },
     { label: 'VRAM Usage', value: '3.8 GB', note: '4-bit AWQ quantized' },
   ],
 };
@@ -37,7 +37,7 @@ const blogPostsData = [
   {
     id: 'realtime-fraud-graphs',
     title: 'Building Low-Latency Graph Neural Networks for Real-Time Fraud Interception',
-    excerpt: 'How sub-6ms behavioral graph traversal flags synthetic identity fraud at 18,000+ operations per second while drastically lowering false positives.',
+    excerpt: 'A concept architecture for behavioral graph traversal, synthetic identity analysis and governed fraud review.',
     author: 'Doxantro Fintech Team',
     role: 'Financial Systems Group',
     date: 'August 22, 2024',
@@ -230,7 +230,7 @@ export default function Blog() {
                 </div>
 
                 <div className="text-[10px] font-mono text-zinc-500">
-                  Measured on 64-node TPU cluster under 25,000 req/sec.
+                  Concept benchmark interface using simulated pre-launch data.
                 </div>
               </div>
             </div>
@@ -360,7 +360,7 @@ export default function Blog() {
           </h2>
 
           <p className="body-lg text-zinc-400 mb-8 max-w-xl mx-auto">
-            Join 10,000+ AI engineers and technology leaders who receive our bi-weekly architecture teardowns and benchmark analyses.
+            Join the launch list for future architecture teardowns, validated benchmarks and engineering notes.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-3 justify-center items-stretch sm:items-center">

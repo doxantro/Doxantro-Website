@@ -17,8 +17,8 @@ const solutions = [
       'Continuous algorithmic validation against clinical datasets',
     ],
     benefits: [
-      'Improve preliminary diagnostic accuracy by 85%',
-      'Reduce emergency radiology backlog wait times by 60%',
+      '85% diagnostic accuracy gain in the verified evaluation context',
+      'Support emergency radiology prioritization',
       '24/7 autonomous triage support for on-call clinicians',
       'Strict HIPAA, GDPR, and ISO-13485 alignment',
     ],
@@ -37,7 +37,7 @@ const solutions = [
     ],
     benefits: [
       'Predict patient deterioration 4-6 hours earlier',
-      'Reduce ICU false alarm noise by up to 70%',
+      'Rank ICU alarms by confidence and urgency',
       'Lower post-operative complication rates',
       'Improve clinical throughput and bedside efficiency',
     ],
@@ -56,7 +56,7 @@ const solutions = [
     ],
     benefits: [
       'Shorten early-stage candidate discovery from years to months',
-      'Reduce wet-lab assay screening expenditure by 60%',
+      'Prioritize wet-lab assay screening candidates',
       'Higher clinical trial phase-1 transition success',
       'Proprietary IP generated under private client vaults',
     ],
@@ -70,7 +70,7 @@ const architectureSpecs = [
   },
   {
     category: 'Clinical Standards',
-    items: ['DICOM 3.0 Native Parsing', 'HL7 FHIR Interoperability', 'EHR Direct API Connectors', 'Sub-Second Image Triage SLA'],
+    items: ['DICOM 3.0 Native Parsing', 'HL7 FHIR Interoperability', 'EHR Connector Roadmap', 'Triage Latency Benchmark Pending'],
   },
   {
     category: 'Privacy & Governance',
@@ -94,10 +94,10 @@ const useCases = [
 ];
 
 const metrics = [
-  { value: '85%', label: 'Diagnostic Accuracy Gain', sublabel: 'Benchmarked across clinical datasets' },
-  { value: '60%', label: 'Reduction in Triage Wait Time', sublabel: 'Measured in emergency radiology' },
-  { value: '99.4%', label: 'Anomaly Detection AUC', sublabel: 'Multi-slice CT / MRI segmentation' },
-  { value: '100%', label: 'HIPAA & FHIR Compliant', sublabel: 'Air-gapped on-premise deployment' },
+  { value: '85%', label: 'Diagnostic Accuracy Gain', sublabel: 'Verified evaluation result' },
+  { value: '0', label: 'Verified Triage-Time Reduction', sublabel: 'Awaiting clinical validation' },
+  { value: '0', label: 'Published Anomaly AUC', sublabel: 'Benchmark pending' },
+  { value: '0', label: 'Certified Clinical Deployments', sublabel: 'Pre-launch baseline' },
 ];
 
 export default function AIHealthcarePage() {

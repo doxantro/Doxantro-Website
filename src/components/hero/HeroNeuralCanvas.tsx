@@ -200,10 +200,10 @@ export default function HeroNeuralCanvas() {
 
             if (isCursorHover) {
               const hoverFactor = 1 - midDistToMouse / mouseInfluenceRadius;
-              ctx.strokeStyle = `rgba(234, 88, 12, ${Math.min(baseAlpha + hoverFactor * 0.45, 0.65)})`;
+              ctx.strokeStyle = `rgba(245, 184, 0, ${Math.min(baseAlpha + hoverFactor * 0.45, 0.65)})`;
               ctx.lineWidth = 1.25;
             } else if (p1.isAccent || p2.isAccent) {
-              ctx.strokeStyle = `rgba(234, 88, 12, ${baseAlpha * 0.95})`;
+              ctx.strokeStyle = `rgba(245, 184, 0, ${baseAlpha * 0.95})`;
               ctx.lineWidth = 0.9;
             } else {
               ctx.strokeStyle = `rgba(113, 113, 122, ${baseAlpha * 0.85})`;
@@ -219,7 +219,7 @@ export default function HeroNeuralCanvas() {
           ctx.beginPath();
           ctx.moveTo(p1.x, p1.y);
           ctx.lineTo(mouse.x, mouse.y);
-          ctx.strokeStyle = `rgba(234, 88, 12, ${mouseAlpha})`;
+          ctx.strokeStyle = `rgba(245, 184, 0, ${mouseAlpha})`;
           ctx.lineWidth = 0.85;
           ctx.stroke();
         }
@@ -244,8 +244,8 @@ export default function HeroNeuralCanvas() {
 
         ctx.beginPath();
         ctx.arc(currentX, currentY, 2.2, 0, Math.PI * 2);
-        ctx.fillStyle = 'rgba(234, 88, 12, 0.85)';
-        ctx.shadowColor = 'rgba(234, 88, 12, 0.6)';
+        ctx.fillStyle = 'rgba(245, 184, 0, 0.85)';
+        ctx.shadowColor = 'rgba(245, 184, 0, 0.6)';
         ctx.shadowBlur = 6;
         ctx.fill();
         ctx.shadowBlur = 0; // reset
@@ -262,8 +262,8 @@ export default function HeroNeuralCanvas() {
         ctx.arc(p.x, p.y, drawRadius, 0, Math.PI * 2);
 
         if (p.isAccent || isHovered) {
-          ctx.fillStyle = isHovered ? '#ea580c' : 'rgba(234, 88, 12, 0.85)';
-          ctx.shadowColor = 'rgba(234, 88, 12, 0.45)';
+          ctx.fillStyle = isHovered ? '#f5b800' : 'rgba(245, 184, 0, 0.85)';
+          ctx.shadowColor = 'rgba(245, 184, 0, 0.45)';
           ctx.shadowBlur = isHovered ? 8 : 4;
         } else {
           ctx.fillStyle = 'rgba(39, 39, 42, 0.65)';

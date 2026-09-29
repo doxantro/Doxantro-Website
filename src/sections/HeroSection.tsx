@@ -1,150 +1,99 @@
 'use client';
 
 import React from 'react';
-import { motion, type Variants } from 'framer-motion';
+import Image from 'next/image';
+import { motion } from 'framer-motion';
+import { ArrowRight, CheckCircle2 } from 'lucide-react';
 import Button from '../components/ui/Button';
-import HeroNeuralCanvas from '../components/hero/HeroNeuralCanvas';
-
-const headlineWords = ['Think,', 'Build', 'and', 'Solve', 'with', 'Intelligence.'];
-
-const headlineContainerVariants: Variants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.07,
-      delayChildren: 0.12,
-    },
-  },
-};
-
-const wordVariants: Variants = {
-  hidden: {
-    opacity: 0,
-    y: 20,
-    filter: 'blur(10px)',
-  },
-  visible: {
-    opacity: 1,
-    y: 0,
-    filter: 'blur(0px)',
-    transition: {
-      duration: 0.65,
-      ease: [0.16, 1, 0.3, 1],
-    },
-  },
-};
+import ConceptInterface from '../components/home/ConceptInterface';
 
 export default function HeroSection() {
   return (
-    <section className="relative pt-24 pb-14 sm:pt-32 sm:pb-20 md:pt-40 md:pb-24 border-b border-black/[0.06] bg-white overflow-hidden w-full min-h-[580px] flex items-center justify-center">
-      {/* Interactive Neural Matrix Canvas */}
-      <HeroNeuralCanvas />
+    <section className="bg-[#fbfaf6] px-4 pb-10 pt-24 sm:px-6 sm:pb-14 sm:pt-28 lg:px-8">
+      <div className="relative mx-auto max-w-7xl overflow-hidden rounded-[2rem] border border-black/[0.06] bg-[#f3c83f] shadow-[0_24px_80px_rgba(84,61,0,0.10)]">
+        <div className="absolute inset-0 opacity-35 [background-image:linear-gradient(rgba(70,51,0,.10)_1px,transparent_1px),linear-gradient(90deg,rgba(70,51,0,.10)_1px,transparent_1px)] [background-size:68px_68px]" />
+        <div className="absolute -left-24 top-1/2 h-72 w-72 -translate-y-1/2 rounded-full bg-white/35 blur-3xl" />
 
-      <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 w-full text-center">
-        <div className="max-w-3xl mx-auto flex flex-col items-center">
-          {/* 1. Monospace Subheading Pill */}
+        <div className="relative grid min-h-[650px] items-center gap-10 px-6 py-12 sm:px-10 sm:py-16 lg:grid-cols-12 lg:px-14 lg:py-16 xl:px-16">
           <motion.div
-            initial={{ opacity: 0, y: -10, filter: 'blur(6px)' }}
-            animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
-            transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-            className="mb-3 sm:mb-4 inline-flex items-center justify-center"
-          >
-            <span className="subheading text-[10px] sm:text-xs tracking-wider bg-white/80 backdrop-blur-xs px-3 py-1 rounded-full border border-black/[0.06] shadow-[0_1px_2px_rgba(0,0,0,0.02)]">
-              Enterprise Applied AI
-            </span>
-          </motion.div>
-
-          {/* 2. Main Centralized Headline with Cinematic Word-by-Word Blur Reveal */}
-          <motion.h1
-            variants={headlineContainerVariants}
-            initial="hidden"
-            animate="visible"
-            className="text-3xl xs:text-4xl sm:text-5xl md:text-6xl lg:text-[4rem] font-bold tracking-tight text-[#111111] leading-[1.12] mb-4 sm:mb-6 max-w-3xl flex flex-wrap justify-center gap-x-2.5 sm:gap-x-3.5 gap-y-1"
-          >
-            {headlineWords.map((word, index) => (
-              <motion.span
-                key={index}
-                variants={wordVariants}
-                className="inline-block"
-              >
-                {word}
-              </motion.span>
-            ))}
-          </motion.h1>
-
-          {/* 3. Subheadline Description with Optical Focus Fade */}
-          <motion.p
-            initial={{ opacity: 0, y: 16, filter: 'blur(8px)' }}
-            animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
-            transition={{ duration: 0.65, delay: 0.45, ease: [0.16, 1, 0.3, 1] }}
-            className="text-sm sm:text-lg md:text-xl text-zinc-600 leading-relaxed mb-6 sm:mb-8 max-w-2xl"
-          >
-            Empowering global enterprises, healthcare systems, and institutions with mission-critical AI solutions engineered for speed, accuracy, and measurable ROI.
-          </motion.p>
-
-          {/* 4. Action Buttons */}
-          <motion.div
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.62, ease: [0.16, 1, 0.3, 1] }}
-            className="flex flex-col sm:flex-row items-center justify-center gap-3 mb-8 sm:mb-12 w-full sm:w-auto"
-          >
-            <Button
-              href="/contact"
-              size="lg"
-              variant="primary"
-              className="w-full sm:w-auto px-6 py-3 text-sm font-semibold justify-center shadow-[0_2px_8px_rgba(0,0,0,0.08)] hover:shadow-[0_6px_20px_rgba(0,0,0,0.12)] hover:-translate-y-0.5 transition-all"
-            >
-              Start Your Project
-            </Button>
-            <Button
-              href="/case-studies"
-              size="lg"
-              variant="outline"
-              className="w-full sm:w-auto px-6 py-3 text-sm font-semibold justify-center hover:-translate-y-0.5 transition-all"
-            >
-              Case Studies
-            </Button>
-          </motion.div>
-
-          {/* 5. 3 Hairline Metric Indicators with Live Radar Beacons */}
-          {/* <motion.div
             initial={{ opacity: 0, y: 14 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.55, delay: 0.78, ease: [0.16, 1, 0.3, 1] }}
-            className="pt-6 sm:pt-8 border-t border-black/[0.06] flex flex-wrap items-center justify-center gap-4 sm:gap-8 text-xs font-mono w-full"
+            transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
+            className="lg:col-span-6 xl:col-span-5"
           >
-            <div className="flex items-center gap-2 min-w-0">
-              <span className="relative flex h-2 w-2 flex-shrink-0">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" />
-              </span>
-              <span className="font-semibold text-zinc-900">SOC-2 Type II</span>
-              <span className="text-zinc-400">· Air-Gapped</span>
+            <span className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.14em] text-[#584100]">
+              <span className="h-2 w-2 rounded-full bg-[#11120f]" />
+              Enterprise applied AI
+            </span>
+
+            <h1 className="mt-6 max-w-2xl text-[2.75rem] font-bold leading-[0.98] tracking-[-0.055em] text-[#11120f] sm:text-6xl lg:text-[4.25rem]">
+              AI systems built around real operations.
+            </h1>
+
+            <p className="mt-6 max-w-xl text-base leading-7 text-[#46390f] sm:text-lg">
+              Doxantro helps enterprises turn private data into governed, accountable decisions—without forcing teams to replace the systems they already trust.
+            </p>
+
+            <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+              <Button href="/contact" size="lg" className="w-full !border-[#11120f] !bg-[#11120f] !text-white hover:!bg-black sm:w-auto">
+                Discuss a pilot
+              </Button>
+              <Button href="#product-vision" size="lg" variant="outline" className="w-full !border-black/20 !bg-white/55 hover:!bg-white sm:w-auto">
+                See how it works
+              </Button>
             </div>
 
-            <div className="flex items-center gap-2 min-w-0">
-              <span className="relative flex h-2 w-2 flex-shrink-0">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" />
-              </span>
-              <span className="font-semibold text-zinc-900">&lt; 10ms Latency</span>
-              <span className="text-zinc-400">· Real-Time</span>
+            <div className="mt-8 flex flex-wrap gap-x-5 gap-y-2 text-xs font-medium text-[#584b23]">
+              {['Private by design', 'Human oversight', 'Clear evaluation'].map((item) => (
+                <span key={item} className="inline-flex items-center gap-1.5">
+                  <CheckCircle2 className="h-4 w-4 text-[#11120f]" aria-hidden="true" />
+                  {item}
+                </span>
+              ))}
+            </div>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 18 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.55, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+            className="relative lg:col-span-6 lg:col-start-7 xl:col-span-7"
+          >
+            <div className="relative min-h-[430px] overflow-hidden rounded-[1.75rem] border border-black/10 bg-[#171713] shadow-[0_24px_70px_rgba(36,27,0,0.25)] sm:min-h-[500px]">
+              <Image
+                src="/images/doxantro/operations-hero.webp"
+                alt="An enterprise AI engineer reviewing operational systems"
+                fill
+                priority
+                sizes="(max-width: 1024px) 100vw, 52vw"
+                className="object-cover object-[64%_center] opacity-80"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/15 to-transparent" />
+              <div className="absolute left-5 top-5 rounded-full border border-white/20 bg-black/40 px-3 py-1.5 text-[10px] font-medium tracking-[0.12em] text-white backdrop-blur-md">
+                DOXANTRO PRODUCT VISION
+              </div>
+              <div className="absolute inset-x-4 bottom-4 sm:inset-x-5 sm:bottom-5">
+                <ConceptInterface variant="operations" className="!rounded-2xl !shadow-none" />
+              </div>
             </div>
 
-            <div className="flex items-center gap-2 min-w-0">
-              <span className="relative flex h-2 w-2 flex-shrink-0">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" />
+            <div className="absolute -bottom-5 -left-3 hidden items-center gap-3 rounded-2xl border border-black/10 bg-white px-4 py-3 shadow-xl sm:flex">
+              <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-[#fff4bf] text-[#6d4f00]">
+                <ArrowRight className="h-4 w-4" aria-hidden="true" />
               </span>
-              <span className="font-semibold text-zinc-900">6 Verticals</span>
-              <span className="text-zinc-400">· Domain AI</span>
+              <div>
+                <div className="text-[10px] uppercase tracking-[0.12em] text-zinc-400">Designed for</div>
+                <div className="text-sm font-semibold text-zinc-900">Controlled decisions</div>
+              </div>
             </div>
-          </motion.div> */}
+          </motion.div>
         </div>
+      </div>
+
+      <div className="mx-auto mt-5 flex max-w-7xl items-start gap-2 px-2 text-[11px] leading-relaxed text-zinc-500 sm:px-4">
+        <span className="mt-1 h-1.5 w-1.5 shrink-0 rounded-full bg-[#c79200]" />
+        Product interfaces are concept previews using simulated data unless explicitly marked as verified.
       </div>
     </section>
   );
 }
-

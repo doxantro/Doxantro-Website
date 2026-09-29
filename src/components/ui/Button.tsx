@@ -46,9 +46,9 @@ export default function Button({
 
   const variantStyles = {
     primary:
-      'bg-[#111111] hover:bg-black text-white border border-[#222222] shadow-[0_1px_2px_rgba(0,0,0,0.08)] hover:shadow-[0_4px_12px_rgba(0,0,0,0.12)]',
+      'bg-[#f5b800] hover:bg-[#d99a00] text-[#17130a] border border-[#f5b800] shadow-[0_1px_2px_rgba(0,0,0,0.12)] hover:shadow-[0_8px_24px_rgba(245,184,0,0.2)]',
     accent:
-      'bg-orange-600 hover:bg-orange-700 text-white border border-orange-500 shadow-sm hover:shadow-md',
+      'bg-[#f5b800] hover:bg-[#d99a00] text-[#17130a] border border-[#f5b800] shadow-sm hover:shadow-md',
     secondary:
       'bg-zinc-100 hover:bg-zinc-200/80 text-zinc-900 border border-zinc-200/80',
     outline:

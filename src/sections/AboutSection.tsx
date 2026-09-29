@@ -74,7 +74,7 @@ export default function AboutSection() {
                 <div>
                   <h4 className="text-xs font-semibold text-zinc-900">Validated ROI & Accuracy</h4>
                   <p className="text-xs text-zinc-500 mt-0.5 leading-relaxed">
-                    Backed by rigorous automated benchmarking, sub-10ms response times, and 99%+ accuracy guarantees.
+                    Built around documented evaluation methods, explicit baselines, and results that are published only after verification.
                   </p>
                 </div>
               </div>
