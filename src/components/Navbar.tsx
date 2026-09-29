@@ -35,11 +35,15 @@ export default function Navbar() {
       <ScrollProgress />
       <header className={`fixed inset-x-0 top-0 z-40 border-b transition-all duration-200 ${isScrolled ? 'border-black/[0.07] bg-[#fbfaf6]/95 py-2 shadow-[0_3px_18px_rgba(31,28,18,.04)] backdrop-blur-xl' : 'border-transparent bg-[#fbfaf6]/90 py-3 backdrop-blur-md'}`}>
         <div className="mx-auto flex h-12 max-w-7xl items-center justify-between gap-6 px-4 sm:px-6 lg:px-8">
-          <Link href="/" className="flex shrink-0 items-center gap-2.5 rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#c79200]">
-            <span className="relative h-9 w-9 overflow-hidden rounded-xl border border-black/10 bg-zinc-950">
-              <Image src="/dox1.jpg" alt="" fill sizes="36px" className="object-cover" priority />
-            </span>
-            <span className="text-[15px] font-bold tracking-[-0.03em] text-zinc-950">Doxantro</span>
+          <Link href="/" aria-label="Doxantro Technologies home" className="flex shrink-0 items-center rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#c79200]">
+            <Image
+              src="/dox1.jpg"
+              alt="Doxantro"
+              width={145}
+              height={43}
+              className="h-9 w-auto object-contain mix-blend-multiply sm:h-10"
+              priority
+            />
           </Link>
 
           <nav className="hidden items-center gap-7 lg:flex" aria-label="Primary navigation">

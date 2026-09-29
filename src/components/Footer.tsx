@@ -26,11 +26,14 @@ export default function Footer() {
       <div className="mx-auto max-w-7xl px-4 py-14 sm:px-6 sm:py-16 lg:px-8">
         <div className="grid gap-12 lg:grid-cols-12">
           <div className="lg:col-span-6">
-            <Link href="/" className="inline-flex items-center gap-2.5">
-              <span className="relative h-10 w-10 overflow-hidden rounded-xl border border-black/10 bg-zinc-950">
-                <Image src="/dox1.jpg" alt="" fill sizes="40px" className="object-cover" />
-              </span>
-              <span className="text-lg font-bold tracking-[-0.03em] text-zinc-950">Doxantro</span>
+            <Link href="/" aria-label="Doxantro Technologies home" className="inline-flex items-center">
+              <Image
+                src="/dox1.jpg"
+                alt="Doxantro"
+                width={175}
+                height={52}
+                className="h-12 w-auto object-contain"
+              />
             </Link>
             <p className="mt-5 max-w-md text-sm leading-6 text-zinc-500">
               Governed AI systems for complex enterprise workflows, with verified results kept clearly separate from concepts and future targets.
