@@ -1,34 +1,42 @@
-import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
-import "./globals.css";
-import Navbar from "../components/Navbar";
-import Footer from "../components/Footer";
+import type { Metadata } from 'next';
+import { Host_Grotesk, JetBrains_Mono } from 'next/font/google';
+import './globals.css';
+import Navbar from '../components/Navbar';
+import Footer from '../components/Footer';
+import SmoothScroll from '../components/site/SmoothScroll';
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
+const host = Host_Grotesk({
+  variable: '--font-host',
+  subsets: ['latin'],
+  display: 'swap',
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
+const jetbrains = JetBrains_Mono({
+  variable: '--font-jetbrains',
+  subsets: ['latin'],
+  display: 'swap',
 });
 
 export const metadata: Metadata = {
-  title: "Doxantro Technologies - AI Solutions for Modern Business",
-  description: "Doxantro Technologies helps businesses, government agencies, and organizations solve their challenges with innovative AI solutions across finance, healthcare, agriculture, supply chain, security, and energy.",
+  title: {
+    default: 'Doxantro — Software, data and AI engineering',
+    template: '%s · Doxantro',
+  },
+  description:
+    'Doxantro designs, builds and runs production software, data infrastructure and AI integrations for businesses and public organisations.',
 };
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} font-sans antialiased text-zinc-900 bg-white selection:bg-orange-500 selection:text-white`}
-      >
+    <html lang="en" className={`${host.variable} ${jetbrains.variable}`}>
+      <body className="font-sans antialiased">
+        <SmoothScroll />
+        <a
+          href="#main"
+          className="sr-only z-[60] rounded-full bg-ink px-4 py-2 text-sm text-paper focus:not-sr-only focus:fixed focus:left-4 focus:top-4"
+        >
+          Skip to content
+        </a>
         <Navbar />
         {children}
         <Footer />

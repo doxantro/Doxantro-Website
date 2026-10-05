@@ -1,75 +1,60 @@
-import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { ArrowUpRight } from 'lucide-react';
+import { company, industries, services } from '../content/site';
 
 const companyLinks = [
   { name: 'About', href: '/about' },
-  { name: 'Services', href: '/services' },
+  { name: 'How we work', href: '/#process' },
   { name: 'Case studies', href: '/case-studies' },
-  { name: 'Research', href: '/blog' },
+  { name: 'Field notes', href: '/blog' },
   { name: 'Careers', href: '/careers' },
+  { name: 'Contact', href: '/contact' },
 ];
 
-const solutionLinks = [
-  { name: 'Finance', href: '/ai-finance' },
-  { name: 'Healthcare', href: '/ai-healthcare' },
-  { name: 'Agriculture', href: '/ai-agriculture' },
-  { name: 'Supply chain', href: '/ai-supply-chain' },
-  { name: 'Security', href: '/ai-security' },
-  { name: 'Energy', href: '/ai-energy' },
-];
+function Column({ title, links }: { title: string; links: { name: string; href: string }[] }) {
+  return (
+    <div>
+      <h2 className="text-sm text-ink-faint">{title}</h2>
+      <ul className="mt-4 space-y-2.5">
+        {links.map((link) => (
+          <li key={link.name}>
+            <Link href={link.href} className="text-[0.9375rem] text-ink-muted transition-colors hover:text-ink">
+              {link.name}
+            </Link>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+}
 
 export default function Footer() {
   return (
-    <footer className="border-t border-black/[0.07] bg-white text-zinc-700">
-      <div className="mx-auto max-w-7xl px-4 py-14 sm:px-6 sm:py-16 lg:px-8">
-        <div className="grid gap-12 lg:grid-cols-12">
-          <div className="lg:col-span-6">
-            <Link href="/" aria-label="Doxantro Technologies home" className="inline-flex items-center">
-              <Image
-                src="/dox1.jpg"
-                alt="Doxantro"
-                width={175}
-                height={52}
-                className="h-12 w-auto object-contain"
-              />
+    <footer className="border-t border-line bg-paper">
+      <div className="mx-auto max-w-6xl px-5 pb-10 pt-16 sm:px-8">
+        <div className="grid gap-12 md:grid-cols-[1.4fr_1fr_1fr_1fr]">
+          <div>
+            <Link href="/" aria-label="Doxantro home" className="inline-flex">
+              <Image src="/doxantro-logo.png" alt="Doxantro" width={587} height={158} className="h-9 w-auto" />
             </Link>
-            <p className="mt-5 max-w-md text-sm leading-6 text-zinc-500">
-              Governed AI systems for complex enterprise workflows, with verified results kept clearly separate from concepts and future targets.
-            </p>
-            <Link href="/contact" className="mt-7 inline-flex min-h-11 items-center gap-2 rounded-full border border-black/10 bg-[#fbfaf6] px-5 text-sm font-semibold text-zinc-950 transition-colors hover:bg-[#f3c83f]">
-              Start a conversation
-              <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
-            </Link>
+            <p className="mt-5 max-w-xs text-[0.9375rem] leading-relaxed text-ink-muted">{company.summary}</p>
+            <a
+              href={`mailto:${company.email}`}
+              className="mt-5 inline-block text-[0.9375rem] font-medium text-ink underline decoration-line-strong hover:decoration-ink"
+            >
+              {company.email}
+            </a>
           </div>
-
-          <div className="grid grid-cols-2 gap-8 sm:grid-cols-3 lg:col-span-6">
-            <div>
-              <h2 className="text-xs font-semibold uppercase tracking-[0.12em] text-zinc-400">Company</h2>
-              <ul className="mt-5 space-y-3">
-                {companyLinks.map((link) => <li key={link.name}><Link href={link.href} className="text-sm hover:text-zinc-950">{link.name}</Link></li>)}
-              </ul>
-            </div>
-            <div>
-              <h2 className="text-xs font-semibold uppercase tracking-[0.12em] text-zinc-400">Solutions</h2>
-              <ul className="mt-5 space-y-3">
-                {solutionLinks.map((link) => <li key={link.name}><Link href={link.href} className="text-sm hover:text-zinc-950">{link.name}</Link></li>)}
-              </ul>
-            </div>
-            <div className="col-span-2 sm:col-span-1">
-              <h2 className="text-xs font-semibold uppercase tracking-[0.12em] text-zinc-400">Status</h2>
-              <div className="mt-5 inline-flex items-center gap-2 rounded-full bg-[#fff8dc] px-3 py-2 text-xs font-medium text-[#6f5200]">
-                <span className="h-2 w-2 rounded-full bg-[#c79200]" />
-                Product development active
-              </div>
-            </div>
-          </div>
+          <Column title="Services" links={services.map((s) => ({ name: s.name, href: `/services#${s.id}` }))} />
+          <Column title="Industries" links={industries.map((i) => ({ name: i.name, href: i.href }))} />
+          <Column title="Company" links={companyLinks} />
         </div>
 
-        <div className="mt-14 flex flex-col gap-3 border-t border-black/[0.07] pt-6 text-xs text-zinc-400 sm:flex-row sm:items-center sm:justify-between">
-          <p>© {new Date().getFullYear()} Doxantro Technologies Limited.</p>
-          <p>Private by design · Human review · Honest measurement</p>
+        <div className="mt-16 flex flex-col gap-2 border-t border-line pt-6 text-sm text-ink-faint sm:flex-row sm:items-center sm:justify-between">
+          <p>
+            © {new Date().getFullYear()} {company.legalName}
+          </p>
+          <p>{company.mantra}</p>
         </div>
       </div>
     </footer>
