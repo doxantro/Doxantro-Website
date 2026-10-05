@@ -1,119 +1,14 @@
-'use client';
+import type { Metadata } from 'next';
+import { industryPages } from '../../content/site';
+import IndustryPage from '../../components/industries/IndustryPage';
 
-import React from 'react';
-import SolutionPageLayout from '../../components/solutions/SolutionPageLayout';
+const industry = industryPages.find((i) => i.slug === 'ai-supply-chain')!;
 
-const solutions = [
-  {
-    title: 'Dynamic Multi-Vector Route & Fleet Optimization',
-    description: 'Real-time heuristics and reinforcement learning models that dynamically re-route multi-modal logistics across roads, rail, and sea.',
-    iconName: 'Boxes',
-    features: [
-      'Real-time traffic, weather, and port congestion rerouting',
-      'Multi-drop dispatch and load balancing algorithms',
-      'EV fleet charging schedule & battery optimization',
-      'Driver hours-of-service (HOS) compliant routing',
-      'Dynamic freight carrier rate bidding integration',
-      'Live GPS telemetry tracking with sub-second recalculation',
-    ],
-    benefits: [
-      'Model logistics and fuel-cost tradeoffs',
-      'Support on-time delivery planning',
-      'Identify empty-mile and emissions reduction opportunities',
-      'Assist dispatch teams with ranked recommendations',
-    ],
-  },
-  {
-    title: 'Multi-Echelon Demand Forecasting & Stocking',
-    description: 'Deep time-series transformers predicting SKU-level demand spikes, seasonal patterns, and regional consumption shifts.',
-    iconName: 'TrendingUp',
-    features: [
-      'Hierarchical SKU-level demand forecasting',
-      'External signal ingestion (weather, inflation, holidays, promotions)',
-      'Automated safety stock & dynamic re-order triggers',
-      'Warehouse slotting and cross-docking optimization',
-      'Supplier lead-time volatility and risk scoring',
-      'ERP integration (SAP, Oracle, NetSuite, Blue Yonder)',
-    ],
-    benefits: [
-      'Model dead-inventory carrying cost exposure',
-      'Identify stockout and lost-sales risk',
-      'Accurate 90-day forward demand projections',
-      'Automated replenishment purchase order workflows',
-    ],
-  },
-  {
-    title: 'Global Supplier Risk & Disruption Early Warning',
-    description: 'Natural language processing and geopolitical graph analytics that scan global news, ports, and weather for supply vulnerabilities.',
-    iconName: 'ShieldAlert',
-    features: [
-      'Multi-tier supply chain visibility and dependency mapping',
-      'Real-time port strike, canal, and maritime bottleneck alerts',
-      'Supplier financial distress and ESG compliance scoring',
-      'Automated dual-sourcing contingency recommendations',
-      'Custom risk threshold trigger alerts for procurement teams',
-      'Scenario simulation and supply network stress testing',
-    ],
-    benefits: [
-      'Identify supply bottlenecks 10-14 days before disruption',
-      'Mitigate single-source failure vulnerabilities',
-      'Protect brand reputation and SLA contract compliance',
-      'Automated alternative supplier onboarding triggers',
-    ],
-  },
-];
+export const metadata: Metadata = {
+  title: 'Supply chain',
+  description: industry.intro,
+};
 
-const architectureSpecs = [
-  {
-    category: 'Optimization & ML Models',
-    items: ['Dynamic Route Heuristics (VRP/OR-Tools)', 'Hierarchical Time-Series Transformers', 'Graph Supply Dependency Networks', 'Reinforcement Learning Dispatch'],
-  },
-  {
-    category: 'Telemetry & Ingestion',
-    items: ['Sub-Second AIS / GPS Tracking Streams', 'EDI / ERP Direct Connectors', 'Real-Time Weather & Congestion Feeds', 'Sub-10ms Recalculation Engine'],
-  },
-  {
-    category: 'Enterprise Scale',
-    items: ['0 Verified Logistics Deployments', 'Global Multi-Modal Network Concept', 'Private Vault Architecture', 'Availability SLA Pending'],
-  },
-];
-
-const useCases = [
-  {
-    title: 'Global Freight & 3PL Logistics Providers',
-    desc: 'Dynamic freight dispatch, container turnaround acceleration, and multi-modal route optimization.',
-  },
-  {
-    title: 'Omnichannel Retail & E-Commerce Giants',
-    desc: 'Micro-fulfillment demand forecasting, same-day delivery routing, and inventory dead-stock elimination.',
-  },
-  {
-    title: 'Automotive & Industrial Manufacturers',
-    desc: 'Just-in-time parts delivery orchestration, multi-tier supplier vulnerability early warning, and raw material buffer sizing.',
-  },
-];
-
-const metrics = [
-  { value: '0', label: 'Verified Logistics Deployments', sublabel: 'Pre-launch baseline' },
-  { value: '0', label: 'Published Delivery Benchmarks', sublabel: 'Awaiting pilot validation' },
-  { value: '0', label: 'Verified Inventory Savings', sublabel: 'Awaiting pilot validation' },
-  { value: '0', label: 'Published Latency Benchmarks', sublabel: 'Benchmark pending' },
-];
-
-export default function AISupplyChainPage() {
-  return (
-    <SolutionPageLayout
-      badge="Logistics & Supply Chain AI"
-      titlePrefix="Autonomous AI for"
-      titleHighlight="Supply Chain & Logistics"
-      subtitle="Eliminate shipping bottlenecks, slash dead-inventory costs, and predict global supply disruptions with real-time optimization models."
-      iconName="Boxes"
-      metrics={metrics}
-      solutions={solutions}
-      architectureSpecs={architectureSpecs}
-      useCases={useCases}
-      ctaTitle="Ready to Automate Your Supply Chain Network with AI?"
-      ctaSubtitle="Speak with our operations research directors and logistics architects to evaluate your freight and inventory pipelines."
-    />
-  );
+export default function Page() {
+  return <IndustryPage industry={industry} />;
 }

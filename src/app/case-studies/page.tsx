@@ -1,354 +1,81 @@
-'use client';
-
-import React, { useState } from 'react';
+import type { Metadata } from 'next';
 import Link from 'next/link';
-import { motion, AnimatePresence } from 'framer-motion';
-import {
-  ArrowRight,
-  Search,
-  Clock,
-  Sparkles,
-} from 'lucide-react';
-import Button from '../../components/ui/Button';
-import SolutionIcon from '../../components/ui/SolutionIcon';
+import { ArrowUpRight } from 'lucide-react';
+import { contentVariant, services } from '../../content/site';
+import PageHeader from '../../components/site/PageHeader';
+import Reveal from '../../components/site/Reveal';
+import CaseStudyList from '../../components/case-studies/CaseStudyList';
+import Process from '../../components/home/Process';
+import ClosingCta from '../../components/home/ClosingCta';
 
-const industries = ['All', 'Finance', 'Healthcare', 'Agriculture', 'Supply Chain', 'Security', 'Energy'];
+export const metadata: Metadata = {
+  title: 'Case studies',
+  description: 'How Doxantro engagements run, from the problem to the system in production.',
+};
 
-const caseStudiesData = [
-  {
-    id: 'finance-fraud',
-    title: 'Adaptive Real-Time Fraud Interception Mesh',
-    client: 'Illustrative Tier-1 Banking Scenario',
-    industry: 'Finance',
-    duration: '6 months',
-    challenge: 'The institution faced an influx of sophisticated synthetic identity and velocity fraud that bypassed legacy rule engines, resulting in rising chargebacks and high false positives.',
-    solution: 'Concept architecture for a graph neural network and behavioral anomaly engine with governed real-time risk scoring.',
-    results: [
-      { metric: '0', label: 'Verified Fraud-Loss Reduction' },
-      { metric: '99.9%', label: 'Fraud Detection Precision' },
-      { metric: '0', label: 'Verified False-Positive Reduction' },
-      { metric: '0', label: 'Published Latency Benchmark' },
-    ],
-    technologies: ['Graph Neural Networks', 'Real-Time Streaming APIs', 'Behavioral Fingerprinting', 'SOC-2 Private Vaults'],
-    iconName: 'BadgeDollarSign',
-    badge: 'Fintech Tier 1',
-  },
-  {
-    id: 'healthcare-diagnostics',
-    title: 'Clinical AI Diagnostic & DICOM Triage Assistant',
-    client: 'Illustrative Hospital Network Scenario',
-    industry: 'Healthcare',
-    duration: '8 months',
-    challenge: 'Radiology departments experienced massive imaging backlogs and diagnostic fatigue, causing prolonged triage wait times for emergency CT and MRI scans.',
-    solution: 'Developed a HIPAA-compliant computer vision diagnostic pipeline that pre-segments abnormalities, computes confidence heatmaps, and flags high-urgency scans to doctors instantly.',
-    results: [
-      { metric: '85%', label: 'Diagnostic Accuracy Gain' },
-      { metric: '0', label: 'Verified Triage-Time Reduction' },
-      { metric: '0', label: 'Published Anomaly AUC' },
-      { metric: '0', label: 'Verified Clinical Deployments' },
-    ],
-    technologies: ['Vision Transformers', 'DICOM Image Segmentation', 'HIPAA Secure Pipeline', 'Edge TPU Acceleration'],
-    iconName: 'Activity',
-    badge: 'Clinical Grade',
-  },
-  {
-    id: 'agriculture-yield',
-    title: 'Precision Agricultural Multispectral Yield Engine',
-    client: 'Illustrative Agricultural Cooperative Scenario',
-    industry: 'Agriculture',
-    duration: '12 months',
-    challenge: 'Unpredictable weather microclimates and pest blights caused yield variance and excessive fertilizer expenditure across extensive arable land.',
-    solution: 'Implemented satellite NDVI indexing, drone multispectral imagery processing, and soil IoT sensor aggregation to generate daily micro-precision resource recommendations.',
-    results: [
-      { metric: '0', label: 'Verified Yield Increase' },
-      { metric: '0', label: 'Verified Water Savings' },
-      { metric: '0', label: 'Verified Fertilizer Savings' },
-      { metric: '0', label: 'Verified Field Deployments' },
-    ],
-    technologies: ['Satellite NDVI Analytics', 'Drone Multispectral Vision', 'IoT Sensor Fusion', 'Yield Prediction Models'],
-    iconName: 'Sprout',
-    badge: 'Eco-Precision',
-  },
-  {
-    id: 'supply-chain-routing',
-    title: 'Multi-Echelon Dynamic Supply Chain & Route Optimization',
-    client: 'Illustrative Logistics Enterprise Scenario',
-    industry: 'Supply Chain',
-    duration: '10 months',
-    challenge: 'Supply bottlenecks, fluctuating fuel tariffs, and unpredictable demand spikes led to substantial inventory holding penalties and delivery delays.',
-    solution: 'Created an intelligent routing and inventory forecasting suite that dynamically recalculates transport vectors in real-time based on weather, port congestion, and demand signals.',
-    results: [
-      { metric: '0', label: 'Verified Operating-Cost Reduction' },
-      { metric: '0', label: 'Verified Delivery Improvement' },
-      { metric: '0', label: 'Verified Inventory Savings' },
-      { metric: '0', label: 'Verified Logistics Deployments' },
-    ],
-    technologies: ['Dynamic Route Heuristics', 'Multi-Echelon Demand Forecasting', 'Live Telemetry Ingestion', 'ERP Integrations'],
-    iconName: 'Boxes',
-    badge: 'Global Supply',
-  },
-  {
-    id: 'security-threat',
-    title: 'Autonomous Zero-Trust Threat Intelligence & Defend Mesh',
-    client: 'Illustrative Critical-Infrastructure Scenario',
-    industry: 'Security',
-    duration: '9 months',
-    challenge: 'Nation-state cyber threats and zero-day memory exploits were evading conventional rule-based SIEM systems, demanding millisecond automated isolation.',
-    solution: 'Deployed an autonomous neural network that continuously monitors packet payloads, user authorization graphs, and system process anomalies with automated quarantine triggers.',
-    results: [
-      { metric: '0', label: 'Published Containment Benchmark' },
-      { metric: '0', label: 'Published Threat Precision' },
-      { metric: '0', label: 'Verified Alert Reduction' },
-      { metric: '0', label: 'Verified Security Deployments' },
-    ],
-    technologies: ['Zero-Trust Behavioral AI', 'eBPF Kernel Anomaly Sensing', 'Air-Gapped Enclaves', 'Automated Containment'],
-    iconName: 'ShieldAlert',
-    badge: 'National Defense',
-  },
-  {
-    id: 'energy-smart-grid',
-    title: 'Smart Grid Autonomous Load Balancing & Renewable Optimizer',
-    client: 'Illustrative Clean-Energy Utility Scenario',
-    industry: 'Energy',
-    duration: '11 months',
-    challenge: 'Integrating intermittent solar and wind generation created severe grid instability, peak-load surges, and costly reliance on legacy fossil peaker plants.',
-    solution: 'Implemented predictive machine learning models that forecast renewable generation 48 hours ahead and autonomously orchestrate battery storage and load distribution.',
-    results: [
-      { metric: '0', label: 'Verified Efficiency Gain' },
-      { metric: '0', label: 'Verified Surge Reduction' },
-      { metric: '0', label: 'Verified Storage Improvement' },
-      { metric: '0', label: 'Verified Utility Deployments' },
-    ],
-    technologies: ['Time-Series Load Forecasting', 'Battery Storage Optimization', 'Smart Grid SCADA Integration', 'Predictive Maintenance'],
-    iconName: 'Zap',
-    badge: 'Clean Energy',
-  },
-];
-
-export default function CaseStudies() {
-  const [selectedIndustry, setSelectedIndustry] = useState('All');
-  const [searchQuery, setSearchQuery] = useState('');
-
-  const filteredStudies = caseStudiesData.filter((study) => {
-    const matchesIndustry = selectedIndustry === 'All' || study.industry.toLowerCase() === selectedIndustry.toLowerCase();
-    const matchesSearch =
-      study.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      study.client.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      study.challenge.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      study.technologies.some((t) => t.toLowerCase().includes(searchQuery.toLowerCase()));
-    return matchesIndustry && matchesSearch;
-  });
-
+// Lean: no case studies until real, client-approved ones exist.
+function LeanCaseStudies() {
   return (
-    <main className="min-h-screen bg-white">
-      {/* 1. Hero Section */}
-      <section className="relative pt-28 pb-14 sm:pt-36 sm:pb-20 md:pt-40 md:pb-24 border-b border-black/[0.06] bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.45 }}
-            className="max-w-4xl mx-auto"
-          >
-            <div className="mb-3.5">
-              <span className="subheading">
-                Concept Use Cases & Verified Benchmarks
-              </span>
-            </div>
-
-            <h1 className="display-1 mb-4 sm:mb-5">
-              Product scenarios, clearly separated from verified results
-            </h1>
-
-            <p className="body-lg max-w-2xl mx-auto text-zinc-600">
-              Explore the workflows Doxantro is designed to support. Scenario content is illustrative; only explicitly marked benchmark results are verified.
-            </p>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* 2. Interactive Filter & Search Bar */}
-      <section className="py-4 sm:py-6 bg-[#fafafa] border-b border-black/[0.06] sticky top-14 z-20 backdrop-blur-md">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-col md:flex-row items-stretch md:items-center justify-between gap-3 sm:gap-4">
-            {/* Filter Pills - Native Horizontal Momentum Swipe on Mobile */}
-            <div className="flex items-center gap-1.5 overflow-x-auto scrollbar-none pb-1 md:pb-0 -mx-4 px-4 sm:mx-0 sm:px-0">
-              {industries.map((ind) => (
-                <button
-                  key={ind}
-                  onClick={() => setSelectedIndustry(ind)}
-                  className={`px-3.5 py-1.5 rounded-full text-xs font-medium whitespace-nowrap transition-colors cursor-pointer flex-shrink-0 ${
-                    selectedIndustry === ind
-                      ? 'bg-[#111111] text-white shadow-sm'
-                      : 'bg-white border border-black/[0.08] text-zinc-600 hover:text-[#111111] hover:border-black/[0.15]'
-                  }`}
-                >
-                  {ind}
-                </button>
-              ))}
-            </div>
-
-            {/* Search Input */}
-            <div className="relative w-full md:w-64">
-              <Search className="w-3.5 h-3.5 text-zinc-400 absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none" />
-              <input
-                type="text"
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                placeholder="Search case studies..."
-                className="w-full pl-9 pr-3 py-1.5 text-xs bg-white border border-black/[0.08] rounded-full focus:outline-none focus:border-black text-zinc-900 placeholder-zinc-400"
-              />
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* 3. Case Studies Grid */}
-      <section className="py-12 sm:py-16 md:py-20 bg-white border-b border-black/[0.06]">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <AnimatePresence mode="popLayout">
-            {filteredStudies.length === 0 ? (
-              <div className="text-center py-16 bg-zinc-50 rounded-2xl border border-black/[0.06]">
-                <h3 className="text-sm font-semibold text-zinc-900 mb-1">No case studies found</h3>
-                <p className="text-xs text-zinc-500">Try adjusting your search query or industry filter.</p>
-              </div>
-            ) : (
-              <div className="space-y-6">
-                {filteredStudies.map((study, idx) => (
-                  <motion.div
-                    key={study.id}
-                    layout
-                    initial={{ opacity: 0, y: 16 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, scale: 0.98 }}
-                    transition={{ duration: 0.3, delay: idx * 0.04 }}
-                  >
-                    <div className="card-minimal p-5 sm:p-7 md:p-8">
-                      <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-start">
-                        {/* Left Info & Story (7 cols) */}
-                        <div className="lg:col-span-7 space-y-4">
-                          <div className="flex flex-wrap items-center gap-2">
-                            <div className="w-7 h-7 rounded-md bg-zinc-100 flex items-center justify-center text-zinc-900 flex-shrink-0">
-                              <SolutionIcon name={study.iconName} className="w-3.5 h-3.5" />
-                            </div>
-                            <span className="text-[10px] font-mono text-zinc-700 bg-zinc-100 px-2 py-0.5 rounded">
-                              {study.industry}
-                            </span>
-                            <span className="text-[10px] font-mono text-zinc-500 border border-black/[0.06] px-2 py-0.5 rounded">
-                              {study.badge}
-                            </span>
-                            <div className="text-[11px] font-mono text-zinc-400 flex items-center gap-1 sm:ml-auto">
-                              <Clock className="w-3 h-3 text-zinc-400" />
-                              <span>{study.duration}</span>
-                            </div>
-                          </div>
-
-                          <div>
-                            <h3 className="text-base sm:text-xl font-bold text-zinc-900 mb-1">
-                              {study.title}
-                            </h3>
-                            <div className="text-xs font-mono text-zinc-500">
-                              Client: {study.client}
-                            </div>
-                          </div>
-
-                          <div className="space-y-2 text-xs text-zinc-600 leading-relaxed">
-                            <div>
-                              <span className="font-semibold text-zinc-900 block mb-0.5">Challenge:</span>
-                              <p>{study.challenge}</p>
-                            </div>
-                            <div>
-                              <span className="font-semibold text-zinc-900 block mb-0.5">Solution:</span>
-                              <p>{study.solution}</p>
-                            </div>
-                          </div>
-
-                          {/* Tech Stack Tags */}
-                          <div>
-                            <div className="text-[10px] font-mono uppercase tracking-wider text-zinc-400 mb-1.5">
-                              Technologies:
-                            </div>
-                            <div className="flex flex-wrap gap-1">
-                              {study.technologies.map((tech, tIdx) => (
-                                <span
-                                  key={tIdx}
-                                  className="text-[11px] font-mono px-2 py-0.5 rounded bg-zinc-100 text-zinc-700 border border-black/[0.04]"
-                                >
-                                  {tech}
-                                </span>
-                              ))}
-                            </div>
-                          </div>
-                        </div>
-
-                        {/* Right Results Matrix (5 cols) */}
-                        <div className="lg:col-span-5 bg-[#0f0f12] text-white rounded-xl p-5 sm:p-6 border border-white/[0.08] shadow-sm">
-                          <div className="text-[11px] font-mono tracking-wider uppercase text-zinc-400 mb-3 sm:mb-4 flex items-center gap-1.5">
-                            <Sparkles className="w-3.5 h-3.5 text-orange-400" />
-                            <span>Quantified Business Results</span>
-                          </div>
-
-                          <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 mb-5">
-                            {study.results.map((res, rIdx) => (
-                              <div key={rIdx} className="bg-white/[0.04] rounded-lg p-3 border border-white/[0.06]">
-                                <div className="text-xl sm:text-2xl font-bold font-mono text-zinc-100 tabular-nums mb-0.5">
-                                  {res.metric}
-                                </div>
-                                <div className="text-[11px] text-zinc-400 leading-tight">
-                                  {res.label}
-                                </div>
-                              </div>
-                            ))}
-                          </div>
-
-                          <Link
-                            href="/contact"
-                            className="inline-flex items-center justify-between w-full p-2.5 rounded-lg bg-white/[0.06] border border-white/[0.1] hover:bg-white hover:text-black text-xs font-medium transition-all group"
-                          >
-                            <span>Request Architecture Blueprint</span>
-                            <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5" />
-                          </Link>
-                        </div>
-                      </div>
-                    </div>
-                  </motion.div>
-                ))}
-              </div>
-            )}
-          </AnimatePresence>
-        </div>
-      </section>
-
-      {/* 4. Bottom CTA */}
-      <section className="py-16 md:py-24 bg-[#0c0c0e] text-white">
-        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <span className="text-[11px] font-mono tracking-widest uppercase text-zinc-400 mb-3 block">
-            ■ CUSTOM PILOT INITIATIVE
-          </span>
-
-          <h2 className="display-2 text-white mb-4">
-            Have a Specific High-Stakes Use Case?
-          </h2>
-
-          <p className="body-lg text-zinc-400 mb-8 max-w-xl mx-auto">
-            Let’s discuss your technical parameters, performance benchmarks, and deployment timeline under standard non-disclosure terms.
-          </p>
-
-          <div className="flex flex-col sm:flex-row gap-3 justify-center items-stretch sm:items-center">
-            <Button
-              href="/contact"
-              size="lg"
-              variant="secondary"
-              className="w-full sm:w-auto bg-white text-zinc-950 hover:bg-zinc-100 font-semibold"
+    <>
+      <PageHeader
+        title="Case studies, published with permission."
+        intro="We publish a case study only once a project has shipped and the client has agreed to share it. Until then, here is what we build and how we work."
+      />
+      <section aria-labelledby="meanwhile-title" className="border-t border-line py-20 sm:py-28">
+        <div className="mx-auto grid max-w-6xl gap-12 px-5 sm:px-8 lg:grid-cols-[minmax(0,0.85fr)_minmax(0,1.35fr)] lg:gap-16">
+          <Reveal>
+            <h2
+              id="meanwhile-title"
+              className="text-[clamp(2rem,4.4vw,3.25rem)] font-semibold leading-[1.04] tracking-[-0.03em] text-ink"
             >
-              Start an Architectural Pilot
-            </Button>
-            <Button href="/services" size="lg" variant="outline-white" className="w-full sm:w-auto">
-              Explore Solutions
-            </Button>
-          </div>
+              What we can build for you.
+            </h2>
+            <p className="mt-5 max-w-sm text-lg leading-relaxed text-ink-muted">
+              Tell us about your project and we will explain how we would approach it.
+            </p>
+          </Reveal>
+          <ul className="border-t border-line">
+            {services.map((s) => (
+              <li key={s.id} className="border-b border-line">
+                <Link href={`/services#${s.id}`} className="group grid grid-cols-[1fr_auto] items-center gap-x-6 gap-y-1 py-6">
+                  <span className="text-xl font-medium tracking-[-0.015em] text-ink">{s.name}</span>
+                  <ArrowUpRight
+                    className="row-span-2 h-5 w-5 text-ink-faint transition-[transform,color] duration-300 ease-[var(--ease-out)] group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-ink"
+                    aria-hidden="true"
+                  />
+                  <span className="text-[0.9375rem] leading-relaxed text-ink-muted">{s.summary}</span>
+                </Link>
+              </li>
+            ))}
+          </ul>
         </div>
       </section>
+      <Process />
+    </>
+  );
+}
+
+function IllustrativeCaseStudies() {
+  return (
+    <>
+      <PageHeader
+        title="What an engagement can look like."
+        intro="Four example scenarios that show the shape of our work: the problem, the approach, the team and the kind of result we aim for. They are illustrations, not client results."
+      />
+      <section aria-label="Example engagements" className="border-t border-line pb-24 pt-14 sm:pb-32 sm:pt-16">
+        <div className="mx-auto max-w-6xl px-5 sm:px-8">
+          <CaseStudyList />
+        </div>
+      </section>
+    </>
+  );
+}
+
+export default function CaseStudiesPage() {
+  return (
+    <main id="main">
+      {contentVariant === 'illustrative' ? <IllustrativeCaseStudies /> : <LeanCaseStudies />}
+      <ClosingCta />
     </main>
   );
 }
