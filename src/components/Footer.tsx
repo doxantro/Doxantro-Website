@@ -7,7 +7,6 @@ const companyLinks = [
   { name: 'How we work', href: '/#process' },
   { name: 'Case studies', href: '/case-studies' },
   { name: 'Field notes', href: '/blog' },
-  { name: 'Careers', href: '/careers' },
   { name: 'Contact', href: '/contact' },
 ];
 
