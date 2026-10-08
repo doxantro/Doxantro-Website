@@ -22,12 +22,22 @@ const siteDescription =
   'Doxantro designs, builds and runs production software, data infrastructure and AI integrations for businesses and public organisations.';
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://www.doxantro.com'),
+  metadataBase: new URL('https://doxantro.com'),
   title: {
     default: siteTitle,
     template: '%s · Doxantro',
   },
   description: siteDescription,
+  keywords: [
+    'Doxantro',
+    'Doxantro Technologies',
+    'AI engineering agency',
+    'software engineering company',
+    'production AI systems',
+    'data infrastructure engineering',
+    'machine learning integration',
+    'enterprise cloud architecture',
+  ],
   alternates: {
     canonical: '/',
   },
@@ -35,7 +45,7 @@ export const metadata: Metadata = {
     type: 'website',
     locale: 'en_GB',
     url: '/',
-    siteName: 'Doxantro',
+    siteName: 'Doxantro Technologies',
     title: siteTitle,
     description: siteDescription,
     images: [
@@ -43,7 +53,7 @@ export const metadata: Metadata = {
         url: '/doxantro-social-card.png?v=1',
         width: 1200,
         height: 630,
-        alt: 'Doxantro — Think, build and solve',
+        alt: 'Doxantro Technologies — Software, data and AI engineering',
       },
     ],
   },
@@ -54,15 +64,46 @@ export const metadata: Metadata = {
     images: [
       {
         url: '/doxantro-social-card.png?v=1',
-        alt: 'Doxantro — Think, build and solve',
+        alt: 'Doxantro Technologies — Software, data and AI engineering',
       },
     ],
   },
 };
 
+const organizationJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'ProfessionalService',
+  name: 'Doxantro',
+  legalName: 'Doxantro Technologies',
+  alternateName: ['Doxantro Technologies', 'Doxantro Sys'],
+  url: 'https://doxantro.com',
+  logo: 'https://doxantro.com/doxantro-logo.png',
+  image: 'https://doxantro.com/doxantro-social-card.png',
+  description:
+    'Doxantro Technologies designs, builds and runs production software, data infrastructure and AI integrations for businesses and public organisations.',
+  email: 'info@doxantro.com',
+  sameAs: [
+    'https://github.com/doxantro',
+    'https://www.linkedin.com/company/doxantro',
+  ],
+  serviceType: [
+    'Software Engineering',
+    'Artificial Intelligence Engineering',
+    'Data Infrastructure & Analytics',
+    'Machine Learning Integration',
+    'Cloud Architecture',
+  ],
+};
+
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en" className={`${host.variable} ${jetbrains.variable}`}>
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }}
+        />
+      </head>
       <body className="font-sans antialiased">
         <SmoothScroll />
         <a
