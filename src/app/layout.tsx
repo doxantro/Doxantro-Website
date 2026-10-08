@@ -17,7 +17,7 @@ const jetbrains = JetBrains_Mono({
   display: 'swap',
 });
 
-const siteTitle = 'Doxantro — Software, data and AI engineering';
+const siteTitle = 'Doxantro Technologies — Engineering the systems your business runs on';
 const siteDescription =
   'Doxantro designs, builds and runs production software, data infrastructure and AI integrations for businesses and public organisations.';
 
@@ -25,7 +25,7 @@ export const metadata: Metadata = {
   metadataBase: new URL('https://doxantro.com'),
   title: {
     default: siteTitle,
-    template: '%s · Doxantro',
+    template: '%s · Doxantro Technologies',
   },
   description: siteDescription,
   keywords: [
