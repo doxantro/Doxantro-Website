@@ -34,3 +34,23 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+
+### Contact form configuration
+
+The contact form sends email through Resend from the server route at `src/app/api/contact/route.ts`. No API key is stored in this repository and no local `.env` file is required for deployed environments.
+
+Before testing a Vercel deployment:
+
+1. Verify `doxantro.com` in Resend and make sure `info@doxantro.com` is allowed as a sender.
+2. In **Vercel → Project → Settings → Environment Variables**, create these as **Secret** values:
+
+   | Name | Value |
+   | --- | --- |
+   | `RESEND_API_KEY` | The Resend sending-only API key |
+   | `CONTACT_FROM_EMAIL` | `Doxantro Website <info@doxantro.com>` |
+   | `CONTACT_TO_EMAIL` | `info@doxantro.com` |
+
+3. Add all three values to **Preview** so collaborators can test `revamped-design`, and to **Production** for the live site.
+4. Redeploy after adding or changing a value. Existing deployments do not automatically receive newly added secrets.
+
+The API key is read only in server-side code. Never prefix it with `NEXT_PUBLIC_`.
