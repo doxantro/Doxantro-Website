@@ -99,6 +99,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
   return (
     <html lang="en" className={`${host.variable} ${jetbrains.variable}`}>
       <head>
+        <meta name="msvalidate.01" content="B1395932B95506107C61A073272FCB4A" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }}
