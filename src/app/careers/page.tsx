@@ -1,374 +1,146 @@
-import React from "react";
-import Link from "next/link";
+import type { Metadata } from 'next';
+import Link from 'next/link';
+import { ArrowUpRight } from 'lucide-react';
+import { careersPage, company, contentVariant, exampleRoles } from '../../content/site';
+import PageHeader from '../../components/site/PageHeader';
+import AccentLink from '../../components/site/AccentLink';
+import Reveal from '../../components/site/Reveal';
 
-const jobOpenings = [
-  {
-    title: "Senior AI Engineer",
-    department: "Engineering",
-    type: "Full-time",
-    location: "Remote / Hybrid",
-    experience: "5+ years",
-    description: "Lead the development of cutting-edge AI solutions across multiple industries, from concept to deployment.",
-    requirements: [
-      "Advanced degree in Computer Science, AI, or related field",
-      "Expertise in machine learning frameworks (TensorFlow, PyTorch)",
-      "Experience with large-scale AI systems and cloud platforms",
-      "Strong background in algorithm development and optimization"
-    ],
-    responsibilities: [
-      "Design and implement AI algorithms and models",
-      "Lead technical architecture decisions",
-      "Mentor junior engineers and conduct code reviews",
-      "Collaborate with cross-functional teams on project delivery"
-    ]
-  },
-  {
-    title: "AI Solutions Architect",
-    department: "Solutions",
-    type: "Full-time",
-    location: "Remote / Hybrid",
-    experience: "7+ years",
-    description: "Design comprehensive AI solutions for enterprise clients, ensuring scalability, performance, and business value.",
-    requirements: [
-      "Proven experience in enterprise AI solution design",
-      "Deep understanding of AI/ML technologies and platforms",
-      "Strong business acumen and client relationship skills",
-      "Experience with cloud architecture and deployment"
-    ],
-    responsibilities: [
-      "Lead solution design and architecture for client projects",
-      "Define technical requirements and implementation strategies",
-      "Work closely with clients to understand business needs",
-      "Ensure solutions meet performance and scalability requirements"
-    ]
-  },
-  {
-    title: "Data Scientist",
-    department: "Data Science",
-    type: "Full-time",
-    location: "Remote / Hybrid",
-    experience: "3+ years",
-    description: "Transform complex data into actionable insights and develop predictive models for business applications.",
-    requirements: [
-      "Degree in Statistics, Mathematics, or related field",
-      "Proficiency in Python, R, and SQL",
-      "Experience with statistical modeling and machine learning",
-      "Strong analytical and problem-solving skills"
-    ],
-    responsibilities: [
-      "Develop and implement machine learning models",
-      "Perform data analysis and create visualizations",
-      "Collaborate with engineering teams on model deployment",
-      "Communicate findings to stakeholders and clients"
-    ]
-  },
-  {
-    title: "AI Product Manager",
-    department: "Product",
-    type: "Full-time",
-    location: "Remote / Hybrid",
-    experience: "4+ years",
-    description: "Drive product strategy and development for our AI solutions, ensuring market fit and customer satisfaction.",
-    requirements: [
-      "Experience in AI/ML product management",
-      "Strong understanding of AI technologies and market trends",
-      "Excellent communication and stakeholder management skills",
-      "Background in B2B SaaS or enterprise software"
-    ],
-    responsibilities: [
-      "Define product vision and roadmap",
-      "Gather and prioritize customer requirements",
-      "Work with engineering teams on product development",
-      "Analyze market trends and competitive landscape"
-    ]
-  }
-];
+export const metadata: Metadata = {
+  title: 'Careers',
+  description: 'Work at Doxantro: engineers and domain specialists building software, data and AI systems people rely on.',
+};
 
-const benefits = [
-  {
-    icon: "🏠",
-    title: "Flexible Work",
-    description: "Remote-first culture with flexible hours and work arrangements"
-  },
-  {
-    icon: "💰",
-    title: "Competitive Salary",
-    description: "Above-market compensation with equity options and performance bonuses"
-  },
-  {
-    icon: "🏥",
-    title: "Health & Wellness",
-    description: "Comprehensive health insurance and wellness programs"
-  },
-  {
-    icon: "📚",
-    title: "Learning & Growth",
-    description: "Continuous learning opportunities, conferences, and skill development"
-  },
-  {
-    icon: "🎯",
-    title: "Impact",
-    description: "Work on cutting-edge AI solutions that transform industries"
-  },
-  {
-    icon: "🤝",
-    title: "Team Culture",
-    description: "Collaborative environment with passionate AI professionals"
-  }
-];
+// type=application tells the contact form to ask applicant questions instead of project ones.
+const applyHref = (subject: string) => `/contact?type=application&subject=${encodeURIComponent(subject)}`;
 
-const values = [
-  {
-    icon: "💡",
-    title: "Innovation",
-    description: "We push boundaries and explore new possibilities in AI technology"
-  },
-  {
-    icon: "🤝",
-    title: "Collaboration",
-    description: "We believe in the power of diverse teams working together"
-  },
-  {
-    icon: "🌱",
-    title: "Growth",
-    description: "We invest in our people's development and career advancement"
-  },
-  {
-    icon: "🎯",
-    title: "Excellence",
-    description: "We strive for the highest quality in everything we do"
-  }
-];
-
-export default function Careers() {
+function PrimaryLink({ href, children }: { href: string; children: React.ReactNode }) {
   return (
-    <main className="pt-32 pb-20">
-      {/* Hero Section */}
-      <section className="bg-gradient-to-br from-orange-50 to-white py-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h1 className="text-5xl md:text-6xl font-bold text-gray-900 mb-6">
-            Join Our Team
-          </h1>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Help us build the future of AI technology. Join a team of passionate innovators working to solve the world's most complex challenges.
-          </p>
-        </div>
-      </section>
+    <Link
+      href={href}
+      className="group inline-flex h-12 items-center justify-center gap-2 rounded-full bg-ink px-6 text-base font-medium text-paper transition-[transform,background-color] duration-200 hover:bg-black active:scale-[0.97]"
+    >
+      {children}
+      <ArrowUpRight
+        className="h-4 w-4 transition-transform duration-300 ease-[var(--ease-out)] group-hover:-translate-y-px group-hover:translate-x-px"
+        aria-hidden="true"
+      />
+    </Link>
+  );
+}
 
-      {/* Company Culture */}
-      <section className="py-20 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-gray-900 mb-6">
-              Why Work at Doxantro?
+export default function CareersPage() {
+  const showRoles = contentVariant === 'illustrative';
+
+  return (
+    <main id="main">
+      <PageHeader title={careersPage.title} intro={careersPage.intro}>
+        <AccentLink href={applyHref('Open application')}>Send an open application</AccentLink>
+      </PageHeader>
+
+      <section aria-labelledby="why-title" className="border-t border-line py-20 sm:py-28">
+        <div className="mx-auto max-w-6xl px-5 sm:px-8">
+          <Reveal className="max-w-2xl">
+            <h2
+              id="why-title"
+              className="text-[clamp(2rem,4.4vw,3.25rem)] font-semibold leading-[1.04] tracking-[-0.03em] text-ink"
+            >
+              What working here is like.
             </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              We're building more than just AI solutions - we're creating a culture of innovation, collaboration, and impact.
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
-            {values.map((value, index) => (
-              <div key={index} className="text-center">
-                <div className="w-16 h-16 bg-orange-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <div className="text-2xl">{value.icon}</div>
-                </div>
-                <h3 className="text-xl font-bold text-gray-900 mb-3">{value.title}</h3>
-                <p className="text-gray-600">{value.description}</p>
-              </div>
+          </Reveal>
+          <dl className="mt-12 grid gap-x-10 sm:grid-cols-2 lg:grid-cols-4">
+            {careersPage.why.map((item, i) => (
+              <Reveal key={item.name} delay={i * 70} className="border-t border-line py-7">
+                <dt className="text-xl font-medium tracking-[-0.015em] text-ink">{item.name}</dt>
+                <dd className="mt-2 text-[1.0625rem] leading-relaxed text-ink-muted">{item.body}</dd>
+              </Reveal>
             ))}
-          </div>
-
-          <div className="bg-gradient-to-br from-orange-100 to-orange-200 rounded-3xl p-8 md:p-12 text-center">
-            <h3 className="text-3xl font-bold text-gray-900 mb-6">
-              Our Mission
-            </h3>
-            <p className="text-xl text-gray-700 max-w-4xl mx-auto leading-relaxed">
-              At Doxantro Systems, we believe that human creativity combined with artificial intelligence can solve the world's most pressing challenges. 
-              We're not just building technology - we're building solutions that inspire hope and create positive change across industries and communities.
-            </p>
-          </div>
+          </dl>
         </div>
       </section>
 
-      {/* Benefits */}
-      <section className="py-20 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-gray-900 mb-6">
-              Benefits & Perks
+      <section id="roles" aria-labelledby="roles-title" className="scroll-mt-24 border-t border-line py-20 sm:py-28">
+        <div className="mx-auto grid max-w-6xl gap-12 px-5 sm:px-8 lg:grid-cols-[minmax(0,0.85fr)_minmax(0,1.35fr)] lg:gap-16">
+          <Reveal className="lg:sticky lg:top-28 lg:self-start">
+            <h2
+              id="roles-title"
+              className="text-[clamp(2rem,4.4vw,3.25rem)] font-semibold leading-[1.04] tracking-[-0.03em] text-ink"
+            >
+              {showRoles ? 'Roles we hire for.' : 'Open roles.'}
             </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              We take care of our team so you can focus on what matters most - building amazing AI solutions.
+            <p className="mt-5 max-w-sm text-lg leading-relaxed text-ink-muted">
+              {showRoles
+                ? 'The kinds of positions our projects need. Ask us which are open right now.'
+                : 'We post specific roles here when projects need them. An open application is always welcome.'}
             </p>
-          </div>
+          </Reveal>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {benefits.map((benefit, index) => (
-              <div key={index} className="bg-white rounded-2xl p-6 shadow-sm">
-                <div className="text-4xl mb-4">{benefit.icon}</div>
-                <h3 className="text-xl font-bold text-gray-900 mb-3">{benefit.title}</h3>
-                <p className="text-gray-600">{benefit.description}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Job Openings */}
-      <section className="py-20 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-gray-900 mb-6">
-              Open Positions
-            </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Ready to join our team? Explore our current openings and find the perfect role for your skills and passion.
-            </p>
-          </div>
-
-          <div className="space-y-8">
-            {jobOpenings.map((job, index) => (
-              <div key={index} className="bg-white border border-gray-200 rounded-2xl p-8 hover:shadow-lg transition-shadow">
-                <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between mb-6">
-                  <div>
-                    <h3 className="text-2xl font-bold text-gray-900 mb-2">{job.title}</h3>
-                    <div className="flex flex-wrap gap-3 mb-4">
-                      <span className="bg-orange-100 text-orange-800 px-3 py-1 rounded-full text-sm font-medium">
-                        {job.department}
-                      </span>
-                      <span className="bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm font-medium">
-                        {job.type}
-                      </span>
-                      <span className="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm font-medium">
-                        {job.location}
-                      </span>
-                      <span className="bg-purple-100 text-purple-800 px-3 py-1 rounded-full text-sm font-medium">
-                        {job.experience}
-                      </span>
-                    </div>
-                  </div>
+          {showRoles ? (
+            <ul className="border-t border-line">
+              {exampleRoles.map((role, i) => (
+                <Reveal as="li" key={role.title} delay={i * 60} className="border-b border-line">
                   <Link
-                    href="/contact"
-                    className="bg-orange-600 text-white px-6 py-3 rounded-full font-semibold hover:bg-orange-700 transition-colors whitespace-nowrap"
+                    href={applyHref(`Application for ${role.title}`)}
+                    className="group grid grid-cols-[1fr_auto] gap-x-6 gap-y-2 py-7"
                   >
-                    Apply Now
+                    <span className="text-2xl font-medium tracking-[-0.02em] text-ink">{role.title}</span>
+                    <ArrowUpRight
+                      className="row-span-3 mt-2 h-5 w-5 text-ink-faint transition-[transform,color] duration-300 ease-[var(--ease-out)] group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-ink"
+                      aria-hidden="true"
+                    />
+                    <span className="text-sm text-ink-faint">
+                      {role.team} · {role.experience} · Remote or hybrid
+                    </span>
+                    <span className="max-w-xl text-[1.0625rem] leading-relaxed text-ink-muted">{role.body}</span>
                   </Link>
-                </div>
-
-                <p className="text-gray-600 mb-6">{job.description}</p>
-
-                <div className="grid md:grid-cols-2 gap-6">
-                  <div>
-                    <h4 className="font-semibold text-gray-900 mb-3">Requirements</h4>
-                    <ul className="space-y-2">
-                      {job.requirements.map((req, idx) => (
-                        <li key={idx} className="flex items-start text-gray-600">
-                          <div className="w-2 h-2 bg-orange-600 rounded-full mr-3 mt-2 flex-shrink-0"></div>
-                          {req}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                  <div>
-                    <h4 className="font-semibold text-gray-900 mb-3">Responsibilities</h4>
-                    <ul className="space-y-2">
-                      {job.responsibilities.map((resp, idx) => (
-                        <li key={idx} className="flex items-start text-gray-600">
-                          <div className="w-2 h-2 bg-green-600 rounded-full mr-3 mt-2 flex-shrink-0"></div>
-                          {resp}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                </div>
+                </Reveal>
+              ))}
+            </ul>
+          ) : (
+            <Reveal className="flex flex-col items-start justify-between gap-8 rounded-2xl border border-line bg-surface p-8 sm:p-10">
+              <div>
+                <p className="text-2xl font-medium tracking-[-0.02em] text-ink">No listed openings right now.</p>
+                <p className="mt-3 max-w-md text-[1.0625rem] leading-relaxed text-ink-muted">
+                  Software, data and AI engineers, designers and domain specialists: tell us what you do best and we will
+                  reach out when there is a fit.
+                </p>
               </div>
-            ))}
-          </div>
+              <PrimaryLink href={applyHref('Open application')}>Send an open application</PrimaryLink>
+            </Reveal>
+          )}
         </div>
       </section>
 
-      {/* Application Process */}
-      <section className="py-20 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-gray-900 mb-6">
-              Our Application Process
+      <section aria-labelledby="hiring-title" className="border-t border-line py-20 sm:py-28">
+        <div className="mx-auto max-w-6xl px-5 sm:px-8">
+          <Reveal className="max-w-2xl">
+            <h2
+              id="hiring-title"
+              className="text-[clamp(2rem,4.4vw,3.25rem)] font-semibold leading-[1.04] tracking-[-0.03em] text-ink"
+            >
+              How hiring works.
             </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              We've streamlined our hiring process to make it simple and efficient for both candidates and our team.
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-4 gap-8">
-            <div className="text-center">
-              <div className="w-16 h-16 bg-orange-600 text-white rounded-full flex items-center justify-center mx-auto mb-4 text-2xl font-bold">
-                1
-              </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-3">Apply</h3>
-              <p className="text-gray-600">
-                Submit your application with resume and cover letter through our portal
-              </p>
-            </div>
-
-            <div className="text-center">
-              <div className="w-16 h-16 bg-orange-600 text-white rounded-full flex items-center justify-center mx-auto mb-4 text-2xl font-bold">
-                2
-              </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-3">Review</h3>
-              <p className="text-gray-600">
-                Our team reviews your application and reaches out within 48 hours
-              </p>
-            </div>
-
-            <div className="text-center">
-              <div className="w-16 h-16 bg-orange-600 text-white rounded-full flex items-center justify-center mx-auto mb-4 text-2xl font-bold">
-                3
-              </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-3">Interview</h3>
-              <p className="text-gray-600">
-                Technical assessment and team interviews to ensure mutual fit
-              </p>
-            </div>
-
-            <div className="text-center">
-              <div className="w-16 h-16 bg-orange-600 text-white rounded-full flex items-center justify-center mx-auto mb-4 text-2xl font-bold">
-                4
-              </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-3">Offer</h3>
-              <p className="text-gray-600">
-                Welcome to the team! We'll help you get started on your journey
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* CTA Section */}
-      <section className="py-20 bg-orange-600">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl font-bold text-white mb-6">
-            Don't See the Right Role?
-          </h2>
-          <p className="text-xl text-orange-100 mb-8">
-            We're always looking for talented individuals. Send us your resume and let's discuss how you can contribute to our mission.
+          </Reveal>
+          <ol className="mt-12 grid gap-10 md:grid-cols-4 md:gap-8">
+            {careersPage.hiring.map((stage, i) => (
+              <Reveal as="li" key={stage.step} delay={i * 80}>
+                <span className="flex h-9 w-9 items-center justify-center rounded-full border border-line-strong font-mono text-sm text-ink tabular-nums">
+                  {i + 1}
+                </span>
+                <h3 className="mt-6 text-2xl font-medium tracking-[-0.02em] text-ink">{stage.step}</h3>
+                <p className="mt-3 text-[1.0625rem] leading-relaxed text-ink-muted">{stage.body}</p>
+              </Reveal>
+            ))}
+          </ol>
+          <p className="mt-14 text-[0.9375rem] text-ink-muted">
+            Questions first? Write to{' '}
+            <a href={`mailto:${company.email}`} className="font-medium text-ink underline decoration-line-strong underline-offset-4 hover:decoration-ink">
+              {company.email}
+            </a>
+            .
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link
-              href="/contact"
-              className="inline-block bg-white text-orange-600 px-8 py-3 rounded-full font-semibold hover:bg-gray-100 transition-colors"
-            >
-              Send Your Resume
-            </Link>
-            <Link
-              href="/about"
-              className="inline-block border-2 border-white text-white px-8 py-3 rounded-full font-semibold hover:bg-white hover:text-orange-600 transition-colors"
-            >
-              Learn More About Us
-            </Link>
-          </div>
         </div>
       </section>
     </main>
   );
-} 
+}

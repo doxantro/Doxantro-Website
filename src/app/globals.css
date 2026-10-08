@@ -1,26 +1,266 @@
 @import "tailwindcss";
 
+/* ------------------------------------------------------------------
+   Design tokens. Every colour on the site comes from here.
+   Accent is the logo ring's orange, oklch(0.718 0.158 49.5); the
+   whole accent ramp holds that hue. Every text pair is measured ≥4.5:1.
+   ------------------------------------------------------------------ */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --paper: #f6f5f1;
+  --surface: #fdfdfa;
+  --ink: #141412;
+  --ink-muted: #5d5a52;
+  --ink-faint: #726f66;
+  --line: rgba(20, 20, 18, 0.09);
+  --line-strong: rgba(20, 20, 18, 0.16);
+  /* Form-field boundaries need 3:1 against white and paper. */
+  --field-border: #908d85;
+
+  --accent: #f0823d;
+  --accent-hover: #e3762f;
+  --accent-soft: #fde6da;
+  --accent-ink: #a55116;
+  /* The ring's yellow end, used only for the call-to-action glow. */
+  --accent-glow: #f7bf1a;
+
+  --night: var(--ink);
+  --night-raised: #1f1f1d;
+  --night-line: rgba(236, 235, 230, 0.1);
+  --night-ink: #ecebe6;
+  --night-muted: #9c998f;
+
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-paper: var(--paper);
+  --color-surface: var(--surface);
+  --color-ink: var(--ink);
+  --color-ink-muted: var(--ink-muted);
+  --color-ink-faint: var(--ink-faint);
+  --color-line: var(--line);
+  --color-line-strong: var(--line-strong);
+  --color-field-border: var(--field-border);
+  --color-accent: var(--accent);
+  --color-accent-soft: var(--accent-soft);
+  --color-accent-hover: var(--accent-hover);
+  --color-accent-ink: var(--accent-ink);
+  --color-accent-glow: var(--accent-glow);
+  --color-night: var(--night);
+  --color-night-raised: var(--night-raised);
+  --color-night-line: var(--night-line);
+  --color-night-ink: var(--night-ink);
+  --color-night-muted: var(--night-muted);
+
+  --font-sans: var(--font-host);
+  --font-mono: var(--font-jetbrains);
+
+  --ease-out-expo: var(--ease-out);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+* {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  background: var(--paper);
+  color-scheme: light;
+  scrollbar-color: var(--line-strong) transparent;
+}
+
+/* Lenis owns smooth scrolling; native smooth-scroll would fight it. */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+.lenis.lenis-stopped {
+  overflow: hidden;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-host), ui-sans-serif, system-ui, sans-serif;
+  font-feature-settings: "ss01", "cv11";
+  letter-spacing: -0.006em;
+  overflow-x: clip;
+  min-width: 320px;
+}
+
+::selection {
+  background: var(--accent);
+  color: var(--ink);
+}
+
+/* Focus ring colour follows the surface so it always clears 3:1. */
+:root {
+  --focus-ring: var(--accent-ink);
+}
+.bg-night,
+[data-nav-theme="dark"] {
+  --focus-ring: var(--accent);
+}
+.bg-accent {
+  --focus-ring: var(--ink);
+}
+
+:focus-visible {
+  outline: 2px solid var(--focus-ring);
+  outline-offset: 3px;
+  border-radius: 6px;
+  scroll-margin-top: 7rem;
+}
+
+a {
+  text-underline-offset: 0.2em;
+  text-decoration-thickness: 1px;
+}
+
+h1,
+h2,
+h3 {
+  text-wrap: balance;
+}
+
+p {
+  text-wrap: pretty;
+}
+
+/* Collapsible rows animate from 0fr to 1fr so height never needs measuring. */
+.collapse-rows {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 280ms var(--ease-out);
+}
+.collapse-rows[data-open="true"] {
+  grid-template-rows: 1fr;
+}
+.collapse-rows > * {
+  min-height: 0;
+  overflow: hidden;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-delay: 0s !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* ------------------------------------------------------------------
+   Home page motion. CSS-driven so content renders before hydration.
+   ------------------------------------------------------------------ */
+
+/* Hero entrance: the one orchestrated moment on the page. */
+@keyframes rise-in {
+  from { transform: translateY(105%); }
+  to { transform: translateY(0); }
+}
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(14px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes fade-up-sm {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes unblur {
+  from { opacity: 0; filter: blur(4px); }
+  to { opacity: 1; filter: blur(0); }
+}
+.hero-line {
+  display: block;
+  overflow: hidden;
+  padding-bottom: 0.08em;
+  margin-bottom: -0.08em;
+}
+.hero-line > span {
+  display: block;
+  animation: rise-in 1s var(--ease-out) both;
+}
+.hero-line:nth-child(2) > span { animation-delay: 90ms; }
+.hero-fade { animation: fade-up 0.9s var(--ease-out) both; }
+.hero-code { animation: unblur 1s var(--ease-out) 150ms both; }
+
+/* Slow upward drift of the build log behind the hero. */
+@keyframes log-drift {
+  from { transform: translateY(0); }
+  to { transform: translateY(-50%); }
+}
+.log-drift { animation: log-drift 90s linear infinite; }
+
+/* Scroll reveal. Visible by default; only hidden once JS confirms it is off-screen. */
+.reveal {
+  transition: opacity 0.6s var(--ease-out), transform 0.6s var(--ease-out);
+}
+.reveal[data-state="hidden"] {
+  opacity: 0;
+  transform: translateY(12px);
+}
+
+/* Before → after rows resolve as they reach the middle of the viewport. */
+.fix-row .before-text {
+  /* A 1px stroke drawn per line, so wrapped text strikes cleanly on every line. */
+  background-image: linear-gradient(currentColor, currentColor);
+  background-repeat: no-repeat;
+  background-position: 0 58%;
+  background-size: 0% 1px;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+  transition: background-size 0.8s var(--ease-out) 0.05s, color 0.6s var(--ease-out);
+}
+.fix-row .after-text {
+  transition: opacity 0.7s var(--ease-out) 0.15s, transform 0.7s var(--ease-out) 0.15s;
+}
+/* Only rows that JavaScript has marked as waiting are dimmed, so the text
+   stays readable if scripts never run. */
+.fix-row[data-done="false"] .after-text {
+  opacity: 0.32;
+  transform: translateX(-6px);
+}
+.fix-row .fix-dot {
+  transition: background-color 0.5s var(--ease-out) 0.2s, box-shadow 0.5s var(--ease-out) 0.2s;
+}
+.fix-row[data-done="true"] .before-text { color: var(--night-muted); }
+.fix-row[data-done="true"] .before-text { background-size: 100% 1px; }
+.fix-row[data-done="true"] .after-text { opacity: 1; transform: none; }
+.fix-row[data-done="true"] .fix-dot {
+  background-color: var(--accent);
+  box-shadow: 0 0 0 4px color-mix(in oklab, var(--accent) 22%, transparent);
+}
+
+/* Process timeline rule: drawn by default, only retracted while its Reveal
+   is waiting off-screen, so it still shows if JavaScript never runs. */
+.draw-x {
+  transform-origin: left;
+  transition: transform 0.9s var(--ease-out);
+}
+[data-state="hidden"] .draw-x {
+  transform: scaleX(0);
+}
+
+/* The hero log pauses while off-screen (see HeroLog). */
+.log-drift[data-paused="true"] {
+  animation-play-state: paused;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-line > span,
+  .hero-fade,
+  .hero-code,
+  .log-drift { animation: none !important; }
+  .reveal[data-state="hidden"] { opacity: 1; transform: none; }
+  .fix-row[data-done="false"] .after-text { opacity: 1; transform: none; }
+  [data-state="hidden"] .draw-x { transform: none; }
 }

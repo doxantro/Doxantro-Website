@@ -1,206 +1,133 @@
-import React from "react";
+import type { Metadata } from 'next';
+import { aboutPage, company, teamGroups, values } from '../../content/site';
+import PageHeader from '../../components/site/PageHeader';
+import Reveal from '../../components/site/Reveal';
+import ClosingCta from '../../components/home/ClosingCta';
 
-export default function About() {
+export const metadata: Metadata = {
+  title: 'About',
+  description:
+    'Doxantro builds software, data and AI systems that serve the people who use them. Our story, mission, vision and values.',
+};
+
+// The mantra's three verbs, each tied to a stage of the work.
+const mantraParts = [
+  { word: 'Think.', body: 'Understand the operation, the data and the people before writing code.' },
+  { word: 'Build.', body: 'Ship working software in small steps that people can see and steer.' },
+  { word: 'Solve.', body: 'Measure whether it fixed the problem, then keep it running.' },
+];
+
+export default function AboutPage() {
   return (
-    <main className="pt-32 pb-20">
-      {/* Hero Section */}
-      <section className="bg-gradient-to-br from-orange-50 to-white py-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h1 className="text-5xl md:text-6xl font-bold text-gray-900 mb-6">
-            About Doxantro Systems
-          </h1>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            We are a technology startup that believes in the power of human creativity combined with artificial intelligence to solve the world&apos;s most pressing challenges.
-          </p>
+    <main id="main">
+      <PageHeader title={aboutPage.title} intro={aboutPage.intro} />
+
+      <section aria-labelledby="story-title" className="border-t border-line py-20 sm:py-28">
+        <div className="mx-auto grid max-w-6xl gap-10 px-5 sm:px-8 lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)] lg:gap-16">
+          <Reveal>
+            <h2
+              id="story-title"
+              className="text-[clamp(2rem,4.4vw,3.25rem)] font-semibold leading-[1.04] tracking-[-0.03em] text-ink"
+            >
+              Why we started.
+            </h2>
+          </Reveal>
+          <Reveal className="space-y-6">
+            {aboutPage.story.map((p) => (
+              <p key={p} className="max-w-[60ch] text-xl leading-relaxed text-ink-muted">
+                {p}
+              </p>
+            ))}
+          </Reveal>
         </div>
       </section>
 
-      {/* Company Story */}
-      <section className="py-20 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <div>
-              <h2 className="text-3xl font-bold text-gray-900 mb-6">Our Story</h2>
-              <p className="text-lg text-gray-600 mb-6 leading-relaxed">
-                Founded with a vision to bridge the gap between human ingenuity and artificial intelligence, Doxantro Systems emerged from the belief that technology should serve humanity, not replace it.
+      {/* Mission and vision as two large statements, not cards. */}
+      <section aria-label="Mission and vision" className="border-t border-line py-20 sm:py-28">
+        <div className="mx-auto grid max-w-6xl gap-14 px-5 sm:px-8 md:grid-cols-2 md:gap-16">
+          {[
+            { label: 'Mission', text: aboutPage.mission },
+            { label: 'Vision', text: aboutPage.vision },
+          ].map((item, i) => (
+            <Reveal key={item.label} delay={i * 60}>
+              <h2 className="text-sm text-accent-ink">{item.label}</h2>
+              <p className="mt-4 text-[clamp(1.5rem,2.6vw,2rem)] font-medium leading-[1.25] tracking-[-0.02em] text-ink">
+                {item.text}
               </p>
-              <p className="text-lg text-gray-600 mb-6 leading-relaxed">
-                Our journey began when we recognized that many organizations struggled to harness the full potential of AI due to complex implementations and lack of industry-specific expertise.
-              </p>
-              <p className="text-lg text-gray-600 leading-relaxed">
-                Today, we&apos;re proud to be at the forefront of AI innovation, helping businesses across diverse sectors transform their operations and achieve unprecedented growth.
-              </p>
-            </div>
-            <div className="relative">
-              <div className="bg-gradient-to-br from-orange-100 to-orange-200 rounded-3xl p-8 text-center">
-                <div className="text-6xl mb-4">🌟</div>
-                <h3 className="text-2xl font-bold text-gray-900 mb-2">Innovation Meets Purpose</h3>
-                <p className="text-gray-700">
-                  Every solution we create is designed with a purpose - to make technology work for people, not against them.
-                </p>
-              </div>
-            </div>
+            </Reveal>
+          ))}
+        </div>
+      </section>
+
+      <section aria-labelledby="mantra-title" className="bg-paper px-3 sm:px-5">
+      <div data-nav-theme="dark" className="mx-auto max-w-[90rem] rounded-[28px] bg-night py-24 sm:py-32 text-night-ink">
+          <div className="mx-auto max-w-6xl px-5 sm:px-8">
+            <Reveal>
+              <h2 id="mantra-title" className="sr-only">
+                Our mantra: {company.mantra}
+              </h2>
+              <p className="max-w-md text-lg leading-relaxed text-night-muted">{aboutPage.mantraBody}</p>
+            </Reveal>
+            <ol className="mt-14 grid gap-10 md:grid-cols-3 md:gap-8">
+              {mantraParts.map((part, i) => (
+                <Reveal as="li" key={part.word} delay={i * 60}>
+                  <p className="text-[clamp(3rem,7vw,5.5rem)] font-semibold leading-none tracking-[-0.04em]">
+                    <span className={i === mantraParts.length - 1 ? 'text-accent' : ''}>{part.word}</span>
+                  </p>
+                  <p className="mt-5 max-w-xs text-[1.0625rem] leading-relaxed text-night-muted">{part.body}</p>
+                </Reveal>
+              ))}
+            </ol>
           </div>
+      </div>
+    </section>
+
+      <section aria-labelledby="values-title" className="py-24 sm:py-32">
+        <div className="mx-auto max-w-6xl px-5 sm:px-8">
+          <Reveal className="max-w-2xl">
+            <h2
+              id="values-title"
+              className="text-[clamp(2rem,4.4vw,3.25rem)] font-semibold leading-[1.04] tracking-[-0.03em] text-ink"
+            >
+              What we hold ourselves to.
+            </h2>
+          </Reveal>
+          <dl className="mt-14 grid gap-x-10 sm:grid-cols-2 lg:grid-cols-3">
+            {values.map((v, i) => (
+              <Reveal key={v.name} delay={(i % 3) * 60} className="border-t border-line py-7">
+                <dt className="text-xl font-medium tracking-[-0.015em] text-ink">{v.name}</dt>
+                <dd className="mt-2 text-[1.0625rem] leading-relaxed text-ink-muted">{v.body}</dd>
+              </Reveal>
+            ))}
+          </dl>
         </div>
       </section>
 
-      {/* Mission & Vision */}
-      <section className="py-20 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid md:grid-cols-2 gap-12">
-            <div className="bg-white rounded-2xl p-8 shadow-sm">
-              <div className="text-4xl mb-4">🎯</div>
-              <h3 className="text-2xl font-bold text-gray-900 mb-4">Our Mission</h3>
-              <p className="text-gray-600 leading-relaxed">
-                To empower organizations with intelligent AI solutions that drive innovation, efficiency, and sustainable growth while maintaining the highest standards of ethical technology development.
-              </p>
-            </div>
-            <div className="bg-white rounded-2xl p-8 shadow-sm">
-              <div className="text-4xl mb-4">🔮</div>
-              <h3 className="text-2xl font-bold text-gray-900 mb-4">Our Vision</h3>
-              <p className="text-gray-600 leading-relaxed">
-                To be the leading force in democratizing AI technology, making advanced solutions accessible to businesses of all sizes and creating a future where human creativity and artificial intelligence work in perfect harmony.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Core Values */}
-      <section className="py-20 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-gray-900 mb-6">Our Core Values</h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              The principles that guide everything we do at Doxantro Systems
+      <section aria-labelledby="team-title" className="border-t border-line bg-surface py-24 sm:py-32">
+        <div className="mx-auto grid max-w-6xl gap-12 px-5 sm:px-8 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.3fr)] lg:gap-16">
+          <Reveal>
+            <h2
+              id="team-title"
+              className="text-[clamp(2rem,4.4vw,3.25rem)] font-semibold leading-[1.04] tracking-[-0.03em] text-ink"
+            >
+              The people behind the work.
+            </h2>
+            <p className="mt-5 max-w-sm text-lg leading-relaxed text-ink-muted">
+              Each engagement brings together the three kinds of people it needs.
             </p>
-          </div>
-          
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <div className="text-center">
-              <div className="w-16 h-16 bg-orange-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                <div className="text-2xl">💡</div>
-              </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-3">Innovation First</h3>
-              <p className="text-gray-600">
-                We constantly push boundaries and explore new possibilities in AI technology to deliver cutting-edge solutions.
-              </p>
-            </div>
-            
-            <div className="text-center">
-              <div className="w-16 h-16 bg-orange-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                <div className="text-2xl">🤝</div>
-              </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-3">Client Partnership</h3>
-              <p className="text-gray-600">
-                We believe in building long-term relationships with our clients, understanding their needs deeply and delivering solutions that exceed expectations.
-              </p>
-            </div>
-            
-            <div className="text-center">
-              <div className="w-16 h-16 bg-orange-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                <div className="text-2xl">🌱</div>
-              </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-3">Sustainable Growth</h3>
-              <p className="text-gray-600">
-                We're committed to creating solutions that not only drive immediate results but also ensure long-term success and scalability.
-              </p>
-            </div>
-            
-            <div className="text-center">
-              <div className="w-16 h-16 bg-orange-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                <div className="text-2xl">🔒</div>
-              </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-3">Ethical AI</h3>
-              <p className="text-gray-600">
-                We develop AI solutions with responsibility, transparency, and fairness at the core, ensuring our technology benefits society.
-              </p>
-            </div>
-            
-            <div className="text-center">
-              <div className="w-16 h-16 bg-orange-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                <div className="text-2xl">🚀</div>
-              </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-3">Excellence</h3>
-              <p className="text-gray-600">
-                We strive for excellence in every project, maintaining the highest quality standards and delivering exceptional results.
-              </p>
-            </div>
-            
-            <div className="text-center">
-              <div className="w-16 h-16 bg-orange-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                <div className="text-2xl">🌍</div>
-              </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-3">Global Impact</h3>
-              <p className="text-gray-600">
-                We&apos;re committed to creating positive change across industries and communities worldwide through innovative AI solutions.
-              </p>
-            </div>
-          </div>
+          </Reveal>
+          <ul className="border-t border-line">
+            {teamGroups.map((g) => (
+              <li key={g.name} className="grid gap-1 border-b border-line py-6 sm:grid-cols-[12rem_1fr] sm:gap-6">
+                <span className="text-xl font-medium tracking-[-0.015em] text-ink">{g.name}</span>
+                <span className="text-[1.0625rem] leading-relaxed text-ink-muted">{g.body}</span>
+              </li>
+            ))}
+          </ul>
         </div>
       </section>
 
-      {/* Team Section */}
-      <section className="py-20 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-gray-900 mb-6">Our Team</h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Meet the passionate professionals behind Doxantro Systems
-            </p>
-          </div>
-          
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <div className="bg-white rounded-2xl p-6 text-center shadow-sm">
-              <div className="w-24 h-24 bg-orange-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                <div className="text-3xl">👨‍💼</div>
-              </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-2">Leadership Team</h3>
-              <p className="text-gray-600">
-                Experienced executives with decades of combined experience in technology, AI, and business transformation.
-              </p>
-            </div>
-            
-            <div className="bg-white rounded-2xl p-6 text-center shadow-sm">
-              <div className="w-24 h-24 bg-orange-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                <div className="text-3xl">👩‍💻</div>
-              </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-2">AI Engineers</h3>
-              <p className="text-gray-600">
-                Skilled professionals specializing in machine learning, data science, and AI algorithm development.
-              </p>
-            </div>
-            
-            <div className="bg-white rounded-2xl p-6 text-center shadow-sm">
-              <div className="w-24 h-24 bg-orange-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                <div className="text-3xl">👨‍🔬</div>
-              </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-2">Domain Experts</h3>
-              <p className="text-gray-600">
-                Industry specialists with deep knowledge of finance, healthcare, agriculture, and other sectors we serve.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* CTA Section */}
-      <section className="py-20 bg-orange-600">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl font-bold text-white mb-6">
-            Ready to Work With Us?
-          </h2>
-          <p className="text-xl text-orange-100 mb-8">
-            Let&apos;s discuss how our AI solutions can transform your business
-          </p>
-          <a
-            href="/contact"
-            className="inline-block bg-white text-orange-600 px-8 py-3 rounded-full font-semibold hover:bg-gray-100 transition-colors"
-          >
-            Get Started Today
-          </a>
-        </div>
-      </section>
+      <ClosingCta />
     </main>
   );
-} 
+}
