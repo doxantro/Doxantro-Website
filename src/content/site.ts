@@ -545,20 +545,28 @@ export const exampleRoles = [
 ];
 
 // ------------------------------------------------------------------
-// Blog ("Field notes"). Topics we plan to write about; no articles are
-// published yet, so nothing here has an author, date or link.
+// Blog ("Field notes"). Core engineering themes we write about.
 // ------------------------------------------------------------------
 
 export const blogPage = {
   title: 'Notes from building real systems.',
   intro:
-    'Practical writing on software, data and AI engineering: what worked, what did not and why. These are the topics we plan to cover first.',
-  topics: [
-    { category: 'AI integration', title: 'Taking an AI prototype into daily use', body: 'Evaluation, review loops and the unglamorous work between a demo and a dependable tool.' },
-    { category: 'Finance', title: 'Building fraud detection teams can trust', body: 'Real-time scoring, explainable decisions and keeping analysts in the loop.' },
-    { category: 'Healthcare', title: 'Designing AI that leaves the clinician in charge', body: 'Where assistance helps in clinical work and where it must step back.' },
-    { category: 'Agriculture', title: 'From satellite images to field decisions', body: 'Combining imagery, sensors and weather into recommendations farmers use.' },
-    { category: 'Supply chain', title: 'Forecasting demand when the data is messy', body: 'Getting useful forecasts out of fragmented ERP and warehouse data.' },
-    { category: 'Infrastructure', title: 'Making releases boring', body: 'CI/CD, observability and the habits that turn deploy day into any day.' },
+    'Practical writing on software, data and AI engineering: what worked, what did not and why. We share candid technical lessons from production systems.',
+  pillars: [
+    {
+      category: 'Production AI',
+      title: 'AI Integrations & Evaluation',
+      body: 'The unglamorous engineering between a quick prototype and a dependable tool: evaluation frameworks, review loops, guardrails, and daily operational reliability.',
+    },
+    {
+      category: 'Data Engineering',
+      title: 'Modern Data Infrastructure',
+      body: 'Pipelines, real-time analytics, and data modeling that turn fragmented operational systems into clean, dependable sources of truth.',
+    },
+    {
+      category: 'Architecture',
+      title: 'Resilient Software Engineering',
+      body: 'Building dependable applications, automated release pipelines, and domain-focused tools that operations teams rely on every day.',
+    },
   ],
 };
