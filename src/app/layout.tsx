@@ -17,13 +17,47 @@ const jetbrains = JetBrains_Mono({
   display: 'swap',
 });
 
+const siteTitle = 'Doxantro — Software, data and AI engineering';
+const siteDescription =
+  'Doxantro designs, builds and runs production software, data infrastructure and AI integrations for businesses and public organisations.';
+
 export const metadata: Metadata = {
+  metadataBase: new URL('https://www.doxantro.com'),
   title: {
-    default: 'Doxantro — Software, data and AI engineering',
+    default: siteTitle,
     template: '%s · Doxantro',
   },
-  description:
-    'Doxantro designs, builds and runs production software, data infrastructure and AI integrations for businesses and public organisations.',
+  description: siteDescription,
+  alternates: {
+    canonical: '/',
+  },
+  openGraph: {
+    type: 'website',
+    locale: 'en_GB',
+    url: '/',
+    siteName: 'Doxantro',
+    title: siteTitle,
+    description: siteDescription,
+    images: [
+      {
+        url: '/doxantro-social-card.png?v=1',
+        width: 1200,
+        height: 630,
+        alt: 'Doxantro — Think, build and solve',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: siteTitle,
+    description: siteDescription,
+    images: [
+      {
+        url: '/doxantro-social-card.png?v=1',
+        alt: 'Doxantro — Think, build and solve',
+      },
+    ],
+  },
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
