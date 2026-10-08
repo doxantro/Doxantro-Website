@@ -12,7 +12,7 @@ export const company = {
   name: 'Doxantro',
   legalName: 'Doxantro Technologies Limited',
   mantra: 'Think, build and solve.',
-  email: 'hello@doxantro.com',
+  email: 'info@doxantro.com',
   summary:
     'An engineering partner for software builds, AI integration, data and infrastructure.',
 };
