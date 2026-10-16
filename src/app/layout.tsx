@@ -38,6 +38,10 @@ export const metadata: Metadata = {
     'machine learning integration',
     'enterprise cloud architecture',
   ],
+  icons: {
+    icon: [{ url: '/favicon.png', type: 'image/png', sizes: '512x512' }],
+    apple: [{ url: '/apple-touch-icon.png', type: 'image/png', sizes: '180x180' }],
+  },
   alternates: {
     canonical: '/',
   },

@@ -10,8 +10,8 @@ export const contentVariant: ContentVariant =
 
 export const company = {
   name: 'Doxantro',
-  legalName: 'Doxantro Technologies Limited',
-  mantra: 'Think, build and solve.',
+  legalName: 'Doxantro Technologies',
+  mantra: 'Think, build and scale.',
   email: 'info@doxantro.com',
   summary:
     'An engineering partner for software builds, AI integration, data and infrastructure.',
