@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { company, industries, services } from '../content/site';
 
 const companyLinks = [
+  { name: 'Ticha — in development', href: '/ticha' },
   { name: 'About', href: '/about' },
   { name: 'How we work', href: '/#process' },
   { name: 'Case studies', href: '/case-studies' },
