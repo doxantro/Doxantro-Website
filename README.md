@@ -54,3 +54,15 @@ Before testing a Vercel deployment:
 4. Redeploy after adding or changing a value. Existing deployments do not automatically receive newly added secrets.
 
 The API key is read only in server-side code. Never prefix it with `NEXT_PUBLIC_`.
+
+### Ticha waitlist
+
+The `/ticha` form posts to `/api/ticha/waitlist` and saves email addresses in a dedicated Resend segment. It does not subscribe visitors to Field Notes. Success is returned only after storage and segment assignment succeed. Existing global unsubscribe preferences are preserved.
+
+Configure in local server environment and Vercel before enabling live signups:
+
+- `RESEND_API_KEY`: the existing Resend key, with contacts read/write access. A sending-only key is insufficient. Optional `TICHA_RESEND_API_KEY` overrides this for a separate account/key.
+- The Ticha Waitlist segment is `b5fa3d8d-bf1d-49cb-80b1-d27a0be8148a`. Optional `TICHA_WAITLIST_SEGMENT_ID` overrides it for another environment.
+- In Resend, create string contact properties `ticha_role` and `ticha_consent_at`. The required role and latest consent timestamp are stored here.
+
+Use the Ticha segment for launch broadcasts and include Resend's unsubscribe link. No confirmation emails are sent automatically. Rate limiting is a lightweight per-instance guard; configure platform-level protection if traffic requires it. Without configuration, signups return an honest unavailable message and are not reported as saved. Test with a controlled address only after configuration; do not submit real visitor details for testing.
