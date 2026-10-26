@@ -1,5 +1,6 @@
 'use client';
 
+import MathFraction from './MathFraction';
 import { useState } from 'react';
 import { ArrowRight, Play, RotateCcw } from 'lucide-react';
 
@@ -51,13 +52,13 @@ export default function SciencePractice({ onComplete }: { onComplete: (topic: st
           {launch > 0 ? <circle key={`${launch}-${angle}-${speed}`} r="5" fill="#c66c32"><animateMotion path={path} dur={`${flight.toFixed(2)}s`} fill="freeze" /></circle> : <circle cx="18" cy="142" r="5" fill="#c66c32" />}
         </svg>
         <label className="tc-lab-slider">Launch angle <strong>{angle}°</strong><input aria-label="Launch angle" type="range" min="15" max="75" step="1" value={angle} onChange={event => { setAngle(Number(event.target.value)); setLaunch(0); }} /></label>
-        <label className="tc-lab-slider">Initial speed <strong>{speed} m/s</strong><input aria-label="Initial speed" type="range" min="10" max="30" step="1" value={speed} onChange={event => { setSpeed(Number(event.target.value)); setLaunch(0); }} /></label>
+        <label className="tc-lab-slider">Initial speed <strong>{speed} m s⁻¹</strong><input aria-label="Initial speed" type="range" min="10" max="30" step="1" value={speed} onChange={event => { setSpeed(Number(event.target.value)); setLaunch(0); }} /></label>
         <div className="tc-lab-metrics" aria-live="polite"><span><strong>{range.toFixed(1)} m</strong>range</span><span><strong>{height.toFixed(1)} m</strong>peak height</span><span><strong>{flight.toFixed(2)} s</strong>flight time</span></div>
         <button type="button" className="tc-lab-action" onClick={() => setLaunch(value => value + 1)}><Play size={13} />{launch ? 'Launch again' : 'Launch ball'}</button>
-        <p className="tc-lab-assumption">Ideal model: level ground, no air resistance, g = 9.8 m/s². Animation uses the calculated flight time.</p>
+        <p className="tc-lab-assumption">Ideal model: level ground, no air resistance, g = 9.8 m s⁻². Animation uses the calculated flight time.</p>
         <p className="tc-lab-prompt">At a fixed speed, which angle gives the greatest range?</p>
         <div className="tc-angle-options" role="group" aria-label="Angle for maximum range">{[30, 45, 60].map(value => <button key={value} type="button" aria-pressed={choice === value} onClick={() => setChoice(value)}>{value}°</button>)}</div>
-        {choice !== null && <div className="tc-answer-feedback" role="status"><strong>{choice === 45 ? 'Exactly. The balance is 45°.' : 'Try comparing your trajectories.'}</strong><p>R = v² sin(2θ) / g. At 45°, sin(90°) = 1, so range is greatest. Complementary angles such as 30° and 60° give the same range.</p>{choice === 45 && <button type="button" onClick={() => onComplete('projectile motion')}>Finish physics <ArrowRight size={14} /></button>}</div>}
+        {choice !== null && <div className="tc-answer-feedback" role="status"><strong>{choice === 45 ? 'Exactly. The balance is 45°.' : 'Try comparing your trajectories.'}</strong><p>R = <MathFraction numerator="v² sin(2θ)" denominator="g" label="v squared sine of 2 theta divided by g" />. At 45°, sin(90°) = 1, so range is greatest. Complementary angles such as 30° and 60° give the same range.</p>{choice === 45 && <button type="button" onClick={() => onComplete('projectile motion')}>Finish physics <ArrowRight size={14} /></button>}</div>}
       </div> : <div>
         <p className="tc-phone-kicker">BALANCING EQUATIONS</p>
         <p className="tc-lab-prompt">Balance the complete combustion of methane using the smallest whole-number coefficients.</p>

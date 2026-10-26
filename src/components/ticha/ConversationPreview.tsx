@@ -1,5 +1,6 @@
 'use client';
 
+import MathFraction from './MathFraction';
 import { useEffect, useRef, useState } from 'react';
 import { ArrowUpRight, MessageCircle, RotateCcw, Sparkles } from 'lucide-react';
 
@@ -10,7 +11,7 @@ const conversations = {
     answer: 'A steeper launch gives the ball more time in the air, but less horizontal speed. Distance depends on both. On level ground without air resistance, 45° gives the best balance.',
     replies: [
       { question: 'Explain it with an analogy.', answer: 'Think of a fixed launch speed as a budget split between going up and going forward. Spend almost all of it going up, and the ball rises high but barely moves forward. At 45°, the upward and forward components are equal, giving the greatest range in this ideal model.' },
-      { question: 'Show me the maths.', answer: 'Horizontal speed is v cos θ. Flight time is 2v sin θ / g. Multiply them: R = v² sin(2θ) / g. The sine term reaches its maximum of 1 when 2θ = 90°, so θ = 45°.' },
+      { question: 'Show me the maths.', answer: <>Horizontal speed is v cos θ. Flight time is <MathFraction numerator="2v sin θ" denominator="g" label="2 v sine theta divided by g" />. Multiply them: R = <MathFraction numerator="v² sin(2θ)" denominator="g" label="v squared sine of 2 theta divided by g" />. The sine term reaches its maximum of 1 when 2θ = 90°, so θ = 45°.</> },
       { question: 'What changes in the real world?', answer: 'Air resistance slows the ball, and wind can change its motion. Launch and landing heights matter too. With those effects, the angle for maximum range can differ from 45°.' },
     ],
   },

@@ -15,7 +15,7 @@ export default function MobilePreview() {
       <div className="tc-wrap tc-section tc-habit-grid">
         <div className="tc-habit-copy">
           <p className="tc-eyebrow">CURIOSITY, MEET CONSISTENCY.</p>
-          <h2>A learning habit.<br />A sharper everyday.</h2>
+          <h2>A learning habit that gets you sharper everyday.</h2>
           <p>Ticha’s AI is being designed to track learning activity, notice patterns and help you build a habit that lasts. A little practice, a thoughtful nudge, a new idea—small moments to keep learning and stay mentally sharp.</p>
           <ul className="tc-checks">
             <li><Check size={17} /> Personal goals that fit your day</li>
